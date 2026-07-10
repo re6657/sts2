@@ -20,3 +20,5 @@
 - [x] Task 9: Simplify BrokerClientJoinFlowPatch — remove guards — 0 errors
 - [x] Task 10: Simplify BrokerForceLobbyTransitionPatch — 0 errors
 - [x] Task 11: Final build + deploy — 0 errors, 291 warnings, DLL 890KB
+Task 1: complete (commits ff9c710..40520b7, review clean)
+Task 2: complete (commits 40520b7..1c12d5f, review clean)

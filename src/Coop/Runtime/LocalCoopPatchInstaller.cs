@@ -15,23 +15,13 @@ public static class LocalCoopPatchInstaller
     public static readonly Type[] BrokerNetworkPatchTypes =
     [
         typeof(BrokerClientJoinFlowPatch),
-        // Broker Virtual Friend Steam patches: inject "人机一号" into the Steam
-        // friend list at the API level. The game's ShowFriends creates a real
-        // NJoinFriendButton. Player clicks it → normal JoinGameAsync flow →
-        // BrokerClientJoinFlowPatch intercepts JoinFlow.Begin → broker handshake.
-        // UNBROKEN CHAIN: JoinResult returns to JoinGameAsync → scene transition.
-        // (Replaces the architecturally-broken BrokerJoinFriendScreenPatch.)
-        typeof(BrokerVFPatch_GetFriendCount),
-        typeof(BrokerVFPatch_GetFriendByIndex),
-        typeof(BrokerVFPatch_GetFriendPersonaName),
-        typeof(BrokerVFPatch_GetFriendGamePlayed),
+        // BrokerJoinFriendScreenPatch intercepts OpenJoinFriendsScreen on the
+        // multiplayer submenu. In broker client mode, it creates a JoinFlow
+        // instance and calls Begin() directly, bypassing the empty Steam friend
+        // list. BrokerClientJoinFlowPatch intercepts Begin() → broker handshake.
+        typeof(BrokerJoinFriendScreenPatch),
         typeof(BrokerHostSteamStartupBypassPatch),
         typeof(BrokerHostENetStartupBypassPatch),
-        // Old client bypass patches (BrokerClientSteamStartupBypassPatch,
-        // BrokerClientENetStartupBypassPatch, BrokerClientConnectBypassPatch)
-        // targeted NetClientGameService methods that don't exist in the current
-        // STS2 version. Replaced with patches that target the actual P2P
-        // connection initializers:
         typeof(BrokerClientSteamConnectBypassPatch),
         typeof(BrokerClientENetConnectBypassPatch),
         typeof(BrokerForceLobbyTransitionPatch),
@@ -68,18 +58,9 @@ public static class LocalCoopPatchInstaller
 
     private static readonly Type[] RunIdentityDiagnosticsPatchTypes =
     [
-        typeof(RunIdentityLifecycleDiagnosticsPatches),
-        typeof(OneOffSynchronizerDiagnosticsPatches),
-        typeof(OneOffSynchronizerLocalPlayerDiagnosticsPatch),
-        typeof(CardSelectCmdDiagnosticsPatches),
-        typeof(CardSelectCmdShouldSelectLocalDiagnosticsPatch),
-        typeof(LocalContextIsMeDiagnosticsPatch),
-        typeof(PlayerChoiceSynchronizerDiagnosticsPatches),
-        typeof(RewardDiagnosticsPatches),
-        typeof(RewardStateDiagnosticsPatches),
-        typeof(PotionProcurementDiagnosticsPatches),
-        typeof(RunIdentityLocalUiDiagnosticsPatches),
-        typeof(PeerInputOwnershipDiagnosticsPatches)
+        // Diagnostics patches removed — they produced log noise without
+        // functional benefit. Re-add specific patches here if debugging
+        // requires them.
     ];
 
     public static IReadOnlyList<Type> DefaultPatchTypesForTesting => DefaultPatchTypes;
