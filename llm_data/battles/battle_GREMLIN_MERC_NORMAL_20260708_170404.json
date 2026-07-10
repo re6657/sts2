@@ -1,0 +1,1719 @@
+{
+  "EncounterName": "GREMLIN_MERC_NORMAL",
+  "Floor": 7,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-08T17:03:50.357608+08:00",
+  "EndTime": "2026-07-08T17:04:04.3341307+08:00",
+  "DurationSeconds": 13.9765227,
+  "Victory": true,
+  "EndHp": 980,
+  "TotalTurns": 15,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 25,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 47,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 14,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION",
+        "FLEX_POTION",
+        "POTION_OF_BINDING",
+        "SPEED_POTION"
+      ],
+      "PotionCount": 4,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY BASH -\u003E GREMLIN_MERC",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 8,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=8 Blk=5 In=14 Cards=3 Score=-683 States=49 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 49
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 47,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 14,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION",
+        "FLEX_POTION",
+        "POTION_OF_BINDING",
+        "SPEED_POTION"
+      ],
+      "PotionCount": 4,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BASH -\u003E GREMLIN_MERC",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 8,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=8 Blk=0 In=14 Cards=2 Score=-723 States=10 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 10
+      },
+      "ActionResults": [
+        {
+          "CardId": "BASH",
+          "Success": true,
+          "Target": "GREMLIN_MERC"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 990,
+        "BlockAfter": 0,
+        "DamageTaken": 9,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 3/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 990,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 39,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION",
+        "FLEX_POTION",
+        "POTION_OF_BINDING",
+        "SPEED_POTION"
+      ],
+      "PotionCount": 4,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY IRON_WAVE -\u003E GREMLIN_MERC",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 7,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=7 Blk=15 In=12 Cards=4 Score=225 States=85 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "IRON_WAVE",
+          "Success": true,
+          "Target": "GREMLIN_MERC"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 990,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 990,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 32,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION",
+        "FLEX_POTION",
+        "POTION_OF_BINDING",
+        "SPEED_POTION"
+      ],
+      "PotionCount": 4,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=0 Blk=10 In=12 Cards=3 Score=160 States=16 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 16
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 990,
+        "BlockAfter": 10,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 1,
+      "Block": 10,
+      "Hp": 990,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 32,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION",
+        "FLEX_POTION",
+        "POTION_OF_BINDING",
+        "SPEED_POTION"
+      ],
+      "PotionCount": 4,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=12 Cards=2 Score=120 States=3 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 990,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 990,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BLUDGEON",
+          "Cost": 3
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 32,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 2,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "WeakPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION",
+        "FLEX_POTION",
+        "POTION_OF_BINDING",
+        "SPEED_POTION"
+      ],
+      "PotionCount": 4,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BASH -\u003E GREMLIN_MERC",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 4,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=4 Blk=5 In=8 Cards=3 Score=-131 States=23 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 23
+      },
+      "ActionResults": [
+        {
+          "CardId": "BASH",
+          "Success": true,
+          "Target": "GREMLIN_MERC"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 990,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 990,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BLUDGEON",
+          "Cost": 3
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 26,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 2,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "WeakPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION",
+        "FLEX_POTION",
+        "POTION_OF_BINDING",
+        "SPEED_POTION"
+      ],
+      "PotionCount": 4,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=8 Cards=2 Score=-179 States=3 Char=IRONCLAD Src=reflection: dmg=4 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 987,
+        "BlockAfter": 0,
+        "DamageTaken": 3,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 987,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 26,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 18,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 1,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "WeakPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION",
+        "FLEX_POTION",
+        "POTION_OF_BINDING",
+        "SPEED_POTION"
+      ],
+      "PotionCount": 4,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY SETUP_STRIKE -\u003E GREMLIN_MERC",
+          "PLAY STRIKE_IRONCLAD -\u003E GREMLIN_MERC",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 7,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=7 Blk=5 In=18 Cards=4 Score=-1358 States=85 Char=IRONCLAD Src=reflection: dmg=5 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 987,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 987,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 26,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 18,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 1,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "WeakPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION",
+        "FLEX_POTION",
+        "POTION_OF_BINDING",
+        "SPEED_POTION"
+      ],
+      "PotionCount": 4,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SETUP_STRIKE -\u003E GREMLIN_MERC",
+          "PLAY STRIKE_IRONCLAD -\u003E GREMLIN_MERC",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 7,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=7 Blk=0 In=18 Cards=3 Score=-1395 States=16 Char=IRONCLAD Src=reflection: dmg=5 blk=0",
+        "StatesExplored": 16
+      },
+      "ActionResults": [
+        {
+          "CardId": "SETUP_STRIKE",
+          "Success": true,
+          "Target": "GREMLIN_MERC"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 987,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 987,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 19,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 18,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 1,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "WeakPower",
+            "Amount": 1
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 2
+          },
+          {
+            "Name": "SetupStrikePower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION",
+        "FLEX_POTION",
+        "POTION_OF_BINDING",
+        "SPEED_POTION"
+      ],
+      "PotionCount": 4,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E GREMLIN_MERC",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=6 Blk=0 In=18 Cards=2 Score=-1412 States=3 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "GREMLIN_MERC"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 974,
+        "BlockAfter": 0,
+        "DamageTaken": 13,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 974,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "BLUDGEON",
+          "Cost": 3
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 10,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION",
+        "FLEX_POTION",
+        "POTION_OF_BINDING",
+        "SPEED_POTION"
+      ],
+      "PotionCount": 4,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BLUDGEON -\u003E GREMLIN_MERC",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 32,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=32 Blk=0 In=16 Cards=2 Score=1627 States=37 Char=IRONCLAD Src=reflection: dmg=32 blk=0",
+        "StatesExplored": 37
+      },
+      "ActionResults": [
+        {
+          "CardId": "BLUDGEON",
+          "Success": true,
+          "Target": "GREMLIN_MERC"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 974,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 4,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 4 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 12,
+      "Energy": 0,
+      "Block": 0,
+      "Hp": 974,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SNEAKY_GREMLIN",
+          "Hp": 11,
+          "MaxHp": 11,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Stun",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "FAT_GREMLIN",
+          "Hp": 17,
+          "MaxHp": 17,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Stun",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HeistPower",
+              "Amount": 75
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION",
+        "FLEX_POTION",
+        "POTION_OF_BINDING",
+        "SPEED_POTION"
+      ],
+      "PotionCount": 4,
+      "SolverPlan": {
+        "Actions": [
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=0 Cards=1 Score=0 States=0 Char=IRONCLAD Src=none",
+        "StatesExplored": 0
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 974,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": [
+          "NO_PLAYABLE: 3 energy left, 0 playable cards"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 13,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 974,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SNEAKY_GREMLIN",
+          "Hp": 11,
+          "MaxHp": 11,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "FAT_GREMLIN",
+          "Hp": 17,
+          "MaxHp": 17,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Escape",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HeistPower",
+              "Amount": 75
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION",
+        "FLEX_POTION",
+        "POTION_OF_BINDING",
+        "SPEED_POTION"
+      ],
+      "PotionCount": 4,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E SNEAKY_GREMLIN",
+          "PLAY STRIKE_IRONCLAD -\u003E FAT_GREMLIN",
+          "PLAY STRIKE_IRONCLAD -\u003E SNEAKY_GREMLIN",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 18,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=18 Blk=0 In=9 Cards=4 Score=1271 States=187 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 187
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "SNEAKY_GREMLIN"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 974,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 14,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 974,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SNEAKY_GREMLIN",
+          "Hp": 5,
+          "MaxHp": 11,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "FAT_GREMLIN",
+          "Hp": 17,
+          "MaxHp": 17,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Escape",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HeistPower",
+              "Amount": 75
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION",
+        "FLEX_POTION",
+        "POTION_OF_BINDING",
+        "SPEED_POTION"
+      ],
+      "PotionCount": 4,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E FAT_GREMLIN",
+          "PLAY STRIKE_IRONCLAD -\u003E SNEAKY_GREMLIN",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=12 Blk=0 In=9 Cards=3 Score=1199 States=21 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 21
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "FAT_GREMLIN"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 974,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 15,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 974,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SNEAKY_GREMLIN",
+          "Hp": 5,
+          "MaxHp": 11,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "FAT_GREMLIN",
+          "Hp": 11,
+          "MaxHp": 17,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Escape",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HeistPower",
+              "Amount": 75
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION",
+        "FLEX_POTION",
+        "POTION_OF_BINDING",
+        "SPEED_POTION"
+      ],
+      "PotionCount": 4,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E SNEAKY_GREMLIN",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=6 Blk=0 In=9 Cards=2 Score=1127 States=3 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "SNEAKY_GREMLIN"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 980,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

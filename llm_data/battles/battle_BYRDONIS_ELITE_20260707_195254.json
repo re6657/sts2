@@ -1,0 +1,990 @@
+{
+  "EncounterName": "BYRDONIS_ELITE",
+  "Floor": 8,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T19:52:40.9395506+08:00",
+  "EndTime": "2026-07-07T19:52:54.7496734+08:00",
+  "DurationSeconds": 13.8101228,
+  "Victory": true,
+  "EndHp": 934,
+  "TotalTurns": 9,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 71,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BYRDONIS",
+          "Hp": 84,
+          "MaxHp": 84,
+          "Block": 0,
+          "IntentDamage": 17,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "TerritorialPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E BYRDONIS",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=6 Blk=10 In=17 Cards=4 Score=-491 States=85 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "BYRDONIS"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 992,
+        "BlockAfter": 0,
+        "DamageTaken": 7,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 992,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "STOMP",
+          "Cost": 3
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BYRDONIS",
+          "Hp": 78,
+          "MaxHp": 84,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "TerritorialPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY POMMEL_STRIKE -\u003E BYRDONIS",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY PILLAGE -\u003E BYRDONIS",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 15,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=15 Blk=5 In=12 Cards=4 Score=-486 States=51 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 51
+      },
+      "ActionResults": [
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "BYRDONIS"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "PILLAGE",
+          "Success": true,
+          "Target": "BYRDONIS"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 985,
+        "BlockAfter": 0,
+        "DamageTaken": 7,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 985,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STOMP",
+          "Cost": 3
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BYRDONIS",
+          "Hp": 63,
+          "MaxHp": 84,
+          "Block": 0,
+          "IntentDamage": 19,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "TerritorialPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY POMMEL_STRIKE -\u003E BYRDONIS",
+          "PLAY HEADBUTT -\u003E BYRDONIS",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 18,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=18 Blk=5 In=19 Cards=4 Score=-1195 States=51 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 51
+      },
+      "ActionResults": [
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "BYRDONIS"
+        },
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "BYRDONIS"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 985,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 985,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STOMP",
+          "Cost": 3
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BYRDONIS",
+          "Hp": 45,
+          "MaxHp": 84,
+          "Block": 0,
+          "IntentDamage": 19,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "TerritorialPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=19 Cards=2 Score=-1544 States=3 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 971,
+        "BlockAfter": 0,
+        "DamageTaken": 14,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 3/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 971,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BYRDONIS",
+          "Hp": 45,
+          "MaxHp": 84,
+          "Block": 0,
+          "IntentDamage": 18,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 3,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "TerritorialPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY POMMEL_STRIKE -\u003E BYRDONIS",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=9 Blk=10 In=18 Cards=4 Score=-827 States=98 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 98
+      },
+      "ActionResults": [
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "BYRDONIS"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 963,
+        "BlockAfter": 0,
+        "DamageTaken": 8,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 963,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BYRDONIS",
+          "Hp": 36,
+          "MaxHp": 84,
+          "Block": 0,
+          "IntentDamage": 21,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "TerritorialPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E BYRDONIS",
+          "PLAY STRIKE_IRONCLAD -\u003E BYRDONIS",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=12 Blk=5 In=21 Cards=4 Score=-1750 States=15 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 15
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "BYRDONIS"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "BYRDONIS"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 947,
+        "BlockAfter": 0,
+        "DamageTaken": 16,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 3,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 947,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "STOMP",
+          "Cost": 3
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BYRDONIS",
+          "Hp": 24,
+          "MaxHp": 84,
+          "Block": 0,
+          "IntentDamage": 24,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 5,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "TerritorialPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 5
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY HEADBUTT -\u003E BYRDONIS",
+          "PLAY STRIKE_IRONCLAD -\u003E BYRDONIS",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 15,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=15 Blk=5 In=24 Cards=4 Score=-2059 States=41 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 41
+      },
+      "ActionResults": [
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "BYRDONIS"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 947,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 947,
+      "MaxHp": 999,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "STOMP",
+          "Cost": 3
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BYRDONIS",
+          "Hp": 15,
+          "MaxHp": 84,
+          "Block": 0,
+          "IntentDamage": 24,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 5,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "TerritorialPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 5
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E BYRDONIS",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=6 Blk=5 In=24 Cards=3 Score=-2247 States=9 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 9
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "BYRDONIS"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 928,
+        "BlockAfter": 0,
+        "DamageTaken": 19,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 2/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 928,
+      "MaxHp": 999,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 9,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BYRDONIS",
+          "Hp": 9,
+          "MaxHp": 84,
+          "Block": 0,
+          "IntentDamage": 23,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 6,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "TerritorialPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY POMMEL_STRIKE -\u003E BYRDONIS",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=9 Blk=5 In=23 Cards=3 Score=2052 States=35 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 35
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "BYRDONIS"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 934,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

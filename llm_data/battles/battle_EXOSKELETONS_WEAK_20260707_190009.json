@@ -1,0 +1,788 @@
+{
+  "EncounterName": "EXOSKELETONS_WEAK",
+  "Floor": 19,
+  "Character": "DEFECT",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T19:00:00.5194344+08:00",
+  "EndTime": "2026-07-07T19:00:09.5519702+08:00",
+  "DurationSeconds": 9.0325358,
+  "Victory": true,
+  "EndHp": 972,
+  "TotalTurns": 6,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 28,
+  "TotalEnemiesKilled": 2,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 16,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "BALL_LIGHTNING",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "UPROAR",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EXOSKELETON",
+          "Hp": 28,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 3,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "EXOSKELETON",
+          "Hp": 25,
+          "MaxHp": 25,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "EXOSKELETON",
+          "Hp": 27,
+          "MaxHp": 27,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY BALL_LIGHTNING -\u003E EXOSKELETON",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 7,
+        "EstimatedBlock": 20,
+        "Score": "Dmg=7 Blk=20 In=11 Cards=4 Score=1001 States=247 Char=DEFECT Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 247
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "BALL_LIGHTNING",
+          "Success": true,
+          "Target": "EXOSKELETON"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "BARRAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "COMPILE_DRIVER",
+          "Cost": 1
+        },
+        {
+          "Id": "SUNDER",
+          "Cost": 3
+        },
+        {
+          "Id": "LEAP",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EXOSKELETON",
+          "Hp": 28,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "EXOSKELETON",
+          "Hp": 15,
+          "MaxHp": 25,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "EXOSKELETON",
+          "Hp": 24,
+          "MaxHp": 27,
+          "Block": 0,
+          "IntentDamage": 10,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SUNDER -\u003E EXOSKELETON",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 32,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=32 Blk=0 In=18 Cards=2 Score=906 States=610 Char=DEFECT Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 610
+      },
+      "ActionResults": [
+        {
+          "CardId": "SUNDER",
+          "Success": true,
+          "Target": "EXOSKELETON"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 981,
+        "BlockAfter": 0,
+        "DamageTaken": 18,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 4,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 4 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 981,
+      "MaxHp": 999,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "FLAK_CANNON",
+          "Cost": 2
+        },
+        {
+          "Id": "BALL_LIGHTNING",
+          "Cost": 1
+        },
+        {
+          "Id": "ZAP",
+          "Cost": 1
+        },
+        {
+          "Id": "MOMENTUM_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EXOSKELETON",
+          "Hp": 28,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "EXOSKELETON",
+          "Hp": 12,
+          "MaxHp": 25,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "EXOSKELETON",
+          "Hp": 12,
+          "MaxHp": 27,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY ZAP -\u003E self",
+          "PLAY MOMENTUM_STRIKE -\u003E EXOSKELETON",
+          "PLAY STRIKE_DEFECT -\u003E EXOSKELETON",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 16,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=16 Blk=0 In=9 Cards=4 Score=1834 States=407 Char=DEFECT Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 407
+      },
+      "ActionResults": [
+        {
+          "CardId": "ZAP",
+          "Success": true
+        },
+        {
+          "CardId": "MOMENTUM_STRIKE",
+          "Success": true,
+          "Target": "EXOSKELETON"
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "EXOSKELETON"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 981,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 981,
+      "MaxHp": 999,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 15,
+      "Hand": [
+        {
+          "Id": "DARKNESS",
+          "Cost": 1
+        },
+        {
+          "Id": "DUALCAST",
+          "Cost": 1
+        },
+        {
+          "Id": "CONSUMING_SHADOW",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EXOSKELETON",
+          "Hp": 22,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "EXOSKELETON",
+          "Hp": 9,
+          "MaxHp": 27,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 3,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY DUALCAST -\u003E self",
+          "PLAY DARKNESS -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=9 Blk=10 In=21 Cards=4 Score=2004 States=49 Char=DEFECT Src=fallback: dmg=6 blk=0",
+        "StatesExplored": 49
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "DUALCAST",
+          "Success": true
+        },
+        {
+          "CardId": "DARKNESS",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 981,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 981,
+      "MaxHp": 999,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "BEAM_CELL",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EXOSKELETON",
+          "Hp": 11,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 10,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 1,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=10 Cards=1 Score=399 States=1 Char=DEFECT Src=reflection: dmg=3 blk=0",
+        "StatesExplored": 1
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 971,
+        "BlockAfter": 0,
+        "DamageTaken": 10,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 1,
+        "Issues": [
+          "ENERGY_WASTED: 3 energy left, 1/1 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 971,
+      "MaxHp": 999,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "ZAP",
+          "Cost": 1
+        },
+        {
+          "Id": "BARRAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EXOSKELETON",
+          "Hp": 5,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 1,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY ZAP -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 5,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=5 Blk=5 In=0 Cards=3 Score=1478 States=19 Char=DEFECT Src=fallback: dmg=3 blk=0",
+        "StatesExplored": 19
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "ZAP",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 972,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

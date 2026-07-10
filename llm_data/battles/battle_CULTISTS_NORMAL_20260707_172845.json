@@ -1,0 +1,1231 @@
+{
+  "EncounterName": "CULTISTS_NORMAL",
+  "Floor": 5,
+  "Character": "DEFECT",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T17:28:29.1032885+08:00",
+  "EndTime": "2026-07-07T17:28:45.353018+08:00",
+  "DurationSeconds": 16.2497295,
+  "Victory": true,
+  "EndHp": 959,
+  "TotalTurns": 11,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 40,
+  "TotalEnemiesKilled": 1,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "SCRAPE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "GUNK_UP",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CALCIFIED_CULTIST",
+          "Hp": 39,
+          "MaxHp": 39,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "DAMP_CULTIST",
+          "Hp": 51,
+          "MaxHp": 51,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY SCRAPE -\u003E CALCIFIED_CULTIST",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 7,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=7 Blk=10 In=0 Cards=4 Score=564 States=299 Char=DEFECT Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 299
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "SCRAPE",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "ZAP",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CALCIFIED_CULTIST",
+          "Hp": 29,
+          "MaxHp": 39,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "DAMP_CULTIST",
+          "Hp": 51,
+          "MaxHp": 51,
+          "Block": 0,
+          "IntentDamage": 1,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 5
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_DEFECT -\u003E CALCIFIED_CULTIST",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY ZAP -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=6 Blk=5 In=10 Cards=4 Score=523 States=104 Char=DEFECT Src=fallback: dmg=3 blk=0",
+        "StatesExplored": 104
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "ZAP",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 994,
+        "BlockAfter": 0,
+        "DamageTaken": 5,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 994,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "TURBO",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CALCIFIED_CULTIST",
+          "Hp": 20,
+          "MaxHp": 39,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 2
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "DAMP_CULTIST",
+          "Hp": 48,
+          "MaxHp": 51,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 5,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 5
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 5
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY TURBO -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY STRIKE_DEFECT -\u003E CALCIFIED_CULTIST",
+          "PLAY STRIKE_DEFECT -\u003E CALCIFIED_CULTIST",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=12 Blk=10 In=17 Cards=6 Score=-69 States=867 Char=DEFECT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 867
+      },
+      "ActionResults": [
+        {
+          "CardId": "TURBO",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 987,
+        "BlockAfter": 0,
+        "DamageTaken": 7,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 987,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "SCRAPE",
+          "Cost": 1
+        },
+        {
+          "Id": "GUNK_UP",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CALCIFIED_CULTIST",
+          "Hp": 8,
+          "MaxHp": 39,
+          "Block": 0,
+          "IntentDamage": 13,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 2
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "DAMP_CULTIST",
+          "Hp": 42,
+          "MaxHp": 51,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 10,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 5
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 10
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY GUNK_UP -\u003E CALCIFIED_CULTIST",
+          "PLAY SCRAPE -\u003E CALCIFIED_CULTIST",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 11,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=11 Blk=5 In=24 Cards=4 Score=796 States=87 Char=DEFECT Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 87
+      },
+      "ActionResults": [
+        {
+          "CardId": "GUNK_UP",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        },
+        {
+          "CardId": "SCRAPE",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 987,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 3,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 987,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 3,
+      "Hand": [
+        {
+          "Id": "SCRAPE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DUALCAST",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DAMP_CULTIST",
+          "Hp": 42,
+          "MaxHp": 51,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 10,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 5
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 10
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=11 Cards=2 Score=-49 States=3 Char=DEFECT Src=fallback: dmg=16 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 986,
+        "BlockAfter": 0,
+        "DamageTaken": 1,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 986,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "VOID",
+          "Cost": -1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DAMP_CULTIST",
+          "Hp": 36,
+          "MaxHp": 51,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 15,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 5
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 15
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=16 Cards=2 Score=-1365 States=40 Char=DEFECT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 40
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 986,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 986,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "VOID",
+          "Cost": -1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DAMP_CULTIST",
+          "Hp": 36,
+          "MaxHp": 51,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 15,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 5
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 15
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=16 Cards=1 Score=-1390 States=3 Char=DEFECT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 975,
+        "BlockAfter": 0,
+        "DamageTaken": 11,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 3 energy left, 3/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 975,
+      "MaxHp": 999,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "ZAP",
+          "Cost": 1
+        },
+        {
+          "Id": "TURBO",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DAMP_CULTIST",
+          "Hp": 30,
+          "MaxHp": 51,
+          "Block": 0,
+          "IntentDamage": 21,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 20,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 5
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 20
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY TURBO -\u003E self",
+          "PLAY STRIKE_DEFECT -\u003E DAMP_CULTIST",
+          "PLAY ZAP -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=6 Blk=5 In=21 Cards=5 Score=-1701 States=64 Char=DEFECT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 64
+      },
+      "ActionResults": [
+        {
+          "CardId": "TURBO",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "DAMP_CULTIST"
+        },
+        {
+          "CardId": "ZAP",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 975,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 975,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DAMP_CULTIST",
+          "Hp": 24,
+          "MaxHp": 51,
+          "Block": 0,
+          "IntentDamage": 21,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 20,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 5
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 20
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 3,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=21 Cards=1 Score=-1855 States=1 Char=DEFECT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 1
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 959,
+        "BlockAfter": 0,
+        "DamageTaken": 16,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 1,
+        "Issues": [
+          "ENERGY_WASTED: 3 energy left, 1/1 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 959,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "SCRAPE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DAMP_CULTIST",
+          "Hp": 15,
+          "MaxHp": 51,
+          "Block": 0,
+          "IntentDamage": 26,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 25,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 5
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 25
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 3,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SCRAPE -\u003E DAMP_CULTIST",
+          "PLAY STRIKE_DEFECT -\u003E DAMP_CULTIST",
+          "PLAY GUNK_UP -\u003E DAMP_CULTIST",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 17,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=17 Blk=0 In=26 Cards=4 Score=1663 States=113 Char=DEFECT Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 113
+      },
+      "ActionResults": [
+        {
+          "CardId": "SCRAPE",
+          "Success": true,
+          "Target": "DAMP_CULTIST"
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "DAMP_CULTIST"
+        },
+        {
+          "CardId": "GUNK_UP",
+          "Success": true,
+          "Target": "DAMP_CULTIST"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 959,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 959,
+      "MaxHp": 999,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 12,
+      "Hand": [
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DAMP_CULTIST",
+          "Hp": 2,
+          "MaxHp": 51,
+          "Block": 0,
+          "IntentDamage": 26,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 25,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 5
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 25
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 3,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_DEFECT -\u003E DAMP_CULTIST",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=6 Blk=0 In=26 Cards=2 Score=1586 States=3 Char=DEFECT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "DAMP_CULTIST"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 959,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

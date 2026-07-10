@@ -1,0 +1,627 @@
+{
+  "EncounterName": "RUBY_RAIDERS_NORMAL",
+  "Floor": 12,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-06T15:22:10.4171524+08:00",
+  "EndTime": "2026-07-06T15:22:19.8289399+08:00",
+  "DurationSeconds": 9.4117875,
+  "Victory": false,
+  "EndHp": 0,
+  "KilledBy": "RUBY_RAIDERS_NORMAL",
+  "TotalTurns": 5,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 39,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 39,
+      "MaxHp": 80,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TRACKER_RUBY_RAIDER",
+          "Hp": 22,
+          "MaxHp": 22,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "CROSSBOW_RUBY_RAIDER",
+          "Hp": 19,
+          "MaxHp": 19,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Defend",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 2,
+          "Id": "AXE_RUBY_RAIDER",
+          "Hp": 21,
+          "MaxHp": 21,
+          "Block": 0,
+          "IntentDamage": 5,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ASHWATER"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "USE_POTION ASHWATER",
+          "PLAY STRIKE_IRONCLAD -\u003E CROSSBOW_RUBY_RAIDER",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY CINDER -\u003E CROSSBOW_RUBY_RAIDER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 24,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=24 Blk=5 In=5 Cards=5 Score=1330 States=3138 Char=IRONCLAD Src=reflection: dmg=18 blk=0",
+        "StatesExplored": 3138
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 38,
+        "BlockAfter": 0,
+        "DamageTaken": 1,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 38,
+      "MaxHp": 80,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TRACKER_RUBY_RAIDER",
+          "Hp": 22,
+          "MaxHp": 22,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "CROSSBOW_RUBY_RAIDER",
+          "Hp": 19,
+          "MaxHp": 19,
+          "Block": 3,
+          "IntentDamage": 14,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 2,
+          "Id": "AXE_RUBY_RAIDER",
+          "Hp": 21,
+          "MaxHp": 21,
+          "Block": 5,
+          "IntentDamage": 5,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 2,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY SHRUG_IT_OFF -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=0 Blk=10 In=27 Cards=4 Score=-3506 States=269 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 269
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "SHRUG_IT_OFF",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 26,
+        "BlockAfter": 0,
+        "DamageTaken": 12,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 26,
+      "MaxHp": 80,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "SWORD_BOOMERANG",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SPITE",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TRACKER_RUBY_RAIDER",
+          "Hp": 22,
+          "MaxHp": 22,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "CROSSBOW_RUBY_RAIDER",
+          "Hp": 19,
+          "MaxHp": 19,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Defend",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 2,
+          "Id": "AXE_RUBY_RAIDER",
+          "Hp": 21,
+          "MaxHp": 21,
+          "Block": 5,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 1,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY CINDER -\u003E AXE_RUBY_RAIDER",
+          "PLAY SPITE -\u003E AXE_RUBY_RAIDER",
+          "PLAY STRIKE_IRONCLAD -\u003E AXE_RUBY_RAIDER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 24,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=24 Blk=0 In=20 Cards=4 Score=-1957 States=1477 Char=IRONCLAD Src=reflection: dmg=5 blk=0",
+        "StatesExplored": 1477
+      },
+      "ActionResults": [
+        {
+          "CardId": "CINDER",
+          "Success": true,
+          "Target": "AXE_RUBY_RAIDER"
+        },
+        {
+          "CardId": "SPITE",
+          "Success": false,
+          "FailReason": "not in hand",
+          "Target": "AXE_RUBY_RAIDER"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "AXE_RUBY_RAIDER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 8,
+        "BlockAfter": 0,
+        "DamageTaken": 18,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 8,
+      "MaxHp": 80,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TRACKER_RUBY_RAIDER",
+          "Hp": 22,
+          "MaxHp": 22,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "CROSSBOW_RUBY_RAIDER",
+          "Hp": 19,
+          "MaxHp": 19,
+          "Block": 3,
+          "IntentDamage": 14,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 2,
+          "Id": "AXE_RUBY_RAIDER",
+          "Hp": 2,
+          "MaxHp": 21,
+          "Block": 0,
+          "IntentDamage": 5,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E AXE_RUBY_RAIDER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=6 Blk=0 In=27 Cards=2 Score=-7217 States=3 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "AXE_RUBY_RAIDER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 8,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 1,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 8,
+      "MaxHp": 80,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TRACKER_RUBY_RAIDER",
+          "Hp": 22,
+          "MaxHp": 22,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "CROSSBOW_RUBY_RAIDER",
+          "Hp": 19,
+          "MaxHp": 19,
+          "Block": 3,
+          "IntentDamage": 14,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 2,
+          "Id": "AXE_RUBY_RAIDER",
+          "Hp": 2,
+          "MaxHp": 21,
+          "Block": 0,
+          "IntentDamage": 5,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY PILLAGE -\u003E CROSSBOW_RUBY_RAIDER",
+          "PLAY SETUP_STRIKE -\u003E AXE_RUBY_RAIDER",
+          "PLAY SHRUG_IT_OFF -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=10 Blk=8 In=27 Cards=4 Score=-5460 States=422 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 422
+      },
+      "ActionResults": [
+        {
+          "CardId": "PILLAGE",
+          "Success": true,
+          "Target": "CROSSBOW_RUBY_RAIDER"
+        },
+        {
+          "CardId": "SETUP_STRIKE",
+          "Success": false,
+          "FailReason": "TryManualPlay failed",
+          "Target": "AXE_RUBY_RAIDER"
+        },
+        {
+          "CardId": "SHRUG_IT_OFF",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 0,
+        "BlockAfter": 0,
+        "DamageTaken": 8,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

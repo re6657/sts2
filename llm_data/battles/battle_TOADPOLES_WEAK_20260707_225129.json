@@ -1,0 +1,1167 @@
+{
+  "EncounterName": "TOADPOLES_WEAK",
+  "Floor": 2,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T22:51:20.4722378+08:00",
+  "EndTime": "2026-07-07T22:51:29.6861292+08:00",
+  "DurationSeconds": 9.2138914,
+  "Victory": true,
+  "EndHp": 999,
+  "TotalTurns": 11,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 9,
+  "TotalEnemiesKilled": 1,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOADPOLE",
+          "Hp": 22,
+          "MaxHp": 22,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "TOADPOLE",
+          "Hp": 21,
+          "MaxHp": 21,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "REGEN_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "USE_POTION REGEN_POTION",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E TOADPOLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=6 Blk=10 In=7 Cards=5 Score=158 States=1365 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 1365
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOADPOLE",
+          "Hp": 22,
+          "MaxHp": 22,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "TOADPOLE",
+          "Hp": 21,
+          "MaxHp": 21,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "RegenPower",
+            "Amount": 5
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E TOADPOLE",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=6 Blk=10 In=7 Cards=4 Score=158 States=286 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 286
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "TOADPOLE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOADPOLE",
+          "Hp": 22,
+          "MaxHp": 22,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "TOADPOLE",
+          "Hp": 15,
+          "MaxHp": 21,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "RegenPower",
+            "Amount": 5
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=7 Cards=2 Score=75 States=5 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 5
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOADPOLE",
+          "Hp": 22,
+          "MaxHp": 22,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ThornsPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TOADPOLE",
+          "Hp": 15,
+          "MaxHp": 21,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "RegenPower",
+            "Amount": 4
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BASH -\u003E TOADPOLE",
+          "PLAY STRIKE_IRONCLAD -\u003E TOADPOLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 17,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=17 Blk=0 In=9 Cards=3 Score=409 States=113 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 113
+      },
+      "ActionResults": [
+        {
+          "CardId": "BASH",
+          "Success": true,
+          "Target": "TOADPOLE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOADPOLE",
+          "Hp": 22,
+          "MaxHp": 22,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ThornsPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TOADPOLE",
+          "Hp": 7,
+          "MaxHp": 21,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "RegenPower",
+            "Amount": 4
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E TOADPOLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=9 Blk=0 In=9 Cards=2 Score=313 States=5 Char=IRONCLAD Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 5
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "TOADPOLE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 990,
+        "BlockAfter": 0,
+        "DamageTaken": 9,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 3/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 990,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOADPOLE",
+          "Hp": 22,
+          "MaxHp": 22,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "RegenPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E TOADPOLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=6 Blk=0 In=7 Cards=2 Score=-618 States=1 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 1
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "TOADPOLE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 990,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 1,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 990,
+      "MaxHp": 999,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOADPOLE",
+          "Hp": 22,
+          "MaxHp": 22,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "RegenPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E TOADPOLE",
+          "PLAY STRIKE_IRONCLAD -\u003E TOADPOLE",
+          "PLAY SHRUG_IT_OFF -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=12 Blk=8 In=7 Cards=4 Score=236 States=98 Char=IRONCLAD Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 98
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "TOADPOLE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 990,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 990,
+      "MaxHp": 999,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOADPOLE",
+          "Hp": 16,
+          "MaxHp": 22,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "RegenPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SHRUG_IT_OFF -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E TOADPOLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=6 Blk=8 In=7 Cards=3 Score=164 States=17 Char=IRONCLAD Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 17
+      },
+      "ActionResults": [
+        {
+          "CardId": "SHRUG_IT_OFF",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 990,
+        "BlockAfter": 8,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 1,
+      "Block": 8,
+      "Hp": 990,
+      "MaxHp": 999,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOADPOLE",
+          "Hp": 16,
+          "MaxHp": 22,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "RegenPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E TOADPOLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=6 Blk=0 In=7 Cards=2 Score=94 States=4 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "TOADPOLE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 993,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 3/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 993,
+      "MaxHp": 999,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOADPOLE",
+          "Hp": 10,
+          "MaxHp": 22,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "RegenPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BASH -\u003E TOADPOLE",
+          "PLAY STRIKE_IRONCLAD -\u003E TOADPOLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 17,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=17 Blk=0 In=0 Cards=3 Score=1314 States=45 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 45
+      },
+      "ActionResults": [
+        {
+          "CardId": "BASH",
+          "Success": true,
+          "Target": "TOADPOLE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 993,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 993,
+      "MaxHp": 999,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOADPOLE",
+          "Hp": 2,
+          "MaxHp": 22,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "RegenPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E TOADPOLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=9 Blk=0 In=0 Cards=2 Score=1218 States=4 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "TOADPOLE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

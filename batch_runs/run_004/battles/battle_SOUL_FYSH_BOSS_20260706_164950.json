@@ -1,0 +1,989 @@
+{
+  "EncounterName": "SOUL_FYSH_BOSS",
+  "Floor": 17,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-06T16:49:29.5413505+08:00",
+  "EndTime": "2026-07-06T16:49:50.1048432+08:00",
+  "DurationSeconds": 20.5634927,
+  "Victory": false,
+  "EndHp": 0,
+  "KilledBy": "SOUL_FYSH_BOSS",
+  "TotalTurns": 10,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 55,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 55,
+      "MaxHp": 80,
+      "DrawPileCount": 16,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "GREED",
+          "Cost": -1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SWORD_BOOMERANG",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SOUL_FYSH",
+          "Hp": 211,
+          "MaxHp": 211,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ASHWATER",
+        "FLEX_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "USE_POTION ASHWATER",
+          "USE_POTION FLEX_POTION",
+          "PLAY SWORD_BOOMERANG -\u003E SOUL_FYSH",
+          "PLAY STRIKE_IRONCLAD -\u003E SOUL_FYSH",
+          "PLAY STRIKE_IRONCLAD -\u003E SOUL_FYSH",
+          "PLAY STRIKE_IRONCLAD -\u003E SOUL_FYSH",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 29,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=29 Blk=0 In=0 Cards=7 Score=708 States=1644 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 1644
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 55,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 55,
+      "MaxHp": 80,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "SECOND_WIND",
+          "Cost": 1
+        },
+        {
+          "Id": "THE_BOMB",
+          "Cost": 2
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SOUL_FYSH",
+          "Hp": 211,
+          "MaxHp": 211,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FLEX_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "USE_POTION FLEX_POTION",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY SECOND_WIND -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=0 Blk=15 In=16 Cards=5 Score=234 States=216 Char=IRONCLAD Src=reflection: dmg=0 blk=5",
+        "StatesExplored": 216
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 55,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 1/5 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 55,
+      "MaxHp": 80,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "SECOND_WIND",
+          "Cost": 1
+        },
+        {
+          "Id": "THE_BOMB",
+          "Cost": 2
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SOUL_FYSH",
+          "Hp": 211,
+          "MaxHp": 211,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 5,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SECOND_WIND -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY HEADBUTT -\u003E SOUL_FYSH",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 19,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=19 Blk=15 In=16 Cards=5 Score=581 States=109 Char=IRONCLAD Src=reflection: dmg=0 blk=5",
+        "StatesExplored": 109
+      },
+      "ActionResults": [
+        {
+          "CardId": "SECOND_WIND",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "SOUL_FYSH"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 54,
+        "BlockAfter": 0,
+        "DamageTaken": 1,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 54,
+      "MaxHp": 80,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "SECOND_WIND",
+          "Cost": 1
+        },
+        {
+          "Id": "PACTS_END",
+          "Cost": 0
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SOUL_FYSH",
+          "Hp": 197,
+          "MaxHp": 211,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY MOLTEN_FIST -\u003E SOUL_FYSH",
+          "PLAY PACTS_END -\u003E SOUL_FYSH",
+          "PLAY HEADBUTT -\u003E SOUL_FYSH",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 36,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=36 Blk=8 In=7 Cards=5 Score=914 States=181 Char=IRONCLAD Src=reflection: dmg=0 blk=5",
+        "StatesExplored": 181
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "MOLTEN_FIST",
+          "Success": true,
+          "Target": "SOUL_FYSH"
+        },
+        {
+          "CardId": "PACTS_END",
+          "Success": true,
+          "Target": "SOUL_FYSH"
+        },
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "SOUL_FYSH"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 54,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 54,
+      "MaxHp": 80,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HEMOKINESIS",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SOUL_FYSH",
+          "Hp": 161,
+          "MaxHp": 211,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E SOUL_FYSH",
+          "PLAY STRIKE_IRONCLAD -\u003E SOUL_FYSH",
+          "PLAY HEMOKINESIS -\u003E SOUL_FYSH",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 27,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=27 Blk=0 In=0 Cards=4 Score=570 States=85 Char=IRONCLAD Src=reflection: dmg=15 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "SOUL_FYSH"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "SOUL_FYSH"
+        },
+        {
+          "CardId": "HEMOKINESIS",
+          "Success": true,
+          "Target": "SOUL_FYSH"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 52,
+        "BlockAfter": 0,
+        "DamageTaken": 2,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 52,
+      "MaxHp": 80,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "PERFECTED_STRIKE",
+          "Cost": 2
+        },
+        {
+          "Id": "WHIRLWIND",
+          "Cost": -1
+        },
+        {
+          "Id": "UNRELENTING",
+          "Cost": 2
+        },
+        {
+          "Id": "BECKON",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SOUL_FYSH",
+          "Hp": 134,
+          "MaxHp": 211,
+          "Block": 0,
+          "IntentDamage": 13,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "IntangiblePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY WHIRLWIND -\u003E SOUL_FYSH",
+          "PLAY PERFECTED_STRIKE -\u003E SOUL_FYSH",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 29,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=29 Blk=0 In=13 Cards=3 Score=-688 States=22 Char=IRONCLAD Src=reflection: dmg=14 blk=0",
+        "StatesExplored": 22
+      },
+      "ActionResults": [
+        {
+          "CardId": "WHIRLWIND",
+          "Success": true,
+          "Target": "SOUL_FYSH"
+        },
+        {
+          "CardId": "PERFECTED_STRIKE",
+          "Success": false,
+          "FailReason": "not playable: EnergyCostTooHigh",
+          "Target": "SOUL_FYSH"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 27,
+        "BlockAfter": 0,
+        "DamageTaken": 25,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 27,
+      "MaxHp": 80,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "SECOND_WIND",
+          "Cost": 1
+        },
+        {
+          "Id": "PACTS_END",
+          "Cost": 0
+        },
+        {
+          "Id": "BECKON",
+          "Cost": 1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SOUL_FYSH",
+          "Hp": 130,
+          "MaxHp": 211,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 3,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 3
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY PACTS_END -\u003E SOUL_FYSH",
+          "PLAY HEADBUTT -\u003E SOUL_FYSH",
+          "PLAY STRIKE_IRONCLAD -\u003E SOUL_FYSH",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 50,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=50 Blk=0 In=0 Cards=4 Score=-399 States=181 Char=IRONCLAD Src=reflection: dmg=0 blk=5",
+        "StatesExplored": 181
+      },
+      "ActionResults": [
+        {
+          "CardId": "PACTS_END",
+          "Success": true,
+          "Target": "SOUL_FYSH"
+        },
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "SOUL_FYSH"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 27,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 27,
+      "MaxHp": 80,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "SECOND_WIND",
+          "Cost": 1
+        },
+        {
+          "Id": "BECKON",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SOUL_FYSH",
+          "Hp": 98,
+          "MaxHp": 211,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 3,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 3
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SECOND_WIND -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E SOUL_FYSH",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=12 Blk=5 In=0 Cards=3 Score=-1242 States=9 Char=IRONCLAD Src=reflection: dmg=0 blk=5",
+        "StatesExplored": 9
+      },
+      "ActionResults": [
+        {
+          "CardId": "SECOND_WIND",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "SOUL_FYSH"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 27,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 1/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 27,
+      "MaxHp": 80,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 9,
+      "Hand": [
+        {
+          "Id": "PERFECTED_STRIKE",
+          "Cost": 2
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "BECKON",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HEMOKINESIS",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SOUL_FYSH",
+          "Hp": 89,
+          "MaxHp": 211,
+          "Block": 0,
+          "IntentDamage": 24,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 3,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 2
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY PERFECTED_STRIKE -\u003E SOUL_FYSH",
+          "PLAY HEADBUTT -\u003E SOUL_FYSH",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 45,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=45 Blk=0 In=24 Cards=3 Score=-5308 States=49 Char=IRONCLAD Src=reflection: dmg=12 blk=0",
+        "StatesExplored": 49
+      },
+      "ActionResults": [
+        {
+          "CardId": "PERFECTED_STRIKE",
+          "Success": true,
+          "Target": "SOUL_FYSH"
+        },
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "SOUL_FYSH"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 27,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 0,
+      "Block": 0,
+      "Hp": 27,
+      "MaxHp": 80,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "BECKON",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HEMOKINESIS",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SOUL_FYSH",
+          "Hp": 50,
+          "MaxHp": 211,
+          "Block": 0,
+          "IntentDamage": 24,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 3,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 2
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=24 Cards=1 Score=-6300 States=0 Char=IRONCLAD Src=none",
+        "StatesExplored": 0
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 0,
+        "BlockAfter": 0,
+        "DamageTaken": 27,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

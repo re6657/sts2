@@ -1,0 +1,745 @@
+{
+  "EncounterName": "SEWER_CLAM_NORMAL",
+  "Floor": 11,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-06T13:39:18.3575903+08:00",
+  "EndTime": "2026-07-06T13:39:28.767685+08:00",
+  "DurationSeconds": 10.4100947,
+  "Victory": true,
+  "EndHp": 38,
+  "TotalTurns": 7,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 26,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 58,
+      "MaxHp": 80,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SEWER_CLAM",
+          "Hp": 56,
+          "MaxHp": 56,
+          "Block": 8,
+          "IntentDamage": 10,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "PlatingPower",
+              "Amount": 8
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BREAKTHROUGH -\u003E SEWER_CLAM",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 1,
+        "EstimatedBlock": 13,
+        "Score": "Dmg=1 Blk=13 In=10 Cards=4 Score=161 States=85 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "BREAKTHROUGH",
+          "Success": true,
+          "Target": "SEWER_CLAM"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 57,
+        "BlockAfter": 0,
+        "DamageTaken": 1,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 57,
+      "MaxHp": 80,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "UPPERCUT",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SEWER_CLAM",
+          "Hp": 55,
+          "MaxHp": 56,
+          "Block": 8,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "PlatingPower",
+              "Amount": 8
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY UPPERCUT -\u003E SEWER_CLAM",
+          "PLAY STRIKE_IRONCLAD -\u003E SEWER_CLAM",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 11,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=11 Blk=0 In=0 Cards=3 Score=132 States=49 Char=IRONCLAD Src=reflection: dmg=13 blk=0",
+        "StatesExplored": 49
+      },
+      "ActionResults": [
+        {
+          "CardId": "UPPERCUT",
+          "Success": true,
+          "Target": "SEWER_CLAM"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "SEWER_CLAM"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 57,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 57,
+      "MaxHp": 80,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "CLUMSY",
+          "Cost": -1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SEWER_CLAM",
+          "Hp": 41,
+          "MaxHp": 56,
+          "Block": 7,
+          "IntentDamage": 14,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "Powers": [
+            {
+              "Name": "PlatingPower",
+              "Amount": 7
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=14 Cards=1 Score=-1791 States=0 Char=IRONCLAD Src=none",
+        "StatesExplored": 0
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 43,
+        "BlockAfter": 0,
+        "DamageTaken": 14,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": [
+          "NO_PLAYABLE: 3 energy left, 0 playable cards"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 43,
+      "MaxHp": 80,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SEWER_CLAM",
+          "Hp": 41,
+          "MaxHp": 56,
+          "Block": 6,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "Powers": [
+            {
+              "Name": "PlatingPower",
+              "Amount": 6
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY POMMEL_STRIKE -\u003E SEWER_CLAM",
+          "PLAY PILLAGE -\u003E SEWER_CLAM",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=10 Blk=8 In=0 Cards=4 Score=184 States=86 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 86
+      },
+      "ActionResults": [
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "SEWER_CLAM"
+        },
+        {
+          "CardId": "PILLAGE",
+          "Success": true,
+          "Target": "SEWER_CLAM"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 43,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 43,
+      "MaxHp": 80,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SEWER_CLAM",
+          "Hp": 31,
+          "MaxHp": 56,
+          "Block": 5,
+          "IntentDamage": 18,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 8,
+          "Powers": [
+            {
+              "Name": "PlatingPower",
+              "Amount": 5
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 8
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BREAKTHROUGH -\u003E SEWER_CLAM",
+          "PLAY STRIKE_IRONCLAD -\u003E SEWER_CLAM",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 13,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=13 Blk=8 In=18 Cards=4 Score=-1529 States=85 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "BREAKTHROUGH",
+          "Success": true,
+          "Target": "SEWER_CLAM"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "SEWER_CLAM"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 32,
+        "BlockAfter": 0,
+        "DamageTaken": 11,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 32,
+      "MaxHp": 80,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "UPPERCUT",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SEWER_CLAM",
+          "Hp": 21,
+          "MaxHp": 56,
+          "Block": 4,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 8,
+          "Powers": [
+            {
+              "Name": "PlatingPower",
+              "Amount": 4
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 8
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY UPPERCUT -\u003E SEWER_CLAM",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=9 Blk=8 In=0 Cards=3 Score=-652 States=49 Char=IRONCLAD Src=reflection: dmg=13 blk=0",
+        "StatesExplored": 49
+      },
+      "ActionResults": [
+        {
+          "CardId": "UPPERCUT",
+          "Success": true,
+          "Target": "SEWER_CLAM"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 32,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 32,
+      "MaxHp": 80,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SEWER_CLAM",
+          "Hp": 12,
+          "MaxHp": 56,
+          "Block": 3,
+          "IntentDamage": 22,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 12,
+          "Powers": [
+            {
+              "Name": "PlatingPower",
+              "Amount": 3
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 12
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY POMMEL_STRIKE -\u003E SEWER_CLAM",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E SEWER_CLAM",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 16,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=16 Blk=5 In=22 Cards=4 Score=605 States=16 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 16
+      },
+      "ActionResults": [
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "SEWER_CLAM"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "SEWER_CLAM"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 38,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

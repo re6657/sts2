@@ -1,0 +1,448 @@
+{
+  "EncounterName": "SLIMES_WEAK",
+  "Floor": 2,
+  "Character": "DEFECT",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T16:52:30.062781+08:00",
+  "EndTime": "2026-07-07T16:52:36.4803907+08:00",
+  "DurationSeconds": 6.4176097,
+  "Victory": true,
+  "EndHp": 999,
+  "TotalTurns": 4,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 0,
+  "TotalEnemiesKilled": 2,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DUALCAST",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TWIG_SLIME_S",
+          "Hp": 7,
+          "MaxHp": 7,
+          "Block": 0,
+          "IntentDamage": 4,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "LEAF_SLIME_M",
+          "Hp": 33,
+          "MaxHp": 33,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 2,
+          "Id": "LEAF_SLIME_S",
+          "Hp": 15,
+          "MaxHp": 15,
+          "Block": 0,
+          "IntentDamage": 3,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_DEFECT -\u003E TWIG_SLIME_S",
+          "PLAY STRIKE_DEFECT -\u003E TWIG_SLIME_S",
+          "PLAY DUALCAST -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 27,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=27 Blk=0 In=7 Cards=4 Score=2608 States=315 Char=DEFECT Src=fallback: dmg=16 blk=0",
+        "StatesExplored": 315
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "TWIG_SLIME_S"
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "TWIG_SLIME_S"
+        },
+        {
+          "CardId": "DUALCAST",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 2,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "ZAP",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LEAF_SLIME_M",
+          "Hp": 33,
+          "MaxHp": 33,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY ZAP -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=0 Blk=10 In=8 Cards=4 Score=518 States=85 Char=DEFECT Src=fallback: dmg=3 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "ZAP",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "SLIMED",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LEAF_SLIME_M",
+          "Hp": 30,
+          "MaxHp": 33,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=0 Cards=1 Score=537 States=85 Char=DEFECT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 5,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "ENERGY_WASTED: 3 energy left, 5/5 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "SLIMED",
+          "Cost": 1
+        },
+        {
+          "Id": "DUALCAST",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LEAF_SLIME_M",
+          "Hp": 27,
+          "MaxHp": 33,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DUALCAST -\u003E self",
+          "PLAY STRIKE_DEFECT -\u003E LEAF_SLIME_M",
+          "PLAY STRIKE_DEFECT -\u003E LEAF_SLIME_M",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 28,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=28 Blk=0 In=8 Cards=4 Score=1545 States=85 Char=DEFECT Src=fallback: dmg=16 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "DUALCAST",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "LEAF_SLIME_M"
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "LEAF_SLIME_M"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

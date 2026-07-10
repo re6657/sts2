@@ -1,0 +1,904 @@
+{
+  "EncounterName": "SNAPPING_JAXFRUIT_NORMAL",
+  "Floor": 12,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T20:45:48.0343401+08:00",
+  "EndTime": "2026-07-07T20:46:00.2110542+08:00",
+  "DurationSeconds": 12.1767141,
+  "Victory": true,
+  "EndHp": 990,
+  "TotalTurns": 8,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 15,
+  "TotalEnemiesKilled": 1,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 10,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SNAPPING_JAXFRUIT",
+          "Hp": 32,
+          "MaxHp": 32,
+          "Block": 0,
+          "IntentDamage": 3,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "FLYCONID",
+          "Hp": 47,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY POMMEL_STRIKE -\u003E SNAPPING_JAXFRUIT",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 13,
+        "Score": "Dmg=9 Blk=13 In=14 Cards=4 Score=157 States=362 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 362
+      },
+      "ActionResults": [
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "SNAPPING_JAXFRUIT"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 998,
+        "BlockAfter": 0,
+        "DamageTaken": 1,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 998,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SNAPPING_JAXFRUIT",
+          "Hp": 23,
+          "MaxHp": 32,
+          "Block": 0,
+          "IntentDamage": 5,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FLYCONID",
+          "Hp": 47,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY THUNDERCLAP -\u003E SNAPPING_JAXFRUIT",
+          "PLAY HEADBUTT -\u003E SNAPPING_JAXFRUIT",
+          "PLAY MOLTEN_FIST -\u003E SNAPPING_JAXFRUIT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 31,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=31 Blk=0 In=5 Cards=4 Score=1640 States=286 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 286
+      },
+      "ActionResults": [
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "SNAPPING_JAXFRUIT"
+        },
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "SNAPPING_JAXFRUIT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 998,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 998,
+      "MaxHp": 999,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SNAPPING_JAXFRUIT",
+          "Hp": 6,
+          "MaxHp": 32,
+          "Block": 0,
+          "IntentDamage": 5,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FLYCONID",
+          "Hp": 43,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY MOLTEN_FIST -\u003E SNAPPING_JAXFRUIT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 15,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=15 Blk=0 In=5 Cards=2 Score=1378 States=5 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 5
+      },
+      "ActionResults": [
+        {
+          "CardId": "MOLTEN_FIST",
+          "Success": true,
+          "Target": "SNAPPING_JAXFRUIT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 998,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 998,
+      "MaxHp": 999,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 9,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DRUM_OF_BATTLE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "FLYCONID",
+          "Hp": 43,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 2,
+        "AllPowers": [
+          {
+            "Name": "VulnerablePower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E FLYCONID",
+          "PLAY DRUM_OF_BATTLE -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 13,
+        "Score": "Dmg=9 Blk=13 In=12 Cards=4 Score=264 States=85 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "FLYCONID"
+        },
+        {
+          "CardId": "DRUM_OF_BATTLE",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 994,
+        "BlockAfter": 0,
+        "DamageTaken": 4,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 994,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "FLYCONID",
+          "Hp": 37,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 2,
+        "Vulnerable": 1,
+        "AllPowers": [
+          {
+            "Name": "VulnerablePower",
+            "Amount": 1
+          },
+          {
+            "Name": "FrailPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY HEADBUTT -\u003E FLYCONID",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 6,
+        "Score": "Dmg=9 Blk=6 In=16 Cards=4 Score=-783 States=85 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "FLYCONID"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 994,
+        "BlockAfter": 3,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 1,
+      "Block": 3,
+      "Hp": 994,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "FLYCONID",
+          "Hp": 28,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 2,
+        "Vulnerable": 1,
+        "AllPowers": [
+          {
+            "Name": "VulnerablePower",
+            "Amount": 1
+          },
+          {
+            "Name": "FrailPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 3,
+        "Score": "Dmg=0 Blk=3 In=16 Cards=2 Score=-957 States=3 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 984,
+        "BlockAfter": 0,
+        "DamageTaken": 10,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 984,
+      "MaxHp": 999,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "FLYCONID",
+          "Hp": 28,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 1,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "FrailPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY POMMEL_STRIKE -\u003E FLYCONID",
+          "PLAY SETUP_STRIKE -\u003E FLYCONID",
+          "PLAY STRIKE_IRONCLAD -\u003E FLYCONID",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 22,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=22 Blk=0 In=0 Cards=4 Score=291 States=50 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 50
+      },
+      "ActionResults": [
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "FLYCONID"
+        },
+        {
+          "CardId": "SETUP_STRIKE",
+          "Success": true,
+          "Target": "FLYCONID"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "FLYCONID"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 984,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 984,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        },
+        {
+          "Id": "DRUM_OF_BATTLE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "FLYCONID",
+          "Hp": 4,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 2,
+        "AllPowers": [
+          {
+            "Name": "VulnerablePower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DRUM_OF_BATTLE -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E FLYCONID",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=9 Blk=10 In=16 Cards=4 Score=1379 States=19 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 19
+      },
+      "ActionResults": [
+        {
+          "CardId": "DRUM_OF_BATTLE",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "FLYCONID"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 990,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

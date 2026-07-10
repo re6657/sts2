@@ -1,0 +1,621 @@
+{
+  "EncounterName": "LIVING_FOG_NORMAL",
+  "Floor": 6,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-06T13:22:06.3416732+08:00",
+  "EndTime": "2026-07-06T13:22:15.0962478+08:00",
+  "DurationSeconds": 8.7545746,
+  "Victory": true,
+  "EndHp": 69,
+  "TotalTurns": 5,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 6,
+  "TotalEnemiesKilled": 1,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 72,
+      "MaxHp": 80,
+      "DrawPileCount": 10,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_FOG",
+          "Hp": 80,
+          "MaxHp": 80,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "REGEN_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BLOODLETTING -\u003E self",
+          "PLAY THUNDERCLAP -\u003E LIVING_FOG",
+          "PLAY STRIKE_IRONCLAD -\u003E LIVING_FOG",
+          "PLAY STRIKE_IRONCLAD -\u003E LIVING_FOG",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 16,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=16 Blk=5 In=8 Cards=6 Score=-33 States=1644 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 1644
+      },
+      "ActionResults": [
+        {
+          "CardId": "BLOODLETTING",
+          "Success": true
+        },
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "LIVING_FOG"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "LIVING_FOG"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "LIVING_FOG"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 66,
+        "BlockAfter": 0,
+        "DamageTaken": 6,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 66,
+      "MaxHp": 80,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "DISMANTLE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_FOG",
+          "Hp": 58,
+          "MaxHp": 80,
+          "Block": 0,
+          "IntentDamage": 5,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "REGEN_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY IRON_WAVE -\u003E LIVING_FOG",
+          "PLAY DISMANTLE -\u003E LIVING_FOG",
+          "PLAY STRIKE_IRONCLAD -\u003E LIVING_FOG",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 19,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=19 Blk=5 In=5 Cards=4 Score=300 States=396 Char=IRONCLAD Src=reflection: dmg=5 blk=5",
+        "StatesExplored": 396
+      },
+      "ActionResults": [
+        {
+          "CardId": "IRON_WAVE",
+          "Success": true,
+          "Target": "LIVING_FOG"
+        },
+        {
+          "CardId": "DISMANTLE",
+          "Success": true,
+          "Target": "LIVING_FOG"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "LIVING_FOG"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 66,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 66,
+      "MaxHp": 80,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GAS_BOMB",
+          "Hp": 7,
+          "MaxHp": 7,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "DeathBlow",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "LIVING_FOG",
+          "Hp": 39,
+          "MaxHp": 80,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "REGEN_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SETUP_STRIKE -\u003E GAS_BOMB",
+          "PLAY SHRUG_IT_OFF -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E LIVING_FOG",
+          "PLAY BLOODLETTING -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 13,
+        "EstimatedBlock": 18,
+        "Score": "Dmg=13 Blk=18 In=16 Cards=7 Score=1322 States=5002 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 5002
+      },
+      "ActionResults": [
+        {
+          "CardId": "SETUP_STRIKE",
+          "Success": true,
+          "Target": "GAS_BOMB"
+        },
+        {
+          "CardId": "SHRUG_IT_OFF",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "LIVING_FOG"
+        },
+        {
+          "CardId": "BLOODLETTING",
+          "Success": false,
+          "FailReason": "not in hand"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": false,
+          "FailReason": "not playable: BlockedByHook, EnergyCostTooHigh"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": false,
+          "FailReason": "not playable: BlockedByHook, EnergyCostTooHigh"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 66,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 66,
+      "MaxHp": 80,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DISMANTLE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_FOG",
+          "Hp": 31,
+          "MaxHp": 80,
+          "Block": 0,
+          "IntentDamage": 5,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "REGEN_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SETUP_STRIKE -\u003E LIVING_FOG",
+          "PLAY IRON_WAVE -\u003E LIVING_FOG",
+          "PLAY DISMANTLE -\u003E LIVING_FOG",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 20,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=20 Blk=5 In=5 Cards=4 Score=312 States=396 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 396
+      },
+      "ActionResults": [
+        {
+          "CardId": "SETUP_STRIKE",
+          "Success": true,
+          "Target": "LIVING_FOG"
+        },
+        {
+          "CardId": "IRON_WAVE",
+          "Success": true,
+          "Target": "LIVING_FOG"
+        },
+        {
+          "CardId": "DISMANTLE",
+          "Success": true,
+          "Target": "LIVING_FOG"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 66,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 66,
+      "MaxHp": 80,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GAS_BOMB",
+          "Hp": 7,
+          "MaxHp": 7,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "DeathBlow",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "LIVING_FOG",
+          "Hp": 7,
+          "MaxHp": 80,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "REGEN_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BLOODLETTING -\u003E self",
+          "PLAY THUNDERCLAP -\u003E GAS_BOMB",
+          "PLAY STRIKE_IRONCLAD -\u003E GAS_BOMB",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E LIVING_FOG",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 20,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=20 Blk=5 In=16 Cards=6 Score=2686 States=3612 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 3612
+      },
+      "ActionResults": [
+        {
+          "CardId": "BLOODLETTING",
+          "Success": true
+        },
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "GAS_BOMB"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "GAS_BOMB"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": false,
+          "FailReason": "not playable: BlockedByHook"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "LIVING_FOG"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 69,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

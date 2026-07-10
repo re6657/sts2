@@ -1,0 +1,841 @@
+{
+  "EncounterName": "NIBBITS_WEAK",
+  "Floor": 4,
+  "Character": "DEFECT",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T16:53:02.0534384+08:00",
+  "EndTime": "2026-07-07T16:53:14.4572837+08:00",
+  "DurationSeconds": 12.4038453,
+  "Victory": true,
+  "EndHp": 983,
+  "TotalTurns": 8,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 16,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "OVERCLOCK",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DUALCAST",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "NIBBIT",
+          "Hp": 43,
+          "MaxHp": 43,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FOCUS_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY OVERCLOCK -\u003E self",
+          "USE_POTION FOCUS_POTION",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY STRIKE_DEFECT -\u003E NIBBIT",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=9 Blk=15 In=12 Cards=7 Score=636 States=5003 Char=DEFECT Src=fallback: dmg=16 blk=0",
+        "StatesExplored": 5003
+      },
+      "ActionResults": [
+        {
+          "CardId": "OVERCLOCK",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DUALCAST",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "NIBBIT",
+          "Hp": 43,
+          "MaxHp": 43,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "FocusPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 2,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=0 Blk=15 In=12 Cards=4 Score=1806 States=156 Char=DEFECT Src=fallback: dmg=16 blk=0",
+        "StatesExplored": 156
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 6,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "ZAP",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "NIBBIT",
+          "Hp": 38,
+          "MaxHp": 43,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "FocusPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 2,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY ZAP -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=6 Cards=3 Score=3324 States=40 Char=DEFECT Src=fallback: dmg=3 blk=0",
+        "StatesExplored": 40
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "ZAP",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "NIBBIT",
+          "Hp": 38,
+          "MaxHp": 43,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "FocusPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 2,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=6 Cards=2 Score=3416 States=3 Char=DEFECT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "OVERCLOCK",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DUALCAST",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "NIBBIT",
+          "Hp": 28,
+          "MaxHp": 43,
+          "Block": 5,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "FocusPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 2,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY OVERCLOCK -\u003E self",
+          "PLAY BURN -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=0 Cards=4 Score=3408 States=835 Char=DEFECT Src=fallback: dmg=16 blk=0",
+        "StatesExplored": 835
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "OVERCLOCK",
+          "Success": true
+        },
+        {
+          "CardId": "BURN",
+          "Success": false,
+          "FailReason": "not playable: HasUnplayableKeyword"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/5 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DUALCAST",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "NIBBIT",
+          "Hp": 28,
+          "MaxHp": 43,
+          "Block": 5,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "FocusPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 2,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY STRIKE_DEFECT -\u003E NIBBIT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 1,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=1 Blk=5 In=0 Cards=3 Score=3396 States=16 Char=DEFECT Src=fallback: dmg=16 blk=0",
+        "StatesExplored": 16
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "NIBBIT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 983,
+        "BlockAfter": 0,
+        "DamageTaken": 16,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 2/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 983,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "OVERCLOCK",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "NIBBIT",
+          "Hp": 7,
+          "MaxHp": 43,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "FocusPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 2,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY OVERCLOCK -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=8 Cards=3 Score=2567 States=275 Char=DEFECT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 275
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "OVERCLOCK",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 983,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 3/5 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 983,
+      "MaxHp": 999,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "NIBBIT",
+          "Hp": 7,
+          "MaxHp": 43,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "FocusPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 2,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=8 Cards=1 Score=2554 States=13 Char=DEFECT Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 13
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 983,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

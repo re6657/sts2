@@ -1,0 +1,197 @@
+{
+  "character": "IRONCLAD",
+  "session_id": "20260706_160452",
+  "population_size": 10,
+  "runs_per_evaluation": 5,
+  "elite_count": 4,
+  "mutation_rate": 0.2,
+  "mutation_scale": 0.3,
+  "crossover_rate": 0.7,
+  "target_score": 0.7,
+  "gene_space": {
+    "combat_solver.scoring.kill_weight": [
+      0.5,
+      5.0
+    ],
+    "combat_solver.scoring.damage_weight": [
+      0.1,
+      5.0
+    ],
+    "combat_solver.scoring.block_weight": [
+      0.1,
+      5.0
+    ],
+    "combat_solver.scoring.health_penalty_weight": [
+      0.5,
+      5.0
+    ],
+    "combat_solver.scoring.power_weight": [
+      0.1,
+      5.0
+    ],
+    "combat_solver.scoring.strength_weight": [
+      0.1,
+      5.0
+    ],
+    "combat_solver.scoring.vulnerable_weight": [
+      0.1,
+      5.0
+    ],
+    "combat_solver.scoring.weak_weight": [
+      0.1,
+      5.0
+    ],
+    "combat_solver.scoring.poison_weight": [
+      0.1,
+      5.0
+    ],
+    "combat_solver.scoring.orb_value_weight": [
+      0.1,
+      5.0
+    ],
+    "combat_solver.scoring.energy_per_point": [
+      1,
+      10
+    ],
+    "combat_solver.scoring.block_per_excess_point": [
+      0,
+      5
+    ],
+    "combat_solver.scoring.kill_per_max_hp": [
+      1,
+      20
+    ],
+    "combat_solver.scoring.damage_per_point": [
+      3,
+      30
+    ],
+    "combat_solver.scoring.block_per_needed_point": [
+      2,
+      20
+    ],
+    "combat_solver.scoring.health_penalty_low_hp_multiplier": [
+      20,
+      200
+    ],
+    "combat_solver.scoring.health_penalty_normal_multiplier": [
+      10,
+      100
+    ],
+    "combat_solver.scoring.card_select_per_played": [
+      10,
+      80
+    ],
+    "card_reward.stage_weights.raw_efficiency_damage_per_energy": [
+      2,
+      15
+    ],
+    "card_reward.stage_weights.buff_strength": [
+      5,
+      40
+    ],
+    "card_reward.stage_weights.aoe_bonus": [
+      5,
+      30
+    ],
+    "card_reward.stage_weights.card_type_power": [
+      5,
+      40
+    ],
+    "card_reward.stage_weights.debuff_vulnerable": [
+      5,
+      30
+    ],
+    "card_reward.stage_weights.draw_detection": [
+      5,
+      35
+    ],
+    "card_reward.skip_threshold.base": [
+      10,
+      50
+    ],
+    "card_reward.skip_threshold.per_deck_size_above_12": [
+      1,
+      6
+    ],
+    "card_reward.skip_threshold.per_act": [
+      2,
+      10
+    ],
+    "card_reward.redundancy_penalty.one_copy": [
+      -40,
+      -5
+    ],
+    "card_reward.redundancy_penalty.two_or_more_copies": [
+      -50,
+      -10
+    ],
+    "map.node_scores.elite_base": [
+      -200,
+      -20
+    ],
+    "map.node_scores.campfire_base": [
+      3,
+      20
+    ],
+    "map.node_scores.shop_base": [
+      0,
+      10
+    ],
+    "map.node_scores.unknown_base": [
+      0,
+      10
+    ],
+    "map.node_scores.monster_base": [
+      -2,
+      5
+    ],
+    "map.path_bonuses.one_campfire": [
+      0,
+      10
+    ],
+    "map.path_bonuses.path_length_per_node": [
+      0,
+      0.5
+    ],
+    "rest.rest_low_hp_threshold": [
+      0.3,
+      0.7
+    ],
+    "rest.smith_hp_threshold": [
+      0.3,
+      0.7
+    ],
+    "rest.rest_low_hp_score": [
+      100,
+      500
+    ],
+    "rest.smith_high_hp_score": [
+      100,
+      400
+    ],
+    "event.hp_cost_hard_block_threshold": [
+      0.3,
+      0.7
+    ],
+    "event.hp_cost_hard_block_score": [
+      -400,
+      -50
+    ],
+    "event.hp_cost_normal_score": [
+      -150,
+      -10
+    ],
+    "event.keywords.heal_low_hp": [
+      100,
+      400
+    ],
+    "shop.min_gold_reserve": [
+      10,
+      80
+    ],
+    "shop.remove_min_deck_size": [
+      5,
+      20
+    ]
+  }
+}

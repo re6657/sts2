@@ -1,0 +1,527 @@
+{
+  "EncounterName": "SHRINKER_BEETLE_WEAK",
+  "Floor": 6,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-08T17:09:14.3250174+08:00",
+  "EndTime": "2026-07-08T17:09:18.3495441+08:00",
+  "DurationSeconds": 4.0245267,
+  "Victory": true,
+  "EndHp": 999,
+  "TotalTurns": 5,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 0,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 39,
+          "MaxHp": 39,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "DebuffStrong",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ATTACK_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BASH -\u003E SHRINKER_BEETLE",
+          "PLAY POMMEL_STRIKE -\u003E SHRINKER_BEETLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 26,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=26 Blk=0 In=0 Cards=3 Score=353 States=59 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 59
+      },
+      "ActionResults": [
+        {
+          "CardId": "BASH",
+          "Success": true,
+          "Target": "SHRINKER_BEETLE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 31,
+          "MaxHp": 39,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "DebuffStrong",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ATTACK_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY POMMEL_STRIKE -\u003E SHRINKER_BEETLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 18,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=18 Blk=0 In=0 Cards=2 Score=261 States=4 Char=IRONCLAD Src=reflection: dmg=12 blk=0",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "SHRINKER_BEETLE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 3/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "RUPTURE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 13,
+          "MaxHp": 39,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ShrinkPower",
+            "Amount": -1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ATTACK_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E SHRINKER_BEETLE",
+          "PLAY RUPTURE -\u003E self",
+          "PLAY PILLAGE -\u003E SHRINKER_BEETLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 13,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=13 Blk=0 In=7 Cards=4 Score=1457 States=73 Char=IRONCLAD Src=reflection: dmg=0 blk=0",
+        "StatesExplored": 73
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "SHRINKER_BEETLE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "RUPTURE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 4,
+          "MaxHp": 39,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ShrinkPower",
+            "Amount": -1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ATTACK_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY RUPTURE -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E SHRINKER_BEETLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=9 Blk=0 In=7 Cards=3 Score=1400 States=10 Char=IRONCLAD Src=reflection: dmg=0 blk=0",
+        "StatesExplored": 10
+      },
+      "ActionResults": [
+        {
+          "CardId": "RUPTURE",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 4,
+          "MaxHp": 39,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ShrinkPower",
+            "Amount": -1
+          },
+          {
+            "Name": "RupturePower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ATTACK_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E SHRINKER_BEETLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=9 Blk=0 In=7 Cards=2 Score=1303 States=3 Char=IRONCLAD Src=reflection: dmg=4 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "SHRINKER_BEETLE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

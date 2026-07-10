@@ -1,0 +1,1297 @@
+{
+  "EncounterName": "SEAPUNK_NORMAL",
+  "Floor": 7,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-08T16:42:22.9579841+08:00",
+  "EndTime": "2026-07-08T16:42:39.4224734+08:00",
+  "DurationSeconds": 16.4644893,
+  "Victory": true,
+  "EndHp": 967,
+  "TotalTurns": 11,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 38,
+  "TotalEnemiesKilled": 1,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CALCIFIED_CULTIST",
+          "Hp": 40,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "SEAPUNK",
+          "Hp": 44,
+          "MaxHp": 44,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY THUNDERCLAP -\u003E CALCIFIED_CULTIST",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E CALCIFIED_CULTIST",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 17,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=17 Blk=5 In=11 Cards=4 Score=-302 States=130 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 130
+      },
+      "ActionResults": [
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CALCIFIED_CULTIST",
+          "Hp": 36,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "SEAPUNK",
+          "Hp": 40,
+          "MaxHp": 44,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E SEAPUNK",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=9 Blk=5 In=11 Cards=3 Score=-400 States=23 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 23
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "SEAPUNK"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 993,
+        "BlockAfter": 0,
+        "DamageTaken": 6,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 2/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 993,
+      "MaxHp": 999,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CALCIFIED_CULTIST",
+          "Hp": 36,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "SEAPUNK",
+          "Hp": 31,
+          "MaxHp": 44,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY ANGER -\u003E SEAPUNK",
+          "PLAY STRIKE_IRONCLAD -\u003E SEAPUNK",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=12 Blk=10 In=17 Cards=5 Score=-426 States=862 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 862
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "SEAPUNK"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "SEAPUNK"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 986,
+        "BlockAfter": 0,
+        "DamageTaken": 7,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 986,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CALCIFIED_CULTIST",
+          "Hp": 36,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 2
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "SEAPUNK",
+          "Hp": 19,
+          "MaxHp": 44,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY IRON_WAVE -\u003E SEAPUNK",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY ANGER -\u003E SEAPUNK",
+          "PLAY ANGER -\u003E SEAPUNK",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 17,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=17 Blk=15 In=11 Cards=6 Score=425 States=1918 Char=IRONCLAD Src=reflection: dmg=5 blk=5",
+        "StatesExplored": 1918
+      },
+      "ActionResults": [
+        {
+          "CardId": "IRON_WAVE",
+          "Success": true,
+          "Target": "SEAPUNK"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 986,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 986,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CALCIFIED_CULTIST",
+          "Hp": 36,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 2
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "SEAPUNK",
+          "Hp": 14,
+          "MaxHp": 44,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY ANGER -\u003E SEAPUNK",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY ANGER -\u003E SEAPUNK",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=12 Blk=10 In=11 Cards=5 Score=334 States=200 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 200
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "SEAPUNK"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "SEAPUNK"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 986,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 986,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CALCIFIED_CULTIST",
+          "Hp": 36,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 13,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 2
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "SEAPUNK",
+          "Hp": 2,
+          "MaxHp": 44,
+          "Block": 7,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E CALCIFIED_CULTIST",
+          "PLAY THUNDERCLAP -\u003E CALCIFIED_CULTIST",
+          "PLAY STRIKE_IRONCLAD -\u003E SEAPUNK",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 14,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=14 Blk=0 In=25 Cards=4 Score=-280 States=361 Char=IRONCLAD Src=reflection: dmg=4 blk=0",
+        "StatesExplored": 361
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        },
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "SEAPUNK"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 973,
+        "BlockAfter": 0,
+        "DamageTaken": 13,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 973,
+      "MaxHp": 999,
+      "DrawPileCount": 10,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CALCIFIED_CULTIST",
+          "Hp": 26,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 6,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 2
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY THUNDERCLAP -\u003E CALCIFIED_CULTIST",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 4,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=4 Blk=10 In=15 Cards=4 Score=-908 States=49 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 49
+      },
+      "ActionResults": [
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 973,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 973,
+      "MaxHp": 999,
+      "DrawPileCount": 10,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CALCIFIED_CULTIST",
+          "Hp": 22,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 6,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 2
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 6
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=0 Blk=10 In=15 Cards=3 Score=-956 States=10 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 10
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 973,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 973,
+      "MaxHp": 999,
+      "DrawPileCount": 10,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CALCIFIED_CULTIST",
+          "Hp": 22,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 6,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 2
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 6
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=15 Cards=2 Score=-996 States=2 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 2
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 968,
+        "BlockAfter": 0,
+        "DamageTaken": 5,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 2,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 1/2 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 968,
+      "MaxHp": 999,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CALCIFIED_CULTIST",
+          "Hp": 22,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 17,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 8,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 2
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 8
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY ANGER -\u003E CALCIFIED_CULTIST",
+          "PLAY ANGER -\u003E CALCIFIED_CULTIST",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E CALCIFIED_CULTIST",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 18,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=18 Blk=10 In=17 Cards=6 Score=-1172 States=325 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 325
+      },
+      "ActionResults": [
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 961,
+        "BlockAfter": 0,
+        "DamageTaken": 7,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 961,
+      "MaxHp": 999,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 12,
+      "Hand": [
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CALCIFIED_CULTIST",
+          "Hp": 4,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 19,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 10,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 2
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 10
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY IRON_WAVE -\u003E CALCIFIED_CULTIST",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 5,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=5 Blk=5 In=19 Cards=2 Score=1282 States=5 Char=IRONCLAD Src=reflection: dmg=5 blk=5",
+        "StatesExplored": 5
+      },
+      "ActionResults": [
+        {
+          "CardId": "IRON_WAVE",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 967,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

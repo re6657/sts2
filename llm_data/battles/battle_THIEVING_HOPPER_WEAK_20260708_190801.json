@@ -1,0 +1,906 @@
+{
+  "EncounterName": "THIEVING_HOPPER_WEAK",
+  "Floor": 19,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-08T19:07:53.8350771+08:00",
+  "EndTime": "2026-07-08T19:08:01.777203+08:00",
+  "DurationSeconds": 7.9421259,
+  "Victory": true,
+  "EndHp": 66,
+  "TotalTurns": 8,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 20,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 80,
+      "MaxHp": 80,
+      "DrawPileCount": 10,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "WHIRLWIND",
+          "Cost": -1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THIEVING_HOPPER",
+          "Hp": 79,
+          "MaxHp": 79,
+          "Block": 0,
+          "IntentDamage": 17,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "EscapeArtistPower",
+              "Amount": 5
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BASH -\u003E THIEVING_HOPPER",
+          "PLAY WHIRLWIND -\u003E THIEVING_HOPPER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 22,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=22 Blk=0 In=17 Cards=3 Score=-1354 States=33 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 33
+      },
+      "ActionResults": [
+        {
+          "CardId": "BASH",
+          "Success": true,
+          "Target": "THIEVING_HOPPER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 80,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 80,
+      "MaxHp": 80,
+      "DrawPileCount": 10,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "WHIRLWIND",
+          "Cost": -1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THIEVING_HOPPER",
+          "Hp": 61,
+          "MaxHp": 79,
+          "Block": 0,
+          "IntentDamage": 17,
+          "IntentType": "Attack",
+          "VulnerableStacks": 3,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "EscapeArtistPower",
+              "Amount": 5
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E THIEVING_HOPPER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 13,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=13 Blk=0 In=17 Cards=2 Score=-1479 States=4 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "THIEVING_HOPPER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 63,
+        "BlockAfter": 0,
+        "DamageTaken": 17,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 3/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 63,
+      "MaxHp": 80,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        },
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "JUGGERNAUT",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THIEVING_HOPPER",
+          "Hp": 48,
+          "MaxHp": 79,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "EscapeArtistPower",
+              "Amount": 4
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            },
+            {
+              "Name": "SwipePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BLOODLETTING -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY IRON_WAVE -\u003E THIEVING_HOPPER",
+          "PLAY STRIKE_IRONCLAD -\u003E THIEVING_HOPPER",
+          "PLAY JUGGERNAUT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 19,
+        "EstimatedBlock": 12,
+        "Score": "Dmg=19 Blk=12 In=0 Cards=6 Score=833 States=223 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 223
+      },
+      "ActionResults": [
+        {
+          "CardId": "BLOODLETTING",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 60,
+        "BlockAfter": 0,
+        "DamageTaken": 3,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 6,
+      "Block": 0,
+      "Hp": 60,
+      "MaxHp": 80,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "JUGGERNAUT",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THIEVING_HOPPER",
+          "Hp": 48,
+          "MaxHp": 79,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "EscapeArtistPower",
+              "Amount": 4
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            },
+            {
+              "Name": "SwipePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY IRON_WAVE -\u003E THIEVING_HOPPER",
+          "PLAY JUGGERNAUT -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E THIEVING_HOPPER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 19,
+        "EstimatedBlock": 12,
+        "Score": "Dmg=19 Blk=12 In=0 Cards=5 Score=689 States=64 Char=IRONCLAD Src=reflection: dmg=0 blk=0",
+        "StatesExplored": 64
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "IRON_WAVE",
+          "Success": true,
+          "Target": "THIEVING_HOPPER"
+        },
+        {
+          "CardId": "JUGGERNAUT",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "THIEVING_HOPPER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 60,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 60,
+      "MaxHp": 80,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "RAMPAGE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THIEVING_HOPPER",
+          "Hp": 20,
+          "MaxHp": 79,
+          "Block": 0,
+          "IntentDamage": 21,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "EscapeArtistPower",
+              "Amount": 3
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            },
+            {
+              "Name": "SwipePower",
+              "Amount": 1
+            },
+            {
+              "Name": "FlutterPower",
+              "Amount": 5
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JuggernautPower",
+            "Amount": 6
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY RAMPAGE -\u003E THIEVING_HOPPER",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E THIEVING_HOPPER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 22,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=22 Blk=5 In=21 Cards=4 Score=1674 States=163 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 163
+      },
+      "ActionResults": [
+        {
+          "CardId": "RAMPAGE",
+          "Success": true,
+          "Target": "THIEVING_HOPPER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 60,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 60,
+      "MaxHp": 80,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 9,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THIEVING_HOPPER",
+          "Hp": 14,
+          "MaxHp": 79,
+          "Block": 0,
+          "IntentDamage": 21,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "EscapeArtistPower",
+              "Amount": 3
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            },
+            {
+              "Name": "SwipePower",
+              "Amount": 1
+            },
+            {
+              "Name": "FlutterPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JuggernautPower",
+            "Amount": 6
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=0 Blk=15 In=21 Cards=4 Score=-400 States=40 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 40
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 60,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 60,
+      "MaxHp": 80,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THIEVING_HOPPER",
+          "Hp": 8,
+          "MaxHp": 79,
+          "Block": 0,
+          "IntentDamage": 21,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "EscapeArtistPower",
+              "Amount": 3
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            },
+            {
+              "Name": "SwipePower",
+              "Amount": 1
+            },
+            {
+              "Name": "FlutterPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JuggernautPower",
+            "Amount": 6
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E THIEVING_HOPPER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 13,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=13 Blk=0 In=21 Cards=2 Score=1556 States=7 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 7
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "THIEVING_HOPPER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 60,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 60,
+      "MaxHp": 80,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 11,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THIEVING_HOPPER",
+          "Hp": 2,
+          "MaxHp": 79,
+          "Block": 0,
+          "IntentDamage": 21,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "EscapeArtistPower",
+              "Amount": 3
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            },
+            {
+              "Name": "SwipePower",
+              "Amount": 1
+            },
+            {
+              "Name": "FlutterPower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JuggernautPower",
+            "Amount": 6
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=21 Cards=2 Score=-996 States=2 Char=IRONCLAD Src=reflection: dmg=0 blk=5",
+        "StatesExplored": 2
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 66,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

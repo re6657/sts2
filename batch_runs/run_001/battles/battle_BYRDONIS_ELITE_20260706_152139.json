@@ -1,0 +1,432 @@
+{
+  "EncounterName": "BYRDONIS_ELITE",
+  "Floor": 8,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-06T15:21:34.1451673+08:00",
+  "EndTime": "2026-07-06T15:21:39.4931755+08:00",
+  "DurationSeconds": 5.3480082,
+  "Victory": true,
+  "EndHp": 23,
+  "TotalTurns": 4,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 19,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 36,
+      "MaxHp": 80,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "SPITE",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BYRDONIS",
+          "Hp": 81,
+          "MaxHp": 81,
+          "Block": 0,
+          "IntentDamage": 17,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "TerritorialPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SPITE -\u003E BYRDONIS",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "USE_POTION FIRE_POTION",
+          "PLAY CINDER -\u003E BYRDONIS",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 43,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=43 Blk=5 In=17 Cards=5 Score=-2006 States=450 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 450
+      },
+      "ActionResults": [
+        {
+          "CardId": "SPITE",
+          "Success": true,
+          "Target": "BYRDONIS"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 36,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 36,
+      "MaxHp": 80,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BYRDONIS",
+          "Hp": 56,
+          "MaxHp": 81,
+          "Block": 0,
+          "IntentDamage": 17,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "TerritorialPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY CINDER -\u003E BYRDONIS",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 18,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=18 Blk=0 In=17 Cards=2 Score=-2467 States=5 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 5
+      },
+      "ActionResults": [
+        {
+          "CardId": "CINDER",
+          "Success": true,
+          "Target": "BYRDONIS"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 24,
+        "BlockAfter": 0,
+        "DamageTaken": 12,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 24,
+      "MaxHp": 80,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SWORD_BOOMERANG",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BYRDONIS",
+          "Hp": 38,
+          "MaxHp": 81,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "Powers": [
+            {
+              "Name": "TerritorialPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BASH -\u003E BYRDONIS",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 8,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=8 Blk=5 In=12 Cards=3 Score=-3398 States=49 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 49
+      },
+      "ActionResults": [
+        {
+          "CardId": "BASH",
+          "Success": true,
+          "Target": "BYRDONIS"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 17,
+        "BlockAfter": 0,
+        "DamageTaken": 7,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 17,
+      "MaxHp": 80,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 9,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        },
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BYRDONIS",
+          "Hp": 30,
+          "MaxHp": 81,
+          "Block": 0,
+          "IntentDamage": 19,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "Powers": [
+            {
+              "Name": "TerritorialPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY CINDER -\u003E BYRDONIS",
+          "PLAY STRIKE_IRONCLAD -\u003E BYRDONIS",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 33,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=33 Blk=0 In=19 Cards=3 Score=-444 States=59 Char=IRONCLAD Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 59
+      },
+      "ActionResults": [
+        {
+          "CardId": "CINDER",
+          "Success": true,
+          "Target": "BYRDONIS"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "BYRDONIS"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 23,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

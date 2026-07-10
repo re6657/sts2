@@ -1,0 +1,1622 @@
+{
+  "EncounterName": "THE_KIN_BOSS",
+  "Floor": 17,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-06T14:11:12.7405679+08:00",
+  "EndTime": "2026-07-06T14:11:31.6980249+08:00",
+  "DurationSeconds": 18.957457,
+  "Victory": false,
+  "EndHp": 0,
+  "KilledBy": "THE_KIN_BOSS",
+  "TotalTurns": 14,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 59,
+  "TotalEnemiesKilled": 2,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 59,
+      "MaxHp": 80,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "KIN_FOLLOWER",
+          "Hp": 58,
+          "MaxHp": 58,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "KIN_FOLLOWER",
+          "Hp": 59,
+          "MaxHp": 59,
+          "Block": 0,
+          "IntentDamage": 5,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "KIN_PRIEST",
+          "Hp": 190,
+          "MaxHp": 190,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "STRENGTH_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "USE_POTION STRENGTH_POTION",
+          "PLAY MOLTEN_FIST -\u003E KIN_FOLLOWER",
+          "PLAY MOLTEN_FIST -\u003E KIN_FOLLOWER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 24,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=24 Blk=8 In=13 Cards=5 Score=172 States=2188 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 2188
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 59,
+        "BlockAfter": 8,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 2,
+      "Block": 8,
+      "Hp": 59,
+      "MaxHp": 80,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "KIN_FOLLOWER",
+          "Hp": 58,
+          "MaxHp": 58,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "KIN_FOLLOWER",
+          "Hp": 59,
+          "MaxHp": 59,
+          "Block": 0,
+          "IntentDamage": 5,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "KIN_PRIEST",
+          "Hp": 190,
+          "MaxHp": 190,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY MOLTEN_FIST -\u003E KIN_FOLLOWER",
+          "PLAY MOLTEN_FIST -\u003E KIN_FOLLOWER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 28,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=28 Blk=0 In=13 Cards=3 Score=63 States=66 Char=IRONCLAD Src=reflection: dmg=12 blk=0",
+        "StatesExplored": 66
+      },
+      "ActionResults": [
+        {
+          "CardId": "MOLTEN_FIST",
+          "Success": true,
+          "Target": "KIN_FOLLOWER"
+        },
+        {
+          "CardId": "MOLTEN_FIST",
+          "Success": true,
+          "Target": "KIN_FOLLOWER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 54,
+        "BlockAfter": 0,
+        "DamageTaken": 5,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 2/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 54,
+      "MaxHp": 80,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 3,
+      "Hand": [
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ASHEN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "KIN_FOLLOWER",
+          "Hp": 34,
+          "MaxHp": 58,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "KIN_FOLLOWER",
+          "Hp": 59,
+          "MaxHp": 59,
+          "Block": 0,
+          "IntentDamage": 4,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "KIN_PRIEST",
+          "Hp": 190,
+          "MaxHp": 190,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 1,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY CINDER -\u003E KIN_FOLLOWER",
+          "PLAY ASHEN_STRIKE -\u003E KIN_FOLLOWER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 44,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=44 Blk=0 In=19 Cards=3 Score=1967 States=469 Char=IRONCLAD Src=reflection: dmg=26 blk=0",
+        "StatesExplored": 469
+      },
+      "ActionResults": [
+        {
+          "CardId": "CINDER",
+          "Success": true,
+          "Target": "KIN_FOLLOWER"
+        },
+        {
+          "CardId": "ASHEN_STRIKE",
+          "Success": false,
+          "FailReason": "not in hand",
+          "Target": "KIN_FOLLOWER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 54,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 54,
+      "MaxHp": 80,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "KIN_FOLLOWER",
+          "Hp": 8,
+          "MaxHp": 58,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "KIN_FOLLOWER",
+          "Hp": 59,
+          "MaxHp": 59,
+          "Block": 0,
+          "IntentDamage": 4,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "KIN_PRIEST",
+          "Hp": 190,
+          "MaxHp": 190,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 1,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E KIN_FOLLOWER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=10 Blk=0 In=19 Cards=2 Score=1314 States=7 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 7
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "KIN_FOLLOWER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 42,
+        "BlockAfter": 0,
+        "DamageTaken": 12,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 42,
+      "MaxHp": 80,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "RAMPAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "KIN_FOLLOWER",
+          "Hp": 59,
+          "MaxHp": 59,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "KIN_PRIEST",
+          "Hp": 190,
+          "MaxHp": 190,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 1,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BREAKTHROUGH -\u003E KIN_FOLLOWER",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 14,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=14 Blk=10 In=9 Cards=4 Score=399 States=195 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 195
+      },
+      "ActionResults": [
+        {
+          "CardId": "BREAKTHROUGH",
+          "Success": true,
+          "Target": "KIN_FOLLOWER"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 41,
+        "BlockAfter": 0,
+        "DamageTaken": 1,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 41,
+      "MaxHp": 80,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "FLAME_BARRIER",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "KIN_FOLLOWER",
+          "Hp": 51,
+          "MaxHp": 59,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "KIN_PRIEST",
+          "Hp": 182,
+          "MaxHp": 190,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY FLAME_BARRIER -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E KIN_FOLLOWER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 12,
+        "Score": "Dmg=10 Blk=12 In=7 Cards=3 Score=324 States=7 Char=IRONCLAD Src=reflection: dmg=0 blk=12",
+        "StatesExplored": 7
+      },
+      "ActionResults": [
+        {
+          "CardId": "FLAME_BARRIER",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "KIN_FOLLOWER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 41,
+        "BlockAfter": 12,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 2,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 0,
+      "Block": 12,
+      "Hp": 41,
+      "MaxHp": 80,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "KIN_FOLLOWER",
+          "Hp": 43,
+          "MaxHp": 59,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "KIN_PRIEST",
+          "Hp": 182,
+          "MaxHp": 190,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=7 Cards=1 Score=29 States=0 Char=IRONCLAD Src=none",
+        "StatesExplored": 0
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 41,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": [
+          "NO_PLAYABLE: 3 energy left, 0 playable cards"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 41,
+      "MaxHp": 80,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "RAMPAGE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "KIN_FOLLOWER",
+          "Hp": 39,
+          "MaxHp": 59,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "KIN_PRIEST",
+          "Hp": 182,
+          "MaxHp": 190,
+          "Block": 0,
+          "IntentDamage": 10,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BREAKTHROUGH -\u003E KIN_FOLLOWER",
+          "PLAY RAMPAGE -\u003E KIN_FOLLOWER",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 39,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=39 Blk=5 In=18 Cards=4 Score=-879 States=286 Char=IRONCLAD Src=reflection: dmg=11 blk=0",
+        "StatesExplored": 286
+      },
+      "ActionResults": [
+        {
+          "CardId": "BREAKTHROUGH",
+          "Success": true,
+          "Target": "KIN_FOLLOWER"
+        },
+        {
+          "CardId": "RAMPAGE",
+          "Success": true,
+          "Target": "KIN_FOLLOWER"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 27,
+        "BlockAfter": 0,
+        "DamageTaken": 14,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 27,
+      "MaxHp": 80,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "KIN_FOLLOWER",
+          "Hp": 17,
+          "MaxHp": 59,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "KIN_PRIEST",
+          "Hp": 171,
+          "MaxHp": 190,
+          "Block": 0,
+          "IntentDamage": 10,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 1,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BASH -\u003E KIN_FOLLOWER",
+          "PLAY PILLAGE -\u003E KIN_FOLLOWER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 24,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=24 Blk=0 In=10 Cards=3 Score=-1108 States=44 Char=IRONCLAD Src=reflection: dmg=12 blk=0",
+        "StatesExplored": 44
+      },
+      "ActionResults": [
+        {
+          "CardId": "BASH",
+          "Success": true,
+          "Target": "KIN_FOLLOWER"
+        },
+        {
+          "CardId": "PILLAGE",
+          "Success": true,
+          "Target": "KIN_FOLLOWER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 17,
+        "BlockAfter": 0,
+        "DamageTaken": 10,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 17,
+      "MaxHp": 80,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "FLAME_BARRIER",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "KIN_PRIEST",
+          "Hp": 171,
+          "MaxHp": 190,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 1,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY FLAME_BARRIER -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E KIN_PRIEST",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 12,
+        "Score": "Dmg=6 Blk=12 In=15 Cards=3 Score=-3587 States=29 Char=IRONCLAD Src=reflection: dmg=0 blk=12",
+        "StatesExplored": 29
+      },
+      "ActionResults": [
+        {
+          "CardId": "FLAME_BARRIER",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "KIN_PRIEST"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 14,
+        "BlockAfter": 0,
+        "DamageTaken": 3,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 14,
+      "MaxHp": 80,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "KIN_PRIEST",
+          "Hp": 153,
+          "MaxHp": 190,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E KIN_PRIEST",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=10 Blk=5 In=0 Cards=3 Score=-3024 States=4 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "KIN_PRIEST"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 14,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 2,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 12,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 14,
+      "MaxHp": 80,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "FLAME_BARRIER",
+          "Cost": 2
+        },
+        {
+          "Id": "RAMPAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "KIN_PRIEST",
+          "Hp": 145,
+          "MaxHp": 190,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY RAMPAGE -\u003E KIN_PRIEST",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 18,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=18 Blk=0 In=0 Cards=2 Score=-2898 States=2 Char=IRONCLAD Src=reflection: dmg=16 blk=0",
+        "StatesExplored": 2
+      },
+      "ActionResults": [
+        {
+          "CardId": "RAMPAGE",
+          "Success": true,
+          "Target": "KIN_PRIEST"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 14,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 2,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 1/2 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 13,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 14,
+      "MaxHp": 80,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "KIN_PRIEST",
+          "Hp": 129,
+          "MaxHp": 190,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BREAKTHROUGH -\u003E KIN_PRIEST",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 13,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=13 Blk=10 In=12 Cards=4 Score=-4056 States=49 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 49
+      },
+      "ActionResults": [
+        {
+          "CardId": "BREAKTHROUGH",
+          "Success": true,
+          "Target": "KIN_PRIEST"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 11,
+        "BlockAfter": 0,
+        "DamageTaken": 3,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 14,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 11,
+      "MaxHp": 80,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "KIN_PRIEST",
+          "Hp": 118,
+          "MaxHp": 190,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 1,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E KIN_PRIEST",
+          "PLAY STRIKE_IRONCLAD -\u003E KIN_PRIEST",
+          "PLAY STRIKE_IRONCLAD -\u003E KIN_PRIEST",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 30,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=30 Blk=0 In=12 Cards=4 Score=-6249 States=22 Char=IRONCLAD Src=reflection: dmg=12 blk=0",
+        "StatesExplored": 22
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "KIN_PRIEST"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "KIN_PRIEST"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "KIN_PRIEST"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 0,
+        "BlockAfter": 0,
+        "DamageTaken": 11,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

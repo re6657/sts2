@@ -1,0 +1,1657 @@
+{
+  "EncounterName": "CUBEX_CONSTRUCT_NORMAL",
+  "Floor": 13,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-08T17:52:18.3985399+08:00",
+  "EndTime": "2026-07-08T17:52:32.530455+08:00",
+  "DurationSeconds": 14.1319151,
+  "Victory": true,
+  "EndHp": 33,
+  "TotalTurns": 16,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 2,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 29,
+      "MaxHp": 80,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CUBEX_CONSTRUCT",
+          "Hp": 65,
+          "MaxHp": 65,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "CLARITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BASH -\u003E CUBEX_CONSTRUCT",
+          "PLAY HEADBUTT -\u003E CUBEX_CONSTRUCT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 23,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=23 Blk=0 In=0 Cards=3 Score=-976 States=49 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 49
+      },
+      "ActionResults": [
+        {
+          "CardId": "BASH",
+          "Success": true,
+          "Target": "CUBEX_CONSTRUCT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 29,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 29,
+      "MaxHp": 80,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CUBEX_CONSTRUCT",
+          "Hp": 55,
+          "MaxHp": 65,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "CLARITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY HEADBUTT -\u003E CUBEX_CONSTRUCT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=9 Blk=0 In=0 Cards=2 Score=-1220 States=4 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "CUBEX_CONSTRUCT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 29,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 3/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 29,
+      "MaxHp": 80,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "BATTLE_TRANCE",
+          "Cost": 0
+        },
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CUBEX_CONSTRUCT",
+          "Hp": 46,
+          "MaxHp": 65,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "CLARITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BATTLE_TRANCE -\u003E self",
+          "PLAY IRON_WAVE -\u003E CUBEX_CONSTRUCT",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 5,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=5 Blk=15 In=9 Cards=5 Score=-1185 States=5002 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 5002
+      },
+      "ActionResults": [
+        {
+          "CardId": "BATTLE_TRANCE",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 29,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 29,
+      "MaxHp": 80,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CUBEX_CONSTRUCT",
+          "Hp": 46,
+          "MaxHp": 65,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "CLARITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY IRON_WAVE -\u003E CUBEX_CONSTRUCT",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 5,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=5 Blk=15 In=9 Cards=4 Score=-1180 States=2359 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 2359
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 29,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 4,
+        "TotalPlayableInHand": 7,
+        "Issues": [
+          "CARDS_UNPLAYED: 4 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 29,
+      "MaxHp": 80,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CUBEX_CONSTRUCT",
+          "Hp": 46,
+          "MaxHp": 65,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "NoDrawPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "CLARITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY IRON_WAVE -\u003E CUBEX_CONSTRUCT",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 5,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=5 Blk=10 In=9 Cards=3 Score=-1182 States=308 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 308
+      },
+      "ActionResults": [
+        {
+          "CardId": "IRON_WAVE",
+          "Success": true,
+          "Target": "CUBEX_CONSTRUCT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 29,
+        "BlockAfter": 10,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 4,
+        "TotalPlayableInHand": 6,
+        "Issues": [
+          "CARDS_UNPLAYED: 4 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 1,
+      "Block": 10,
+      "Hp": 29,
+      "MaxHp": 80,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CUBEX_CONSTRUCT",
+          "Hp": 41,
+          "MaxHp": 65,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "NoDrawPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "CLARITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=9 Cards=2 Score=-1287 States=34 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 34
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 29,
+        "BlockAfter": 15,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 0,
+      "Block": 15,
+      "Hp": 29,
+      "MaxHp": 80,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CUBEX_CONSTRUCT",
+          "Hp": 41,
+          "MaxHp": 65,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "NoDrawPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "CLARITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=9 Cards=1 Score=-1340 States=1 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 1
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 29,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 1,
+        "Issues": [
+          "ENERGY_WASTED: 3 energy left, 1/1 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 29,
+      "MaxHp": 80,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CUBEX_CONSTRUCT",
+          "Hp": 41,
+          "MaxHp": 65,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "CLARITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E CUBEX_CONSTRUCT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=6 Blk=10 In=11 Cards=4 Score=-2191 States=85 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 29,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 29,
+      "MaxHp": 80,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CUBEX_CONSTRUCT",
+          "Hp": 41,
+          "MaxHp": 65,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "CLARITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E CUBEX_CONSTRUCT",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=6 Blk=5 In=11 Cards=3 Score=-2231 States=16 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 16
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "CUBEX_CONSTRUCT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 29,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 29,
+      "MaxHp": 80,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CUBEX_CONSTRUCT",
+          "Hp": 35,
+          "MaxHp": 65,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "CLARITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=11 Cards=2 Score=-2303 States=3 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 29,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 29,
+      "MaxHp": 80,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BATTLE_TRANCE",
+          "Cost": 0
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CUBEX_CONSTRUCT",
+          "Hp": 35,
+          "MaxHp": 65,
+          "Block": 0,
+          "IntentDamage": 22,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 6,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "CLARITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BLOODLETTING -\u003E self",
+          "PLAY BATTLE_TRANCE -\u003E self",
+          "PLAY BASH -\u003E CUBEX_CONSTRUCT",
+          "PLAY HEADBUTT -\u003E CUBEX_CONSTRUCT",
+          "PLAY STRIKE_IRONCLAD -\u003E CUBEX_CONSTRUCT",
+          "PLAY IRON_WAVE -\u003E CUBEX_CONSTRUCT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 39,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=39 Blk=5 In=22 Cards=7 Score=176 States=5002 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 5002
+      },
+      "ActionResults": [
+        {
+          "CardId": "BLOODLETTING",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 27,
+        "BlockAfter": 0,
+        "DamageTaken": 2,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 12,
+      "Energy": 5,
+      "Block": 0,
+      "Hp": 27,
+      "MaxHp": 80,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BATTLE_TRANCE",
+          "Cost": 0
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CUBEX_CONSTRUCT",
+          "Hp": 35,
+          "MaxHp": 65,
+          "Block": 0,
+          "IntentDamage": 22,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 6,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "CLARITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BASH -\u003E CUBEX_CONSTRUCT",
+          "PLAY BATTLE_TRANCE -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E CUBEX_CONSTRUCT",
+          "PLAY IRON_WAVE -\u003E CUBEX_CONSTRUCT",
+          "PLAY HEADBUTT -\u003E CUBEX_CONSTRUCT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 39,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=39 Blk=5 In=22 Cards=6 Score=360 States=1096 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 1096
+      },
+      "ActionResults": [
+        {
+          "CardId": "BASH",
+          "Success": true,
+          "Target": "CUBEX_CONSTRUCT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 27,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 13,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 27,
+      "MaxHp": 80,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BATTLE_TRANCE",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CUBEX_CONSTRUCT",
+          "Hp": 25,
+          "MaxHp": 65,
+          "Block": 0,
+          "IntentDamage": 22,
+          "IntentType": "Attack",
+          "VulnerableStacks": 3,
+          "WeakStacks": 0,
+          "StrengthStacks": 6,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 6
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "CLARITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BATTLE_TRANCE -\u003E self",
+          "PLAY IRON_WAVE -\u003E CUBEX_CONSTRUCT",
+          "PLAY STRIKE_IRONCLAD -\u003E CUBEX_CONSTRUCT",
+          "PLAY HEADBUTT -\u003E CUBEX_CONSTRUCT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 29,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=29 Blk=5 In=22 Cards=5 Score=228 States=132 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 132
+      },
+      "ActionResults": [
+        {
+          "CardId": "BATTLE_TRANCE",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 27,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 3,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 14,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 27,
+      "MaxHp": 80,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CUBEX_CONSTRUCT",
+          "Hp": 25,
+          "MaxHp": 65,
+          "Block": 0,
+          "IntentDamage": 22,
+          "IntentType": "Attack",
+          "VulnerableStacks": 3,
+          "WeakStacks": 0,
+          "StrengthStacks": 6,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 6
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "CLARITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E CUBEX_CONSTRUCT",
+          "PLAY HEADBUTT -\u003E CUBEX_CONSTRUCT",
+          "PLAY IRON_WAVE -\u003E CUBEX_CONSTRUCT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 29,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=29 Blk=5 In=22 Cards=4 Score=234 States=85 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "CUBEX_CONSTRUCT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 27,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 15,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 27,
+      "MaxHp": 80,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 9,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CUBEX_CONSTRUCT",
+          "Hp": 16,
+          "MaxHp": 65,
+          "Block": 0,
+          "IntentDamage": 22,
+          "IntentType": "Attack",
+          "VulnerableStacks": 3,
+          "WeakStacks": 0,
+          "StrengthStacks": 6,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 6
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "NoDrawPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "CLARITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY HEADBUTT -\u003E CUBEX_CONSTRUCT",
+          "PLAY IRON_WAVE -\u003E CUBEX_CONSTRUCT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 20,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=20 Blk=5 In=22 Cards=3 Score=127 States=16 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 16
+      },
+      "ActionResults": [
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "CUBEX_CONSTRUCT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 27,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 16,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 27,
+      "MaxHp": 80,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 9,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CUBEX_CONSTRUCT",
+          "Hp": 3,
+          "MaxHp": 65,
+          "Block": 0,
+          "IntentDamage": 22,
+          "IntentType": "Attack",
+          "VulnerableStacks": 3,
+          "WeakStacks": 0,
+          "StrengthStacks": 6,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 6
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "NoDrawPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "CLARITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY IRON_WAVE -\u003E CUBEX_CONSTRUCT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 7,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=7 Blk=5 In=22 Cards=2 Score=-78 States=3 Char=IRONCLAD Src=reflection: dmg=5 blk=5",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "IRON_WAVE",
+          "Success": true,
+          "Target": "CUBEX_CONSTRUCT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 33,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

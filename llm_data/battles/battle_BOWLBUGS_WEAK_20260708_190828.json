@@ -1,0 +1,1080 @@
+{
+  "EncounterName": "BOWLBUGS_WEAK",
+  "Floor": 21,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-08T19:08:18.6849446+08:00",
+  "EndTime": "2026-07-08T19:08:28.9688784+08:00",
+  "DurationSeconds": 10.2839338,
+  "Victory": true,
+  "EndHp": 42,
+  "TotalTurns": 9,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 24,
+  "TotalEnemiesKilled": 1,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 60,
+      "MaxHp": 80,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BOWLBUG_ROCK",
+          "Hp": 47,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ImbalancedPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "BOWLBUG_NECTAR",
+          "Hp": 37,
+          "MaxHp": 37,
+          "Block": 0,
+          "IntentDamage": 3,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BLOODLETTING -\u003E self",
+          "PLAY BASH -\u003E BOWLBUG_ROCK",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E BOWLBUG_ROCK",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 23,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=23 Blk=10 In=18 Cards=6 Score=-228 States=675 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 675
+      },
+      "ActionResults": [
+        {
+          "CardId": "BLOODLETTING",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 57,
+        "BlockAfter": 0,
+        "DamageTaken": 3,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 6,
+      "Block": 0,
+      "Hp": 57,
+      "MaxHp": 80,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BOWLBUG_ROCK",
+          "Hp": 47,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ImbalancedPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "BOWLBUG_NECTAR",
+          "Hp": 37,
+          "MaxHp": 37,
+          "Block": 0,
+          "IntentDamage": 3,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "VigorPower",
+            "Amount": 8
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BASH -\u003E BOWLBUG_NECTAR",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E BOWLBUG_NECTAR",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 43,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=43 Blk=10 In=18 Cards=5 Score=1318 States=200 Char=IRONCLAD Src=reflection: dmg=18 blk=0",
+        "StatesExplored": 200
+      },
+      "ActionResults": [
+        {
+          "CardId": "BASH",
+          "Success": true,
+          "Target": "BOWLBUG_NECTAR"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "BOWLBUG_NECTAR"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 49,
+        "BlockAfter": 0,
+        "DamageTaken": 8,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 49,
+      "MaxHp": 80,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TRUE_GRIT",
+          "Cost": 1
+        },
+        {
+          "Id": "RAMPAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "JUGGERNAUT",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BOWLBUG_ROCK",
+          "Hp": 47,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ImbalancedPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "BOWLBUG_NECTAR",
+          "Hp": 6,
+          "MaxHp": 37,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E BOWLBUG_ROCK",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY TRUE_GRIT -\u003E self",
+          "PLAY RAMPAGE -\u003E BOWLBUG_NECTAR",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 34,
+        "EstimatedBlock": 12,
+        "Score": "Dmg=34 Blk=12 In=15 Cards=5 Score=1505 States=247 Char=IRONCLAD Src=reflection: dmg=0 blk=7",
+        "StatesExplored": 247
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "BOWLBUG_ROCK"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 49,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 49,
+      "MaxHp": 80,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TRUE_GRIT",
+          "Cost": 1
+        },
+        {
+          "Id": "RAMPAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "JUGGERNAUT",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BOWLBUG_ROCK",
+          "Hp": 38,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ImbalancedPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "BOWLBUG_NECTAR",
+          "Hp": 6,
+          "MaxHp": 37,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY TRUE_GRIT -\u003E self",
+          "PLAY RAMPAGE -\u003E BOWLBUG_NECTAR",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 25,
+        "EstimatedBlock": 12,
+        "Score": "Dmg=25 Blk=12 In=15 Cards=4 Score=1425 States=35 Char=IRONCLAD Src=reflection: dmg=0 blk=7",
+        "StatesExplored": 35
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 49,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 49,
+      "MaxHp": 80,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "TRUE_GRIT",
+          "Cost": 1
+        },
+        {
+          "Id": "RAMPAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "JUGGERNAUT",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BOWLBUG_ROCK",
+          "Hp": 38,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ImbalancedPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "BOWLBUG_NECTAR",
+          "Hp": 6,
+          "MaxHp": 37,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY TRUE_GRIT -\u003E self",
+          "PLAY RAMPAGE -\u003E BOWLBUG_NECTAR",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 25,
+        "EstimatedBlock": 7,
+        "Score": "Dmg=25 Blk=7 In=15 Cards=3 Score=1387 States=8 Char=IRONCLAD Src=reflection: dmg=0 blk=7",
+        "StatesExplored": 8
+      },
+      "ActionResults": [
+        {
+          "CardId": "TRUE_GRIT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 46,
+        "BlockAfter": 0,
+        "DamageTaken": 3,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 1/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 46,
+      "MaxHp": 80,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 9,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "WHIRLWIND",
+          "Cost": -1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BOWLBUG_ROCK",
+          "Hp": 38,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ImbalancedPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "BOWLBUG_NECTAR",
+          "Hp": 6,
+          "MaxHp": 37,
+          "Block": 0,
+          "IntentDamage": 18,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 15,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 15
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY WHIRLWIND -\u003E BOWLBUG_ROCK",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 30,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=30 Blk=5 In=33 Cards=3 Score=603 States=327 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 327
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 46,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 3,
+      "Block": 5,
+      "Hp": 46,
+      "MaxHp": 80,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "WHIRLWIND",
+          "Cost": -1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BOWLBUG_ROCK",
+          "Hp": 38,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ImbalancedPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "BOWLBUG_NECTAR",
+          "Hp": 6,
+          "MaxHp": 37,
+          "Block": 0,
+          "IntentDamage": 18,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 15,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 15
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY WHIRLWIND -\u003E BOWLBUG_ROCK",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 30,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=30 Blk=0 In=33 Cards=2 Score=566 States=73 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 73
+      },
+      "ActionResults": [
+        {
+          "CardId": "WHIRLWIND",
+          "Success": true,
+          "Target": "BOWLBUG_ROCK"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 36,
+        "BlockAfter": 0,
+        "DamageTaken": 10,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 36,
+      "MaxHp": 80,
+      "DrawPileCount": 10,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "JUGGERNAUT",
+          "Cost": 2
+        },
+        {
+          "Id": "WHIRLWIND",
+          "Cost": -1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BOWLBUG_ROCK",
+          "Hp": 14,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ImbalancedPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 3,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "StrengthPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BASH -\u003E BOWLBUG_ROCK",
+          "PLAY IRON_WAVE -\u003E BOWLBUG_ROCK",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 28,
+        "EstimatedBlock": 7,
+        "Score": "Dmg=28 Blk=7 In=15 Cards=3 Score=1227 States=19 Char=IRONCLAD Src=reflection: dmg=13 blk=0",
+        "StatesExplored": 19
+      },
+      "ActionResults": [
+        {
+          "CardId": "BASH",
+          "Success": true,
+          "Target": "BOWLBUG_ROCK"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 36,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 36,
+      "MaxHp": 80,
+      "DrawPileCount": 10,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "JUGGERNAUT",
+          "Cost": 2
+        },
+        {
+          "Id": "WHIRLWIND",
+          "Cost": -1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "BOWLBUG_ROCK",
+          "Hp": 1,
+          "MaxHp": 47,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 3,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ImbalancedPower",
+              "Amount": 1
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 3,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "StrengthPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SWIFT_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY IRON_WAVE -\u003E BOWLBUG_ROCK",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 15,
+        "EstimatedBlock": 7,
+        "Score": "Dmg=15 Blk=7 In=15 Cards=2 Score=1058 States=3 Char=IRONCLAD Src=reflection: dmg=10 blk=7",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "IRON_WAVE",
+          "Success": true,
+          "Target": "BOWLBUG_ROCK"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 42,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

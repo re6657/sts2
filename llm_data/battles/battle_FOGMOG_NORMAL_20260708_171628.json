@@ -1,0 +1,2923 @@
+{
+  "EncounterName": "FOGMOG_NORMAL",
+  "Floor": 12,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-08T17:16:01.9063582+08:00",
+  "EndTime": "2026-07-08T17:16:28.5527045+08:00",
+  "DurationSeconds": 26.6463463,
+  "Victory": true,
+  "EndHp": 983,
+  "TotalTurns": 24,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 16,
+  "TotalEnemiesKilled": 2,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "FOGMOG",
+          "Hp": 74,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BLOODLETTING -\u003E self",
+          "PLAY IRON_WAVE -\u003E FOGMOG",
+          "PLAY STRIKE_IRONCLAD -\u003E FOGMOG",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 11,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=11 Blk=10 In=0 Cards=5 Score=258 States=277 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 277
+      },
+      "ActionResults": [
+        {
+          "CardId": "BLOODLETTING",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 996,
+        "BlockAfter": 0,
+        "DamageTaken": 3,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 1/5 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 5,
+      "Block": 0,
+      "Hp": 996,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "FOGMOG",
+          "Hp": 74,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E FOGMOG",
+          "PLAY IRON_WAVE -\u003E FOGMOG",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 11,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=11 Blk=10 In=0 Cards=4 Score=158 States=64 Char=IRONCLAD Src=reflection: dmg=5 blk=5",
+        "StatesExplored": 64
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "FOGMOG"
+        },
+        {
+          "CardId": "IRON_WAVE",
+          "Success": true,
+          "Target": "FOGMOG"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 996,
+        "BlockAfter": 10,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 2,
+      "Block": 10,
+      "Hp": 996,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "FOGMOG",
+          "Hp": 63,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=0 Cards=2 Score=13 States=1 Char=IRONCLAD Src=reflection: dmg=0 blk=5",
+        "StatesExplored": 1
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 996,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 1,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 996,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EYE_WITH_TEETH",
+          "Hp": 6,
+          "MaxHp": 6,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "IllusionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FOGMOG",
+          "Hp": 63,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY THUNDERCLAP -\u003E EYE_WITH_TEETH",
+          "PLAY STRIKE_IRONCLAD -\u003E EYE_WITH_TEETH",
+          "PLAY SHRUG_IT_OFF -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 20,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=20 Blk=8 In=8 Cards=4 Score=1395 States=138 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 138
+      },
+      "ActionResults": [
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "EYE_WITH_TEETH"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 996,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 996,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EYE_WITH_TEETH",
+          "Hp": 2,
+          "MaxHp": 6,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "IllusionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FOGMOG",
+          "Hp": 59,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SHRUG_IT_OFF -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E FOGMOG",
+          "PLAY TWIN_STRIKE -\u003E EYE_WITH_TEETH",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 22,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=22 Blk=8 In=8 Cards=4 Score=1400 States=75 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 75
+      },
+      "ActionResults": [
+        {
+          "CardId": "SHRUG_IT_OFF",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 996,
+        "BlockAfter": 8,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 2,
+      "Block": 8,
+      "Hp": 996,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EYE_WITH_TEETH",
+          "Hp": 2,
+          "MaxHp": 6,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "IllusionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FOGMOG",
+          "Hp": 59,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E FOGMOG",
+          "PLAY STRIKE_IRONCLAD -\u003E EYE_WITH_TEETH",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 21,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=21 Blk=0 In=8 Cards=3 Score=1308 States=26 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 26
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "FOGMOG"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 996,
+        "BlockAfter": 8,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 1,
+      "Block": 8,
+      "Hp": 996,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EYE_WITH_TEETH",
+          "Hp": 2,
+          "MaxHp": 6,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "IllusionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FOGMOG",
+          "Hp": 47,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E EYE_WITH_TEETH",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=9 Blk=0 In=8 Cards=2 Score=1196 States=4 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "EYE_WITH_TEETH"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 996,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 2,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 1/2 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 996,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EYE_WITH_TEETH",
+          "Hp": 6,
+          "MaxHp": 6,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "IllusionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FOGMOG",
+          "Hp": 47,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E EYE_WITH_TEETH",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=6 Blk=10 In=9 Cards=4 Score=1214 States=85 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 996,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 996,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EYE_WITH_TEETH",
+          "Hp": 6,
+          "MaxHp": 6,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "IllusionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FOGMOG",
+          "Hp": 47,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E EYE_WITH_TEETH",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=6 Blk=5 In=9 Cards=3 Score=1174 States=16 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 16
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "EYE_WITH_TEETH"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 996,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 2/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 996,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EYE_WITH_TEETH",
+          "Hp": 6,
+          "MaxHp": 6,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "IllusionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FOGMOG",
+          "Hp": 47,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BLOODLETTING -\u003E self",
+          "PLAY SHRUG_IT_OFF -\u003E self",
+          "PLAY IRON_WAVE -\u003E EYE_WITH_TEETH",
+          "PLAY STRIKE_IRONCLAD -\u003E EYE_WITH_TEETH",
+          "PLAY STRIKE_IRONCLAD -\u003E FOGMOG",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 19,
+        "EstimatedBlock": 18,
+        "Score": "Dmg=19 Blk=18 In=16 Cards=7 Score=1537 States=2505 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 2505
+      },
+      "ActionResults": [
+        {
+          "CardId": "BLOODLETTING",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 993,
+        "BlockAfter": 0,
+        "DamageTaken": 3,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 5,
+      "Block": 0,
+      "Hp": 993,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EYE_WITH_TEETH",
+          "Hp": 6,
+          "MaxHp": 6,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "IllusionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FOGMOG",
+          "Hp": 47,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SHRUG_IT_OFF -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E FOGMOG",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY IRON_WAVE -\u003E FOGMOG",
+          "PLAY STRIKE_IRONCLAD -\u003E EYE_WITH_TEETH",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 19,
+        "EstimatedBlock": 18,
+        "Score": "Dmg=19 Blk=18 In=16 Cards=6 Score=1475 States=606 Char=IRONCLAD Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 606
+      },
+      "ActionResults": [
+        {
+          "CardId": "SHRUG_IT_OFF",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "FOGMOG"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "IRON_WAVE",
+          "Success": true,
+          "Target": "FOGMOG"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "EYE_WITH_TEETH"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 993,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 12,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 993,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EYE_WITH_TEETH",
+          "Hp": 6,
+          "MaxHp": 6,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "IllusionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FOGMOG",
+          "Hp": 36,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 10,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY THUNDERCLAP -\u003E EYE_WITH_TEETH",
+          "PLAY SHRUG_IT_OFF -\u003E self",
+          "PLAY IRON_WAVE -\u003E EYE_WITH_TEETH",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 15,
+        "EstimatedBlock": 13,
+        "Score": "Dmg=15 Blk=13 In=10 Cards=4 Score=1434 States=238 Char=IRONCLAD Src=reflection: dmg=4 blk=0",
+        "StatesExplored": 238
+      },
+      "ActionResults": [
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "EYE_WITH_TEETH"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 993,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 13,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 993,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EYE_WITH_TEETH",
+          "Hp": 2,
+          "MaxHp": 6,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "IllusionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FOGMOG",
+          "Hp": 32,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 10,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SHRUG_IT_OFF -\u003E self",
+          "PLAY IRON_WAVE -\u003E EYE_WITH_TEETH",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 7,
+        "EstimatedBlock": 13,
+        "Score": "Dmg=7 Blk=13 In=10 Cards=3 Score=1314 States=37 Char=IRONCLAD Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 37
+      },
+      "ActionResults": [
+        {
+          "CardId": "SHRUG_IT_OFF",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 993,
+        "BlockAfter": 8,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 14,
+      "Energy": 1,
+      "Block": 8,
+      "Hp": 993,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EYE_WITH_TEETH",
+          "Hp": 2,
+          "MaxHp": 6,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "IllusionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FOGMOG",
+          "Hp": 32,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 10,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY IRON_WAVE -\u003E EYE_WITH_TEETH",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 7,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=7 Blk=5 In=10 Cards=2 Score=1234 States=6 Char=IRONCLAD Src=reflection: dmg=5 blk=5",
+        "StatesExplored": 6
+      },
+      "ActionResults": [
+        {
+          "CardId": "IRON_WAVE",
+          "Success": true,
+          "Target": "EYE_WITH_TEETH"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 993,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 15,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 993,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EYE_WITH_TEETH",
+          "Hp": 6,
+          "MaxHp": 6,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "IllusionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FOGMOG",
+          "Hp": 32,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 17,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 3,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BLOODLETTING -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E EYE_WITH_TEETH",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=6 Blk=15 In=17 Cards=6 Score=870 States=490 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 490
+      },
+      "ActionResults": [
+        {
+          "CardId": "BLOODLETTING",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 990,
+        "BlockAfter": 0,
+        "DamageTaken": 3,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 16,
+      "Energy": 5,
+      "Block": 0,
+      "Hp": 990,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EYE_WITH_TEETH",
+          "Hp": 6,
+          "MaxHp": 6,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "IllusionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FOGMOG",
+          "Hp": 32,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 17,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 3,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E EYE_WITH_TEETH",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=6 Blk=15 In=17 Cards=5 Score=775 States=113 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 113
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "EYE_WITH_TEETH"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 988,
+        "BlockAfter": 0,
+        "DamageTaken": 2,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 17,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 988,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EYE_WITH_TEETH",
+          "Hp": 6,
+          "MaxHp": 6,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "IllusionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FOGMOG",
+          "Hp": 32,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 3,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SHRUG_IT_OFF -\u003E self",
+          "PLAY TWIN_STRIKE -\u003E EYE_WITH_TEETH",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 7,
+        "EstimatedBlock": 13,
+        "Score": "Dmg=7 Blk=13 In=11 Cards=4 Score=1176 States=207 Char=IRONCLAD Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 207
+      },
+      "ActionResults": [
+        {
+          "CardId": "SHRUG_IT_OFF",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 988,
+        "BlockAfter": 8,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 18,
+      "Energy": 2,
+      "Block": 8,
+      "Hp": 988,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EYE_WITH_TEETH",
+          "Hp": 6,
+          "MaxHp": 6,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "IllusionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FOGMOG",
+          "Hp": 32,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 3,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E EYE_WITH_TEETH",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 8,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=8 Blk=5 In=11 Cards=3 Score=1108 States=52 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 52
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "EYE_WITH_TEETH"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 988,
+        "BlockAfter": 8,
+        "DamageTaken": 0,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 19,
+      "Energy": 1,
+      "Block": 8,
+      "Hp": 988,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "FOGMOG",
+          "Hp": 32,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 3,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=11 Cards=2 Score=-18 States=4 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 988,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 3/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 20,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 988,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EYE_WITH_TEETH",
+          "Hp": 6,
+          "MaxHp": 6,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "IllusionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FOGMOG",
+          "Hp": 32,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BLOODLETTING -\u003E self",
+          "PLAY THUNDERCLAP -\u003E EYE_WITH_TEETH",
+          "PLAY IRON_WAVE -\u003E EYE_WITH_TEETH",
+          "PLAY BASH -\u003E FOGMOG",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 30,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=30 Blk=10 In=12 Cards=6 Score=1068 States=581 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 581
+      },
+      "ActionResults": [
+        {
+          "CardId": "BLOODLETTING",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 985,
+        "BlockAfter": 0,
+        "DamageTaken": 3,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 21,
+      "Energy": 5,
+      "Block": 0,
+      "Hp": 985,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EYE_WITH_TEETH",
+          "Hp": 6,
+          "MaxHp": 6,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "IllusionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FOGMOG",
+          "Hp": 32,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY THUNDERCLAP -\u003E EYE_WITH_TEETH",
+          "PLAY BASH -\u003E FOGMOG",
+          "PLAY IRON_WAVE -\u003E EYE_WITH_TEETH",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 30,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=30 Blk=10 In=12 Cards=5 Score=1035 States=171 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 171
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "EYE_WITH_TEETH"
+        },
+        {
+          "CardId": "BASH",
+          "Success": true,
+          "Target": "FOGMOG"
+        },
+        {
+          "CardId": "IRON_WAVE",
+          "Success": true,
+          "Target": "EYE_WITH_TEETH"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 983,
+        "BlockAfter": 0,
+        "DamageTaken": 2,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 22,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 983,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EYE_WITH_TEETH",
+          "Hp": 6,
+          "MaxHp": 6,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "IllusionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FOGMOG",
+          "Hp": 13,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 19,
+          "IntentType": "Attack",
+          "VulnerableStacks": 3,
+          "WeakStacks": 0,
+          "StrengthStacks": 5,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 5
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E FOGMOG",
+          "PLAY STRIKE_IRONCLAD -\u003E FOGMOG",
+          "PLAY STRIKE_IRONCLAD -\u003E EYE_WITH_TEETH",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 24,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=24 Blk=0 In=19 Cards=4 Score=2688 States=130 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 130
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "FOGMOG"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 983,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 23,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 983,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EYE_WITH_TEETH",
+          "Hp": 6,
+          "MaxHp": 6,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "IllusionPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "FOGMOG",
+          "Hp": 4,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 19,
+          "IntentType": "Attack",
+          "VulnerableStacks": 3,
+          "WeakStacks": 0,
+          "StrengthStacks": 5,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 5
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E EYE_WITH_TEETH",
+          "PLAY STRIKE_IRONCLAD -\u003E FOGMOG",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 15,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=15 Blk=0 In=19 Cards=3 Score=2580 States=19 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 19
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "EYE_WITH_TEETH"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 983,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 24,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 983,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "FOGMOG",
+          "Hp": 4,
+          "MaxHp": 74,
+          "Block": 0,
+          "IntentDamage": 19,
+          "IntentType": "Attack",
+          "VulnerableStacks": 3,
+          "WeakStacks": 0,
+          "StrengthStacks": 5,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 5
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "LIQUID_BRONZE"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E FOGMOG",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=9 Blk=0 In=19 Cards=2 Score=1478 States=2 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 2
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "FOGMOG"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 983,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

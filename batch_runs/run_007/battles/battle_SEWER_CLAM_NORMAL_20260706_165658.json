@@ -1,0 +1,337 @@
+{
+  "EncounterName": "SEWER_CLAM_NORMAL",
+  "Floor": 15,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-06T16:56:52.3275834+08:00",
+  "EndTime": "2026-07-06T16:56:58.6360538+08:00",
+  "DurationSeconds": 6.3084704,
+  "Victory": true,
+  "EndHp": 79,
+  "TotalTurns": 3,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 12,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 69,
+      "MaxHp": 80,
+      "DrawPileCount": 15,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "HEMOKINESIS",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "RUPTURE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SEWER_CLAM",
+          "Hp": 56,
+          "MaxHp": 56,
+          "Block": 8,
+          "IntentDamage": 10,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "PlatingPower",
+              "Amount": 8
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "BLOOD_POTION",
+        "POTION_SHAPED_ROCK"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY RUPTURE -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E SEWER_CLAM",
+          "PLAY ANGER -\u003E SEWER_CLAM",
+          "PLAY HEMOKINESIS -\u003E SEWER_CLAM",
+          "USE_POTION POTION_SHAPED_ROCK",
+          "PLAY STRIKE_IRONCLAD -\u003E SEWER_CLAM",
+          "USE_POTION BLOOD_POTION",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 32,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=32 Blk=0 In=10 Cards=8 Score=-556 States=5005 Char=IRONCLAD Src=reflection: dmg=0 blk=0",
+        "StatesExplored": 5005
+      },
+      "ActionResults": [
+        {
+          "CardId": "RUPTURE",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "SEWER_CLAM"
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "SEWER_CLAM"
+        },
+        {
+          "CardId": "HEMOKINESIS",
+          "Success": true,
+          "Target": "SEWER_CLAM"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 57,
+        "BlockAfter": 0,
+        "DamageTaken": 12,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 57,
+      "MaxHp": 80,
+      "DrawPileCount": 10,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ASHEN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SEWER_CLAM",
+          "Hp": 15,
+          "MaxHp": 56,
+          "Block": 8,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "PlatingPower",
+              "Amount": 8
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 1,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "BLOOD_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY PILLAGE -\u003E SEWER_CLAM",
+          "PLAY STRIKE_IRONCLAD -\u003E SEWER_CLAM",
+          "USE_POTION BLOOD_POTION",
+          "PLAY ASHEN_STRIKE -\u003E SEWER_CLAM",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 19,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=19 Blk=0 In=0 Cards=5 Score=1508 States=390 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 390
+      },
+      "ActionResults": [
+        {
+          "CardId": "PILLAGE",
+          "Success": true,
+          "Target": "SEWER_CLAM"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "SEWER_CLAM"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 73,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 73,
+      "MaxHp": 80,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ASHEN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STONE_ARMOR",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SEWER_CLAM",
+          "Hp": 6,
+          "MaxHp": 56,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "PlatingPower",
+              "Amount": 8
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 1,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY ASHEN_STRIKE -\u003E SEWER_CLAM",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 8,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=8 Blk=0 In=0 Cards=2 Score=1376 States=4 Char=IRONCLAD Src=reflection: dmg=0 blk=0",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "ASHEN_STRIKE",
+          "Success": true,
+          "Target": "SEWER_CLAM"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 79,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

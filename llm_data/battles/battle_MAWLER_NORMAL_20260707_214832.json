@@ -1,0 +1,1449 @@
+{
+  "EncounterName": "MAWLER_NORMAL",
+  "Floor": 14,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T21:48:22.6451118+08:00",
+  "EndTime": "2026-07-07T21:48:32.5532223+08:00",
+  "DurationSeconds": 9.9081105,
+  "Victory": true,
+  "EndHp": 994,
+  "TotalTurns": 15,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 11,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 13,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 72,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "SKILL_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "USE_POTION SKILL_POTION",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY MOLTEN_FIST -\u003E MAWLER",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 16,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=16 Blk=10 In=8 Cards=6 Score=335 States=876 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 876
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 13,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        },
+        {
+          "Id": "FLAME_BARRIER",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 72,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY FLAME_BARRIER -\u003E self",
+          "PLAY MOLTEN_FIST -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 12,
+        "Score": "Dmg=10 Blk=12 In=8 Cards=3 Score=221 States=96 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 96
+      },
+      "ActionResults": [
+        {
+          "CardId": "FLAME_BARRIER",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 12,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 4,
+        "TotalPlayableInHand": 6,
+        "Issues": [
+          "CARDS_UNPLAYED: 4 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 12,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 13,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 72,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "FlameBarrierPower",
+            "Amount": 4
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY MOLTEN_FIST -\u003E MAWLER",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 16,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=16 Blk=5 In=8 Cards=4 Score=274 States=85 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "MOLTEN_FIST",
+          "Success": true,
+          "Target": "MAWLER"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 17,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 1,
+      "Block": 17,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 13,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 62,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "FlameBarrierPower",
+            "Amount": 4
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=6 Blk=0 In=8 Cards=2 Score=98 States=3 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "MAWLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "HEMOKINESIS",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BULLY",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 48,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 14,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY HEMOKINESIS -\u003E MAWLER",
+          "PLAY BULLY -\u003E MAWLER",
+          "PLAY SETUP_STRIKE -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 26,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=26 Blk=5 In=14 Cards=5 Score=-110 States=181 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 181
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "HEMOKINESIS",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BULLY",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 48,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 14,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BULLY -\u003E MAWLER",
+          "PLAY SETUP_STRIKE -\u003E MAWLER",
+          "PLAY HEMOKINESIS -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 26,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=26 Blk=0 In=14 Cards=4 Score=-147 States=34 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 34
+      },
+      "ActionResults": [
+        {
+          "CardId": "BULLY",
+          "Success": true,
+          "Target": "MAWLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "HEMOKINESIS",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 44,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 14,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY HEMOKINESIS -\u003E MAWLER",
+          "PLAY SETUP_STRIKE -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 22,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=22 Blk=0 In=14 Cards=3 Score=-614 States=9 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 9
+      },
+      "ActionResults": [
+        {
+          "CardId": "HEMOKINESIS",
+          "Success": true,
+          "Target": "MAWLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 997,
+        "BlockAfter": 5,
+        "DamageTaken": 2,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 997,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 29,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 14,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=6 Blk=0 In=14 Cards=2 Score=-812 States=2 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 2
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "MAWLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 988,
+        "BlockAfter": 0,
+        "DamageTaken": 9,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 2,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 1/2 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 988,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        },
+        {
+          "Id": "PANIC_BUTTON",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 23,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E MAWLER",
+          "PLAY STRIKE_IRONCLAD -\u003E MAWLER",
+          "PLAY THUNDERCLAP -\u003E MAWLER",
+          "PLAY PANIC_BUTTON -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 16,
+        "EstimatedBlock": 30,
+        "Score": "Dmg=16 Blk=30 In=0 Cards=5 Score=288 States=181 Char=IRONCLAD Src=reflection: dmg=4 blk=0",
+        "StatesExplored": 181
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "MAWLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 988,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 988,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 11,
+      "Hand": [
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        },
+        {
+          "Id": "PANIC_BUTTON",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 17,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E MAWLER",
+          "PLAY THUNDERCLAP -\u003E MAWLER",
+          "PLAY PANIC_BUTTON -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 30,
+        "Score": "Dmg=10 Blk=30 In=0 Cards=4 Score=220 States=34 Char=IRONCLAD Src=reflection: dmg=4 blk=0",
+        "StatesExplored": 34
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "MAWLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 988,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 988,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 12,
+      "Hand": [
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        },
+        {
+          "Id": "PANIC_BUTTON",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 11,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY THUNDERCLAP -\u003E MAWLER",
+          "PLAY PANIC_BUTTON -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 4,
+        "EstimatedBlock": 30,
+        "Score": "Dmg=4 Blk=30 In=0 Cards=3 Score=151 States=7 Char=IRONCLAD Src=reflection: dmg=4 blk=0",
+        "StatesExplored": 7
+      },
+      "ActionResults": [
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "MAWLER"
+        },
+        {
+          "CardId": "PANIC_BUTTON",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 988,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 1/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 12,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 988,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 7,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 3,
+        "AllPowers": [
+          {
+            "Name": "NoBlockPower",
+            "Amount": 1
+          },
+          {
+            "Name": "VulnerablePower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E MAWLER",
+          "PLAY HEADBUTT -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 15,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=15 Blk=0 In=12 Cards=3 Score=1588 States=5 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 5
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "MAWLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 988,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 1/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 13,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 988,
+      "MaxHp": 999,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "FLAME_BARRIER",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 7,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 3,
+        "AllPowers": [
+          {
+            "Name": "NoBlockPower",
+            "Amount": 1
+          },
+          {
+            "Name": "VulnerablePower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E MAWLER",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY HEADBUTT -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 15,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=15 Blk=5 In=12 Cards=4 Score=1590 States=21 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 21
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "MAWLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 988,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 14,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 988,
+      "MaxHp": 999,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "FLAME_BARRIER",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 1,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 3,
+        "AllPowers": [
+          {
+            "Name": "NoBlockPower",
+            "Amount": 1
+          },
+          {
+            "Name": "VulnerablePower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY HEADBUTT -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=9 Blk=5 In=12 Cards=3 Score=1520 States=6 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 6
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 988,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 15,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 988,
+      "MaxHp": 999,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "FLAME_BARRIER",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 1,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 3,
+        "AllPowers": [
+          {
+            "Name": "NoBlockPower",
+            "Amount": 1
+          },
+          {
+            "Name": "VulnerablePower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY HEADBUTT -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=9 Blk=0 In=12 Cards=2 Score=1514 States=2 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 2
+      },
+      "ActionResults": [
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "MAWLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 994,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

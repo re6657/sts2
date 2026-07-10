@@ -1,0 +1,618 @@
+{
+  "EncounterName": "VINE_SHAMBLER_NORMAL",
+  "Floor": 15,
+  "Character": "DEFECT",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T18:58:59.2012668+08:00",
+  "EndTime": "2026-07-07T18:59:07.1745211+08:00",
+  "DurationSeconds": 7.9732543,
+  "Victory": true,
+  "EndHp": 988,
+  "TotalTurns": 6,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 12,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 14,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "UPROAR",
+          "Cost": 2
+        },
+        {
+          "Id": "BARRAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "ZAP",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "VINE_SHAMBLER",
+          "Hp": 61,
+          "MaxHp": 61,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "GAMBLERS_BREW"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "USE_POTION GAMBLERS_BREW",
+          "PLAY STRIKE_DEFECT -\u003E VINE_SHAMBLER",
+          "PLAY ZAP -\u003E self",
+          "PLAY BARRAGE -\u003E VINE_SHAMBLER",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 11,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=11 Blk=5 In=12 Cards=6 Score=422 States=420 Char=DEFECT Src=fallback: dmg=3 blk=0",
+        "StatesExplored": 420
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "LEAP",
+          "Cost": 1
+        },
+        {
+          "Id": "COMPILE_DRIVER",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "BALL_LIGHTNING",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "VINE_SHAMBLER",
+          "Hp": 61,
+          "MaxHp": 61,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BALL_LIGHTNING -\u003E VINE_SHAMBLER",
+          "PLAY LEAP -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 7,
+        "EstimatedBlock": 14,
+        "Score": "Dmg=7 Blk=14 In=12 Cards=4 Score=998 States=113 Char=DEFECT Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 113
+      },
+      "ActionResults": [
+        {
+          "CardId": "BALL_LIGHTNING",
+          "Success": true,
+          "Target": "VINE_SHAMBLER"
+        },
+        {
+          "CardId": "LEAP",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "LEAP",
+          "Cost": 1
+        },
+        {
+          "Id": "COMPILE_DRIVER",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "BALL_LIGHTNING",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "VINE_SHAMBLER",
+          "Hp": 61,
+          "MaxHp": 61,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY LEAP -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 14,
+        "Score": "Dmg=0 Blk=14 In=12 Cards=3 Score=539 States=27 Char=DEFECT Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 27
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "LEAP",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "LEAP",
+          "Cost": 1
+        },
+        {
+          "Id": "COMPILE_DRIVER",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "BALL_LIGHTNING",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "VINE_SHAMBLER",
+          "Hp": 61,
+          "MaxHp": 61,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY LEAP -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 14,
+        "Score": "Dmg=0 Blk=14 In=12 Cards=3 Score=539 States=27 Char=DEFECT Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 27
+      },
+      "ActionResults": [
+        {
+          "CardId": "LEAP",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 987,
+        "BlockAfter": 0,
+        "DamageTaken": 12,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 3/5 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 987,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "MOMENTUM_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "SUNDER",
+          "Cost": 3
+        },
+        {
+          "Id": "BALL_LIGHTNING",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "VINE_SHAMBLER",
+          "Hp": 48,
+          "MaxHp": 61,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BALL_LIGHTNING -\u003E VINE_SHAMBLER",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 7,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=7 Blk=10 In=8 Cards=4 Score=1388 States=41 Char=DEFECT Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 41
+      },
+      "ActionResults": [
+        {
+          "CardId": "BALL_LIGHTNING",
+          "Success": true,
+          "Target": "VINE_SHAMBLER"
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 987,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 987,
+      "MaxHp": 999,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 13,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "BEAM_CELL",
+          "Cost": 0
+        },
+        {
+          "Id": "DUALCAST",
+          "Cost": 1
+        },
+        {
+          "Id": "CONSUMING_SHADOW",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "VINE_SHAMBLER",
+          "Hp": 32,
+          "MaxHp": 61,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "TangledPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 3,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BEAM_CELL -\u003E VINE_SHAMBLER",
+          "PLAY CONSUMING_SHADOW -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 3,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=3 Blk=0 In=16 Cards=3 Score=487 States=34 Char=DEFECT Src=reflection: dmg=3 blk=0",
+        "StatesExplored": 34
+      },
+      "ActionResults": [
+        {
+          "CardId": "BEAM_CELL",
+          "Success": true,
+          "Target": "VINE_SHAMBLER"
+        },
+        {
+          "CardId": "CONSUMING_SHADOW",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 988,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

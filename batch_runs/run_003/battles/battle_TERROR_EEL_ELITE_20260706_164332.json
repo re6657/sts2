@@ -1,0 +1,1429 @@
+{
+  "EncounterName": "TERROR_EEL_ELITE",
+  "Floor": 13,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-06T16:43:13.2403161+08:00",
+  "EndTime": "2026-07-06T16:43:32.238348+08:00",
+  "DurationSeconds": 18.9980319,
+  "Victory": true,
+  "EndHp": 16,
+  "TotalTurns": 14,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 65,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 10,
+      "Hp": 76,
+      "MaxHp": 80,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TERROR_EEL",
+          "Hp": 140,
+          "MaxHp": 140,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "ShriekPower",
+              "Amount": 70
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E TERROR_EEL",
+          "PLAY STRIKE_IRONCLAD -\u003E TERROR_EEL",
+          "PLAY IRON_WAVE -\u003E TERROR_EEL",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 22,
+        "EstimatedBlock": 7,
+        "Score": "Dmg=22 Blk=7 In=16 Cards=4 Score=486 States=85 Char=IRONCLAD Src=reflection: dmg=7 blk=7",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "TERROR_EEL"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "TERROR_EEL"
+        },
+        {
+          "CardId": "IRON_WAVE",
+          "Success": true,
+          "Target": "TERROR_EEL"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 76,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 76,
+      "MaxHp": 80,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "OUTMANEUVER",
+          "Cost": 1
+        },
+        {
+          "Id": "FLAME_BARRIER",
+          "Cost": 2
+        },
+        {
+          "Id": "HAVOC",
+          "Cost": 1
+        },
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TERROR_EEL",
+          "Hp": 118,
+          "MaxHp": 140,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "ShriekPower",
+              "Amount": 70
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY FLAME_BARRIER -\u003E self",
+          "PLAY BREAKTHROUGH -\u003E TERROR_EEL",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 12,
+        "Score": "Dmg=9 Blk=12 In=9 Cards=3 Score=278 States=49 Char=IRONCLAD Src=reflection: dmg=0 blk=12",
+        "StatesExplored": 49
+      },
+      "ActionResults": [
+        {
+          "CardId": "FLAME_BARRIER",
+          "Success": true
+        },
+        {
+          "CardId": "BREAKTHROUGH",
+          "Success": true,
+          "Target": "TERROR_EEL"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 75,
+        "BlockAfter": 0,
+        "DamageTaken": 1,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 75,
+      "MaxHp": 80,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TERROR_EEL",
+          "Hp": 97,
+          "MaxHp": 140,
+          "Block": 0,
+          "IntentDamage": 22,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "ShriekPower",
+              "Amount": 70
+            },
+            {
+              "Name": "VigorPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BREAKTHROUGH -\u003E TERROR_EEL",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=9 Blk=10 In=22 Cards=4 Score=-910 States=85 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "BREAKTHROUGH",
+          "Success": true,
+          "Target": "TERROR_EEL"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 62,
+        "BlockAfter": 0,
+        "DamageTaken": 13,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 62,
+      "MaxHp": 80,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TERROR_EEL",
+          "Hp": 88,
+          "MaxHp": 140,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "ShriekPower",
+              "Amount": 70
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY SHRUG_IT_OFF -\u003E self",
+          "PLAY BREAKTHROUGH -\u003E TERROR_EEL",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 13,
+        "Score": "Dmg=9 Blk=13 In=9 Cards=4 Score=279 States=8 Char=IRONCLAD Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 8
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "SHRUG_IT_OFF",
+          "Success": true
+        },
+        {
+          "CardId": "BREAKTHROUGH",
+          "Success": true,
+          "Target": "TERROR_EEL"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 0,
+        "DamageTaken": 1,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 2,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 61,
+      "MaxHp": 80,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        },
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TERROR_EEL",
+          "Hp": 79,
+          "MaxHp": 140,
+          "Block": 0,
+          "IntentDamage": 22,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "ShriekPower",
+              "Amount": 70
+            },
+            {
+              "Name": "VigorPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY MOLTEN_FIST -\u003E TERROR_EEL",
+          "PLAY STRIKE_IRONCLAD -\u003E TERROR_EEL",
+          "PLAY BREAKTHROUGH -\u003E TERROR_EEL",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 28,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=28 Blk=0 In=22 Cards=4 Score=-1746 States=85 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "MOLTEN_FIST",
+          "Success": true,
+          "Target": "TERROR_EEL"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "TERROR_EEL"
+        },
+        {
+          "CardId": "BREAKTHROUGH",
+          "Success": true,
+          "Target": "TERROR_EEL"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 60,
+        "BlockAfter": 0,
+        "DamageTaken": 1,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 60,
+      "MaxHp": 80,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "HAVOC",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "FLAME_BARRIER",
+          "Cost": 2
+        },
+        {
+          "Id": "OUTMANEUVER",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TERROR_EEL",
+          "Hp": 54,
+          "MaxHp": 140,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "VigorPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E TERROR_EEL",
+          "PLAY FLAME_BARRIER -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 12,
+        "Score": "Dmg=6 Blk=12 In=0 Cards=3 Score=107 States=49 Char=IRONCLAD Src=reflection: dmg=0 blk=12",
+        "StatesExplored": 49
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "TERROR_EEL"
+        },
+        {
+          "CardId": "FLAME_BARRIER",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 60,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 60,
+      "MaxHp": 80,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TERROR_EEL",
+          "Hp": 48,
+          "MaxHp": 140,
+          "Block": 0,
+          "IntentDamage": 33,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "VigorPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 99
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY IRON_WAVE -\u003E TERROR_EEL",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 7,
+        "EstimatedBlock": 7,
+        "Score": "Dmg=7 Blk=7 In=33 Cards=2 Score=-2380 States=1 Char=IRONCLAD Src=reflection: dmg=7 blk=7",
+        "StatesExplored": 1
+      },
+      "ActionResults": [
+        {
+          "CardId": "IRON_WAVE",
+          "Success": true,
+          "Target": "TERROR_EEL"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 60,
+        "BlockAfter": 7,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 1,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 2,
+      "Block": 7,
+      "Hp": 60,
+      "MaxHp": 80,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HAVOC",
+          "Cost": 1
+        },
+        {
+          "Id": "FLAME_BARRIER",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TERROR_EEL",
+          "Hp": 41,
+          "MaxHp": 140,
+          "Block": 0,
+          "IntentDamage": 33,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "VigorPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 99
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY FLAME_BARRIER -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 12,
+        "Score": "Dmg=0 Blk=12 In=33 Cards=2 Score=-1205 States=10 Char=IRONCLAD Src=reflection: dmg=0 blk=12",
+        "StatesExplored": 10
+      },
+      "ActionResults": [
+        {
+          "CardId": "FLAME_BARRIER",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 46,
+        "BlockAfter": 0,
+        "DamageTaken": 14,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 3/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 46,
+      "MaxHp": 80,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "OUTMANEUVER",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TERROR_EEL",
+          "Hp": 37,
+          "MaxHp": 140,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 98
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY BREAKTHROUGH -\u003E TERROR_EEL",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=9 Blk=10 In=12 Cards=4 Score=90 States=85 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "BREAKTHROUGH",
+          "Success": true,
+          "Target": "TERROR_EEL"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 43,
+        "BlockAfter": 0,
+        "DamageTaken": 3,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 43,
+      "MaxHp": 80,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        },
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TERROR_EEL",
+          "Hp": 28,
+          "MaxHp": 140,
+          "Block": 0,
+          "IntentDamage": 33,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "VigorPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 97
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY SHRUG_IT_OFF -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 18,
+        "Score": "Dmg=0 Blk=18 In=33 Cards=4 Score=-1241 States=98 Char=IRONCLAD Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 98
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "SHRUG_IT_OFF",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 28,
+        "BlockAfter": 0,
+        "DamageTaken": 15,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 28,
+      "MaxHp": 80,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TERROR_EEL",
+          "Hp": 28,
+          "MaxHp": 140,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 96
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY SHRUG_IT_OFF -\u003E self",
+          "PLAY BREAKTHROUGH -\u003E TERROR_EEL",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 13,
+        "Score": "Dmg=9 Blk=13 In=12 Cards=4 Score=-1181 States=98 Char=IRONCLAD Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 98
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "SHRUG_IT_OFF",
+          "Success": true
+        },
+        {
+          "CardId": "BREAKTHROUGH",
+          "Success": true,
+          "Target": "TERROR_EEL"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 27,
+        "BlockAfter": 0,
+        "DamageTaken": 1,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 12,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 27,
+      "MaxHp": 80,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "FLAME_BARRIER",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "OUTMANEUVER",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TERROR_EEL",
+          "Hp": 19,
+          "MaxHp": 140,
+          "Block": 0,
+          "IntentDamage": 33,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "VigorPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 95
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY FLAME_BARRIER -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 17,
+        "Score": "Dmg=0 Blk=17 In=33 Cards=3 Score=-4455 States=49 Char=IRONCLAD Src=reflection: dmg=0 blk=12",
+        "StatesExplored": 49
+      },
+      "ActionResults": [
+        {
+          "CardId": "FLAME_BARRIER",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 11,
+        "BlockAfter": 0,
+        "DamageTaken": 16,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 13,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 11,
+      "MaxHp": 80,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 11,
+      "Hand": [
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HAVOC",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TERROR_EEL",
+          "Hp": 15,
+          "MaxHp": 140,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 94
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY IRON_WAVE -\u003E TERROR_EEL",
+          "PLAY HAVOC -\u003E self",
+          "PLAY BREAKTHROUGH -\u003E TERROR_EEL",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 15,
+        "EstimatedBlock": 7,
+        "Score": "Dmg=15 Blk=7 In=12 Cards=4 Score=-1081 States=79 Char=IRONCLAD Src=reflection: dmg=7 blk=7",
+        "StatesExplored": 79
+      },
+      "ActionResults": [
+        {
+          "CardId": "IRON_WAVE",
+          "Success": true,
+          "Target": "TERROR_EEL"
+        },
+        {
+          "CardId": "HAVOC",
+          "Success": true
+        },
+        {
+          "CardId": "BREAKTHROUGH",
+          "Success": true,
+          "Target": "TERROR_EEL"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 11,
+        "BlockAfter": 12,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 14,
+      "Energy": 1,
+      "Block": 12,
+      "Hp": 11,
+      "MaxHp": 80,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TERROR_EEL",
+          "Hp": 8,
+          "MaxHp": 140,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 94
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BREAKTHROUGH -\u003E TERROR_EEL",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 8,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=8 Blk=0 In=12 Cards=2 Score=-1200 States=3 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "BREAKTHROUGH",
+          "Success": true,
+          "Target": "TERROR_EEL"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 16,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

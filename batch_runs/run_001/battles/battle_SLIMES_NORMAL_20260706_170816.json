@@ -1,0 +1,607 @@
+{
+  "EncounterName": "SLIMES_NORMAL",
+  "Floor": 6,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-06T17:08:06.2033784+08:00",
+  "EndTime": "2026-07-06T17:08:16.5521357+08:00",
+  "DurationSeconds": 10.3487573,
+  "Victory": true,
+  "EndHp": 71,
+  "TotalTurns": 5,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 15,
+  "TotalEnemiesKilled": 3,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 80,
+      "MaxHp": 80,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TEAR_ASUNDER",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TWIG_SLIME_M",
+          "Hp": 27,
+          "MaxHp": 27,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "LEAF_SLIME_M",
+          "Hp": 34,
+          "MaxHp": 34,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 2,
+          "Id": "LEAF_SLIME_S",
+          "Hp": 11,
+          "MaxHp": 11,
+          "Block": 0,
+          "IntentDamage": 3,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 3,
+          "Id": "TWIG_SLIME_S",
+          "Hp": 7,
+          "MaxHp": 7,
+          "Block": 0,
+          "IntentDamage": 4,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E LEAF_SLIME_S",
+          "PLAY STRIKE_IRONCLAD -\u003E LEAF_SLIME_S",
+          "PLAY HEADBUTT -\u003E TWIG_SLIME_S",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 21,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=21 Blk=0 In=7 Cards=4 Score=2384 States=1770 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 1770
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "LEAF_SLIME_S"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "LEAF_SLIME_S"
+        },
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "TWIG_SLIME_S"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 80,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 2,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 80,
+      "MaxHp": 80,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TWIG_SLIME_M",
+          "Hp": 27,
+          "MaxHp": 27,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "LEAF_SLIME_M",
+          "Hp": 34,
+          "MaxHp": 34,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=0 Blk=15 In=19 Cards=4 Score=-184 States=195 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 195
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 76,
+        "BlockAfter": 0,
+        "DamageTaken": 4,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 76,
+      "MaxHp": 80,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 9,
+      "Hand": [
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TWIG_SLIME_M",
+          "Hp": 27,
+          "MaxHp": 27,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "LEAF_SLIME_M",
+          "Hp": 34,
+          "MaxHp": 34,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E LEAF_SLIME_M",
+          "PLAY POMMEL_STRIKE -\u003E LEAF_SLIME_M",
+          "PLAY STRIKE_IRONCLAD -\u003E LEAF_SLIME_M",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 21,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=21 Blk=0 In=0 Cards=4 Score=271 States=195 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 195
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "LEAF_SLIME_M"
+        },
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "LEAF_SLIME_M"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "LEAF_SLIME_M"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 76,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 76,
+      "MaxHp": 80,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SLIMED",
+          "Cost": 1
+        },
+        {
+          "Id": "TEAR_ASUNDER",
+          "Cost": 2
+        },
+        {
+          "Id": "SLIMED",
+          "Cost": 1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TWIG_SLIME_M",
+          "Hp": 27,
+          "MaxHp": 27,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "LEAF_SLIME_M",
+          "Hp": 4,
+          "MaxHp": 34,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E LEAF_SLIME_M",
+          "PLAY SLIMED -\u003E self",
+          "PLAY HEADBUTT -\u003E TWIG_SLIME_M",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 15,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=15 Blk=0 In=19 Cards=4 Score=292 States=112 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 112
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "LEAF_SLIME_M"
+        },
+        {
+          "CardId": "SLIMED",
+          "Success": true
+        },
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "TWIG_SLIME_M"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 65,
+        "BlockAfter": 0,
+        "DamageTaken": 11,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 65,
+      "MaxHp": 80,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 12,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SLIMED",
+          "Cost": 1
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TWIG_SLIME_M",
+          "Hp": 18,
+          "MaxHp": 27,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E TWIG_SLIME_M",
+          "PLAY SETUP_STRIKE -\u003E TWIG_SLIME_M",
+          "PLAY STRIKE_IRONCLAD -\u003E TWIG_SLIME_M",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 19,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=19 Blk=0 In=0 Cards=4 Score=1363 States=40 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 40
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "TWIG_SLIME_M"
+        },
+        {
+          "CardId": "SETUP_STRIKE",
+          "Success": true,
+          "Target": "TWIG_SLIME_M"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "TWIG_SLIME_M"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 71,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

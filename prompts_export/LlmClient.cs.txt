@@ -1,0 +1,407 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Text.Json;
+using System.Threading.Tasks;
+
+namespace TokenSpire2.Llm;
+
+public class LlmClient
+{
+    private readonly HttpClient _http;
+    private readonly string _endpoint;
+    private readonly string _model;
+    private readonly bool _thinking;
+    private readonly int _thinkingBudget;
+    private readonly List<Message> _history = new();
+    private readonly List<List<Message>> _allRuns = new();
+    private readonly string _logPath;
+    private readonly string _memoryPath;
+    private readonly string _historyPath;
+    private string _memory = "";
+    private readonly bool _consoleEnabled;
+
+    public string LogPath => _logPath;
+    public string HistoryPath => _historyPath;
+    public string Model => _model;
+    public string Memory => _memory;
+
+    public LlmClient(LlmConfig config)
+    {
+        _http = new HttpClient();
+        _http.DefaultRequestHeaders.Add("Authorization", $"Bearer {config.Key}");
+        _http.Timeout = TimeSpan.FromSeconds(120);
+
+        var url = config.Url.TrimEnd('/');
+        if (!url.EndsWith("/chat/completions"))
+            url += "/chat/completions";
+        _endpoint = url;
+        _model = config.Model;
+        _thinking = config.Thinking;
+        _thinkingBudget = config.ThinkingBudget;
+        _consoleEnabled = MainFile.ConsoleEnabled;
+
+        // Set up files in llm_data subdirectory to keep mod root clean
+        var asmDir = Path.GetDirectoryName(
+            System.Reflection.Assembly.GetExecutingAssembly().Location) ?? ".";
+        var dataDir = Path.Combine(asmDir, "llm_data");
+        Directory.CreateDirectory(dataDir);
+        var ts = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+        _logPath = Path.Combine(dataDir, $"llm_log_{ts}.txt");
+        _memoryPath = Path.Combine(dataDir, $"llm_memory_{ts}.md");
+        _historyPath = Path.Combine(dataDir, $"llm_history_{ts}.json");
+
+        LogToFile($"\n=== LLM Session Started {DateTime.Now:yyyy-MM-dd HH:mm:ss} ===");
+        LogToFile($"Endpoint: {_endpoint}");
+        LogToFile($"Model: {_model}");
+        LogToFile($"Memory: {_memoryPath}");
+        LogToFile($"\n[SYSTEM PROMPT]\n{BuildSystemPrompt()}\n");
+
+        WriteConsole($"╔══════════════════════════════════════════╗", ConsoleColor.Cyan);
+        WriteConsole($"║  TokenSpire2 LLM Session Started         ║", ConsoleColor.Cyan);
+        WriteConsole($"║  Model: {_model,-33} ║", ConsoleColor.Cyan);
+        WriteConsole($"╚══════════════════════════════════════════╝", ConsoleColor.Cyan);
+    }
+
+    public int MessageCount => _history.Count;
+
+    /// <summary>Archive current run's conversation and clear history for next run.</summary>
+    public void ResetForNewRun()
+    {
+        if (_history.Count > 0)
+        {
+            _allRuns.Add(new List<Message>(_history));
+            SaveHistory();
+        }
+        _history.Clear();
+        LogToFile($"\n=== New Run — History Cleared ({DateTime.Now:HH:mm:ss}) ===");
+        if (!string.IsNullOrEmpty(_memory))
+            LogToFile($"[MEMORY CARRIED OVER]\n{_memory}");
+        MainFile.Logger.Info($"[AutoSlay/LLM] Conversation reset for new run ({(_memory.Length > 0 ? "with" : "no")} memory)");
+    }
+
+    private static readonly JsonSerializerOptions _jsonOpts = new()
+    {
+        WriteIndented = true,
+        Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+        DefaultIgnoreCondition = System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
+    };
+
+    private void SaveHistory()
+    {
+        try
+        {
+            var data = SerializeAllRuns();
+            File.WriteAllText(_historyPath, JsonSerializer.Serialize(data, _jsonOpts));
+            MainFile.Logger.Info($"[AutoSlay/LLM] History saved ({_allRuns.Count} runs) to {_historyPath}");
+        }
+        catch (Exception ex)
+        {
+            MainFile.Logger.Info($"[AutoSlay/LLM] Failed to save history: {ex.Message}");
+        }
+    }
+
+    private void SaveLive()
+    {
+        try
+        {
+            var data = SerializeAllRuns();
+            // Append current (in-progress) run
+            data.Add(SerializeRun(_history));
+            File.WriteAllText(_historyPath, JsonSerializer.Serialize(data, _jsonOpts));
+        }
+        catch { /* ignore — live updates are best-effort */ }
+    }
+
+    private List<object> SerializeAllRuns()
+    {
+        var data = new List<object>();
+        foreach (var run in _allRuns)
+            data.Add(SerializeRun(run));
+        return data;
+    }
+
+    private static object SerializeRun(List<Message> messages)
+    {
+        var msgs = new List<object>();
+        foreach (var msg in messages)
+        {
+            msgs.Add(new
+            {
+                role = msg.role,
+                content = msg.content,
+                thinking = msg.thinking,
+                context = msg.context,
+                timestamp = msg.timestamp,
+                finished = msg.finished ? (bool?)true : null
+            });
+        }
+        return new { messages = msgs };
+    }
+
+    /// <summary>Replace memory with full rewritten content from LLM.</summary>
+    public void SaveMemory(string fullMemory)
+    {
+        const int maxChars = 16000;
+        if (fullMemory.Length > maxChars)
+        {
+            fullMemory = fullMemory.Substring(0, maxChars) + "\n[...truncated]";
+            MainFile.Logger.Info($"[AutoSlay/LLM] Memory truncated to {maxChars} chars");
+        }
+
+        _memory = fullMemory;
+
+        try
+        {
+            File.WriteAllText(_memoryPath, $"# LLM Memory\nUpdated: {DateTime.Now:yyyy-MM-dd HH:mm:ss}\n\n{_memory}\n");
+            LogToFile($"[MEMORY REPLACED]\n{fullMemory}");
+            MainFile.Logger.Info("[AutoSlay/LLM] Memory replaced");
+        }
+        catch (Exception ex)
+        {
+            MainFile.Logger.Info($"[AutoSlay/LLM] Failed to save memory: {ex.Message}");
+        }
+    }
+
+    private string? _currentContext;
+
+    public async Task<string> SendAsync(string userMessage, string? context = null)
+    {
+        _currentContext = context;
+        // Inject extra instructions into user message
+        var instruction = ReadInstruction();
+        if (instruction != null)
+            userMessage += "\n\n=== EXTRA INSTRUCTION ===\n" + instruction;
+        _history.Add(new Message("user", userMessage, context: context, timestamp: DateTime.Now.ToString("o")));
+        SaveLive();
+
+        // Build messages array: system (with memory) + history
+        var messages = new List<object>
+        {
+            new { role = "system", content = BuildSystemPrompt() }
+        };
+        foreach (var msg in _history)
+            messages.Add(new { role = msg.role, content = msg.content });
+
+        var requestBody = new Dictionary<string, object>
+        {
+            ["model"] = _model,
+            ["messages"] = messages,
+            ["stream"] = true,
+        };
+        ApplyReasoningParams(requestBody);
+
+        var json = JsonSerializer.Serialize(requestBody);
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+        LogToFile($"\n--- Turn {_history.Count / 2} ({DateTime.Now:HH:mm:ss}) ---");
+        LogToFile($"[USER]\n{userMessage}");
+        MainFile.Logger.Info($"[AutoSlay/LLM] Sending request ({_history.Count} messages)...");
+
+        // Console output — show a summary of what's being sent to LLM
+        var contextLabel = context switch
+        {
+            "combat" => "COMBAT",
+            "map" => "MAP",
+            "event" => "EVENT",
+            "restsite" => "REST SITE",
+            "shop" => "SHOP",
+            _ when context?.StartsWith("overlay:") == true => context.Substring(8).ToUpper(),
+            "gameover_reflection" => "GAME OVER REFLECTION",
+            _ => context ?? "?"
+        };
+        WriteConsole($"\n┌─ Turn {_history.Count / 2} [{contextLabel}] ({DateTime.Now:HH:mm:ss}) ─", ConsoleColor.Yellow);
+        WriteConsole($"│ [USER — sending to LLM]", ConsoleColor.Yellow);
+        // Print user message with truncation for console readability
+        foreach (var line in userMessage.Split('\n'))
+        {
+            var display = line.Length > 120 ? line.Substring(0, 117) + "..." : line;
+            WriteConsole($"│ {display}", ConsoleColor.Gray);
+        }
+        WriteConsole($"└{'─' * 40}", ConsoleColor.Yellow);
+
+        var response = await _http.SendAsync(
+            new HttpRequestMessage(HttpMethod.Post, _endpoint) { Content = content },
+            HttpCompletionOption.ResponseHeadersRead).ConfigureAwait(false);
+
+        if (!response.IsSuccessStatusCode)
+        {
+            var errorBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            MainFile.Logger.Info($"[AutoSlay/LLM] API error {response.StatusCode}: {errorBody}");
+            LogToFile($"[ERROR] {response.StatusCode}: {errorBody}");
+            _history.RemoveAt(_history.Count - 1);
+            throw new Exception($"LLM API error: {response.StatusCode}");
+        }
+
+        // Read SSE stream on background thread to avoid blocking the game
+        var assistantMessage = new StringBuilder();
+        var thinkingContent = new StringBuilder();
+        // Add a streaming placeholder to history so the viewer can see partial output
+        var streamingMsg = new Message("assistant", "", context: _currentContext, timestamp: DateTime.Now.ToString("o"));
+        _history.Add(streamingMsg);
+        var lastLiveWrite = DateTime.UtcNow;
+
+        using var stream = await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+        using var reader = new System.IO.StreamReader(stream);
+        while (!reader.EndOfStream)
+        {
+            var line = await reader.ReadLineAsync().ConfigureAwait(false);
+            if (line == null) break;
+            if (!line.StartsWith("data: ")) continue;
+            var data = line.Substring(6).Trim();
+            if (data == "[DONE]") break;
+
+            try
+            {
+                var chunk = JsonSerializer.Deserialize<JsonElement>(data);
+                if (!chunk.TryGetProperty("choices", out var choices)) continue;
+                foreach (var choice in choices.EnumerateArray())
+                {
+                    if (!choice.TryGetProperty("delta", out var delta)) continue;
+
+                    // Reasoning content (thinking)
+                    if (delta.TryGetProperty("reasoning", out var rp) && rp.ValueKind == JsonValueKind.String)
+                        thinkingContent.Append(rp.GetString());
+                    else if (delta.TryGetProperty("reasoning_content", out var rc) && rc.ValueKind == JsonValueKind.String)
+                        thinkingContent.Append(rc.GetString());
+
+                    // Main content
+                    if (delta.TryGetProperty("content", out var cp) && cp.ValueKind == JsonValueKind.String)
+                        assistantMessage.Append(cp.GetString());
+                }
+            }
+            catch { /* skip malformed chunks */ }
+
+            // Update live file periodically during streaming (~500ms)
+            if ((DateTime.UtcNow - lastLiveWrite).TotalMilliseconds > 500)
+            {
+                var thinkSoFar = thinkingContent.ToString();
+                _history[_history.Count - 1] = streamingMsg with
+                {
+                    content = assistantMessage.ToString(),
+                    thinking = string.IsNullOrEmpty(thinkSoFar) ? null : thinkSoFar
+                };
+                SaveLive();
+                lastLiveWrite = DateTime.UtcNow;
+            }
+        }
+
+        var result = assistantMessage.ToString();
+        var thinking = thinkingContent.ToString();
+        _history[_history.Count - 1] = streamingMsg with
+        {
+            content = result,
+            thinking = string.IsNullOrEmpty(thinking) ? null : thinking,
+            timestamp = DateTime.Now.ToString("o"),
+            finished = true
+        };
+        SaveLive();
+
+        if (!string.IsNullOrEmpty(thinking))
+            LogToFile($"[THINKING]\n{thinking}");
+        LogToFile($"[ASSISTANT]\n{result}");
+        MainFile.Logger.Info($"[AutoSlay/LLM] Response: {result.Replace("\n", " | ")}");
+
+        // Console output — show the assistant response
+        if (!string.IsNullOrEmpty(thinking))
+        {
+            WriteConsole("--- THINKING ---", ConsoleColor.DarkGray);
+            WriteConsole(TruncateForConsole(thinking), ConsoleColor.DarkGray);
+        }
+        WriteConsole("--- ASSISTANT ---", ConsoleColor.Green);
+        WriteConsole(TruncateForConsole(result), ConsoleColor.White);
+
+        return result;
+    }
+
+    private void ApplyReasoningParams(Dictionary<string, object> body)
+    {
+        bool isOpenRouter = _endpoint.Contains("openrouter");
+        if (_thinking)
+        {
+            if (isOpenRouter)
+            {
+                // OpenRouter: reasoning.max_tokens format
+                body["reasoning"] = new { max_tokens = _thinkingBudget };
+                var m = _model.ToLowerInvariant();
+                if (m.Contains("claude") || m.Contains("anthropic"))
+                    body["provider"] = new { order = new[] { "Anthropic" } };
+            }
+            else
+            {
+                // Dashscope / other OpenAI-compatible: top-level fields
+                body["enable_thinking"] = true;
+                body["thinking_budget"] = _thinkingBudget;
+            }
+        }
+        else
+        {
+            if (isOpenRouter)
+                body["reasoning"] = new { enabled = false };
+            else
+                body["enable_thinking"] = false;
+        }
+    }
+
+    private string BuildSystemPrompt()
+    {
+        var prompt = PromptStrings.Get("SystemPrompt");
+        if (!string.IsNullOrEmpty(_memory))
+            prompt += "\n\n=== YOUR MEMORY FILE ===\n" + _memory;
+        return prompt;
+    }
+
+    private string? ReadInstruction()
+    {
+        try
+        {
+            var dir = Path.GetDirectoryName(
+                System.Reflection.Assembly.GetExecutingAssembly().Location) ?? ".";
+            var path = Path.Combine(dir, "instruction.txt");
+            if (!File.Exists(path)) return null;
+            var text = File.ReadAllText(path).Trim();
+            if (!string.IsNullOrEmpty(text))
+                File.Delete(path);
+            return string.IsNullOrEmpty(text) ? null : text;
+        }
+        catch { return null; }
+    }
+
+    private void LogToFile(string text)
+    {
+        try { File.AppendAllText(_logPath, text + "\n"); }
+        catch { /* ignore file write errors */ }
+    }
+
+    private void WriteConsole(string text, ConsoleColor color)
+    {
+        if (!_consoleEnabled) return;
+        try
+        {
+            Console.ForegroundColor = color;
+            Console.WriteLine(text);
+            Console.ResetColor();
+        }
+        catch { /* ignore */ }
+    }
+
+    private static string TruncateForConsole(string text, int maxLines = 40, int maxLen = 150)
+    {
+        if (string.IsNullOrEmpty(text)) return text;
+        var lines = text.Split('\n');
+        var result = new StringBuilder();
+        int count = 0;
+        foreach (var line in lines)
+        {
+            if (count >= maxLines) { result.AppendLine("... [truncated]"); break; }
+            result.AppendLine(line.Length > maxLen ? line.Substring(0, maxLen - 3) + "..." : line);
+            count++;
+        }
+        return result.ToString().TrimEnd('\n');
+    }
+
+    public record Message(string role, string content, string? thinking = null, string? context = null, string? timestamp = null, bool finished = false);
+}

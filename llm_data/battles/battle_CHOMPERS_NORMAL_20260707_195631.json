@@ -1,0 +1,1008 @@
+{
+  "EncounterName": "CHOMPERS_NORMAL",
+  "Floor": 23,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T19:56:16.3859241+08:00",
+  "EndTime": "2026-07-07T19:56:31.7077161+08:00",
+  "DurationSeconds": 15.321792,
+  "Victory": true,
+  "EndHp": 988,
+  "TotalTurns": 8,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 14,
+  "TotalEnemiesKilled": 1,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 17,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CHOMPER",
+          "Hp": 60,
+          "MaxHp": 60,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "CHOMPER",
+          "Hp": 63,
+          "MaxHp": 63,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "CLARITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BLOODLETTING -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E CHOMPER",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY PILLAGE -\u003E CHOMPER",
+          "USE_POTION CLARITY",
+          "PLAY SETUP_STRIKE -\u003E CHOMPER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 22,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=22 Blk=8 In=16 Cards=7 Score=-329 States=5004 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 5004
+      },
+      "ActionResults": [
+        {
+          "CardId": "BLOODLETTING",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "CHOMPER"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "PILLAGE",
+          "Success": true,
+          "Target": "CHOMPER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 996,
+        "BlockAfter": 8,
+        "DamageTaken": 3,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 8,
+      "Hp": 996,
+      "MaxHp": 999,
+      "DrawPileCount": 15,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "BATTLE_TRANCE",
+          "Cost": 0
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CHOMPER",
+          "Hp": 45,
+          "MaxHp": 60,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "CHOMPER",
+          "Hp": 63,
+          "MaxHp": 63,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ClarityPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BATTLE_TRANCE -\u003E self",
+          "PLAY SETUP_STRIKE -\u003E CHOMPER",
+          "PLAY OFFERING -\u003E self",
+          "PLAY POMMEL_STRIKE -\u003E CHOMPER",
+          "PLAY THUNDERCLAP -\u003E CHOMPER",
+          "PLAY STRIKE_IRONCLAD -\u003E CHOMPER",
+          "PLAY HEADBUTT -\u003E CHOMPER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 56,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=56 Blk=0 In=16 Cards=8 Score=2084 States=5004 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 5004
+      },
+      "ActionResults": [
+        {
+          "CardId": "BATTLE_TRANCE",
+          "Success": true
+        },
+        {
+          "CardId": "SETUP_STRIKE",
+          "Success": true,
+          "Target": "CHOMPER"
+        },
+        {
+          "CardId": "OFFERING",
+          "Success": true
+        },
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": false,
+          "FailReason": "not in hand",
+          "Target": "CHOMPER"
+        },
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "CHOMPER"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": false,
+          "FailReason": "not in hand",
+          "Target": "CHOMPER"
+        },
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "CHOMPER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 990,
+        "BlockAfter": 12,
+        "DamageTaken": 6,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 3,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 2,
+      "Block": 12,
+      "Hp": 990,
+      "MaxHp": 999,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CHOMPER",
+          "Hp": 18,
+          "MaxHp": 60,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "CHOMPER",
+          "Hp": 54,
+          "MaxHp": 63,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ClarityPower",
+            "Amount": 3
+          },
+          {
+            "Name": "NoDrawPower",
+            "Amount": 1
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 2
+          },
+          {
+            "Name": "SetupStrikePower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=0 Blk=10 In=16 Cards=3 Score=186 States=4 Char=IRONCLAD Src=reflection: dmg=0 blk=5",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 990,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 2,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 990,
+      "MaxHp": 999,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 12,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STOMP",
+          "Cost": 3
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CHOMPER",
+          "Hp": 18,
+          "MaxHp": 60,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "CHOMPER",
+          "Hp": 54,
+          "MaxHp": 63,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ClarityPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY POMMEL_STRIKE -\u003E CHOMPER",
+          "PLAY STRIKE_IRONCLAD -\u003E CHOMPER",
+          "PLAY STRIKE_IRONCLAD -\u003E CHOMPER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 27,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=27 Blk=0 In=16 Cards=4 Score=39 States=306 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 306
+      },
+      "ActionResults": [
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "CHOMPER"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "CHOMPER"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "CHOMPER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 990,
+        "BlockAfter": 4,
+        "DamageTaken": 0,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 1,
+      "Block": 4,
+      "Hp": 990,
+      "MaxHp": 999,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 15,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STOMP",
+          "Cost": 3
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TRUE_GRIT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CHOMPER",
+          "Hp": 45,
+          "MaxHp": 63,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ClarityPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY TRUE_GRIT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 7,
+        "Score": "Dmg=0 Blk=7 In=16 Cards=2 Score=-312 States=3 Char=IRONCLAD Src=reflection: dmg=0 blk=7",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "TRUE_GRIT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 985,
+        "BlockAfter": 0,
+        "DamageTaken": 5,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 3/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 985,
+      "MaxHp": 999,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 18,
+      "Hand": [
+        {
+          "Id": "UNRELENTING",
+          "Cost": 2
+        },
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ARMAMENTS",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CHOMPER",
+          "Hp": 45,
+          "MaxHp": 63,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ClarityPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY ARMAMENTS -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E CHOMPER",
+          "PLAY MOLTEN_FIST -\u003E CHOMPER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 19,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=19 Blk=5 In=0 Cards=4 Score=288 States=49 Char=IRONCLAD Src=reflection: dmg=0 blk=5",
+        "StatesExplored": 49
+      },
+      "ActionResults": [
+        {
+          "CardId": "ARMAMENTS",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 985,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 3,
+      "Block": 5,
+      "Hp": 985,
+      "MaxHp": 999,
+      "DrawPileCount": 17,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "UNRELENTING",
+          "Cost": 2
+        },
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CHOMPER",
+          "Hp": 45,
+          "MaxHp": 63,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ClarityPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY MOLTEN_FIST -\u003E CHOMPER",
+          "PLAY UNRELENTING -\u003E CHOMPER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 30,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=30 Blk=0 In=0 Cards=3 Score=360 States=49 Char=IRONCLAD Src=reflection: dmg=20 blk=0",
+        "StatesExplored": 49
+      },
+      "ActionResults": [
+        {
+          "CardId": "MOLTEN_FIST",
+          "Success": true,
+          "Target": "CHOMPER"
+        },
+        {
+          "CardId": "UNRELENTING",
+          "Success": true,
+          "Target": "CHOMPER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 985,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 985,
+      "MaxHp": 999,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        },
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        },
+        {
+          "Id": "DAZED",
+          "Cost": -1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CHOMPER",
+          "Hp": 15,
+          "MaxHp": 63,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ClarityPower",
+            "Amount": 1
+          },
+          {
+            "Name": "FreeAttackPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BLOODLETTING -\u003E self",
+          "PLAY PILLAGE -\u003E CHOMPER",
+          "PLAY THUNDERCLAP -\u003E CHOMPER",
+          "PLAY POMMEL_STRIKE -\u003E CHOMPER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 26,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=26 Blk=0 In=16 Cards=5 Score=1692 States=36 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 36
+      },
+      "ActionResults": [
+        {
+          "CardId": "BLOODLETTING",
+          "Success": true
+        },
+        {
+          "CardId": "PILLAGE",
+          "Success": true,
+          "Target": "CHOMPER"
+        },
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "CHOMPER"
+        },
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "CHOMPER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 988,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

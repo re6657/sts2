@@ -1,0 +1,1261 @@
+{
+  "EncounterName": "INFESTED_PRISMS_ELITE",
+  "Floor": 30,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T20:50:02.3643982+08:00",
+  "EndTime": "2026-07-07T20:50:18.327664+08:00",
+  "DurationSeconds": 15.9632658,
+  "Victory": true,
+  "EndHp": 970,
+  "TotalTurns": 11,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 35,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 20,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STAMPEDE",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "RAMPAGE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "INFESTED_PRISM",
+          "Hp": 161,
+          "MaxHp": 161,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VitalSparkPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY THUNDERCLAP -\u003E INFESTED_PRISM",
+          "PLAY STAMPEDE -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 7,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=7 Blk=0 In=15 Cards=3 Score=-784 States=49 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 49
+      },
+      "ActionResults": [
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "INFESTED_PRISM"
+        },
+        {
+          "CardId": "STAMPEDE",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 1,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 1,
+      "Block": 1,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 20,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "RAMPAGE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "INFESTED_PRISM",
+          "Hp": 154,
+          "MaxHp": 161,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VitalSparkPower",
+              "Amount": 2
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "StampedePower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY RAMPAGE -\u003E INFESTED_PRISM",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 13,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=13 Blk=0 In=15 Cards=2 Score=-1184 States=3 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "RAMPAGE",
+          "Success": true,
+          "Target": "INFESTED_PRISM"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 991,
+        "BlockAfter": 0,
+        "DamageTaken": 8,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 991,
+      "MaxHp": 999,
+      "DrawPileCount": 15,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "RUPTURE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "BATTLE_TRANCE",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "INFESTED_PRISM",
+          "Hp": 128,
+          "MaxHp": 161,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VitalSparkPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "StampedePower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY HEADBUTT -\u003E INFESTED_PRISM",
+          "PLAY RUPTURE -\u003E self",
+          "PLAY BATTLE_TRANCE -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E INFESTED_PRISM",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 15,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=15 Blk=0 In=11 Cards=5 Score=-293 States=458 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 458
+      },
+      "ActionResults": [
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "INFESTED_PRISM"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 991,
+        "BlockAfter": 1,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 1,
+      "Hp": 991,
+      "MaxHp": 999,
+      "DrawPileCount": 16,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "RUPTURE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BATTLE_TRANCE",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "INFESTED_PRISM",
+          "Hp": 119,
+          "MaxHp": 161,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VitalSparkPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "StampedePower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BATTLE_TRANCE -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E INFESTED_PRISM",
+          "PLAY THUNDERCLAP -\u003E INFESTED_PRISM",
+          "PLAY RUPTURE -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 16,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=16 Blk=0 In=11 Cards=5 Score=-133 States=286 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 286
+      },
+      "ActionResults": [
+        {
+          "CardId": "BATTLE_TRANCE",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "INFESTED_PRISM"
+        },
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "INFESTED_PRISM"
+        },
+        {
+          "CardId": "RUPTURE",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 985,
+        "BlockAfter": 0,
+        "DamageTaken": 6,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 985,
+      "MaxHp": 999,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 11,
+      "Hand": [
+        {
+          "Id": "UPPERCUT",
+          "Cost": 2
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DRUM_OF_BATTLE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "INFESTED_PRISM",
+          "Hp": 93,
+          "MaxHp": 161,
+          "Block": 11,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VitalSparkPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "StampedePower",
+            "Amount": 1
+          },
+          {
+            "Name": "RupturePower",
+            "Amount": 2
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DRUM_OF_BATTLE -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=0 Blk=15 In=15 Cards=4 Score=188 States=49 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 49
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DRUM_OF_BATTLE",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 985,
+        "BlockAfter": 10,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 1,
+      "Block": 10,
+      "Hp": 985,
+      "MaxHp": 999,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 14,
+      "Hand": [
+        {
+          "Id": "UPPERCUT",
+          "Cost": 2
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STOMP",
+          "Cost": 3
+        },
+        {
+          "Id": "FEED",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "INFESTED_PRISM",
+          "Hp": 93,
+          "MaxHp": 161,
+          "Block": 11,
+          "IntentDamage": 33,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VitalSparkPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "StampedePower",
+            "Amount": 1
+          },
+          {
+            "Name": "RupturePower",
+            "Amount": 2
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 2
+          },
+          {
+            "Name": "TaintedPower",
+            "Amount": 6
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY POMMEL_STRIKE -\u003E INFESTED_PRISM",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=33 Cards=2 Score=-2263 States=2 Char=IRONCLAD Src=reflection: dmg=11 blk=0",
+        "StatesExplored": 2
+      },
+      "ActionResults": [
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "INFESTED_PRISM"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 964,
+        "BlockAfter": 0,
+        "DamageTaken": 21,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 2,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 1/2 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 964,
+      "MaxHp": 999,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 16,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BULLY",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "INFESTED_PRISM",
+          "Hp": 81,
+          "MaxHp": 161,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VitalSparkPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "StampedePower",
+            "Amount": 1
+          },
+          {
+            "Name": "RupturePower",
+            "Amount": 2
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY MOLTEN_FIST -\u003E INFESTED_PRISM",
+          "PLAY BULLY -\u003E INFESTED_PRISM",
+          "PLAY STRIKE_IRONCLAD -\u003E INFESTED_PRISM",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 29,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=29 Blk=8 In=8 Cards=5 Score=559 States=64 Char=IRONCLAD Src=reflection: dmg=12 blk=0",
+        "StatesExplored": 64
+      },
+      "ActionResults": [
+        {
+          "CardId": "MOLTEN_FIST",
+          "Success": true,
+          "Target": "INFESTED_PRISM"
+        },
+        {
+          "CardId": "BULLY",
+          "Success": true,
+          "Target": "INFESTED_PRISM"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "INFESTED_PRISM"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 964,
+        "BlockAfter": 15,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 1,
+      "Block": 15,
+      "Hp": 964,
+      "MaxHp": 999,
+      "DrawPileCount": 17,
+      "DiscardPileCount": 3,
+      "Hand": [
+        {
+          "Id": "RAMPAGE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "INFESTED_PRISM",
+          "Hp": 52,
+          "MaxHp": 161,
+          "Block": 0,
+          "IntentDamage": 10,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VitalSparkPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "StampedePower",
+            "Amount": 1
+          },
+          {
+            "Name": "RupturePower",
+            "Amount": 2
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 2
+          },
+          {
+            "Name": "TaintedPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY RAMPAGE -\u003E INFESTED_PRISM",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 20,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=20 Blk=0 In=10 Cards=2 Score=358 States=1 Char=IRONCLAD Src=reflection: dmg=20 blk=0",
+        "StatesExplored": 1
+      },
+      "ActionResults": [
+        {
+          "CardId": "RAMPAGE",
+          "Success": true,
+          "Target": "INFESTED_PRISM"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 964,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 1,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 964,
+      "MaxHp": 999,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "UPPERCUT",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "INFESTED_PRISM",
+          "Hp": 32,
+          "MaxHp": 161,
+          "Block": 20,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VitalSparkPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "StampedePower",
+            "Amount": 1
+          },
+          {
+            "Name": "RupturePower",
+            "Amount": 2
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E INFESTED_PRISM",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=0 Blk=10 In=15 Cards=4 Score=-388 States=49 Char=IRONCLAD Src=reflection: dmg=15 blk=0",
+        "StatesExplored": 49
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "INFESTED_PRISM"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 964,
+        "BlockAfter": 11,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 1,
+      "Block": 11,
+      "Hp": 964,
+      "MaxHp": 999,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "UPPERCUT",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "INFESTED_PRISM",
+          "Hp": 32,
+          "MaxHp": 161,
+          "Block": 9,
+          "IntentDamage": 23,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VitalSparkPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "StampedePower",
+            "Amount": 1
+          },
+          {
+            "Name": "RupturePower",
+            "Amount": 2
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 2
+          },
+          {
+            "Name": "TaintedPower",
+            "Amount": 8
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E INFESTED_PRISM",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 2,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=2 Blk=0 In=23 Cards=2 Score=-1132 States=1 Char=IRONCLAD Src=reflection: dmg=11 blk=0",
+        "StatesExplored": 1
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "INFESTED_PRISM"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 964,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 1,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 964,
+      "MaxHp": 999,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 9,
+      "Hand": [
+        {
+          "Id": "STOMP",
+          "Cost": 3
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "BATTLE_TRANCE",
+          "Cost": 0
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "INFESTED_PRISM",
+          "Hp": 15,
+          "MaxHp": 161,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 1,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VitalSparkPower",
+              "Amount": 4
+            },
+            {
+              "Name": "WeakPower",
+              "Amount": 1
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "StampedePower",
+            "Amount": 1
+          },
+          {
+            "Name": "RupturePower",
+            "Amount": 2
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BATTLE_TRANCE -\u003E self",
+          "PLAY SETUP_STRIKE -\u003E INFESTED_PRISM",
+          "PLAY HEADBUTT -\u003E INFESTED_PRISM",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 21,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=21 Blk=0 In=8 Cards=4 Score=2830 States=40 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 40
+      },
+      "ActionResults": [
+        {
+          "CardId": "BATTLE_TRANCE",
+          "Success": true
+        },
+        {
+          "CardId": "SETUP_STRIKE",
+          "Success": true,
+          "Target": "INFESTED_PRISM"
+        },
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "INFESTED_PRISM"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 970,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

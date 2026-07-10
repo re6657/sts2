@@ -1,0 +1,514 @@
+{
+  "EncounterName": "CULTISTS_NORMAL",
+  "Floor": 7,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-06T13:22:24.3701192+08:00",
+  "EndTime": "2026-07-06T13:22:34.5880393+08:00",
+  "DurationSeconds": 10.2179201,
+  "Victory": true,
+  "EndHp": 80,
+  "TotalTurns": 4,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 0,
+  "TotalEnemiesKilled": 1,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 69,
+      "MaxHp": 80,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CALCIFIED_CULTIST",
+          "Hp": 40,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "DAMP_CULTIST",
+          "Hp": 51,
+          "MaxHp": 51,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "REGEN_POTION",
+        "ASHWATER"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY THUNDERCLAP -\u003E CALCIFIED_CULTIST",
+          "PLAY STRIKE_IRONCLAD -\u003E CALCIFIED_CULTIST",
+          "PLAY STRIKE_IRONCLAD -\u003E CALCIFIED_CULTIST",
+          "USE_POTION REGEN_POTION",
+          "USE_POTION ASHWATER",
+          "PLAY STRIKE_IRONCLAD -\u003E CALCIFIED_CULTIST",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 26,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=26 Blk=0 In=0 Cards=7 Score=312 States=5003 Char=IRONCLAD Src=reflection: dmg=4 blk=0",
+        "StatesExplored": 5003
+      },
+      "ActionResults": [
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 74,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 74,
+      "MaxHp": 80,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "IRON_WAVE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CALCIFIED_CULTIST",
+          "Hp": 18,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "DAMP_CULTIST",
+          "Hp": 47,
+          "MaxHp": 51,
+          "Block": 0,
+          "IntentDamage": 1,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 5
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ASHWATER"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BLOODLETTING -\u003E self",
+          "PLAY SETUP_STRIKE -\u003E CALCIFIED_CULTIST",
+          "PLAY IRON_WAVE -\u003E CALCIFIED_CULTIST",
+          "PLAY STRIKE_IRONCLAD -\u003E CALCIFIED_CULTIST",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "USE_POTION ASHWATER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 18,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=18 Blk=10 In=10 Cards=7 Score=1451 States=5004 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 5004
+      },
+      "ActionResults": [
+        {
+          "CardId": "BLOODLETTING",
+          "Success": true
+        },
+        {
+          "CardId": "SETUP_STRIKE",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        },
+        {
+          "CardId": "IRON_WAVE",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "CALCIFIED_CULTIST"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 75,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 75,
+      "MaxHp": 80,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "DISMANTLE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DOMINATE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DAMP_CULTIST",
+          "Hp": 47,
+          "MaxHp": 51,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 5,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 5
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 5
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DOMINATE -\u003E DAMP_CULTIST",
+          "PLAY SHRUG_IT_OFF -\u003E self",
+          "PLAY DISMANTLE -\u003E DAMP_CULTIST",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 8,
+        "EstimatedBlock": 13,
+        "Score": "Dmg=8 Blk=13 In=6 Cards=4 Score=258 States=98 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 98
+      },
+      "ActionResults": [
+        {
+          "CardId": "DOMINATE",
+          "Success": true,
+          "Target": "DAMP_CULTIST"
+        },
+        {
+          "CardId": "SHRUG_IT_OFF",
+          "Success": true
+        },
+        {
+          "CardId": "DISMANTLE",
+          "Success": true,
+          "Target": "DAMP_CULTIST"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 78,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 78,
+      "MaxHp": 80,
+      "DrawPileCount": 10,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        },
+        {
+          "Id": "SHRUG_IT_OFF",
+          "Cost": 1
+        },
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DAMP_CULTIST",
+          "Hp": 21,
+          "MaxHp": 51,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 10,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 5
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 10
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 1,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BLOODLETTING -\u003E self",
+          "PLAY SHRUG_IT_OFF -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E DAMP_CULTIST",
+          "PLAY STRIKE_IRONCLAD -\u003E DAMP_CULTIST",
+          "PLAY SETUP_STRIKE -\u003E DAMP_CULTIST",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 24,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=24 Blk=8 In=11 Cards=6 Score=1559 States=440 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 440
+      },
+      "ActionResults": [
+        {
+          "CardId": "BLOODLETTING",
+          "Success": true
+        },
+        {
+          "CardId": "SHRUG_IT_OFF",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "DAMP_CULTIST"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "DAMP_CULTIST"
+        },
+        {
+          "CardId": "SETUP_STRIKE",
+          "Success": true,
+          "Target": "DAMP_CULTIST"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 80,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

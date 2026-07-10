@@ -1,0 +1,1194 @@
+{
+  "EncounterName": "TURRET_OPERATOR_WEAK",
+  "Floor": 35,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T19:59:19.6262561+08:00",
+  "EndTime": "2026-07-07T19:59:35.0346455+08:00",
+  "DurationSeconds": 15.4083894,
+  "Victory": true,
+  "EndHp": 989,
+  "TotalTurns": 10,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 16,
+  "TotalEnemiesKilled": 1,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 22,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ONE_TWO_PUNCH",
+          "Cost": 1
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "OFFERING",
+          "Cost": 0
+        },
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_SHIELD",
+          "Hp": 55,
+          "MaxHp": 55,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RampartPower",
+              "Amount": 25
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 41,
+          "MaxHp": 41,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "TOUCH_OF_INSANITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY OFFERING -\u003E self",
+          "PLAY ONE_TWO_PUNCH -\u003E self",
+          "PLAY ARMAMENTS -\u003E self",
+          "PLAY CINDER -\u003E TURRET_OPERATOR",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "USE_POTION TOUCH_OF_INSANITY",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 24,
+        "EstimatedBlock": 23,
+        "Score": "Dmg=24 Blk=23 In=21 Cards=8 Score=694 States=5006 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 5006
+      },
+      "ActionResults": [
+        {
+          "CardId": "OFFERING",
+          "Success": true
+        },
+        {
+          "CardId": "ONE_TWO_PUNCH",
+          "Success": true
+        },
+        {
+          "CardId": "ARMAMENTS",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 993,
+        "BlockAfter": 5,
+        "DamageTaken": 6,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 993,
+      "MaxHp": 999,
+      "DrawPileCount": 19,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_SHIELD",
+          "Hp": 55,
+          "MaxHp": 55,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RampartPower",
+              "Amount": 25
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 41,
+          "MaxHp": 41,
+          "Block": 25,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "OneTwoPunchPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "TOUCH_OF_INSANITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "USE_POTION TOUCH_OF_INSANITY",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY POMMEL_STRIKE -\u003E LIVING_SHIELD",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 13,
+        "Score": "Dmg=10 Blk=13 In=21 Cards=5 Score=14 States=393 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 393
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 993,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 993,
+      "MaxHp": 999,
+      "DrawPileCount": 19,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_SHIELD",
+          "Hp": 55,
+          "MaxHp": 55,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RampartPower",
+              "Amount": 25
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 41,
+          "MaxHp": 41,
+          "Block": 25,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "OneTwoPunchPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 13,
+        "Score": "Dmg=0 Blk=13 In=21 Cards=3 Score=-138 States=34 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 34
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 993,
+        "BlockAfter": 18,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 1,
+      "Block": 18,
+      "Hp": 993,
+      "MaxHp": 999,
+      "DrawPileCount": 19,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_SHIELD",
+          "Hp": 55,
+          "MaxHp": 55,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RampartPower",
+              "Amount": 25
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 41,
+          "MaxHp": 41,
+          "Block": 25,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "OneTwoPunchPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY POMMEL_STRIKE -\u003E LIVING_SHIELD",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=10 Blk=0 In=21 Cards=2 Score=-120 States=4 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "LIVING_SHIELD"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 990,
+        "BlockAfter": 0,
+        "DamageTaken": 3,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 2,
+        "Issues": [
+          "ENERGY_WASTED: 3 energy left, 1/2 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 990,
+      "MaxHp": 999,
+      "DrawPileCount": 10,
+      "DiscardPileCount": 11,
+      "Hand": [
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        },
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        },
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "NOT_YET",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_SHIELD",
+          "Hp": 35,
+          "MaxHp": 55,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RampartPower",
+              "Amount": 25
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 41,
+          "MaxHp": 41,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BLOODLETTING -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY THUNDERCLAP -\u003E LIVING_SHIELD",
+          "PLAY BREAKTHROUGH -\u003E LIVING_SHIELD",
+          "PLAY NOT_YET -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 40,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=40 Blk=10 In=21 Cards=6 Score=-349 States=277 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 277
+      },
+      "ActionResults": [
+        {
+          "CardId": "BLOODLETTING",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "LIVING_SHIELD"
+        },
+        {
+          "CardId": "BREAKTHROUGH",
+          "Success": true,
+          "Target": "LIVING_SHIELD"
+        },
+        {
+          "CardId": "NOT_YET",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 983,
+        "BlockAfter": 0,
+        "DamageTaken": 7,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 983,
+      "MaxHp": 999,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 15,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "TRUE_GRIT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_SHIELD",
+          "Hp": 15,
+          "MaxHp": 55,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RampartPower",
+              "Amount": 25
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 41,
+          "MaxHp": 41,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY HEADBUTT -\u003E LIVING_SHIELD",
+          "PLAY STRIKE_IRONCLAD -\u003E LIVING_SHIELD",
+          "PLAY TRUE_GRIT -\u003E self",
+          "PLAY PILLAGE -\u003E TURRET_OPERATOR",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 24,
+        "EstimatedBlock": 7,
+        "Score": "Dmg=24 Blk=7 In=6 Cards=5 Score=1688 States=904 Char=IRONCLAD Src=reflection: dmg=0 blk=7",
+        "StatesExplored": 904
+      },
+      "ActionResults": [
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "LIVING_SHIELD"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 983,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 983,
+      "MaxHp": 999,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 15,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TRUE_GRIT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_SHIELD",
+          "Hp": 6,
+          "MaxHp": 55,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RampartPower",
+              "Amount": 25
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 41,
+          "MaxHp": 41,
+          "Block": 25,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY TRUE_GRIT -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E LIVING_SHIELD",
+          "PLAY PILLAGE -\u003E TURRET_OPERATOR",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=9 Blk=15 In=6 Cards=5 Score=1479 States=162 Char=IRONCLAD Src=reflection: dmg=0 blk=7",
+        "StatesExplored": 162
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "TRUE_GRIT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 983,
+        "BlockAfter": 15,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 2,
+      "Block": 15,
+      "Hp": 983,
+      "MaxHp": 999,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 17,
+      "Hand": [
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_SHIELD",
+          "Hp": 6,
+          "MaxHp": 55,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RampartPower",
+              "Amount": 25
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 41,
+          "MaxHp": 41,
+          "Block": 25,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY PILLAGE -\u003E LIVING_SHIELD",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=6 Blk=0 In=6 Cards=2 Score=1352 States=2 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 2
+      },
+      "ActionResults": [
+        {
+          "CardId": "PILLAGE",
+          "Success": true,
+          "Target": "LIVING_SHIELD"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 983,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 1,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 983,
+      "MaxHp": 999,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 19,
+      "Hand": [
+        {
+          "Id": "EXPECT_A_FIGHT",
+          "Cost": 2
+        },
+        {
+          "Id": "BATTLE_TRANCE",
+          "Cost": 0
+        },
+        {
+          "Id": "TAUNT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 41,
+          "MaxHp": 41,
+          "Block": 0,
+          "IntentDamage": 20,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BATTLE_TRANCE -\u003E self",
+          "PLAY ARMAMENTS -\u003E self",
+          "PLAY TAUNT -\u003E TURRET_OPERATOR",
+          "PLAY ONE_TWO_PUNCH -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 23,
+        "Score": "Dmg=0 Blk=23 In=20 Cards=6 Score=355 States=1174 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 1174
+      },
+      "ActionResults": [
+        {
+          "CardId": "BATTLE_TRANCE",
+          "Success": true
+        },
+        {
+          "CardId": "ARMAMENTS",
+          "Success": false,
+          "FailReason": "not in hand"
+        },
+        {
+          "CardId": "TAUNT",
+          "Success": true,
+          "Target": "TURRET_OPERATOR"
+        },
+        {
+          "CardId": "ONE_TWO_PUNCH",
+          "Success": false,
+          "FailReason": "not in hand"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 983,
+        "BlockAfter": 16,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 3,
+      "Block": 16,
+      "Hp": 983,
+      "MaxHp": 999,
+      "DrawPileCount": 15,
+      "DiscardPileCount": 3,
+      "Hand": [
+        {
+          "Id": "EXPECT_A_FIGHT",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        },
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        },
+        {
+          "Id": "DEMON_FORM",
+          "Cost": 3
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 41,
+          "MaxHp": 41,
+          "Block": 0,
+          "IntentDamage": 20,
+          "IntentType": "Attack",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 1
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "NoDrawPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY MOLTEN_FIST -\u003E TURRET_OPERATOR",
+          "PLAY CINDER -\u003E TURRET_OPERATOR",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 51,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=51 Blk=0 In=20 Cards=3 Score=1817 States=30 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 30
+      },
+      "ActionResults": [
+        {
+          "CardId": "MOLTEN_FIST",
+          "Success": true,
+          "Target": "TURRET_OPERATOR"
+        },
+        {
+          "CardId": "CINDER",
+          "Success": true,
+          "Target": "TURRET_OPERATOR"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 989,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

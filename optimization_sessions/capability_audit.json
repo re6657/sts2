@@ -1,0 +1,48 @@
+{
+  "score": 87.5,
+  "generated_at": "2026-07-05 21:24:48",
+  "missing_capabilities": [
+    {
+      "status": "missing",
+      "severity": "CRITICAL",
+      "state_type": "COMBAT",
+      "action": "USE_POTION",
+      "times_available": 1,
+      "times_considered": 0,
+      "times_chosen": 0,
+      "consideration_rate": 0,
+      "selection_rate": 0,
+      "message": "❌ COMBAT/USE_POTION: 在 1 次可用机会中，AI **从未考虑过**此选项。这是代码缺陷，不是参数问题。",
+      "fix_type": "code_change",
+      "likely_cause": [
+        "CombatSolver 没有在动作空间中包含药水使用",
+        "Solve() 的枚举循环中缺少 TryUsePotions 步骤",
+        "药水槽位状态读取错误（已知bug：HasOpenPotionSlots返回false）"
+      ],
+      "related_params": [
+        "potion.use_when_hp_below_ratio",
+        "potion.min_damage_value"
+      ]
+    }
+  ],
+  "never_chosen_capabilities": [
+    {
+      "status": "never_chosen",
+      "severity": "WARNING",
+      "state_type": "SHOP",
+      "action": "BUY_CARD",
+      "times_available": 1,
+      "times_considered": 1,
+      "times_chosen": 0,
+      "consideration_rate": 1.0,
+      "selection_rate": 0,
+      "message": "⚠️  SHOP/BUY_CARD: AI 考虑了此选项 1/1 次，但从未选择。可能是评分过低。",
+      "fix_type": "parameter_tuning",
+      "likely_cause": [],
+      "related_params": [
+        "未知，需人工分析"
+      ]
+    }
+  ],
+  "suspicious_patterns": []
+}

@@ -1,0 +1,888 @@
+{
+  "EncounterName": "SLIMES_NORMAL",
+  "Floor": 6,
+  "Character": "DEFECT",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T16:32:34.1527684+08:00",
+  "EndTime": "2026-07-07T16:32:46.2014912+08:00",
+  "DurationSeconds": 12.0487228,
+  "Victory": true,
+  "EndHp": 984,
+  "TotalTurns": 7,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 15,
+  "TotalEnemiesKilled": 3,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "ZAP",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TWIG_SLIME_M",
+          "Hp": 28,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "LEAF_SLIME_M",
+          "Hp": 35,
+          "MaxHp": 35,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 2,
+          "Id": "TWIG_SLIME_S",
+          "Hp": 11,
+          "MaxHp": 11,
+          "Block": 0,
+          "IntentDamage": 4,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 3,
+          "Id": "LEAF_SLIME_S",
+          "Hp": 13,
+          "MaxHp": 13,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_DEFECT -\u003E TWIG_SLIME_S",
+          "PLAY STRIKE_DEFECT -\u003E TWIG_SLIME_S",
+          "PLAY ZAP -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=12 Blk=0 In=4 Cards=4 Score=2131 States=535 Char=DEFECT Src=fallback: dmg=3 blk=0",
+        "StatesExplored": 535
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "TWIG_SLIME_S"
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "TWIG_SLIME_S"
+        },
+        {
+          "CardId": "ZAP",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 9,
+      "Hand": [
+        {
+          "Id": "SUNDER",
+          "Cost": 3
+        },
+        {
+          "Id": "OVERCLOCK",
+          "Cost": 0
+        },
+        {
+          "Id": "FOCUSED_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "SCAVENGE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TWIG_SLIME_M",
+          "Hp": 25,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "LEAF_SLIME_M",
+          "Hp": 32,
+          "MaxHp": 35,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 2,
+          "Id": "LEAF_SLIME_S",
+          "Hp": 13,
+          "MaxHp": 13,
+          "Block": 0,
+          "IntentDamage": 3,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY OVERCLOCK -\u003E self",
+          "PLAY SCAVENGE -\u003E self",
+          "PLAY DUALCAST -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 13,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=13 Blk=10 In=22 Cards=5 Score=924 States=401 Char=DEFECT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 401
+      },
+      "ActionResults": [
+        {
+          "CardId": "OVERCLOCK",
+          "Success": true
+        },
+        {
+          "CardId": "SCAVENGE",
+          "Success": true
+        },
+        {
+          "CardId": "DUALCAST",
+          "Success": false,
+          "FailReason": "not in hand"
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 13,
+      "Hand": [
+        {
+          "Id": "SUNDER",
+          "Cost": 3
+        },
+        {
+          "Id": "FOCUSED_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TWIG_SLIME_M",
+          "Hp": 25,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "LEAF_SLIME_M",
+          "Hp": 32,
+          "MaxHp": 35,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 2,
+          "Id": "LEAF_SLIME_S",
+          "Hp": 13,
+          "MaxHp": 13,
+          "Block": 0,
+          "IntentDamage": 3,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "EnergyNextTurnPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=22 Cards=2 Score=-136 States=4 Char=DEFECT Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 987,
+        "BlockAfter": 0,
+        "DamageTaken": 12,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 4,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 2,
+        "Issues": [
+          "ENERGY_WASTED: 4 energy left, 1/2 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 5,
+      "Block": 0,
+      "Hp": 987,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 13,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TWIG_SLIME_M",
+          "Hp": 19,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "LEAF_SLIME_M",
+          "Hp": 32,
+          "MaxHp": 35,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 2,
+          "Id": "LEAF_SLIME_S",
+          "Hp": 13,
+          "MaxHp": 13,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_DEFECT -\u003E TWIG_SLIME_M",
+          "PLAY STRIKE_DEFECT -\u003E TWIG_SLIME_M",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=12 Blk=0 In=11 Cards=3 Score=37 States=24 Char=DEFECT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 24
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "TWIG_SLIME_M"
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "TWIG_SLIME_M"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 987,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 2,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 987,
+      "MaxHp": 999,
+      "DrawPileCount": 13,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "OVERCLOCK",
+          "Cost": 0
+        },
+        {
+          "Id": "SCAVENGE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TWIG_SLIME_M",
+          "Hp": 13,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "LEAF_SLIME_M",
+          "Hp": 32,
+          "MaxHp": 35,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 2,
+          "Id": "LEAF_SLIME_S",
+          "Hp": 13,
+          "MaxHp": 13,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_DEFECT -\u003E TWIG_SLIME_M",
+          "PLAY OVERCLOCK -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY FOCUSED_STRIKE -\u003E TWIG_SLIME_M",
+          "PLAY ZAP -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 15,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=15 Blk=5 In=11 Cards=6 Score=2643 States=2248 Char=DEFECT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 2248
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "TWIG_SLIME_M"
+        },
+        {
+          "CardId": "OVERCLOCK",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "FOCUSED_STRIKE",
+          "Success": true,
+          "Target": "TWIG_SLIME_M"
+        },
+        {
+          "CardId": "ZAP",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 987,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 987,
+      "MaxHp": 999,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 11,
+      "Hand": [
+        {
+          "Id": "SLIMED",
+          "Cost": 1
+        },
+        {
+          "Id": "SLIMED",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "SLIMED",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LEAF_SLIME_M",
+          "Hp": 32,
+          "MaxHp": 35,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "LEAF_SLIME_S",
+          "Hp": 1,
+          "MaxHp": 13,
+          "Block": 0,
+          "IntentDamage": 3,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 3,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SLIMED -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY STRIKE_DEFECT -\u003E LEAF_SLIME_S",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=6 Blk=5 In=11 Cards=4 Score=2271 States=130 Char=DEFECT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 130
+      },
+      "ActionResults": [
+        {
+          "CardId": "SLIMED",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "LEAF_SLIME_S"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 984,
+        "BlockAfter": 0,
+        "DamageTaken": 3,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 984,
+      "MaxHp": 999,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 16,
+      "Hand": [
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "SUNDER",
+          "Cost": 3
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LEAF_SLIME_M",
+          "Hp": 23,
+          "MaxHp": 35,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 3,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SUNDER -\u003E LEAF_SLIME_M",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 24,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=24 Blk=0 In=0 Cards=2 Score=1623 States=16 Char=DEFECT Src=reflection: dmg=24 blk=0",
+        "StatesExplored": 16
+      },
+      "ActionResults": [
+        {
+          "CardId": "SUNDER",
+          "Success": true,
+          "Target": "LEAF_SLIME_M"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 984,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

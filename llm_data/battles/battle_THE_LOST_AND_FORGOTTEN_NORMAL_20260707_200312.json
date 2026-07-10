@@ -1,0 +1,1813 @@
+{
+  "EncounterName": "THE_LOST_AND_FORGOTTEN_NORMAL",
+  "Floor": 46,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T20:02:53.8079087+08:00",
+  "EndTime": "2026-07-07T20:03:12.4843515+08:00",
+  "DurationSeconds": 18.6764428,
+  "Victory": true,
+  "EndHp": 974,
+  "TotalTurns": 13,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 41,
+  "TotalEnemiesKilled": 1,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 27,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "JUGGLING",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "ONE_TWO_PUNCH",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THE_LOST",
+          "Hp": 93,
+          "MaxHp": 93,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PossessStrengthPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "THE_FORGOTTEN",
+          "Hp": 106,
+          "MaxHp": 106,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PossessSpeedPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY POMMEL_STRIKE -\u003E THE_LOST",
+          "PLAY JUGGLING -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E THE_LOST",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 19,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=19 Blk=0 In=0 Cards=4 Score=639 States=259 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 259
+      },
+      "ActionResults": [
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "THE_LOST"
+        },
+        {
+          "CardId": "JUGGLING",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": false,
+          "FailReason": "not playable: EnergyCostTooHigh",
+          "Target": "THE_LOST"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 995,
+        "BlockAfter": 0,
+        "DamageTaken": 4,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 2/5 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 995,
+      "MaxHp": 999,
+      "DrawPileCount": 20,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        },
+        {
+          "Id": "OFFERING",
+          "Cost": 0
+        },
+        {
+          "Id": "TRUE_GRIT",
+          "Cost": 1
+        },
+        {
+          "Id": "NOT_YET",
+          "Cost": 2
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THE_LOST",
+          "Hp": 83,
+          "MaxHp": 93,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PossessStrengthPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "THE_FORGOTTEN",
+          "Hp": 106,
+          "MaxHp": 106,
+          "Block": 8,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 2,
+          "Powers": [
+            {
+              "Name": "PossessSpeedPower",
+              "Amount": 1
+            },
+            {
+              "Name": "DexterityPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": -2,
+        "Dexterity": -2,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": -2
+          },
+          {
+            "Name": "DexterityPower",
+            "Amount": -2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY OFFERING -\u003E self",
+          "PLAY THUNDERCLAP -\u003E THE_LOST",
+          "PLAY TRUE_GRIT -\u003E self",
+          "PLAY NOT_YET -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E THE_LOST",
+          "PLAY DRUM_OF_BATTLE -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 18,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=18 Blk=15 In=27 Cards=7 Score=-599 States=5005 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 5005
+      },
+      "ActionResults": [
+        {
+          "CardId": "OFFERING",
+          "Success": true
+        },
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "THE_LOST"
+        },
+        {
+          "CardId": "TRUE_GRIT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 989,
+        "BlockAfter": 5,
+        "DamageTaken": 6,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 5,
+      "Block": 5,
+      "Hp": 989,
+      "MaxHp": 999,
+      "DrawPileCount": 17,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        },
+        {
+          "Id": "NOT_YET",
+          "Cost": 2
+        },
+        {
+          "Id": "DRUM_OF_BATTLE",
+          "Cost": 1
+        },
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THE_LOST",
+          "Hp": 78,
+          "MaxHp": 93,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PossessStrengthPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "THE_FORGOTTEN",
+          "Hp": 106,
+          "MaxHp": 106,
+          "Block": 3,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 2,
+          "Powers": [
+            {
+              "Name": "PossessSpeedPower",
+              "Amount": 1
+            },
+            {
+              "Name": "DexterityPower",
+              "Amount": 2
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": -2,
+        "Dexterity": -2,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": -2
+          },
+          {
+            "Name": "DexterityPower",
+            "Amount": -2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DRUM_OF_BATTLE -\u003E self",
+          "PLAY NOT_YET -\u003E self",
+          "PLAY CINDER -\u003E THE_LOST",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 33,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=33 Blk=10 In=27 Cards=4 Score=-686 States=104 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 104
+      },
+      "ActionResults": [
+        {
+          "CardId": "DRUM_OF_BATTLE",
+          "Success": true
+        },
+        {
+          "CardId": "NOT_YET",
+          "Success": true
+        },
+        {
+          "CardId": "CINDER",
+          "Success": true,
+          "Target": "THE_LOST"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 0,
+      "Block": 5,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 15,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THE_LOST",
+          "Hp": 45,
+          "MaxHp": 93,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PossessStrengthPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "THE_FORGOTTEN",
+          "Hp": 106,
+          "MaxHp": 106,
+          "Block": 3,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 2,
+          "Powers": [
+            {
+              "Name": "PossessSpeedPower",
+              "Amount": 1
+            },
+            {
+              "Name": "DexterityPower",
+              "Amount": 2
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": -2,
+        "Dexterity": -2,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": -2
+          },
+          {
+            "Name": "DexterityPower",
+            "Amount": -2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BLOODLETTING -\u003E self",
+          "PLAY ANGER -\u003E THE_LOST",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=9 Blk=0 In=27 Cards=3 Score=-1970 States=7 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 7
+      },
+      "ActionResults": [
+        {
+          "CardId": "BLOODLETTING",
+          "Success": true
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "THE_LOST"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 996,
+        "BlockAfter": 9,
+        "DamageTaken": 3,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 2,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 2,
+      "Block": 9,
+      "Hp": 996,
+      "MaxHp": 999,
+      "DrawPileCount": 15,
+      "DiscardPileCount": 13,
+      "Hand": [
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THE_LOST",
+          "Hp": 36,
+          "MaxHp": 93,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PossessStrengthPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "THE_FORGOTTEN",
+          "Hp": 106,
+          "MaxHp": 106,
+          "Block": 3,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 2,
+          "Powers": [
+            {
+              "Name": "PossessSpeedPower",
+              "Amount": 1
+            },
+            {
+              "Name": "DexterityPower",
+              "Amount": 2
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": -2,
+        "Dexterity": -2,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": -2
+          },
+          {
+            "Name": "DexterityPower",
+            "Amount": -2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY ANGER -\u003E THE_LOST",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=9 Blk=0 In=27 Cards=2 Score=-1650 States=2 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 2
+      },
+      "ActionResults": [
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "THE_LOST"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 978,
+        "BlockAfter": 0,
+        "DamageTaken": 18,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 4,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 1,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 978,
+      "MaxHp": 999,
+      "DrawPileCount": 10,
+      "DiscardPileCount": 15,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "EXPECT_A_FIGHT",
+          "Cost": 2
+        },
+        {
+          "Id": "ARMAMENTS",
+          "Cost": 1
+        },
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        },
+        {
+          "Id": "BATTLE_TRANCE",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THE_LOST",
+          "Hp": 27,
+          "MaxHp": 93,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PossessStrengthPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "THE_FORGOTTEN",
+          "Hp": 106,
+          "MaxHp": 106,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 2,
+          "Powers": [
+            {
+              "Name": "PossessSpeedPower",
+              "Amount": 1
+            },
+            {
+              "Name": "DexterityPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": -2,
+        "Dexterity": -2,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": -2
+          },
+          {
+            "Name": "DexterityPower",
+            "Amount": -2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BATTLE_TRANCE -\u003E self",
+          "PLAY TAUNT -\u003E THE_LOST",
+          "PLAY DEMON_FORM -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=0 Blk=8 In=0 Cards=4 Score=668 States=2263 Char=IRONCLAD Src=reflection: dmg=0 blk=3",
+        "StatesExplored": 2263
+      },
+      "ActionResults": [
+        {
+          "CardId": "BATTLE_TRANCE",
+          "Success": true
+        },
+        {
+          "CardId": "TAUNT",
+          "Success": true,
+          "Target": "THE_LOST"
+        },
+        {
+          "CardId": "DEMON_FORM",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 978,
+        "BlockAfter": 6,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 1,
+      "Block": 6,
+      "Hp": 978,
+      "MaxHp": 999,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 17,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "EXPECT_A_FIGHT",
+          "Cost": 2
+        },
+        {
+          "Id": "ARMAMENTS",
+          "Cost": 1
+        },
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THE_LOST",
+          "Hp": 27,
+          "MaxHp": 93,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PossessStrengthPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "THE_FORGOTTEN",
+          "Hp": 106,
+          "MaxHp": 106,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 2,
+          "Powers": [
+            {
+              "Name": "PossessSpeedPower",
+              "Amount": 1
+            },
+            {
+              "Name": "DexterityPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": -2,
+        "Dexterity": -2,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": -2
+          },
+          {
+            "Name": "DexterityPower",
+            "Amount": -2
+          },
+          {
+            "Name": "NoDrawPower",
+            "Amount": 1
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BREAKTHROUGH -\u003E THE_LOST",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 17,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=17 Blk=0 In=0 Cards=2 Score=325 States=7 Char=IRONCLAD Src=reflection: dmg=0 blk=3",
+        "StatesExplored": 7
+      },
+      "ActionResults": [
+        {
+          "CardId": "BREAKTHROUGH",
+          "Success": true,
+          "Target": "THE_LOST"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 977,
+        "BlockAfter": 0,
+        "DamageTaken": 1,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 5,
+        "TotalPlayableInHand": 6,
+        "Issues": [
+          "ENERGY_WASTED: 3 energy left, 5/6 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 977,
+      "MaxHp": 999,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 23,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THE_LOST",
+          "Hp": 17,
+          "MaxHp": 93,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PossessStrengthPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "THE_FORGOTTEN",
+          "Hp": 99,
+          "MaxHp": 106,
+          "Block": 10,
+          "IntentDamage": 17,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 4,
+          "Powers": [
+            {
+              "Name": "PossessSpeedPower",
+              "Amount": 1
+            },
+            {
+              "Name": "DexterityPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": -4,
+        "Dexterity": -4,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": -4
+          },
+          {
+            "Name": "DexterityPower",
+            "Amount": -4
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY HEADBUTT -\u003E THE_LOST",
+          "PLAY SETUP_STRIKE -\u003E THE_LOST",
+          "PLAY STRIKE_IRONCLAD -\u003E THE_LOST",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 20,
+        "EstimatedBlock": 4,
+        "Score": "Dmg=20 Blk=4 In=33 Cards=5 Score=492 States=1507 Char=IRONCLAD Src=reflection: dmg=3 blk=0",
+        "StatesExplored": 1507
+      },
+      "ActionResults": [
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "THE_LOST"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 977,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 977,
+      "MaxHp": 999,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 23,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THE_LOST",
+          "Hp": 1,
+          "MaxHp": 93,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PossessStrengthPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "THE_FORGOTTEN",
+          "Hp": 99,
+          "MaxHp": 106,
+          "Block": 10,
+          "IntentDamage": 17,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 4,
+          "Powers": [
+            {
+              "Name": "PossessSpeedPower",
+              "Amount": 1
+            },
+            {
+              "Name": "DexterityPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": -1,
+        "Dexterity": -4,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": -1
+          },
+          {
+            "Name": "DexterityPower",
+            "Amount": -4
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E THE_FORGOTTEN",
+          "PLAY STRIKE_IRONCLAD -\u003E THE_LOST",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY SETUP_STRIKE -\u003E THE_FORGOTTEN",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 16,
+        "EstimatedBlock": 4,
+        "Score": "Dmg=16 Blk=4 In=33 Cards=5 Score=402 States=211 Char=IRONCLAD Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 211
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "THE_FORGOTTEN"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "THE_LOST"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "SETUP_STRIKE",
+          "Success": true,
+          "Target": "THE_FORGOTTEN"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 968,
+        "BlockAfter": 0,
+        "DamageTaken": 9,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 968,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 20,
+      "Hand": [
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THE_FORGOTTEN",
+          "Hp": 91,
+          "MaxHp": 106,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 4,
+          "Powers": [
+            {
+              "Name": "PossessSpeedPower",
+              "Amount": 1
+            },
+            {
+              "Name": "DexterityPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 3,
+        "Dexterity": -4,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 3
+          },
+          {
+            "Name": "DexterityPower",
+            "Amount": -4
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY CINDER -\u003E THE_FORGOTTEN",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 27,
+        "EstimatedBlock": 4,
+        "Score": "Dmg=27 Blk=4 In=0 Cards=3 Score=335 States=4 Char=IRONCLAD Src=reflection: dmg=27 blk=0",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "CINDER",
+          "Success": true,
+          "Target": "THE_FORGOTTEN"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 968,
+        "BlockAfter": 4,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 2,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 2,
+      "Block": 4,
+      "Hp": 968,
+      "MaxHp": 999,
+      "DrawPileCount": 25,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "ONE_TWO_PUNCH",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THE_FORGOTTEN",
+          "Hp": 61,
+          "MaxHp": 106,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 4,
+          "Powers": [
+            {
+              "Name": "PossessSpeedPower",
+              "Amount": 1
+            },
+            {
+              "Name": "DexterityPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 6,
+        "Dexterity": -4,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 6
+          },
+          {
+            "Name": "DexterityPower",
+            "Amount": -4
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E THE_FORGOTTEN",
+          "PLAY ONE_TWO_PUNCH -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 15,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=15 Blk=5 In=0 Cards=3 Score=188 States=4 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "THE_FORGOTTEN"
+        },
+        {
+          "CardId": "ONE_TWO_PUNCH",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 968,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 2,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 12,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 968,
+      "MaxHp": 999,
+      "DrawPileCount": 20,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THE_FORGOTTEN",
+          "Hp": 46,
+          "MaxHp": 106,
+          "Block": 12,
+          "IntentDamage": 19,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 6,
+          "Powers": [
+            {
+              "Name": "PossessSpeedPower",
+              "Amount": 1
+            },
+            {
+              "Name": "DexterityPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 6,
+        "Dexterity": -6,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 6
+          },
+          {
+            "Name": "DexterityPower",
+            "Amount": -6
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY HEADBUTT -\u003E THE_FORGOTTEN",
+          "PLAY SETUP_STRIKE -\u003E THE_FORGOTTEN",
+          "PLAY ANGER -\u003E THE_FORGOTTEN",
+          "PLAY ANGER -\u003E THE_FORGOTTEN",
+          "PLAY STRIKE_IRONCLAD -\u003E THE_FORGOTTEN",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 59,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=59 Blk=0 In=19 Cards=6 Score=2285 States=301 Char=IRONCLAD Src=reflection: dmg=13 blk=0",
+        "StatesExplored": 301
+      },
+      "ActionResults": [
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "THE_FORGOTTEN"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 968,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 13,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 968,
+      "MaxHp": 999,
+      "DrawPileCount": 21,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "THE_FORGOTTEN",
+          "Hp": 40,
+          "MaxHp": 106,
+          "Block": 0,
+          "IntentDamage": 19,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 6,
+          "Powers": [
+            {
+              "Name": "PossessSpeedPower",
+              "Amount": 1
+            },
+            {
+              "Name": "DexterityPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 9,
+        "Dexterity": -6,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 9
+          },
+          {
+            "Name": "DexterityPower",
+            "Amount": -6
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY ANGER -\u003E THE_FORGOTTEN",
+          "PLAY SETUP_STRIKE -\u003E THE_FORGOTTEN",
+          "PLAY STRIKE_IRONCLAD -\u003E THE_FORGOTTEN",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 51,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=51 Blk=0 In=19 Cards=4 Score=2152 States=40 Char=IRONCLAD Src=reflection: dmg=16 blk=0",
+        "StatesExplored": 40
+      },
+      "ActionResults": [
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "THE_FORGOTTEN"
+        },
+        {
+          "CardId": "SETUP_STRIKE",
+          "Success": true,
+          "Target": "THE_FORGOTTEN"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "THE_FORGOTTEN"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 974,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

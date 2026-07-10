@@ -1,0 +1,1632 @@
+{
+  "EncounterName": "DEVOTED_SCULPTOR_WEAK",
+  "Floor": 37,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T19:59:59.2699337+08:00",
+  "EndTime": "2026-07-07T20:00:21.6188413+08:00",
+  "DurationSeconds": 22.3489076,
+  "Victory": true,
+  "EndHp": 953,
+  "TotalTurns": 14,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 52,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 23,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "JUGGLING",
+          "Cost": 1
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        },
+        {
+          "Id": "BLOODLETTING",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DEVOTED_SCULPTOR",
+          "Hp": 162,
+          "MaxHp": 162,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "HEART_OF_IRON"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BLOODLETTING -\u003E self",
+          "PLAY THUNDERCLAP -\u003E DEVOTED_SCULPTOR",
+          "PLAY POMMEL_STRIKE -\u003E DEVOTED_SCULPTOR",
+          "PLAY BATTLE_TRANCE -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E DEVOTED_SCULPTOR",
+          "PLAY STRIKE_IRONCLAD -\u003E DEVOTED_SCULPTOR",
+          "USE_POTION HEART_OF_IRON",
+          "PLAY JUGGLING -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 42,
+        "EstimatedBlock": 6,
+        "Score": "Dmg=42 Blk=6 In=0 Cards=9 Score=1039 States=5003 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 5003
+      },
+      "ActionResults": [
+        {
+          "CardId": "BLOODLETTING",
+          "Success": true
+        },
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "DEVOTED_SCULPTOR"
+        },
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "DEVOTED_SCULPTOR"
+        },
+        {
+          "CardId": "BATTLE_TRANCE",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "DEVOTED_SCULPTOR"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "DEVOTED_SCULPTOR"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 992,
+        "BlockAfter": 4,
+        "DamageTaken": 7,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 0,
+      "Block": 4,
+      "Hp": 992,
+      "MaxHp": 999,
+      "DrawPileCount": 18,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "JUGGLING",
+          "Cost": 1
+        },
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        },
+        {
+          "Id": "NOT_YET",
+          "Cost": 2
+        },
+        {
+          "Id": "OFFERING",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DEVOTED_SCULPTOR",
+          "Hp": 116,
+          "MaxHp": 162,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "NoDrawPower",
+            "Amount": 1
+          },
+          {
+            "Name": "PlatingPower",
+            "Amount": 7
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY OFFERING -\u003E self",
+          "PLAY MOLTEN_FIST -\u003E DEVOTED_SCULPTOR",
+          "PLAY STRIKE_IRONCLAD -\u003E DEVOTED_SCULPTOR",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 24,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=24 Blk=0 In=0 Cards=4 Score=383 States=10 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 10
+      },
+      "ActionResults": [
+        {
+          "CardId": "OFFERING",
+          "Success": true
+        },
+        {
+          "CardId": "MOLTEN_FIST",
+          "Success": false,
+          "FailReason": "not in hand",
+          "Target": "DEVOTED_SCULPTOR"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": false,
+          "FailReason": "not in hand",
+          "Target": "DEVOTED_SCULPTOR"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 986,
+        "BlockAfter": 4,
+        "DamageTaken": 6,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 1,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 2,
+      "Block": 4,
+      "Hp": 986,
+      "MaxHp": 999,
+      "DrawPileCount": 18,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "JUGGLING",
+          "Cost": 1
+        },
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        },
+        {
+          "Id": "NOT_YET",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DEVOTED_SCULPTOR",
+          "Hp": 116,
+          "MaxHp": 162,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "NoDrawPower",
+            "Amount": 1
+          },
+          {
+            "Name": "PlatingPower",
+            "Amount": 7
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY JUGGLING -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=0 Cards=2 Score=527 States=3 Char=IRONCLAD Src=reflection: dmg=0 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "JUGGLING",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 986,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 3 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 986,
+      "MaxHp": 999,
+      "DrawPileCount": 13,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TAUNT",
+          "Cost": 1
+        },
+        {
+          "Id": "ONE_TWO_PUNCH",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DEVOTED_SCULPTOR",
+          "Hp": 116,
+          "MaxHp": 162,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 9
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "PlatingPower",
+            "Amount": 7
+          },
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY TAUNT -\u003E DEVOTED_SCULPTOR",
+          "PLAY MOLTEN_FIST -\u003E DEVOTED_SCULPTOR",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E DEVOTED_SCULPTOR",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 28,
+        "EstimatedBlock": 13,
+        "Score": "Dmg=28 Blk=13 In=12 Cards=5 Score=472 States=205 Char=IRONCLAD Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 205
+      },
+      "ActionResults": [
+        {
+          "CardId": "TAUNT",
+          "Success": true,
+          "Target": "DEVOTED_SCULPTOR"
+        },
+        {
+          "CardId": "MOLTEN_FIST",
+          "Success": true,
+          "Target": "DEVOTED_SCULPTOR"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "DEVOTED_SCULPTOR"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 986,
+        "BlockAfter": 13,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 1,
+      "Block": 13,
+      "Hp": 986,
+      "MaxHp": 999,
+      "DrawPileCount": 13,
+      "DiscardPileCount": 11,
+      "Hand": [
+        {
+          "Id": "ONE_TWO_PUNCH",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DEVOTED_SCULPTOR",
+          "Hp": 88,
+          "MaxHp": 162,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 4,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 9
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "PlatingPower",
+            "Amount": 6
+          },
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY ONE_TWO_PUNCH -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=12 Cards=2 Score=224 States=1 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 1
+      },
+      "ActionResults": [
+        {
+          "CardId": "ONE_TWO_PUNCH",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 986,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 1,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 986,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 12,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ARMAMENTS",
+          "Cost": 1
+        },
+        {
+          "Id": "TRUE_GRIT",
+          "Cost": 1
+        },
+        {
+          "Id": "EXPECT_A_FIGHT",
+          "Cost": 2
+        },
+        {
+          "Id": "DEMON_FORM",
+          "Cost": 3
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DEVOTED_SCULPTOR",
+          "Hp": 88,
+          "MaxHp": 162,
+          "Block": 0,
+          "IntentDamage": 21,
+          "IntentType": "Attack",
+          "VulnerableStacks": 3,
+          "WeakStacks": 0,
+          "StrengthStacks": 9,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 9
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 3
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 9
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "PlatingPower",
+            "Amount": 6
+          },
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY ARMAMENTS -\u003E self",
+          "PLAY TRUE_GRIT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 20,
+        "Score": "Dmg=0 Blk=20 In=21 Cards=4 Score=-524 States=47 Char=IRONCLAD Src=reflection: dmg=0 blk=5",
+        "StatesExplored": 47
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "ARMAMENTS",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 986,
+        "BlockAfter": 13,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 3,
+      "Block": 13,
+      "Hp": 986,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 14,
+      "Hand": [
+        {
+          "Id": "TRUE_GRIT",
+          "Cost": 1
+        },
+        {
+          "Id": "EXPECT_A_FIGHT",
+          "Cost": 2
+        },
+        {
+          "Id": "DEMON_FORM",
+          "Cost": 3
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DEVOTED_SCULPTOR",
+          "Hp": 88,
+          "MaxHp": 162,
+          "Block": 0,
+          "IntentDamage": 21,
+          "IntentType": "Attack",
+          "VulnerableStacks": 3,
+          "WeakStacks": 0,
+          "StrengthStacks": 9,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 9
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 3
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 9
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "PlatingPower",
+            "Amount": 5
+          },
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY TRUE_GRIT -\u003E self",
+          "PLAY EXPECT_A_FIGHT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 14,
+        "Score": "Dmg=0 Blk=14 In=21 Cards=3 Score=113 States=5 Char=IRONCLAD Src=reflection: dmg=0 blk=9",
+        "StatesExplored": 5
+      },
+      "ActionResults": [
+        {
+          "CardId": "TRUE_GRIT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 986,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 1/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 986,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 16,
+      "Hand": [
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DEVOTED_SCULPTOR",
+          "Hp": 88,
+          "MaxHp": 162,
+          "Block": 0,
+          "IntentDamage": 30,
+          "IntentType": "Attack",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 18,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 9
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 18
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "PlatingPower",
+            "Amount": 5
+          },
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY SETUP_STRIKE -\u003E DEVOTED_SCULPTOR",
+          "PLAY HEADBUTT -\u003E DEVOTED_SCULPTOR",
+          "PLAY STRIKE_IRONCLAD -\u003E DEVOTED_SCULPTOR",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 32,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=32 Blk=8 In=30 Cards=5 Score=-3484 States=205 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 205
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "SETUP_STRIKE",
+          "Success": true,
+          "Target": "DEVOTED_SCULPTOR"
+        },
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "DEVOTED_SCULPTOR"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 986,
+        "BlockAfter": 8,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 2,
+      "Block": 8,
+      "Hp": 986,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 18,
+      "Hand": [
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DEVOTED_SCULPTOR",
+          "Hp": 62,
+          "MaxHp": 162,
+          "Block": 0,
+          "IntentDamage": 30,
+          "IntentType": "Attack",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 18,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 9
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 18
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 2,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "PlatingPower",
+            "Amount": 4
+          },
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 2
+          },
+          {
+            "Name": "SetupStrikePower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BREAKTHROUGH -\u003E DEVOTED_SCULPTOR",
+          "PLAY STRIKE_IRONCLAD -\u003E DEVOTED_SCULPTOR",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 32,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=32 Blk=0 In=30 Cards=3 Score=-3590 States=4 Char=IRONCLAD Src=reflection: dmg=11 blk=0",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "BREAKTHROUGH",
+          "Success": true,
+          "Target": "DEVOTED_SCULPTOR"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "DEVOTED_SCULPTOR"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 971,
+        "BlockAfter": 0,
+        "DamageTaken": 15,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 2,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 971,
+      "MaxHp": 999,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 19,
+      "Hand": [
+        {
+          "Id": "DEMON_FORM",
+          "Cost": 3
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DEVOTED_SCULPTOR",
+          "Hp": 30,
+          "MaxHp": 162,
+          "Block": 0,
+          "IntentDamage": 39,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 27,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 9
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 27
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "PlatingPower",
+            "Amount": 4
+          },
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEMON_FORM -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=39 Cards=3 Score=-5505 States=22 Char=IRONCLAD Src=reflection: dmg=0 blk=0",
+        "StatesExplored": 22
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEMON_FORM",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 971,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 971,
+      "MaxHp": 999,
+      "DrawPileCount": 20,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "TAUNT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DEVOTED_SCULPTOR",
+          "Hp": 30,
+          "MaxHp": 162,
+          "Block": 0,
+          "IntentDamage": 39,
+          "IntentType": "Attack",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 27,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 9
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 27
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "PlatingPower",
+            "Amount": 3
+          },
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY TAUNT -\u003E DEVOTED_SCULPTOR",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=0 Blk=8 In=39 Cards=2 Score=-5097 States=3 Char=IRONCLAD Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "TAUNT",
+          "Success": true,
+          "Target": "DEVOTED_SCULPTOR"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 948,
+        "BlockAfter": 0,
+        "DamageTaken": 23,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 3 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 12,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 948,
+      "MaxHp": 999,
+      "DrawPileCount": 15,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TRUE_GRIT",
+          "Cost": 1
+        },
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "ARMAMENTS",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DEVOTED_SCULPTOR",
+          "Hp": 30,
+          "MaxHp": 162,
+          "Block": 0,
+          "IntentDamage": 48,
+          "IntentType": "Attack",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 36,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 9
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 36
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "PlatingPower",
+            "Amount": 3
+          },
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BREAKTHROUGH -\u003E DEVOTED_SCULPTOR",
+          "PLAY TRUE_GRIT -\u003E self",
+          "PLAY THUNDERCLAP -\u003E DEVOTED_SCULPTOR",
+          "PLAY STRIKE_IRONCLAD -\u003E DEVOTED_SCULPTOR",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 36,
+        "EstimatedBlock": 9,
+        "Score": "Dmg=36 Blk=9 In=48 Cards=5 Score=2308 States=193 Char=IRONCLAD Src=reflection: dmg=0 blk=5",
+        "StatesExplored": 193
+      },
+      "ActionResults": [
+        {
+          "CardId": "BREAKTHROUGH",
+          "Success": true,
+          "Target": "DEVOTED_SCULPTOR"
+        },
+        {
+          "CardId": "TRUE_GRIT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 947,
+        "BlockAfter": 9,
+        "DamageTaken": 1,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 13,
+      "Energy": 3,
+      "Block": 9,
+      "Hp": 947,
+      "MaxHp": 999,
+      "DrawPileCount": 15,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "ARMAMENTS",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DEVOTED_SCULPTOR",
+          "Hp": 12,
+          "MaxHp": 162,
+          "Block": 0,
+          "IntentDamage": 48,
+          "IntentType": "Attack",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 36,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 9
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 36
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 3,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "PlatingPower",
+            "Amount": 2
+          },
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY ARMAMENTS -\u003E self",
+          "PLAY THUNDERCLAP -\u003E DEVOTED_SCULPTOR",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=12 Blk=5 In=48 Cards=3 Score=1999 States=3 Char=IRONCLAD Src=reflection: dmg=0 blk=5",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "ARMAMENTS",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 947,
+        "BlockAfter": 14,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 2,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 14,
+      "Energy": 2,
+      "Block": 14,
+      "Hp": 947,
+      "MaxHp": 999,
+      "DrawPileCount": 15,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "DEVOTED_SCULPTOR",
+          "Hp": 12,
+          "MaxHp": 162,
+          "Block": 0,
+          "IntentDamage": 48,
+          "IntentType": "Attack",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 36,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RitualPower",
+              "Amount": 9
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 36
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 3,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "PlatingPower",
+            "Amount": 2
+          },
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY THUNDERCLAP -\u003E DEVOTED_SCULPTOR",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=12 Blk=0 In=48 Cards=2 Score=1959 States=1 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 1
+      },
+      "ActionResults": [
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "DEVOTED_SCULPTOR"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 953,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

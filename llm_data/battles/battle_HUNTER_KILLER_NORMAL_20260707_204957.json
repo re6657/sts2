@@ -1,0 +1,808 @@
+{
+  "EncounterName": "HUNTER_KILLER_NORMAL",
+  "Floor": 29,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T20:49:47.8030054+08:00",
+  "EndTime": "2026-07-07T20:49:57.9173825+08:00",
+  "DurationSeconds": 10.1143771,
+  "Victory": true,
+  "EndHp": 999,
+  "TotalTurns": 7,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 0,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 19,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "WHIRLWIND",
+          "Cost": -1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "HUNTER_KILLER",
+          "Hp": 121,
+          "MaxHp": 121,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "HEART_OF_IRON"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY POMMEL_STRIKE -\u003E HUNTER_KILLER",
+          "PLAY STAMPEDE -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=9 Blk=0 In=0 Cards=3 Score=561 States=264 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 264
+      },
+      "ActionResults": [
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "HUNTER_KILLER"
+        },
+        {
+          "CardId": "STAMPEDE",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 1,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 1,
+      "Block": 1,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 18,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "WHIRLWIND",
+          "Cost": -1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "HUNTER_KILLER",
+          "Hp": 112,
+          "MaxHp": 121,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "StampedePower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "HEART_OF_IRON"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "USE_POTION HEART_OF_IRON",
+          "PLAY STRIKE_IRONCLAD -\u003E HUNTER_KILLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 6,
+        "Score": "Dmg=9 Blk=6 In=0 Cards=3 Score=118 States=13 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 13
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 1,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 1,
+      "Block": 1,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 18,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "WHIRLWIND",
+          "Cost": -1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "HUNTER_KILLER",
+          "Hp": 112,
+          "MaxHp": 121,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "StampedePower",
+            "Amount": 1
+          },
+          {
+            "Name": "PlatingPower",
+            "Amount": 7
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E HUNTER_KILLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=9 Blk=0 In=0 Cards=2 Score=108 States=4 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "HUNTER_KILLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 3/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 13,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        },
+        {
+          "Id": "FEED",
+          "Cost": 1
+        },
+        {
+          "Id": "STOMP",
+          "Cost": 3
+        },
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "UPPERCUT",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "HUNTER_KILLER",
+          "Hp": 97,
+          "MaxHp": 121,
+          "Block": 0,
+          "IntentDamage": 17,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "StampedePower",
+            "Amount": 1
+          },
+          {
+            "Name": "PlatingPower",
+            "Amount": 7
+          },
+          {
+            "Name": "TenderPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY THUNDERCLAP -\u003E HUNTER_KILLER",
+          "PLAY UPPERCUT -\u003E HUNTER_KILLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 26,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=26 Blk=0 In=17 Cards=3 Score=-756 States=23 Char=IRONCLAD Src=reflection: dmg=13 blk=0",
+        "StatesExplored": 23
+      },
+      "ActionResults": [
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "HUNTER_KILLER"
+        },
+        {
+          "CardId": "UPPERCUT",
+          "Success": true,
+          "Target": "HUNTER_KILLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 2,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 1,
+      "Block": 2,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 13,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "FEED",
+          "Cost": 1
+        },
+        {
+          "Id": "STOMP",
+          "Cost": 3
+        },
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "HUNTER_KILLER",
+          "Hp": 72,
+          "MaxHp": 121,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 3,
+          "WeakStacks": 2,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 3
+            },
+            {
+              "Name": "WeakPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": -2,
+        "Dexterity": -2,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "StampedePower",
+            "Amount": 1
+          },
+          {
+            "Name": "PlatingPower",
+            "Amount": 6
+          },
+          {
+            "Name": "TenderPower",
+            "Amount": 1
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": -2
+          },
+          {
+            "Name": "DexterityPower",
+            "Amount": -2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY FEED -\u003E HUNTER_KILLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=12 Blk=0 In=12 Cards=2 Score=-452 States=2 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 2
+      },
+      "ActionResults": [
+        {
+          "CardId": "FEED",
+          "Success": true,
+          "Target": "HUNTER_KILLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 9,
+      "Hand": [
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DRUM_OF_BATTLE",
+          "Cost": 1
+        },
+        {
+          "Id": "BATTLE_TRANCE",
+          "Cost": 0
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "HUNTER_KILLER",
+          "Hp": 42,
+          "MaxHp": 121,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 2,
+          "WeakStacks": 1,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            },
+            {
+              "Name": "WeakPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "StampedePower",
+            "Amount": 1
+          },
+          {
+            "Name": "PlatingPower",
+            "Amount": 6
+          },
+          {
+            "Name": "TenderPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DRUM_OF_BATTLE -\u003E self",
+          "PLAY HEADBUTT -\u003E HUNTER_KILLER",
+          "PLAY BATTLE_TRANCE -\u003E self",
+          "PLAY MOLTEN_FIST -\u003E HUNTER_KILLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 28,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=28 Blk=5 In=15 Cards=5 Score=-123 States=544 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 544
+      },
+      "ActionResults": [
+        {
+          "CardId": "DRUM_OF_BATTLE",
+          "Success": true
+        },
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "HUNTER_KILLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 1,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 2,
+      "Block": 1,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "BATTLE_TRANCE",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "RAMPAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "HUNTER_KILLER",
+          "Hp": 30,
+          "MaxHp": 121,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 2,
+          "WeakStacks": 1,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            },
+            {
+              "Name": "WeakPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": -2,
+        "Dexterity": -2,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "StampedePower",
+            "Amount": 1
+          },
+          {
+            "Name": "PlatingPower",
+            "Amount": 5
+          },
+          {
+            "Name": "TenderPower",
+            "Amount": 1
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": -2
+          },
+          {
+            "Name": "DexterityPower",
+            "Amount": -2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BATTLE_TRANCE -\u003E self",
+          "PLAY MOLTEN_FIST -\u003E HUNTER_KILLER",
+          "PLAY WHIRLWIND -\u003E HUNTER_KILLER",
+          "PLAY BULLY -\u003E HUNTER_KILLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 31,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=31 Blk=0 In=15 Cards=5 Score=1979 States=228 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 228
+      },
+      "ActionResults": [
+        {
+          "CardId": "BATTLE_TRANCE",
+          "Success": true
+        },
+        {
+          "CardId": "MOLTEN_FIST",
+          "Success": true,
+          "Target": "HUNTER_KILLER"
+        },
+        {
+          "CardId": "WHIRLWIND",
+          "Success": true,
+          "Target": "HUNTER_KILLER"
+        },
+        {
+          "CardId": "BULLY",
+          "Success": true,
+          "Target": "HUNTER_KILLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

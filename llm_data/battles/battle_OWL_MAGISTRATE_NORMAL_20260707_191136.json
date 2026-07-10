@@ -1,0 +1,1427 @@
+{
+  "EncounterName": "OWL_MAGISTRATE_NORMAL",
+  "Floor": 44,
+  "Character": "DEFECT",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T19:11:17.4085553+08:00",
+  "EndTime": "2026-07-07T19:11:36.1628332+08:00",
+  "DurationSeconds": 18.7542779,
+  "Victory": true,
+  "EndHp": 907,
+  "TotalTurns": 13,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 93,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 10,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 26,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "BOOT_SEQUENCE",
+          "Cost": 0
+        },
+        {
+          "Id": "MOMENTUM_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "ZAP",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "OWL_MAGISTRATE",
+          "Hp": 231,
+          "MaxHp": 231,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "VULNERABLE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "USE_POTION VULNERABLE_POTION",
+          "PLAY MOMENTUM_STRIKE -\u003E OWL_MAGISTRATE",
+          "PLAY BOOT_SEQUENCE -\u003E self",
+          "PLAY ZAP -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 28,
+        "Score": "Dmg=10 Blk=28 In=16 Cards=5 Score=1117 States=64 Char=DEFECT Src=fallback: dmg=3 blk=0",
+        "StatesExplored": 64
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 10,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 3,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 10,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 26,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "BOOT_SEQUENCE",
+          "Cost": 0
+        },
+        {
+          "Id": "MOMENTUM_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "ZAP",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "OWL_MAGISTRATE",
+          "Hp": 231,
+          "MaxHp": 231,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 3,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BOOT_SEQUENCE -\u003E self",
+          "PLAY ZAP -\u003E self",
+          "PLAY MOMENTUM_STRIKE -\u003E OWL_MAGISTRATE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 15,
+        "EstimatedBlock": 28,
+        "Score": "Dmg=15 Blk=28 In=16 Cards=4 Score=1152 States=15 Char=DEFECT Src=fallback: dmg=3 blk=0",
+        "StatesExplored": 15
+      },
+      "ActionResults": [
+        {
+          "CardId": "BOOT_SEQUENCE",
+          "Success": true
+        },
+        {
+          "CardId": "ZAP",
+          "Success": true
+        },
+        {
+          "CardId": "MOMENTUM_STRIKE",
+          "Success": true,
+          "Target": "OWL_MAGISTRATE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 3,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 21,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "FLAK_CANNON",
+          "Cost": 2
+        },
+        {
+          "Id": "DARKNESS",
+          "Cost": 1
+        },
+        {
+          "Id": "CLAW",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "OWL_MAGISTRATE",
+          "Hp": 210,
+          "MaxHp": 231,
+          "Block": 0,
+          "IntentDamage": 24,
+          "IntentType": "Attack",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY CLAW -\u003E OWL_MAGISTRATE",
+          "PLAY DARKNESS -\u003E self",
+          "PLAY STRIKE_DEFECT -\u003E OWL_MAGISTRATE",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 17,
+        "EstimatedBlock": 6,
+        "Score": "Dmg=17 Blk=6 In=24 Cards=5 Score=78 States=91 Char=DEFECT Src=fallback: dmg=6 blk=0",
+        "StatesExplored": 91
+      },
+      "ActionResults": [
+        {
+          "CardId": "CLAW",
+          "Success": true,
+          "Target": "OWL_MAGISTRATE"
+        },
+        {
+          "CardId": "DARKNESS",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "OWL_MAGISTRATE"
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 981,
+        "BlockAfter": 0,
+        "DamageTaken": 18,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 981,
+      "MaxHp": 999,
+      "DrawPileCount": 16,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "LEAP",
+          "Cost": 1
+        },
+        {
+          "Id": "TURBO",
+          "Cost": 0
+        },
+        {
+          "Id": "SCAVENGE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "SUPERCRITICAL",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "OWL_MAGISTRATE",
+          "Hp": 187,
+          "MaxHp": 231,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 1,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY TURBO -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY SUPERCRITICAL -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 11,
+        "Score": "Dmg=0 Blk=11 In=0 Cards=4 Score=1599 States=325 Char=DEFECT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 325
+      },
+      "ActionResults": [
+        {
+          "CardId": "TURBO",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "SUPERCRITICAL",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 981,
+        "BlockAfter": 12,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 7,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "ENERGY_WASTED: 7 energy left, 2/5 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 8,
+      "Block": 12,
+      "Hp": 981,
+      "MaxHp": 999,
+      "DrawPileCount": 16,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "LEAP",
+          "Cost": 1
+        },
+        {
+          "Id": "SCAVENGE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "OWL_MAGISTRATE",
+          "Hp": 187,
+          "MaxHp": 231,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 1,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SCAVENGE -\u003E self",
+          "PLAY LEAP -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=0 Blk=15 In=0 Cards=3 Score=1509 States=4 Char=DEFECT Src=reflection: dmg=0 blk=10",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "SCAVENGE",
+          "Success": true
+        },
+        {
+          "CardId": "LEAP",
+          "Success": false,
+          "FailReason": "not in hand"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 981,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 2,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 5,
+      "Block": 0,
+      "Hp": 981,
+      "MaxHp": 999,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 11,
+      "Hand": [
+        {
+          "Id": "DUALCAST",
+          "Cost": 1
+        },
+        {
+          "Id": "SYNTHESIS",
+          "Cost": 2
+        },
+        {
+          "Id": "DEBT",
+          "Cost": -1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "OWL_MAGISTRATE",
+          "Hp": 181,
+          "MaxHp": 231,
+          "Block": 0,
+          "IntentDamage": 33,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SoarPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 1,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SYNTHESIS -\u003E OWL_MAGISTRATE",
+          "PLAY STRIKE_DEFECT -\u003E OWL_MAGISTRATE",
+          "PLAY STRIKE_DEFECT -\u003E OWL_MAGISTRATE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 32,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=32 Blk=0 In=33 Cards=4 Score=-1234 States=64 Char=DEFECT Src=fallback: dmg=16 blk=0",
+        "StatesExplored": 64
+      },
+      "ActionResults": [
+        {
+          "CardId": "SYNTHESIS",
+          "Success": true,
+          "Target": "OWL_MAGISTRATE"
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "OWL_MAGISTRATE"
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "OWL_MAGISTRATE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 981,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 981,
+      "MaxHp": 999,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 14,
+      "Hand": [
+        {
+          "Id": "DUALCAST",
+          "Cost": 1
+        },
+        {
+          "Id": "DEBT",
+          "Cost": -1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "OWL_MAGISTRATE",
+          "Hp": 165,
+          "MaxHp": 231,
+          "Block": 0,
+          "IntentDamage": 33,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SoarPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          },
+          {
+            "Name": "FreePowerPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 1,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=33 Cards=1 Score=-1459 States=1 Char=DEFECT Src=fallback: dmg=16 blk=0",
+        "StatesExplored": 1
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 948,
+        "BlockAfter": 0,
+        "DamageTaken": 33,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 1,
+        "Issues": [
+          "ENERGY_WASTED: 3 energy left, 1/1 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 948,
+      "MaxHp": 999,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 16,
+      "Hand": [
+        {
+          "Id": "SHAME",
+          "Cost": -1
+        },
+        {
+          "Id": "UPROAR",
+          "Cost": 2
+        },
+        {
+          "Id": "TURBO",
+          "Cost": 0
+        },
+        {
+          "Id": "DOUBLE_ENERGY",
+          "Cost": 1
+        },
+        {
+          "Id": "SWEEPING_BEAM",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "OWL_MAGISTRATE",
+          "Hp": 159,
+          "MaxHp": 231,
+          "Block": 0,
+          "IntentDamage": 24,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 4,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          },
+          {
+            "Name": "FreePowerPower",
+            "Amount": 1
+          },
+          {
+            "Name": "VulnerablePower",
+            "Amount": 4
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 1,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY TURBO -\u003E self",
+          "PLAY SWEEPING_BEAM -\u003E OWL_MAGISTRATE",
+          "PLAY UPROAR -\u003E OWL_MAGISTRATE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 14,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=14 Blk=0 In=24 Cards=4 Score=-468 States=52 Char=DEFECT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 52
+      },
+      "ActionResults": [
+        {
+          "CardId": "TURBO",
+          "Success": true
+        },
+        {
+          "CardId": "SWEEPING_BEAM",
+          "Success": true,
+          "Target": "OWL_MAGISTRATE"
+        },
+        {
+          "CardId": "UPROAR",
+          "Success": true,
+          "Target": "OWL_MAGISTRATE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 948,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 948,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 21,
+      "Hand": [
+        {
+          "Id": "SHAME",
+          "Cost": -1
+        },
+        {
+          "Id": "DOUBLE_ENERGY",
+          "Cost": 1
+        },
+        {
+          "Id": "COMPILE_DRIVER",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "OWL_MAGISTRATE",
+          "Hp": 122,
+          "MaxHp": 231,
+          "Block": 0,
+          "IntentDamage": 24,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 4,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          },
+          {
+            "Name": "FreePowerPower",
+            "Amount": 1
+          },
+          {
+            "Name": "VulnerablePower",
+            "Amount": 4
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 1,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY COMPILE_DRIVER -\u003E OWL_MAGISTRATE",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 7,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=7 Blk=10 In=24 Cards=4 Score=321 States=14 Char=DEFECT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 14
+      },
+      "ActionResults": [
+        {
+          "CardId": "COMPILE_DRIVER",
+          "Success": true,
+          "Target": "OWL_MAGISTRATE"
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 942,
+        "BlockAfter": 0,
+        "DamageTaken": 6,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 2,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 942,
+      "MaxHp": 999,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 21,
+      "Hand": [
+        {
+          "Id": "BALL_LIGHTNING",
+          "Cost": 1
+        },
+        {
+          "Id": "BARRAGE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "OWL_MAGISTRATE",
+          "Hp": 109,
+          "MaxHp": 231,
+          "Block": 0,
+          "IntentDamage": 36,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 1,
+        "Vulnerable": 3,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          },
+          {
+            "Name": "FreePowerPower",
+            "Amount": 1
+          },
+          {
+            "Name": "VulnerablePower",
+            "Amount": 3
+          },
+          {
+            "Name": "FrailPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 1,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BARRAGE -\u003E OWL_MAGISTRATE",
+          "PLAY BALL_LIGHTNING -\u003E OWL_MAGISTRATE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 20,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=20 Blk=0 In=36 Cards=3 Score=-1582 States=4 Char=DEFECT Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "BARRAGE",
+          "Success": true,
+          "Target": "OWL_MAGISTRATE"
+        },
+        {
+          "CardId": "BALL_LIGHTNING",
+          "Success": true,
+          "Target": "OWL_MAGISTRATE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 942,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 2,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 942,
+      "MaxHp": 999,
+      "DrawPileCount": 23,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "DUALCAST",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "MOMENTUM_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "OWL_MAGISTRATE",
+          "Hp": 79,
+          "MaxHp": 231,
+          "Block": 0,
+          "IntentDamage": 36,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 1,
+        "Vulnerable": 3,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          },
+          {
+            "Name": "FreePowerPower",
+            "Amount": 1
+          },
+          {
+            "Name": "VulnerablePower",
+            "Amount": 3
+          },
+          {
+            "Name": "FrailPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 1,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=36 Cards=1 Score=-1723 States=3 Char=DEFECT Src=fallback: dmg=16 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 906,
+        "BlockAfter": 0,
+        "DamageTaken": 36,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 3 energy left, 3/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 12,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 906,
+      "MaxHp": 999,
+      "DrawPileCount": 18,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "SCAVENGE",
+          "Cost": 1
+        },
+        {
+          "Id": "FLAK_CANNON",
+          "Cost": 2
+        },
+        {
+          "Id": "COMPILE_DRIVER",
+          "Cost": 1
+        },
+        {
+          "Id": "DARKNESS",
+          "Cost": 1
+        },
+        {
+          "Id": "VOID",
+          "Cost": -1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "OWL_MAGISTRATE",
+          "Hp": 73,
+          "MaxHp": 231,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 2,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          },
+          {
+            "Name": "FreePowerPower",
+            "Amount": 1
+          },
+          {
+            "Name": "VulnerablePower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 1,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY COMPILE_DRIVER -\u003E OWL_MAGISTRATE",
+          "PLAY SCAVENGE -\u003E self",
+          "PLAY DARKNESS -\u003E self",
+          "PLAY DEBT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 13,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=13 Blk=5 In=0 Cards=5 Score=1622 States=47 Char=DEFECT Src=fallback: dmg=6 blk=0",
+        "StatesExplored": 47
+      },
+      "ActionResults": [
+        {
+          "CardId": "COMPILE_DRIVER",
+          "Success": true,
+          "Target": "OWL_MAGISTRATE"
+        },
+        {
+          "CardId": "SCAVENGE",
+          "Success": true
+        },
+        {
+          "CardId": "DARKNESS",
+          "Success": false,
+          "FailReason": "not playable: EnergyCostTooHigh"
+        },
+        {
+          "CardId": "DEBT",
+          "Success": false,
+          "FailReason": "not playable: HasUnplayableKeyword"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 906,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 13,
+      "Energy": 5,
+      "Block": 0,
+      "Hp": 906,
+      "MaxHp": 999,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "DOUBLE_ENERGY",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "ZAP",
+          "Cost": 1
+        },
+        {
+          "Id": "TURBO",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "OWL_MAGISTRATE",
+          "Hp": 8,
+          "MaxHp": 231,
+          "Block": 0,
+          "IntentDamage": 49,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SoarPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 1,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          },
+          {
+            "Name": "FreePowerPower",
+            "Amount": 1
+          },
+          {
+            "Name": "VulnerablePower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 1,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY TURBO -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY DOUBLE_ENERGY -\u003E self",
+          "PLAY ZAP -\u003E self",
+          "PLAY STRIKE_DEFECT -\u003E OWL_MAGISTRATE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 12,
+        "Score": "Dmg=12 Blk=12 In=49 Cards=6 Score=2720 States=211 Char=DEFECT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 211
+      },
+      "ActionResults": [
+        {
+          "CardId": "TURBO",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "DOUBLE_ENERGY",
+          "Success": true
+        },
+        {
+          "CardId": "ZAP",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 907,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

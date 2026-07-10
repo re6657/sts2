@@ -1,0 +1,1834 @@
+{
+  "EncounterName": "WATERFALL_GIANT_BOSS",
+  "Floor": 17,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-06T16:57:15.1760022+08:00",
+  "EndTime": "2026-07-06T16:57:44.3127343+08:00",
+  "DurationSeconds": 29.1367321,
+  "Victory": true,
+  "EndHp": 12,
+  "TotalTurns": 17,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 67,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 79,
+      "MaxHp": 80,
+      "DrawPileCount": 16,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STONE_ARMOR",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HEMOKINESIS",
+          "Cost": 1
+        },
+        {
+          "Id": "BURNING_PACT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "WATERFALL_GIANT",
+          "Hp": 240,
+          "MaxHp": 240,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "POTION_SHAPED_ROCK"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "USE_POTION POTION_SHAPED_ROCK",
+          "PLAY HEMOKINESIS -\u003E WATERFALL_GIANT",
+          "PLAY STONE_ARMOR -\u003E self",
+          "PLAY BURNING_PACT -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E WATERFALL_GIANT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 26,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=26 Blk=0 In=0 Cards=6 Score=539 States=1230 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 1230
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 79,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 79,
+      "MaxHp": 80,
+      "DrawPileCount": 16,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STONE_ARMOR",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "HEMOKINESIS",
+          "Cost": 1
+        },
+        {
+          "Id": "BURNING_PACT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "WATERFALL_GIANT",
+          "Hp": 225,
+          "MaxHp": 240,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E WATERFALL_GIANT",
+          "PLAY BURNING_PACT -\u003E self",
+          "PLAY HEMOKINESIS -\u003E WATERFALL_GIANT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 26,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=26 Blk=0 In=0 Cards=4 Score=491 States=98 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 98
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "BURNING_PACT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 79,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 79,
+      "MaxHp": 80,
+      "DrawPileCount": 14,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "STONE_ARMOR",
+          "Cost": 1
+        },
+        {
+          "Id": "HEMOKINESIS",
+          "Cost": 1
+        },
+        {
+          "Id": "MANGLE",
+          "Cost": 3
+        },
+        {
+          "Id": "RUPTURE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "WATERFALL_GIANT",
+          "Hp": 219,
+          "MaxHp": 240,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY HEMOKINESIS -\u003E WATERFALL_GIANT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 20,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=20 Blk=0 In=0 Cards=2 Score=346 States=3 Char=IRONCLAD Src=reflection: dmg=0 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "HEMOKINESIS",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 77,
+        "BlockAfter": 0,
+        "DamageTaken": 2,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 77,
+      "MaxHp": 80,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "WATERFALL_GIANT",
+          "Hp": 199,
+          "MaxHp": 240,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "SteamEruptionPower",
+              "Amount": 15
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=0 Blk=15 In=15 Cards=4 Score=324 States=49 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 49
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 77,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 77,
+      "MaxHp": 80,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 11,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "WATERFALL_GIANT",
+          "Hp": 199,
+          "MaxHp": 240,
+          "Block": 0,
+          "IntentDamage": 10,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "SteamEruptionPower",
+              "Amount": 18
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 1,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "PLAY STRIKE_IRONCLAD -\u003E WATERFALL_GIANT",
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "PLAY STRIKE_IRONCLAD -\u003E WATERFALL_GIANT",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 16,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=16 Blk=5 In=10 Cards=6 Score=-116 States=325 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 325
+      },
+      "ActionResults": [
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 72,
+        "BlockAfter": 0,
+        "DamageTaken": 5,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 72,
+      "MaxHp": 80,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 13,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TAUNT",
+          "Cost": 1
+        },
+        {
+          "Id": "ASHEN_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "WATERFALL_GIANT",
+          "Hp": 177,
+          "MaxHp": 240,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Heal",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "SteamEruptionPower",
+              "Amount": 21
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY ASHEN_STRIKE -\u003E WATERFALL_GIANT",
+          "PLAY STRIKE_IRONCLAD -\u003E WATERFALL_GIANT",
+          "PLAY STRIKE_IRONCLAD -\u003E WATERFALL_GIANT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 22,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=22 Blk=0 In=0 Cards=4 Score=380 States=40 Char=IRONCLAD Src=reflection: dmg=0 blk=7",
+        "StatesExplored": 40
+      },
+      "ActionResults": [
+        {
+          "CardId": "ASHEN_STRIKE",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 72,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 72,
+      "MaxHp": 80,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "WATERFALL_GIANT",
+          "Hp": 165,
+          "MaxHp": 240,
+          "Block": 0,
+          "IntentDamage": 20,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "SteamEruptionPower",
+              "Amount": 24
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=0 Blk=15 In=20 Cards=4 Score=-176 States=85 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 67,
+        "BlockAfter": 0,
+        "DamageTaken": 5,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 67,
+      "MaxHp": 80,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "BURNING_PACT",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "MANGLE",
+          "Cost": 3
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STONE_ARMOR",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "WATERFALL_GIANT",
+          "Hp": 165,
+          "MaxHp": 240,
+          "Block": 0,
+          "IntentDamage": 13,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "SteamEruptionPower",
+              "Amount": 27
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BURNING_PACT -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E WATERFALL_GIANT",
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "PLAY HEMOKINESIS -\u003E WATERFALL_GIANT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 34,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=34 Blk=0 In=13 Cards=5 Score=-670 States=70 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 70
+      },
+      "ActionResults": [
+        {
+          "CardId": "BURNING_PACT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 67,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 67,
+      "MaxHp": 80,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 11,
+      "Hand": [
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "MANGLE",
+          "Cost": 3
+        },
+        {
+          "Id": "STONE_ARMOR",
+          "Cost": 1
+        },
+        {
+          "Id": "HEMOKINESIS",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "WATERFALL_GIANT",
+          "Hp": 165,
+          "MaxHp": 240,
+          "Block": 0,
+          "IntentDamage": 13,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "SteamEruptionPower",
+              "Amount": 27
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY HEMOKINESIS -\u003E WATERFALL_GIANT",
+          "PLAY STONE_ARMOR -\u003E self",
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 28,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=28 Blk=0 In=13 Cards=4 Score=-768 States=18 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 18
+      },
+      "ActionResults": [
+        {
+          "CardId": "HEMOKINESIS",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "STONE_ARMOR",
+          "Success": true
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 56,
+        "BlockAfter": 0,
+        "DamageTaken": 11,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 1/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 56,
+      "MaxHp": 80,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 16,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "WATERFALL_GIANT",
+          "Hp": 137,
+          "MaxHp": 240,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "SteamEruptionPower",
+              "Amount": 30
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "PLAY STRIKE_IRONCLAD -\u003E WATERFALL_GIANT",
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 30,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=30 Blk=5 In=15 Cards=6 Score=-371 States=325 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 325
+      },
+      "ActionResults": [
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 49,
+        "BlockAfter": 0,
+        "DamageTaken": 7,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 49,
+      "MaxHp": 80,
+      "DrawPileCount": 19,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "RUPTURE",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "WATERFALL_GIANT",
+          "Hp": 107,
+          "MaxHp": 240,
+          "Block": 0,
+          "IntentDamage": 10,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "SteamEruptionPower",
+              "Amount": 33
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 1,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY RUPTURE -\u003E self",
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=12 Blk=5 In=10 Cards=6 Score=-134 States=325 Char=IRONCLAD Src=reflection: dmg=0 blk=0",
+        "StatesExplored": 325
+      },
+      "ActionResults": [
+        {
+          "CardId": "RUPTURE",
+          "Success": true
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 46,
+        "BlockAfter": 0,
+        "DamageTaken": 3,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 12,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 46,
+      "MaxHp": 80,
+      "DrawPileCount": 14,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TAUNT",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "WATERFALL_GIANT",
+          "Hp": 89,
+          "MaxHp": 240,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Heal",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "SteamEruptionPower",
+              "Amount": 36
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY TAUNT -\u003E WATERFALL_GIANT",
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "PLAY STRIKE_IRONCLAD -\u003E WATERFALL_GIANT",
+          "PLAY STRIKE_IRONCLAD -\u003E WATERFALL_GIANT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 20,
+        "EstimatedBlock": 7,
+        "Score": "Dmg=20 Blk=7 In=0 Cards=5 Score=354 States=181 Char=IRONCLAD Src=reflection: dmg=0 blk=7",
+        "StatesExplored": 181
+      },
+      "ActionResults": [
+        {
+          "CardId": "TAUNT",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 46,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 13,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 46,
+      "MaxHp": 80,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 13,
+      "Hand": [
+        {
+          "Id": "HEMOKINESIS",
+          "Cost": 1
+        },
+        {
+          "Id": "BURNING_PACT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "WATERFALL_GIANT",
+          "Hp": 69,
+          "MaxHp": 240,
+          "Block": 0,
+          "IntentDamage": 25,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "SteamEruptionPower",
+              "Amount": 39
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BURNING_PACT -\u003E self",
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "PLAY HEMOKINESIS -\u003E WATERFALL_GIANT",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 44,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=44 Blk=5 In=25 Cards=7 Score=-1090 States=1705 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 1705
+      },
+      "ActionResults": [
+        {
+          "CardId": "BURNING_PACT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 46,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 14,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 46,
+      "MaxHp": 80,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 14,
+      "Hand": [
+        {
+          "Id": "HEMOKINESIS",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "WATERFALL_GIANT",
+          "Hp": 69,
+          "MaxHp": 240,
+          "Block": 0,
+          "IntentDamage": 25,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "SteamEruptionPower",
+              "Amount": 39
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY HEMOKINESIS -\u003E WATERFALL_GIANT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 44,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=44 Blk=5 In=25 Cards=6 Score=-1132 States=325 Char=IRONCLAD Src=reflection: dmg=20 blk=0",
+        "StatesExplored": 325
+      },
+      "ActionResults": [
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "HEMOKINESIS",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 26,
+        "BlockAfter": 0,
+        "DamageTaken": 20,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 15,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 26,
+      "MaxHp": 80,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 22,
+      "Hand": [
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "ASHEN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "MANGLE",
+          "Cost": 3
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "WATERFALL_GIANT",
+          "Hp": 25,
+          "MaxHp": 240,
+          "Block": 0,
+          "IntentDamage": 13,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "SteamEruptionPower",
+              "Amount": 42
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 1,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BASH -\u003E WATERFALL_GIANT",
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "PLAY ASHEN_STRIKE -\u003E WATERFALL_GIANT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 42,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=42 Blk=0 In=13 Cards=4 Score=2540 States=31 Char=IRONCLAD Src=reflection: dmg=11 blk=0",
+        "StatesExplored": 31
+      },
+      "ActionResults": [
+        {
+          "CardId": "BASH",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "ASHEN_STRIKE",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 26,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 16,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 26,
+      "MaxHp": 80,
+      "DrawPileCount": 13,
+      "DiscardPileCount": 15,
+      "Hand": [
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "WATERFALL_GIANT",
+          "Hp": 999999999,
+          "MaxHp": 999999999,
+          "Block": 0,
+          "IntentDamage": 42,
+          "IntentType": "DeathBlow",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 1,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY PILLAGE -\u003E WATERFALL_GIANT",
+          "PLAY STRIKE_IRONCLAD -\u003E WATERFALL_GIANT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 19,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=19 Blk=0 In=42 Cards=3 Score=-9819 States=4 Char=IRONCLAD Src=reflection: dmg=10 blk=0",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "PILLAGE",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 26,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 2,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 17,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 26,
+      "MaxHp": 80,
+      "DrawPileCount": 22,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "MANGLE",
+          "Cost": 3
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "WATERFALL_GIANT",
+          "Hp": 999999989,
+          "MaxHp": 999999999,
+          "Block": 0,
+          "IntentDamage": 42,
+          "IntentType": "DeathBlow",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 1,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "PLAY ANGER -\u003E WATERFALL_GIANT",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 30,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=30 Blk=10 In=42 Cards=6 Score=-7416 States=798 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 798
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "WATERFALL_GIANT"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": false,
+          "FailReason": "not playable: EnergyCostTooHigh"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 12,
+        "BlockAfter": 0,
+        "DamageTaken": 14,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

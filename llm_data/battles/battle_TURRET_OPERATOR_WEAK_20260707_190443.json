@@ -1,0 +1,1441 @@
+{
+  "EncounterName": "TURRET_OPERATOR_WEAK",
+  "Floor": 35,
+  "Character": "DEFECT",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T19:04:27.475002+08:00",
+  "EndTime": "2026-07-07T19:04:43.327871+08:00",
+  "DurationSeconds": 15.852869,
+  "Victory": true,
+  "EndHp": 926,
+  "TotalTurns": 12,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 74,
+  "TotalEnemiesKilled": 1,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 10,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 20,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "ZAP",
+          "Cost": 1
+        },
+        {
+          "Id": "MOMENTUM_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "SCAVENGE",
+          "Cost": 1
+        },
+        {
+          "Id": "DOUBLE_ENERGY",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_SHIELD",
+          "Hp": 55,
+          "MaxHp": 55,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RampartPower",
+              "Amount": 25
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 41,
+          "MaxHp": 41,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY ZAP -\u003E self",
+          "PLAY SCAVENGE -\u003E self",
+          "PLAY MOMENTUM_STRIKE -\u003E TURRET_OPERATOR",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=10 Blk=5 In=21 Cards=4 Score=471 States=195 Char=DEFECT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 195
+      },
+      "ActionResults": [
+        {
+          "CardId": "ZAP",
+          "Success": true
+        },
+        {
+          "CardId": "SCAVENGE",
+          "Success": true
+        },
+        {
+          "CardId": "MOMENTUM_STRIKE",
+          "Success": false,
+          "FailReason": "not in hand",
+          "Target": "TURRET_OPERATOR"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 10,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 1,
+      "Block": 10,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 20,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DOUBLE_ENERGY",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_SHIELD",
+          "Hp": 55,
+          "MaxHp": 55,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RampartPower",
+              "Amount": 25
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 41,
+          "MaxHp": 41,
+          "Block": 25,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "EnergyNextTurnPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 3,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_DEFECT -\u003E LIVING_SHIELD",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=6 Blk=0 In=21 Cards=2 Score=385 States=3 Char=DEFECT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "LIVING_SHIELD"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 988,
+        "BlockAfter": 0,
+        "DamageTaken": 11,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 4,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 2,
+        "Issues": [
+          "ENERGY_WASTED: 4 energy left, 1/2 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 5,
+      "Block": 0,
+      "Hp": 988,
+      "MaxHp": 999,
+      "DrawPileCount": 15,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "SUPERCRITICAL",
+          "Cost": 0
+        },
+        {
+          "Id": "SYNTHESIS",
+          "Cost": 2
+        },
+        {
+          "Id": "COMPILE_DRIVER",
+          "Cost": 1
+        },
+        {
+          "Id": "SWEEPING_BEAM",
+          "Cost": 1
+        },
+        {
+          "Id": "TURBO",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_SHIELD",
+          "Hp": 46,
+          "MaxHp": 55,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RampartPower",
+              "Amount": 25
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 41,
+          "MaxHp": 41,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 3,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY COMPILE_DRIVER -\u003E TURRET_OPERATOR",
+          "PLAY TURBO -\u003E self",
+          "PLAY SYNTHESIS -\u003E TURRET_OPERATOR",
+          "PLAY STRIKE_DEFECT -\u003E TURRET_OPERATOR",
+          "PLAY SUPERCRITICAL -\u003E self",
+          "PLAY DUALCAST -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 41,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=41 Blk=5 In=21 Cards=7 Score=2471 States=5005 Char=DEFECT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 5005
+      },
+      "ActionResults": [
+        {
+          "CardId": "COMPILE_DRIVER",
+          "Success": true,
+          "Target": "TURRET_OPERATOR"
+        },
+        {
+          "CardId": "TURBO",
+          "Success": true
+        },
+        {
+          "CardId": "SYNTHESIS",
+          "Success": true,
+          "Target": "TURRET_OPERATOR"
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": false,
+          "FailReason": "not in hand",
+          "Target": "TURRET_OPERATOR"
+        },
+        {
+          "CardId": "SUPERCRITICAL",
+          "Success": true
+        },
+        {
+          "CardId": "DUALCAST",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 988,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 7,
+      "Block": 0,
+      "Hp": 988,
+      "MaxHp": 999,
+      "DrawPileCount": 14,
+      "DiscardPileCount": 9,
+      "Hand": [
+        {
+          "Id": "SWEEPING_BEAM",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_SHIELD",
+          "Hp": 46,
+          "MaxHp": 55,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RampartPower",
+              "Amount": 25
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 29,
+          "MaxHp": 41,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "FreePowerPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=21 Cards=1 Score=-924 States=1 Char=DEFECT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 1
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 967,
+        "BlockAfter": 0,
+        "DamageTaken": 21,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 1,
+        "Issues": [
+          "ENERGY_WASTED: 3 energy left, 1/1 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 967,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "FLAK_CANNON",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_SHIELD",
+          "Hp": 43,
+          "MaxHp": 55,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RampartPower",
+              "Amount": 25
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 26,
+          "MaxHp": 41,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "FreePowerPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_DEFECT -\u003E TURRET_OPERATOR",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 20,
+        "Score": "Dmg=6 Blk=20 In=6 Cards=4 Score=978 States=117 Char=DEFECT Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 117
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "TURRET_OPERATOR"
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 967,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 967,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 15,
+      "Hand": [
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DARKNESS",
+          "Cost": 1
+        },
+        {
+          "Id": "LEAP",
+          "Cost": 1
+        },
+        {
+          "Id": "BALL_LIGHTNING",
+          "Cost": 1
+        },
+        {
+          "Id": "BALL_LIGHTNING",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_SHIELD",
+          "Hp": 43,
+          "MaxHp": 55,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RampartPower",
+              "Amount": 25
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 26,
+          "MaxHp": 41,
+          "Block": 0,
+          "IntentDamage": 20,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "FreePowerPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BALL_LIGHTNING -\u003E TURRET_OPERATOR",
+          "PLAY DARKNESS -\u003E self",
+          "PLAY BALL_LIGHTNING -\u003E TURRET_OPERATOR",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 26,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=26 Blk=0 In=26 Cards=4 Score=1537 States=195 Char=DEFECT Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 195
+      },
+      "ActionResults": [
+        {
+          "CardId": "BALL_LIGHTNING",
+          "Success": true,
+          "Target": "TURRET_OPERATOR"
+        },
+        {
+          "CardId": "DARKNESS",
+          "Success": true
+        },
+        {
+          "CardId": "BALL_LIGHTNING",
+          "Success": true,
+          "Target": "TURRET_OPERATOR"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 941,
+        "BlockAfter": 0,
+        "DamageTaken": 26,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 941,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 17,
+      "Hand": [
+        {
+          "Id": "BARRAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "UPROAR",
+          "Cost": 2
+        },
+        {
+          "Id": "CONSUMING_SHADOW",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_SHIELD",
+          "Hp": 35,
+          "MaxHp": 55,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RampartPower",
+              "Amount": 25
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 23,
+          "MaxHp": 41,
+          "Block": 0,
+          "IntentDamage": 20,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "FreePowerPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 1,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY CONSUMING_SHADOW -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=26 Cards=3 Score=61 States=28 Char=DEFECT Src=reflection: dmg=0 blk=0",
+        "StatesExplored": 28
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "CONSUMING_SHADOW",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 941,
+        "BlockAfter": 10,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 2,
+      "Block": 10,
+      "Hp": 941,
+      "MaxHp": 999,
+      "DrawPileCount": 19,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "BARRAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "UPROAR",
+          "Cost": 2
+        },
+        {
+          "Id": "DUALCAST",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_SHIELD",
+          "Hp": 27,
+          "MaxHp": 55,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RampartPower",
+              "Amount": 25
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 23,
+          "MaxHp": 41,
+          "Block": 7,
+          "IntentDamage": 20,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 2,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=26 Cards=1 Score=115 States=9 Char=DEFECT Src=fallback: dmg=16 blk=0",
+        "StatesExplored": 9
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 925,
+        "BlockAfter": 0,
+        "DamageTaken": 16,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 3 energy left, 3/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 925,
+      "MaxHp": 999,
+      "DrawPileCount": 15,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "SYNTHESIS",
+          "Cost": 2
+        },
+        {
+          "Id": "VOID",
+          "Cost": -1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_SHIELD",
+          "Hp": 7,
+          "MaxHp": 55,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RampartPower",
+              "Amount": 25
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 23,
+          "MaxHp": 41,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ConsumingShadowPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 2,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY SYNTHESIS -\u003E LIVING_SHIELD",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 14,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=14 Blk=5 In=6 Cards=3 Score=2005 States=20 Char=DEFECT Src=reflection: dmg=14 blk=0",
+        "StatesExplored": 20
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "SYNTHESIS",
+          "Success": false,
+          "FailReason": "not playable: EnergyCostTooHigh",
+          "Target": "LIVING_SHIELD"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 925,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 925,
+      "MaxHp": 999,
+      "DrawPileCount": 14,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "SYNTHESIS",
+          "Cost": 2
+        },
+        {
+          "Id": "VOID",
+          "Cost": -1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "LIVING_SHIELD",
+          "Hp": 7,
+          "MaxHp": 55,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RampartPower",
+              "Amount": 25
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 23,
+          "MaxHp": 41,
+          "Block": 25,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 1,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ConsumingShadowPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 2,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=6 Cards=2 Score=1238 States=3 Char=DEFECT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 925,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 2,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 1/2 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 925,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "COMPILE_DRIVER",
+          "Cost": 1
+        },
+        {
+          "Id": "FLAK_CANNON",
+          "Cost": 2
+        },
+        {
+          "Id": "SWEEPING_BEAM",
+          "Cost": 1
+        },
+        {
+          "Id": "BALL_LIGHTNING",
+          "Cost": 1
+        },
+        {
+          "Id": "BALL_LIGHTNING",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 23,
+          "MaxHp": 41,
+          "Block": 0,
+          "IntentDamage": 25,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ConsumingShadowPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 1,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY COMPILE_DRIVER -\u003E TURRET_OPERATOR",
+          "PLAY BALL_LIGHTNING -\u003E TURRET_OPERATOR",
+          "PLAY TURBO -\u003E self",
+          "PLAY STRIKE_DEFECT -\u003E TURRET_OPERATOR",
+          "PLAY BALL_LIGHTNING -\u003E TURRET_OPERATOR",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 27,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=27 Blk=0 In=25 Cards=6 Score=1736 States=406 Char=DEFECT Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 406
+      },
+      "ActionResults": [
+        {
+          "CardId": "COMPILE_DRIVER",
+          "Success": true,
+          "Target": "TURRET_OPERATOR"
+        },
+        {
+          "CardId": "BALL_LIGHTNING",
+          "Success": true,
+          "Target": "TURRET_OPERATOR"
+        },
+        {
+          "CardId": "TURBO",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": false,
+          "FailReason": "not in hand",
+          "Target": "TURRET_OPERATOR"
+        },
+        {
+          "CardId": "BALL_LIGHTNING",
+          "Success": true,
+          "Target": "TURRET_OPERATOR"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 925,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 12,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 925,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 13,
+      "Hand": [
+        {
+          "Id": "FLAK_CANNON",
+          "Cost": 2
+        },
+        {
+          "Id": "SWEEPING_BEAM",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TURRET_OPERATOR",
+          "Hp": 2,
+          "MaxHp": 41,
+          "Block": 0,
+          "IntentDamage": 25,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ConsumingShadowPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 1,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY FLAK_CANNON -\u003E TURRET_OPERATOR",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 2,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=2 Blk=0 In=25 Cards=2 Score=1520 States=2 Char=DEFECT Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 2
+      },
+      "ActionResults": [
+        {
+          "CardId": "FLAK_CANNON",
+          "Success": true,
+          "Target": "TURRET_OPERATOR"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 926,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

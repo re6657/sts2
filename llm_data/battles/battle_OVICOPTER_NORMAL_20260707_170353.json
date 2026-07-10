@@ -1,0 +1,2134 @@
+{
+  "EncounterName": "OVICOPTER_NORMAL",
+  "Floor": 23,
+  "Character": "DEFECT",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T17:03:29.4560554+08:00",
+  "EndTime": "2026-07-07T17:03:53.1672594+08:00",
+  "DurationSeconds": 23.711204,
+  "Victory": true,
+  "EndHp": 995,
+  "TotalTurns": 16,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 4,
+  "TotalEnemiesKilled": 5,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 16,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "OVERCLOCK",
+          "Cost": 0
+        },
+        {
+          "Id": "ECHO_FORM",
+          "Cost": 3
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "SUNDER",
+          "Cost": 3
+        },
+        {
+          "Id": "SUPERCRITICAL",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "OVICOPTER",
+          "Hp": 130,
+          "MaxHp": 130,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "POTION_OF_CAPACITY"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "USE_POTION POTION_OF_CAPACITY",
+          "PLAY ECHO_FORM -\u003E self",
+          "PLAY OVERCLOCK -\u003E self",
+          "PLAY STRIKE_DEFECT -\u003E OVICOPTER",
+          "PLAY SUPERCRITICAL -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=9 Blk=5 In=0 Cards=6 Score=1140 States=942 Char=DEFECT Src=reflection: dmg=0 blk=0",
+        "StatesExplored": 942
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 16,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "OVERCLOCK",
+          "Cost": 0
+        },
+        {
+          "Id": "ECHO_FORM",
+          "Cost": 3
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "SUNDER",
+          "Cost": 3
+        },
+        {
+          "Id": "SUPERCRITICAL",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "OVICOPTER",
+          "Hp": 130,
+          "MaxHp": 130,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 5,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY ECHO_FORM -\u003E self",
+          "PLAY SUPERCRITICAL -\u003E self",
+          "PLAY STRIKE_DEFECT -\u003E OVICOPTER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=9 Blk=5 In=0 Cards=4 Score=1155 States=219 Char=DEFECT Src=reflection: dmg=0 blk=0",
+        "StatesExplored": 219
+      },
+      "ActionResults": [
+        {
+          "CardId": "ECHO_FORM",
+          "Success": true
+        },
+        {
+          "CardId": "SUPERCRITICAL",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "OVICOPTER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 16,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "OVERCLOCK",
+          "Cost": 0
+        },
+        {
+          "Id": "SUNDER",
+          "Cost": 3
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "OVICOPTER",
+          "Hp": 121,
+          "MaxHp": 130,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "EchoFormPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 5,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY OVERCLOCK -\u003E self",
+          "PLAY SUNDER -\u003E OVICOPTER",
+          "PLAY TEMPEST -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 32,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=32 Blk=0 In=0 Cards=4 Score=762 States=12 Char=DEFECT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 12
+      },
+      "ActionResults": [
+        {
+          "CardId": "OVERCLOCK",
+          "Success": true
+        },
+        {
+          "CardId": "SUNDER",
+          "Success": true,
+          "Target": "OVICOPTER"
+        },
+        {
+          "CardId": "TEMPEST",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 2,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "BEAM_CELL",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "FIGHT_THROUGH",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOUGH_EGG",
+          "Hp": 18,
+          "MaxHp": 18,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HatchPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TOUGH_EGG",
+          "Hp": 15,
+          "MaxHp": 15,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HatchPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "TOUGH_EGG",
+          "Hp": 17,
+          "MaxHp": 17,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HatchPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 3,
+          "Id": "OVICOPTER",
+          "Hp": 83,
+          "MaxHp": 130,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "EchoFormPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 5,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY FIGHT_THROUGH -\u003E self",
+          "PLAY BEAM_CELL -\u003E TOUGH_EGG",
+          "PLAY STRIKE_DEFECT -\u003E TOUGH_EGG",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 17,
+        "EstimatedBlock": 18,
+        "Score": "Dmg=17 Blk=18 In=16 Cards=5 Score=2359 States=4942 Char=DEFECT Src=reflection: dmg=4 blk=0",
+        "StatesExplored": 4942
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "FIGHT_THROUGH",
+          "Success": true
+        },
+        {
+          "CardId": "BEAM_CELL",
+          "Success": true,
+          "Target": "TOUGH_EGG"
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "TOUGH_EGG"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 23,
+        "DamageTaken": 0,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 1,
+      "Block": 23,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 12,
+      "Hand": [
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOUGH_EGG",
+          "Hp": 18,
+          "MaxHp": 18,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HatchPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TOUGH_EGG",
+          "Hp": 17,
+          "MaxHp": 17,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HatchPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "OVICOPTER",
+          "Hp": 83,
+          "MaxHp": 130,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "EchoFormPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 5,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_DEFECT -\u003E OVICOPTER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=9 Blk=0 In=16 Cards=2 Score=1098 States=3 Char=DEFECT Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "OVICOPTER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 1,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 13,
+      "Hand": [
+        {
+          "Id": "DUALCAST",
+          "Cost": 1
+        },
+        {
+          "Id": "FOCUSED_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "COOLHEADED",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOUGH_EGG",
+          "Hp": 20,
+          "MaxHp": 20,
+          "Block": 0,
+          "IntentDamage": 4,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TOUGH_EGG",
+          "Hp": 21,
+          "MaxHp": 21,
+          "Block": 0,
+          "IntentDamage": 4,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "OVICOPTER",
+          "Hp": 74,
+          "MaxHp": 130,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "EchoFormPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 5,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY COOLHEADED -\u003E self",
+          "PLAY TURBO -\u003E self",
+          "PLAY FOCUSED_STRIKE -\u003E TOUGH_EGG",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY DUALCAST -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 21,
+        "EstimatedBlock": 18,
+        "Score": "Dmg=21 Blk=18 In=15 Cards=7 Score=2084 States=1130 Char=DEFECT Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 1130
+      },
+      "ActionResults": [
+        {
+          "CardId": "COOLHEADED",
+          "Success": true
+        },
+        {
+          "CardId": "TURBO",
+          "Success": true
+        },
+        {
+          "CardId": "FOCUSED_STRIKE",
+          "Success": true,
+          "Target": "TOUGH_EGG"
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "DUALCAST",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 13,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 2,
+      "Block": 13,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 20,
+      "Hand": [
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOUGH_EGG",
+          "Hp": 2,
+          "MaxHp": 20,
+          "Block": 0,
+          "IntentDamage": 4,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TOUGH_EGG",
+          "Hp": 12,
+          "MaxHp": 21,
+          "Block": 0,
+          "IntentDamage": 4,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "OVICOPTER",
+          "Hp": 74,
+          "MaxHp": 130,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "EchoFormPower",
+            "Amount": 1
+          },
+          {
+            "Name": "FocusPower",
+            "Amount": 1
+          },
+          {
+            "Name": "FocusedStrikePower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 5,
+        "Lightning": 1,
+        "Frost": 2,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 2,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=15 Cards=2 Score=4702 States=1 Char=DEFECT Src=reflection: dmg=0 blk=5",
+        "StatesExplored": 1
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 1,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 3,
+      "DiscardPileCount": 18,
+      "Hand": [
+        {
+          "Id": "ZAP",
+          "Cost": 1
+        },
+        {
+          "Id": "MOMENTUM_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOUGH_EGG",
+          "Hp": 12,
+          "MaxHp": 21,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "OVICOPTER",
+          "Hp": 74,
+          "MaxHp": 130,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 2,
+        "AllPowers": [
+          {
+            "Name": "EchoFormPower",
+            "Amount": 1
+          },
+          {
+            "Name": "VulnerablePower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 5,
+        "Lightning": 1,
+        "Frost": 2,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY ZAP -\u003E self",
+          "PLAY MOMENTUM_STRIKE -\u003E TOUGH_EGG",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 13,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=13 Blk=0 In=6 Cards=3 Score=2678 States=7 Char=DEFECT Src=fallback: dmg=3 blk=0",
+        "StatesExplored": 7
+      },
+      "ActionResults": [
+        {
+          "CardId": "ZAP",
+          "Success": true
+        },
+        {
+          "CardId": "MOMENTUM_STRIKE",
+          "Success": true,
+          "Target": "TOUGH_EGG"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 2,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 18,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "WOUND",
+          "Cost": -1
+        },
+        {
+          "Id": "OVERCLOCK",
+          "Cost": 0
+        },
+        {
+          "Id": "VOID",
+          "Cost": -1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "OVICOPTER",
+          "Hp": 74,
+          "MaxHp": 130,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 2,
+        "AllPowers": [
+          {
+            "Name": "EchoFormPower",
+            "Amount": 1
+          },
+          {
+            "Name": "VulnerablePower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 5,
+        "Lightning": 3,
+        "Frost": 2,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY OVERCLOCK -\u003E self",
+          "PLAY FOCUSED_STRIKE -\u003E OVICOPTER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=9 Blk=0 In=0 Cards=3 Score=1854 States=3 Char=DEFECT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "OVERCLOCK",
+          "Success": true
+        },
+        {
+          "CardId": "FOCUSED_STRIKE",
+          "Success": true,
+          "Target": "OVICOPTER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 1,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DUALCAST",
+          "Cost": 1
+        },
+        {
+          "Id": "SUNDER",
+          "Cost": 3
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "TEMPEST",
+          "Cost": -1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOUGH_EGG",
+          "Hp": 14,
+          "MaxHp": 14,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HatchPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TOUGH_EGG",
+          "Hp": 16,
+          "MaxHp": 16,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HatchPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "TOUGH_EGG",
+          "Hp": 18,
+          "MaxHp": 18,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HatchPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 3,
+          "Id": "OVICOPTER",
+          "Hp": 53,
+          "MaxHp": 130,
+          "Block": 0,
+          "IntentDamage": 24,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 1,
+        "AllPowers": [
+          {
+            "Name": "EchoFormPower",
+            "Amount": 1
+          },
+          {
+            "Name": "VulnerablePower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 5,
+        "Lightning": 3,
+        "Frost": 2,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DUALCAST -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY TEMPEST -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 14,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=14 Blk=5 In=24 Cards=4 Score=1124 States=72 Char=DEFECT Src=fallback: dmg=16 blk=0",
+        "StatesExplored": 72
+      },
+      "ActionResults": [
+        {
+          "CardId": "DUALCAST",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "TEMPEST",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 995,
+        "BlockAfter": 0,
+        "DamageTaken": 4,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 995,
+      "MaxHp": 999,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 12,
+      "Hand": [
+        {
+          "Id": "COOLHEADED",
+          "Cost": 1
+        },
+        {
+          "Id": "SWEEPING_BEAM",
+          "Cost": 1
+        },
+        {
+          "Id": "BEAM_CELL",
+          "Cost": 0
+        },
+        {
+          "Id": "FIGHT_THROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOUGH_EGG",
+          "Hp": 19,
+          "MaxHp": 19,
+          "Block": 0,
+          "IntentDamage": 4,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TOUGH_EGG",
+          "Hp": 19,
+          "MaxHp": 19,
+          "Block": 0,
+          "IntentDamage": 4,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "OVICOPTER",
+          "Hp": 44,
+          "MaxHp": 130,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "EchoFormPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 5,
+        "Lightning": 5,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_DEFECT -\u003E TOUGH_EGG",
+          "PLAY SWEEPING_BEAM -\u003E TOUGH_EGG",
+          "PLAY FIGHT_THROUGH -\u003E self",
+          "PLAY BEAM_CELL -\u003E TOUGH_EGG",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 31,
+        "EstimatedBlock": 13,
+        "Score": "Dmg=31 Blk=13 In=15 Cards=5 Score=3554 States=1270 Char=DEFECT Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 1270
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "TOUGH_EGG"
+        },
+        {
+          "CardId": "SWEEPING_BEAM",
+          "Success": true,
+          "Target": "TOUGH_EGG"
+        },
+        {
+          "CardId": "FIGHT_THROUGH",
+          "Success": true
+        },
+        {
+          "CardId": "BEAM_CELL",
+          "Success": false,
+          "FailReason": "TryManualPlay failed",
+          "Target": "TOUGH_EGG"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 995,
+        "BlockAfter": 17,
+        "DamageTaken": 0,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 12,
+      "Energy": 1,
+      "Block": 17,
+      "Hp": 995,
+      "MaxHp": 999,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 17,
+      "Hand": [
+        {
+          "Id": "COOLHEADED",
+          "Cost": 1
+        },
+        {
+          "Id": "BEAM_CELL",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOUGH_EGG",
+          "Hp": 13,
+          "MaxHp": 19,
+          "Block": 0,
+          "IntentDamage": 4,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "OVICOPTER",
+          "Hp": 38,
+          "MaxHp": 130,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "EchoFormPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 5,
+        "Lightning": 5,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BEAM_CELL -\u003E OVICOPTER",
+          "PLAY COOLHEADED -\u003E self",
+          "PLAY TURBO -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 4,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=4 Blk=5 In=11 Cards=4 Score=2514 States=28 Char=DEFECT Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 28
+      },
+      "ActionResults": [
+        {
+          "CardId": "BEAM_CELL",
+          "Success": true,
+          "Target": "OVICOPTER"
+        },
+        {
+          "CardId": "COOLHEADED",
+          "Success": true
+        },
+        {
+          "CardId": "TURBO",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 995,
+        "BlockAfter": 17,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 3,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 13,
+      "Energy": 2,
+      "Block": 17,
+      "Hp": 995,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 21,
+      "Hand": [
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOUGH_EGG",
+          "Hp": 13,
+          "MaxHp": 19,
+          "Block": 0,
+          "IntentDamage": 4,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "OVICOPTER",
+          "Hp": 26,
+          "MaxHp": 130,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "EchoFormPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 5,
+        "Lightning": 4,
+        "Frost": 1,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=11 Cards=2 Score=2227 States=1 Char=DEFECT Src=reflection: dmg=0 blk=5",
+        "StatesExplored": 1
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 995,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 1,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 14,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 995,
+      "MaxHp": 999,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 18,
+      "Hand": [
+        {
+          "Id": "WOUND",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOUGH_EGG",
+          "Hp": 13,
+          "MaxHp": 19,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "OVICOPTER",
+          "Hp": 14,
+          "MaxHp": 130,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 2,
+        "AllPowers": [
+          {
+            "Name": "EchoFormPower",
+            "Amount": 1
+          },
+          {
+            "Name": "VulnerablePower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 5,
+        "Lightning": 4,
+        "Frost": 1,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=0 Blk=8 In=6 Cards=2 Score=2230 States=7 Char=DEFECT Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 7
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 995,
+        "BlockAfter": 16,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 2,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 1/2 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 15,
+      "Energy": 3,
+      "Block": 16,
+      "Hp": 995,
+      "MaxHp": 999,
+      "DrawPileCount": 21,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "WOUND",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "WOUND",
+          "Cost": -1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOUGH_EGG",
+          "Hp": 13,
+          "MaxHp": 19,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "OVICOPTER",
+          "Hp": 14,
+          "MaxHp": 130,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 1,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "VulnerablePower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 2,
+        "AllPowers": [
+          {
+            "Name": "EchoFormPower",
+            "Amount": 1
+          },
+          {
+            "Name": "VulnerablePower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 5,
+        "Lightning": 4,
+        "Frost": 1,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=6 Cards=1 Score=2212 States=2 Char=DEFECT Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 2
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 995,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 1,
+        "Issues": [
+          "ENERGY_WASTED: 3 energy left, 1/1 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 16,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 995,
+      "MaxHp": 999,
+      "DrawPileCount": 16,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "OVERCLOCK",
+          "Cost": 0
+        },
+        {
+          "Id": "FOCUSED_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "COOLHEADED",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "TOUGH_EGG",
+          "Hp": 14,
+          "MaxHp": 14,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HatchPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "TOUGH_EGG",
+          "Hp": 16,
+          "MaxHp": 16,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HatchPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "TOUGH_EGG",
+          "Hp": 7,
+          "MaxHp": 19,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 3,
+          "Id": "TOUGH_EGG",
+          "Hp": 15,
+          "MaxHp": 15,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Summon",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HatchPower",
+              "Amount": 1
+            },
+            {
+              "Name": "MinionPower",
+              "Amount": 1
+            }
+          ]
+        },
+        {
+          "Index": 4,
+          "Id": "OVICOPTER",
+          "Hp": 8,
+          "MaxHp": 130,
+          "Block": 0,
+          "IntentDamage": 24,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 1,
+        "AllPowers": [
+          {
+            "Name": "EchoFormPower",
+            "Amount": 1
+          },
+          {
+            "Name": "VulnerablePower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 5,
+        "Lightning": 4,
+        "Frost": 1,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY OVERCLOCK -\u003E self",
+          "PLAY FOCUSED_STRIKE -\u003E TOUGH_EGG",
+          "PLAY STRIKE_DEFECT -\u003E OVICOPTER",
+          "PLAY DUALCAST -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 31,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=31 Blk=0 In=30 Cards=5 Score=4873 States=1952 Char=DEFECT Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 1952
+      },
+      "ActionResults": [
+        {
+          "CardId": "OVERCLOCK",
+          "Success": true
+        },
+        {
+          "CardId": "FOCUSED_STRIKE",
+          "Success": true,
+          "Target": "TOUGH_EGG"
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "OVICOPTER"
+        },
+        {
+          "CardId": "DUALCAST",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 995,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

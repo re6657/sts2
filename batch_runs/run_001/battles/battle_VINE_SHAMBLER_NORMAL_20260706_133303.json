@@ -1,0 +1,220 @@
+{
+  "EncounterName": "VINE_SHAMBLER_NORMAL",
+  "Floor": 5,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-06T13:33:01.0098604+08:00",
+  "EndTime": "2026-07-06T13:33:03.5241368+08:00",
+  "DurationSeconds": 2.5142764,
+  "Victory": true,
+  "EndHp": 74,
+  "TotalTurns": 2,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 12,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 80,
+      "MaxHp": 80,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "MIND_BLAST",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DISMANTLE",
+          "Cost": 1
+        },
+        {
+          "Id": "DOMINATE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "VINE_SHAMBLER",
+          "Hp": 61,
+          "MaxHp": 61,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DOMINATE -\u003E VINE_SHAMBLER",
+          "PLAY MIND_BLAST -\u003E VINE_SHAMBLER",
+          "PLAY DISMANTLE -\u003E VINE_SHAMBLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 17,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=17 Blk=5 In=12 Cards=4 Score=-424 States=85 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "DOMINATE",
+          "Success": true,
+          "Target": "VINE_SHAMBLER"
+        },
+        {
+          "CardId": "MIND_BLAST",
+          "Success": true,
+          "Target": "VINE_SHAMBLER"
+        },
+        {
+          "CardId": "DISMANTLE",
+          "Success": true,
+          "Target": "VINE_SHAMBLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 68,
+        "BlockAfter": 0,
+        "DamageTaken": 12,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 68,
+      "MaxHp": 80,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "VINE_SHAMBLER",
+          "Hp": 20,
+          "MaxHp": 61,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 1,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E VINE_SHAMBLER",
+          "PLAY CINDER -\u003E VINE_SHAMBLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 28,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=28 Blk=0 In=8 Cards=3 Score=1641 States=45 Char=IRONCLAD Src=reflection: dmg=19 blk=0",
+        "StatesExplored": 45
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "VINE_SHAMBLER"
+        },
+        {
+          "CardId": "CINDER",
+          "Success": true,
+          "Target": "VINE_SHAMBLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 74,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

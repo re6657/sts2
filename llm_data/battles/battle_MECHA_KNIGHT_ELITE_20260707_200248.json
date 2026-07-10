@@ -1,0 +1,2242 @@
+{
+  "EncounterName": "MECHA_KNIGHT_ELITE",
+  "Floor": 45,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T20:02:16.3888746+08:00",
+  "EndTime": "2026-07-07T20:02:48.0845134+08:00",
+  "DurationSeconds": 31.6956388,
+  "Victory": true,
+  "EndHp": 929,
+  "TotalTurns": 19,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 89,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 26,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "JUGGLING",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "OFFERING",
+          "Cost": 0
+        },
+        {
+          "Id": "TRUE_GRIT",
+          "Cost": 1
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MECHA_KNIGHT",
+          "Hp": 300,
+          "MaxHp": 300,
+          "Block": 0,
+          "IntentDamage": 25,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY OFFERING -\u003E self",
+          "PLAY TRUE_GRIT -\u003E self",
+          "PLAY BATTLE_TRANCE -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY ONE_TWO_PUNCH -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY JUGGLING -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 28,
+        "Score": "Dmg=0 Blk=28 In=25 Cards=8 Score=964 States=5007 Char=IRONCLAD Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 5007
+      },
+      "ActionResults": [
+        {
+          "CardId": "OFFERING",
+          "Success": true
+        },
+        {
+          "CardId": "TRUE_GRIT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 989,
+        "BlockAfter": 7,
+        "DamageTaken": 10,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 7,
+      "Hp": 989,
+      "MaxHp": 999,
+      "DrawPileCount": 23,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "JUGGLING",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "MOLTEN_FIST",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MECHA_KNIGHT",
+          "Hp": 300,
+          "MaxHp": 300,
+          "Block": 0,
+          "IntentDamage": 25,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY JUGGLING -\u003E self",
+          "PLAY MOLTEN_FIST -\u003E MECHA_KNIGHT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=10 Blk=8 In=25 Cards=4 Score=-236 States=85 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "JUGGLING",
+          "Success": true
+        },
+        {
+          "CardId": "MOLTEN_FIST",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 979,
+        "BlockAfter": 0,
+        "DamageTaken": 10,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 2/5 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 979,
+      "MaxHp": 999,
+      "DrawPileCount": 18,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        },
+        {
+          "Id": "ONE_TWO_PUNCH",
+          "Cost": 1
+        },
+        {
+          "Id": "DRUM_OF_BATTLE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MECHA_KNIGHT",
+          "Hp": 290,
+          "MaxHp": 300,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DRUM_OF_BATTLE -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E MECHA_KNIGHT",
+          "PLAY CINDER -\u003E MECHA_KNIGHT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 33,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=33 Blk=5 In=0 Cards=4 Score=559 States=109 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 109
+      },
+      "ActionResults": [
+        {
+          "CardId": "DRUM_OF_BATTLE",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        },
+        {
+          "CardId": "CINDER",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 979,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 979,
+      "MaxHp": 999,
+      "DrawPileCount": 16,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ONE_TWO_PUNCH",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MECHA_KNIGHT",
+          "Hp": 257,
+          "MaxHp": 300,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY PILLAGE -\u003E MECHA_KNIGHT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=6 Blk=0 In=0 Cards=2 Score=97 States=3 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "PILLAGE",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 979,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 3 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 979,
+      "MaxHp": 999,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 14,
+      "Hand": [
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MECHA_KNIGHT",
+          "Hp": 251,
+          "MaxHp": 300,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Defend",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BREAKTHROUGH -\u003E MECHA_KNIGHT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=9 Blk=0 In=0 Cards=2 Score=161 States=1 Char=IRONCLAD Src=reflection: dmg=9 blk=0",
+        "StatesExplored": 1
+      },
+      "ActionResults": [
+        {
+          "CardId": "BREAKTHROUGH",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 978,
+        "BlockAfter": 0,
+        "DamageTaken": 1,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 1,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 978,
+      "MaxHp": 999,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 14,
+      "Hand": [
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        },
+        {
+          "Id": "TAUNT",
+          "Cost": 1
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MECHA_KNIGHT",
+          "Hp": 242,
+          "MaxHp": 300,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Defend",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY THUNDERCLAP -\u003E MECHA_KNIGHT",
+          "PLAY POMMEL_STRIKE -\u003E MECHA_KNIGHT",
+          "PLAY HEADBUTT -\u003E MECHA_KNIGHT",
+          "PLAY TAUNT -\u003E MECHA_KNIGHT",
+          "PLAY ANGER -\u003E MECHA_KNIGHT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 52,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=52 Blk=8 In=0 Cards=6 Score=965 States=170 Char=IRONCLAD Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 170
+      },
+      "ActionResults": [
+        {
+          "CardId": "THUNDERCLAP",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        },
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        },
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 978,
+        "BlockAfter": 4,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 1,
+      "Block": 4,
+      "Hp": 978,
+      "MaxHp": 999,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 17,
+      "Hand": [
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "TAUNT",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "EXPECT_A_FIGHT",
+          "Cost": 2
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MECHA_KNIGHT",
+          "Hp": 213,
+          "MaxHp": 300,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Defend",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY POMMEL_STRIKE -\u003E MECHA_KNIGHT",
+          "PLAY ANGER -\u003E MECHA_KNIGHT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 18,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=18 Blk=0 In=0 Cards=3 Score=307 States=7 Char=IRONCLAD Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 7
+      },
+      "ActionResults": [
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 978,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 3 energy left, 2/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 978,
+      "MaxHp": 999,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 28,
+      "Hand": [
+        {
+          "Id": "DEMON_FORM",
+          "Cost": 3
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ARMAMENTS",
+          "Cost": 1
+        },
+        {
+          "Id": "NOT_YET",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MECHA_KNIGHT",
+          "Hp": 195,
+          "MaxHp": 300,
+          "Block": 15,
+          "IntentDamage": 40,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 5,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 2
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 5
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY ARMAMENTS -\u003E self",
+          "PLAY NOT_YET -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 18,
+        "Score": "Dmg=0 Blk=18 In=40 Cards=4 Score=-2446 States=47 Char=IRONCLAD Src=reflection: dmg=0 blk=5",
+        "StatesExplored": 47
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "ARMAMENTS",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 978,
+        "BlockAfter": 13,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 3,
+      "Block": 13,
+      "Hp": 978,
+      "MaxHp": 999,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 30,
+      "Hand": [
+        {
+          "Id": "DEMON_FORM",
+          "Cost": 3
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "NOT_YET",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MECHA_KNIGHT",
+          "Hp": 195,
+          "MaxHp": 300,
+          "Block": 15,
+          "IntentDamage": 40,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 5,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 2
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 5
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEMON_FORM -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=40 Cards=2 Score=-2629 States=5 Char=IRONCLAD Src=enchant: dmg=0 blk=0 mult=1x enchant=ENCHANTMENT.SWIFT",
+        "StatesExplored": 5
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEMON_FORM",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 951,
+        "BlockAfter": 0,
+        "DamageTaken": 27,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 951,
+      "MaxHp": 999,
+      "DrawPileCount": 23,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "TRUE_GRIT",
+          "Cost": 1
+        },
+        {
+          "Id": "TAUNT",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MECHA_KNIGHT",
+          "Hp": 195,
+          "MaxHp": 300,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 5,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 2
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 5
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY TRUE_GRIT -\u003E self",
+          "PLAY PILLAGE -\u003E MECHA_KNIGHT",
+          "PLAY TAUNT -\u003E MECHA_KNIGHT",
+          "PLAY HEADBUTT -\u003E MECHA_KNIGHT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 19,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=19 Blk=15 In=0 Cards=5 Score=555 States=64 Char=IRONCLAD Src=reflection: dmg=0 blk=7",
+        "StatesExplored": 64
+      },
+      "ActionResults": [
+        {
+          "CardId": "TRUE_GRIT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 951,
+        "BlockAfter": 7,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 4,
+      "Block": 7,
+      "Hp": 951,
+      "MaxHp": 999,
+      "DrawPileCount": 23,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        },
+        {
+          "Id": "TAUNT",
+          "Cost": 1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MECHA_KNIGHT",
+          "Hp": 195,
+          "MaxHp": 300,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 5,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 2
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 5
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 3,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY TAUNT -\u003E MECHA_KNIGHT",
+          "PLAY HEADBUTT -\u003E MECHA_KNIGHT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 18,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=18 Blk=8 In=0 Cards=3 Score=462 States=4 Char=IRONCLAD Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "TAUNT",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        },
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 951,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 2,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 12,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 951,
+      "MaxHp": 999,
+      "DrawPileCount": 23,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "NOT_YET",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MECHA_KNIGHT",
+          "Hp": 183,
+          "MaxHp": 300,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Defend",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 5,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 5
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 3,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY NOT_YET -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=0 Cards=2 Score=66 States=1 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 1
+      },
+      "ActionResults": [
+        {
+          "CardId": "NOT_YET",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 964,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 1,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 13,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 964,
+      "MaxHp": 999,
+      "DrawPileCount": 19,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "CINDER",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MECHA_KNIGHT",
+          "Hp": 183,
+          "MaxHp": 300,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Defend",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 5,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 5
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 6,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 6
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY CINDER -\u003E MECHA_KNIGHT",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 30,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=30 Blk=8 In=0 Cards=3 Score=544 States=29 Char=IRONCLAD Src=reflection: dmg=16 blk=0",
+        "StatesExplored": 29
+      },
+      "ActionResults": [
+        {
+          "CardId": "CINDER",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 964,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 2/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 14,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 964,
+      "MaxHp": 999,
+      "DrawPileCount": 14,
+      "DiscardPileCount": 14,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ONE_TWO_PUNCH",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MECHA_KNIGHT",
+          "Hp": 153,
+          "MaxHp": 300,
+          "Block": 15,
+          "IntentDamage": 45,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 10,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 10
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 6,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 6
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_IRONCLAD -\u003E MECHA_KNIGHT",
+          "PLAY ONE_TWO_PUNCH -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 13,
+        "Score": "Dmg=0 Blk=13 In=45 Cards=4 Score=-4049 States=15 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 15
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        },
+        {
+          "CardId": "ONE_TWO_PUNCH",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 923,
+        "BlockAfter": 0,
+        "DamageTaken": 41,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 3,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 15,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 923,
+      "MaxHp": 999,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 19,
+      "Hand": [
+        {
+          "Id": "POMMEL_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DRUM_OF_BATTLE",
+          "Cost": 1
+        },
+        {
+          "Id": "ARMAMENTS",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MECHA_KNIGHT",
+          "Hp": 150,
+          "MaxHp": 300,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 10,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 10
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 9,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 9
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY POMMEL_STRIKE -\u003E MECHA_KNIGHT",
+          "PLAY ARMAMENTS -\u003E self",
+          "PLAY DRUM_OF_BATTLE -\u003E self",
+          "PLAY SETUP_STRIKE -\u003E MECHA_KNIGHT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 35,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=35 Blk=10 In=0 Cards=5 Score=741 States=290 Char=IRONCLAD Src=reflection: dmg=0 blk=5",
+        "StatesExplored": 290
+      },
+      "ActionResults": [
+        {
+          "CardId": "POMMEL_STRIKE",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        },
+        {
+          "CardId": "ARMAMENTS",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 923,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 16,
+      "Energy": 3,
+      "Block": 5,
+      "Hp": 923,
+      "MaxHp": 999,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 21,
+      "Hand": [
+        {
+          "Id": "SETUP_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DRUM_OF_BATTLE",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "TWIN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MECHA_KNIGHT",
+          "Hp": 128,
+          "MaxHp": 300,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "StatusCard",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 10,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 10
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 12,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 12
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY ANGER -\u003E MECHA_KNIGHT",
+          "PLAY DRUM_OF_BATTLE -\u003E self",
+          "PLAY PILLAGE -\u003E MECHA_KNIGHT",
+          "PLAY SETUP_STRIKE -\u003E MECHA_KNIGHT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 62,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=62 Blk=5 In=0 Cards=5 Score=1096 States=181 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 181
+      },
+      "ActionResults": [
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        },
+        {
+          "CardId": "DRUM_OF_BATTLE",
+          "Success": true
+        },
+        {
+          "CardId": "PILLAGE",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        },
+        {
+          "CardId": "SETUP_STRIKE",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 923,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 1/5 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 17,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 923,
+      "MaxHp": 999,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 32,
+      "Hand": [
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MECHA_KNIGHT",
+          "Hp": 66,
+          "MaxHp": 300,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Defend",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 10,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 10
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 12,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 12
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY ANGER -\u003E MECHA_KNIGHT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 20,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=20 Blk=0 In=0 Cards=2 Score=-656 States=1 Char=IRONCLAD Src=reflection: dmg=20 blk=0",
+        "StatesExplored": 1
+      },
+      "ActionResults": [
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 923,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 4,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 1,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 18,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 923,
+      "MaxHp": 999,
+      "DrawPileCount": 20,
+      "DiscardPileCount": 12,
+      "Hand": [
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        },
+        {
+          "Id": "EXPECT_A_FIGHT",
+          "Cost": 2
+        },
+        {
+          "Id": "HEADBUTT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MECHA_KNIGHT",
+          "Hp": 66,
+          "MaxHp": 300,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Defend",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 10,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 10
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 12,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 12
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY HEADBUTT -\u003E MECHA_KNIGHT",
+          "PLAY EXPECT_A_FIGHT -\u003E self",
+          "PLAY ANGER -\u003E MECHA_KNIGHT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 44,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=44 Blk=5 In=0 Cards=4 Score=336 States=15 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 15
+      },
+      "ActionResults": [
+        {
+          "CardId": "HEADBUTT",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 923,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 3,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 19,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 923,
+      "MaxHp": 999,
+      "DrawPileCount": 31,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "BURN",
+          "Cost": -1
+        },
+        {
+          "Id": "EXPECT_A_FIGHT",
+          "Cost": 2
+        },
+        {
+          "Id": "BREAKTHROUGH",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MECHA_KNIGHT",
+          "Hp": 16,
+          "MaxHp": 300,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Defend",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 10,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "ArtifactPower",
+              "Amount": 1
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 10
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 15,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "JugglingPower",
+            "Amount": 1
+          },
+          {
+            "Name": "DemonFormPower",
+            "Amount": 3
+          },
+          {
+            "Name": "StrengthPower",
+            "Amount": 15
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY EXPECT_A_FIGHT -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E MECHA_KNIGHT",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 24,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=24 Blk=5 In=0 Cards=3 Score=3793 States=5 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 5
+      },
+      "ActionResults": [
+        {
+          "CardId": "EXPECT_A_FIGHT",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "MECHA_KNIGHT"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 929,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

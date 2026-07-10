@@ -1,0 +1,1501 @@
+{
+  "EncounterName": "CORPSE_SLUGS_WEAK",
+  "Floor": 2,
+  "Character": "SILENT",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-08T21:30:46.3295706+08:00",
+  "EndTime": "2026-07-08T21:30:55.6328972+08:00",
+  "DurationSeconds": 9.3033266,
+  "Victory": false,
+  "EndHp": 0,
+  "TotalTurns": 13,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 70,
+  "TotalEnemiesKilled": 1,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 70,
+      "MaxHp": 70,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "NEUTRALIZE",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CORPSE_SLUG",
+          "Hp": 26,
+          "MaxHp": 26,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RavenousPower",
+              "Amount": 4
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "CORPSE_SLUG",
+          "Hp": 25,
+          "MaxHp": 25,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RavenousPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY NEUTRALIZE -\u003E CORPSE_SLUG",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 3,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=3 Blk=15 In=14 Cards=5 Score=138 States=531 Char=SILENT Src=reflection: dmg=3 blk=0",
+        "StatesExplored": 531
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 70,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 70,
+      "MaxHp": 70,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "NEUTRALIZE",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SURVIVOR",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CORPSE_SLUG",
+          "Hp": 26,
+          "MaxHp": 26,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RavenousPower",
+              "Amount": 4
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "CORPSE_SLUG",
+          "Hp": 25,
+          "MaxHp": 25,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RavenousPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "PLAY NEUTRALIZE -\u003E CORPSE_SLUG",
+          "PLAY SURVIVOR -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=9 Blk=8 In=14 Cards=4 Score=176 States=228 Char=SILENT Src=reflection: dmg=3 blk=0",
+        "StatesExplored": 228
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_SILENT",
+          "Success": true,
+          "Target": "CORPSE_SLUG"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 70,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 6,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 70,
+      "MaxHp": 70,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "NEUTRALIZE",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SURVIVOR",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CORPSE_SLUG",
+          "Hp": 20,
+          "MaxHp": 26,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RavenousPower",
+              "Amount": 4
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "CORPSE_SLUG",
+          "Hp": 25,
+          "MaxHp": 25,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RavenousPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SURVIVOR -\u003E self",
+          "PLAY NEUTRALIZE -\u003E CORPSE_SLUG",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 3,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=3 Blk=8 In=14 Cards=3 Score=128 States=22 Char=SILENT Src=reflection: dmg=3 blk=0",
+        "StatesExplored": 22
+      },
+      "ActionResults": [
+        {
+          "CardId": "SURVIVOR",
+          "Success": true
+        },
+        {
+          "CardId": "NEUTRALIZE",
+          "Success": true,
+          "Target": "CORPSE_SLUG"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 70,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 3/5 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 70,
+      "MaxHp": 70,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CORPSE_SLUG",
+          "Hp": 17,
+          "MaxHp": 26,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RavenousPower",
+              "Amount": 4
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "CORPSE_SLUG",
+          "Hp": 25,
+          "MaxHp": 25,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RavenousPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 18,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=18 Blk=0 In=8 Cards=4 Score=1274 States=409 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 409
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_SILENT",
+          "Success": true,
+          "Target": "CORPSE_SLUG"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 70,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 70,
+      "MaxHp": 70,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CORPSE_SLUG",
+          "Hp": 11,
+          "MaxHp": 26,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RavenousPower",
+              "Amount": 4
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "CORPSE_SLUG",
+          "Hp": 25,
+          "MaxHp": 25,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RavenousPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=12 Blk=0 In=8 Cards=3 Score=1226 States=43 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 43
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_SILENT",
+          "Success": true,
+          "Target": "CORPSE_SLUG"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 70,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 70,
+      "MaxHp": 70,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 9,
+      "Hand": [
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CORPSE_SLUG",
+          "Hp": 5,
+          "MaxHp": 26,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RavenousPower",
+              "Amount": 4
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "CORPSE_SLUG",
+          "Hp": 25,
+          "MaxHp": 25,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RavenousPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=6 Blk=0 In=8 Cards=2 Score=1178 States=5 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 5
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_SILENT",
+          "Success": true,
+          "Target": "CORPSE_SLUG"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 70,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 70,
+      "MaxHp": 70,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "NEUTRALIZE",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CORPSE_SLUG",
+          "Hp": 25,
+          "MaxHp": 25,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RavenousPower",
+              "Amount": 4
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "PLAY NEUTRALIZE -\u003E CORPSE_SLUG",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 15,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=15 Blk=5 In=0 Cards=5 Score=166 States=181 Char=SILENT Src=reflection: dmg=3 blk=0",
+        "StatesExplored": 181
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_SILENT",
+          "Success": true,
+          "Target": "CORPSE_SLUG"
+        },
+        {
+          "CardId": "NEUTRALIZE",
+          "Success": true,
+          "Target": "CORPSE_SLUG"
+        },
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 70,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 70,
+      "MaxHp": 70,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 3,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CORPSE_SLUG",
+          "Hp": 16,
+          "MaxHp": 25,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 1,
+          "StrengthStacks": 4,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RavenousPower",
+              "Amount": 4
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            },
+            {
+              "Name": "WeakPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=6 Blk=0 In=0 Cards=2 Score=76 States=2 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 2
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_SILENT",
+          "Success": true,
+          "Target": "CORPSE_SLUG"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 70,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 2,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 1/2 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 70,
+      "MaxHp": 70,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CORPSE_SLUG",
+          "Hp": 10,
+          "MaxHp": 25,
+          "Block": 0,
+          "IntentDamage": 14,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RavenousPower",
+              "Amount": 4
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 2,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "FrailPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 3,
+        "Score": "Dmg=12 Blk=3 In=14 Cards=4 Score=1224 States=67 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 67
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_SILENT",
+          "Success": true,
+          "Target": "CORPSE_SLUG"
+        },
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 70,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 70,
+      "MaxHp": 70,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CORPSE_SLUG",
+          "Hp": 10,
+          "MaxHp": 25,
+          "Block": 0,
+          "IntentDamage": 14,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RavenousPower",
+              "Amount": 4
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 2,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "FrailPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=12 Blk=0 In=14 Cards=3 Score=1221 States=25 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 25
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_SILENT",
+          "Success": true,
+          "Target": "CORPSE_SLUG"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 70,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 70,
+      "MaxHp": 70,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CORPSE_SLUG",
+          "Hp": 10,
+          "MaxHp": 25,
+          "Block": 0,
+          "IntentDamage": 14,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RavenousPower",
+              "Amount": 4
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 2,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "FrailPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=12 Blk=0 In=14 Cards=3 Score=1221 States=25 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 25
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_SILENT",
+          "Success": true,
+          "Target": "CORPSE_SLUG"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 70,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 12,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 70,
+      "MaxHp": 70,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CORPSE_SLUG",
+          "Hp": 10,
+          "MaxHp": 25,
+          "Block": 0,
+          "IntentDamage": 14,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RavenousPower",
+              "Amount": 4
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 2,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "FrailPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=12 Blk=0 In=14 Cards=3 Score=1221 States=25 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 25
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_SILENT",
+          "Success": true,
+          "Target": "CORPSE_SLUG"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 70,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 13,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 70,
+      "MaxHp": 70,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "CORPSE_SLUG",
+          "Hp": 10,
+          "MaxHp": 25,
+          "Block": 0,
+          "IntentDamage": 14,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "RavenousPower",
+              "Amount": 4
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 2,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "FrailPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "PLAY STRIKE_SILENT -\u003E CORPSE_SLUG",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=12 Blk=0 In=14 Cards=3 Score=1221 States=25 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 25
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_SILENT",
+          "Success": true,
+          "Target": "CORPSE_SLUG"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 0,
+        "BlockAfter": 0,
+        "DamageTaken": 70,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

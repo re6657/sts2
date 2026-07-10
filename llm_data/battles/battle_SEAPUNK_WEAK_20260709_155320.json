@@ -1,0 +1,611 @@
+{
+  "EncounterName": "SEAPUNK_WEAK",
+  "Floor": 2,
+  "Character": "SILENT",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-09T15:52:53.3911092+08:00",
+  "EndTime": "2026-07-09T15:53:20.4756287+08:00",
+  "DurationSeconds": 27.0845195,
+  "Victory": false,
+  "EndHp": 0,
+  "TotalTurns": 6,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 70,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 70,
+      "MaxHp": 70,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "NEUTRALIZE",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SEAPUNK",
+          "Hp": 96,
+          "MaxHp": 96,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY NEUTRALIZE -\u003E SEAPUNK",
+          "PLAY STRIKE_SILENT -\u003E SEAPUNK",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=9 Blk=10 In=11 Cards=5 Score=152 States=181 Char=SILENT Src=reflection: dmg=3 blk=0",
+        "StatesExplored": 181
+      },
+      "ActionResults": [
+        {
+          "CardId": "NEUTRALIZE",
+          "Success": true,
+          "Target": "SEAPUNK"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 70,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 70,
+      "MaxHp": 70,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "NEUTRALIZE",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SEAPUNK",
+          "Hp": 96,
+          "MaxHp": 96,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY NEUTRALIZE -\u003E SEAPUNK",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY STRIKE_SILENT -\u003E SEAPUNK",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=9 Blk=10 In=11 Cards=5 Score=152 States=739 Char=SILENT Src=reflection: dmg=3 blk=0",
+        "StatesExplored": 739
+      },
+      "ActionResults": [
+        {
+          "CardId": "NEUTRALIZE",
+          "Success": true,
+          "Target": "SEAPUNK"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 70,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 7,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 70,
+      "MaxHp": 70,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SEAPUNK",
+          "Hp": 80,
+          "MaxHp": 96,
+          "Block": 0,
+          "IntentDamage": 11,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=0 Blk=15 In=11 Cards=4 Score=81 States=156 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 156
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 70,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 6,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 70,
+      "MaxHp": 70,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SEAPUNK",
+          "Hp": 74,
+          "MaxHp": 96,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 2,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "WeakPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_SILENT -\u003E SEAPUNK",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=6 Blk=10 In=8 Cards=4 Score=139 States=156 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 156
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_SILENT",
+          "Success": true,
+          "Target": "SEAPUNK"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 70,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 6,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 70,
+      "MaxHp": 70,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SEAPUNK",
+          "Hp": 74,
+          "MaxHp": 96,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 2,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "WeakPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY STRIKE_SILENT -\u003E SEAPUNK",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=6 Blk=5 In=8 Cards=3 Score=138 States=25 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 25
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 70,
+        "BlockAfter": 10,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 0,
+      "Block": 10,
+      "Hp": 70,
+      "MaxHp": 70,
+      "DrawPileCount": 5,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SEAPUNK",
+          "Hp": 68,
+          "MaxHp": 96,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 2,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "WeakPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=8 Cards=1 Score=57 States=0 Char=SILENT Src=none",
+        "StatesExplored": 0
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 0,
+        "BlockAfter": 0,
+        "DamageTaken": 70,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,945 @@
+{
+  "EncounterName": "GLOBE_HEAD_NORMAL",
+  "Floor": 46,
+  "Character": "DEFECT",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-07T19:11:47.4146029+08:00",
+  "EndTime": "2026-07-07T19:12:01.7748117+08:00",
+  "DurationSeconds": 14.3602088,
+  "Victory": true,
+  "EndHp": 931,
+  "TotalTurns": 8,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 68,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 10,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 28,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "BOOT_SEQUENCE",
+          "Cost": 0
+        },
+        {
+          "Id": "SUPERCRITICAL",
+          "Cost": 0
+        },
+        {
+          "Id": "LEAP",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GLOBE_HEAD",
+          "Hp": 148,
+          "MaxHp": 148,
+          "Block": 0,
+          "IntentDamage": 13,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "GalvanicPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SUPERCRITICAL -\u003E self",
+          "PLAY BOOT_SEQUENCE -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 33,
+        "Score": "Dmg=0 Blk=33 In=13 Cards=3 Score=584 States=15 Char=DEFECT Src=reflection: dmg=0 blk=28",
+        "StatesExplored": 15
+      },
+      "ActionResults": [
+        {
+          "CardId": "SUPERCRITICAL",
+          "Success": true
+        },
+        {
+          "CardId": "BOOT_SEQUENCE",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 38,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 11,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 11 energy left, 1/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 11,
+      "Block": 38,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 28,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "LEAP",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GLOBE_HEAD",
+          "Hp": 148,
+          "MaxHp": 148,
+          "Block": 0,
+          "IntentDamage": 13,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "GalvanicPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY LEAP -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=0 Blk=10 In=13 Cards=2 Score=594 States=1 Char=DEFECT Src=reflection: dmg=0 blk=10",
+        "StatesExplored": 1
+      },
+      "ActionResults": [
+        {
+          "CardId": "LEAP",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 999,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 1,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 999,
+      "MaxHp": 999,
+      "DrawPileCount": 23,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "CLAW",
+          "Cost": 0
+        },
+        {
+          "Id": "TURBO",
+          "Cost": 0
+        },
+        {
+          "Id": "FLAK_CANNON",
+          "Cost": 2
+        },
+        {
+          "Id": "SYNTHESIS",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GLOBE_HEAD",
+          "Hp": 145,
+          "MaxHp": 148,
+          "Block": 0,
+          "IntentDamage": 18,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "GalvanicPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 2,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          },
+          {
+            "Name": "FrailPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY TURBO -\u003E self",
+          "PLAY STRIKE_DEFECT -\u003E GLOBE_HEAD",
+          "PLAY SYNTHESIS -\u003E GLOBE_HEAD",
+          "PLAY CLAW -\u003E GLOBE_HEAD",
+          "PLAY FLAK_CANNON -\u003E GLOBE_HEAD",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 40,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=40 Blk=0 In=18 Cards=6 Score=-731 States=229 Char=DEFECT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 229
+      },
+      "ActionResults": [
+        {
+          "CardId": "TURBO",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "GLOBE_HEAD"
+        },
+        {
+          "CardId": "SYNTHESIS",
+          "Success": true,
+          "Target": "GLOBE_HEAD"
+        },
+        {
+          "CardId": "CLAW",
+          "Success": true,
+          "Target": "GLOBE_HEAD"
+        },
+        {
+          "CardId": "FLAK_CANNON",
+          "Success": true,
+          "Target": "GLOBE_HEAD"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 981,
+        "BlockAfter": 0,
+        "DamageTaken": 18,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 981,
+      "MaxHp": 999,
+      "DrawPileCount": 18,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "COMPILE_DRIVER",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "UPROAR",
+          "Cost": 2
+        },
+        {
+          "Id": "BARRAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GLOBE_HEAD",
+          "Hp": 102,
+          "MaxHp": 148,
+          "Block": 0,
+          "IntentDamage": 16,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "GalvanicPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 1,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          },
+          {
+            "Name": "FrailPower",
+            "Amount": 1
+          },
+          {
+            "Name": "FreePowerPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY COMPILE_DRIVER -\u003E GLOBE_HEAD",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 7,
+        "EstimatedBlock": 6,
+        "Score": "Dmg=7 Blk=6 In=16 Cards=4 Score=-309 States=71 Char=DEFECT Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 71
+      },
+      "ActionResults": [
+        {
+          "CardId": "COMPILE_DRIVER",
+          "Success": true,
+          "Target": "GLOBE_HEAD"
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 978,
+        "BlockAfter": 0,
+        "DamageTaken": 3,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 978,
+      "MaxHp": 999,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 12,
+      "Hand": [
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DOUBLE_ENERGY",
+          "Cost": 1
+        },
+        {
+          "Id": "SCAVENGE",
+          "Cost": 1
+        },
+        {
+          "Id": "FTL",
+          "Cost": 0
+        },
+        {
+          "Id": "BALL_LIGHTNING",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GLOBE_HEAD",
+          "Hp": 92,
+          "MaxHp": 148,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "GalvanicPower",
+              "Amount": 6
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          },
+          {
+            "Name": "FreePowerPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 1,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY FTL -\u003E GLOBE_HEAD",
+          "PLAY BALL_LIGHTNING -\u003E GLOBE_HEAD",
+          "PLAY SCAVENGE -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 11,
+        "Score": "Dmg=12 Blk=11 In=15 Cards=5 Score=501 States=266 Char=DEFECT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 266
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "FTL",
+          "Success": true,
+          "Target": "GLOBE_HEAD"
+        },
+        {
+          "CardId": "BALL_LIGHTNING",
+          "Success": true,
+          "Target": "GLOBE_HEAD"
+        },
+        {
+          "CardId": "SCAVENGE",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 969,
+        "BlockAfter": 0,
+        "DamageTaken": 9,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 1/5 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 5,
+      "Block": 0,
+      "Hp": 969,
+      "MaxHp": 999,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 17,
+      "Hand": [
+        {
+          "Id": "MOMENTUM_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "ZAP",
+          "Cost": 1
+        },
+        {
+          "Id": "BALL_LIGHTNING",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "SHAME",
+          "Cost": -1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GLOBE_HEAD",
+          "Hp": 74,
+          "MaxHp": 148,
+          "Block": 0,
+          "IntentDamage": 24,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "GalvanicPower",
+              "Amount": 6
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 2,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          },
+          {
+            "Name": "FreePowerPower",
+            "Amount": 1
+          },
+          {
+            "Name": "FrailPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 2,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY ZAP -\u003E self",
+          "PLAY MOMENTUM_STRIKE -\u003E GLOBE_HEAD",
+          "PLAY DEFEND_DEFECT -\u003E self",
+          "PLAY BALL_LIGHTNING -\u003E GLOBE_HEAD",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 25,
+        "EstimatedBlock": 3,
+        "Score": "Dmg=25 Blk=3 In=24 Cards=5 Score=-533 States=64 Char=DEFECT Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 64
+      },
+      "ActionResults": [
+        {
+          "CardId": "ZAP",
+          "Success": true
+        },
+        {
+          "CardId": "MOMENTUM_STRIKE",
+          "Success": true,
+          "Target": "GLOBE_HEAD"
+        },
+        {
+          "CardId": "DEFEND_DEFECT",
+          "Success": true
+        },
+        {
+          "CardId": "BALL_LIGHTNING",
+          "Success": true,
+          "Target": "GLOBE_HEAD"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 954,
+        "BlockAfter": 0,
+        "DamageTaken": 15,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 954,
+      "MaxHp": 999,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 22,
+      "Hand": [
+        {
+          "Id": "SMOKESTACK",
+          "Cost": 1
+        },
+        {
+          "Id": "TURBO",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_DEFECT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEBT",
+          "Cost": -1
+        },
+        {
+          "Id": "SWEEPING_BEAM",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GLOBE_HEAD",
+          "Hp": 40,
+          "MaxHp": 148,
+          "Block": 0,
+          "IntentDamage": 18,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "GalvanicPower",
+              "Amount": 6
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 2,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          },
+          {
+            "Name": "FreePowerPower",
+            "Amount": 1
+          },
+          {
+            "Name": "FrailPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 3,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY TURBO -\u003E self",
+          "PLAY SWEEPING_BEAM -\u003E GLOBE_HEAD",
+          "PLAY SMOKESTACK -\u003E self",
+          "PLAY STRIKE_DEFECT -\u003E GLOBE_HEAD",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=12 Blk=0 In=18 Cards=5 Score=256 States=64 Char=DEFECT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 64
+      },
+      "ActionResults": [
+        {
+          "CardId": "TURBO",
+          "Success": true
+        },
+        {
+          "CardId": "SWEEPING_BEAM",
+          "Success": true,
+          "Target": "GLOBE_HEAD"
+        },
+        {
+          "CardId": "SMOKESTACK",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_DEFECT",
+          "Success": true,
+          "Target": "GLOBE_HEAD"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 948,
+        "BlockAfter": 0,
+        "DamageTaken": 6,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 948,
+      "MaxHp": 999,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 26,
+      "Hand": [
+        {
+          "Id": "DEBT",
+          "Cost": -1
+        },
+        {
+          "Id": "DARKNESS",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GLOBE_HEAD",
+          "Hp": 28,
+          "MaxHp": 148,
+          "Block": 0,
+          "IntentDamage": 18,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "GalvanicPower",
+              "Amount": 6
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 1,
+        "Weak": 0,
+        "Frail": 2,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "DexterityPower",
+            "Amount": 1
+          },
+          {
+            "Name": "FrailPower",
+            "Amount": 2
+          },
+          {
+            "Name": "SmokestackPower",
+            "Amount": 5
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 3,
+        "Lightning": 3,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=18 Cards=1 Score=-449 States=1 Char=DEFECT Src=fallback: dmg=6 blk=0",
+        "StatesExplored": 1
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 931,
+        "BlockAfter": 0,
+        "DamageTaken": 17,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

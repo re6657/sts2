@@ -1,0 +1,1214 @@
+{
+  "EncounterName": "EXOSKELETONS_WEAK",
+  "Floor": 23,
+  "Character": "IRONCLAD",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-06T16:59:29.8739225+08:00",
+  "EndTime": "2026-07-06T16:59:44.9321241+08:00",
+  "DurationSeconds": 15.0582016,
+  "Victory": true,
+  "EndHp": 51,
+  "TotalTurns": 9,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 20,
+  "TotalEnemiesKilled": 2,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 65,
+      "MaxHp": 80,
+      "DrawPileCount": 17,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "RUPTURE",
+          "Cost": 1
+        },
+        {
+          "Id": "ASHEN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "BURNING_PACT",
+          "Cost": 1
+        },
+        {
+          "Id": "HEMOKINESIS",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EXOSKELETON",
+          "Hp": 27,
+          "MaxHp": 27,
+          "Block": 0,
+          "IntentDamage": 3,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "EXOSKELETON",
+          "Hp": 26,
+          "MaxHp": 26,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "EXOSKELETON",
+          "Hp": 28,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "TOUCH_OF_INSANITY",
+        "POTION_SHAPED_ROCK"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY RUPTURE -\u003E self",
+          "PLAY BURNING_PACT -\u003E self",
+          "PLAY HEMOKINESIS -\u003E EXOSKELETON",
+          "USE_POTION TOUCH_OF_INSANITY",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY THUNDERCLAP -\u003E EXOSKELETON",
+          "USE_POTION POTION_SHAPED_ROCK",
+          "PLAY STRIKE_IRONCLAD -\u003E EXOSKELETON",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 46,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=46 Blk=5 In=11 Cards=9 Score=1834 States=5007 Char=IRONCLAD Src=reflection: dmg=0 blk=0",
+        "StatesExplored": 5007
+      },
+      "ActionResults": [
+        {
+          "CardId": "RUPTURE",
+          "Success": true
+        },
+        {
+          "CardId": "BURNING_PACT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 65,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 65,
+      "MaxHp": 80,
+      "DrawPileCount": 15,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "ASHEN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "HEMOKINESIS",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EXOSKELETON",
+          "Hp": 27,
+          "MaxHp": 27,
+          "Block": 0,
+          "IntentDamage": 3,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "EXOSKELETON",
+          "Hp": 26,
+          "MaxHp": 26,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "EXOSKELETON",
+          "Hp": 28,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "TOUCH_OF_INSANITY",
+        "POTION_SHAPED_ROCK"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY HEMOKINESIS -\u003E EXOSKELETON",
+          "USE_POTION TOUCH_OF_INSANITY",
+          "USE_POTION POTION_SHAPED_ROCK",
+          "PLAY ASHEN_STRIKE -\u003E EXOSKELETON",
+          "PLAY THUNDERCLAP -\u003E EXOSKELETON",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 50,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=50 Blk=5 In=11 Cards=7 Score=1786 States=5004 Char=IRONCLAD Src=reflection: dmg=7 blk=0",
+        "StatesExplored": 5004
+      },
+      "ActionResults": [
+        {
+          "CardId": "HEMOKINESIS",
+          "Success": true,
+          "Target": "EXOSKELETON"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 63,
+        "BlockAfter": 0,
+        "DamageTaken": 2,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 63,
+      "MaxHp": 80,
+      "DrawPileCount": 15,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "ASHEN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EXOSKELETON",
+          "Hp": 27,
+          "MaxHp": 27,
+          "Block": 0,
+          "IntentDamage": 3,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "EXOSKELETON",
+          "Hp": 17,
+          "MaxHp": 26,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "EXOSKELETON",
+          "Hp": 28,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 1,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "POTION_SHAPED_ROCK"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "USE_POTION POTION_SHAPED_ROCK",
+          "PLAY THUNDERCLAP -\u003E EXOSKELETON",
+          "PLAY ASHEN_STRIKE -\u003E EXOSKELETON",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 39,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=39 Blk=0 In=11 Cards=4 Score=1298 States=44 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 44
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 63,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 3,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 1,
+      "Block": 0,
+      "Hp": 63,
+      "MaxHp": 80,
+      "DrawPileCount": 15,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "ASHEN_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EXOSKELETON",
+          "Hp": 18,
+          "MaxHp": 27,
+          "Block": 0,
+          "IntentDamage": 3,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "EXOSKELETON",
+          "Hp": 17,
+          "MaxHp": 26,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "EXOSKELETON",
+          "Hp": 28,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 1,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=11 Cards=2 Score=-526 States=5 Char=IRONCLAD Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 5
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 57,
+        "BlockAfter": 0,
+        "DamageTaken": 6,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 3 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 57,
+      "MaxHp": 80,
+      "DrawPileCount": 10,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "TAUNT",
+          "Cost": 1
+        },
+        {
+          "Id": "BRAND",
+          "Cost": 0
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EXOSKELETON",
+          "Hp": 18,
+          "MaxHp": 27,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "EXOSKELETON",
+          "Hp": 17,
+          "MaxHp": 26,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "EXOSKELETON",
+          "Hp": 28,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 10,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 1,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY PILLAGE -\u003E EXOSKELETON",
+          "PLAY TAUNT -\u003E EXOSKELETON",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY BRAND -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 22,
+        "Score": "Dmg=12 Blk=22 In=18 Cards=6 Score=453 States=2217 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 2217
+      },
+      "ActionResults": [
+        {
+          "CardId": "PILLAGE",
+          "Success": true,
+          "Target": "EXOSKELETON"
+        },
+        {
+          "CardId": "TAUNT",
+          "Success": true,
+          "Target": "EXOSKELETON"
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "BRAND",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 55,
+        "BlockAfter": 0,
+        "DamageTaken": 2,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 55,
+      "MaxHp": 80,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "EXPECT_A_FIGHT",
+          "Cost": 2
+        },
+        {
+          "Id": "ULTIMATE_STRIKE",
+          "Cost": 1
+        },
+        {
+          "Id": "STONE_ARMOR",
+          "Cost": 1
+        },
+        {
+          "Id": "MANGLE",
+          "Cost": 3
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EXOSKELETON",
+          "Hp": 18,
+          "MaxHp": 27,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "EXOSKELETON",
+          "Hp": 8,
+          "MaxHp": 26,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 2,
+          "Id": "EXOSKELETON",
+          "Hp": 28,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Buff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 3,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY MANGLE -\u003E EXOSKELETON",
+          "PLAY ANGER -\u003E EXOSKELETON",
+          "PLAY ULTIMATE_STRIKE -\u003E EXOSKELETON",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 66,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=66 Blk=0 In=9 Cards=4 Score=3062 States=522 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 522
+      },
+      "ActionResults": [
+        {
+          "CardId": "MANGLE",
+          "Success": true,
+          "Target": "EXOSKELETON"
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "EXOSKELETON"
+        },
+        {
+          "CardId": "ULTIMATE_STRIKE",
+          "Success": true,
+          "Target": "EXOSKELETON"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 55,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 55,
+      "MaxHp": 80,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 12,
+      "Hand": [
+        {
+          "Id": "STRIKE_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "BASH",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "ANGER",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EXOSKELETON",
+          "Hp": 18,
+          "MaxHp": 27,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        },
+        {
+          "Index": 1,
+          "Id": "EXOSKELETON",
+          "Hp": 10,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 3,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY STRIKE_IRONCLAD -\u003E EXOSKELETON",
+          "PLAY ANGER -\u003E EXOSKELETON",
+          "PLAY BASH -\u003E EXOSKELETON",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 42,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=42 Blk=5 In=24 Cards=5 Score=2787 States=163 Char=IRONCLAD Src=reflection: dmg=13 blk=0",
+        "StatesExplored": 163
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "STRIKE_IRONCLAD",
+          "Success": true,
+          "Target": "EXOSKELETON"
+        },
+        {
+          "CardId": "ANGER",
+          "Success": true,
+          "Target": "EXOSKELETON"
+        },
+        {
+          "CardId": "BASH",
+          "Success": true,
+          "Target": "EXOSKELETON"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 45,
+        "BlockAfter": 0,
+        "DamageTaken": 10,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 4,
+      "Block": 0,
+      "Hp": 45,
+      "MaxHp": 80,
+      "DrawPileCount": 10,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "BURNING_PACT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "EXPECT_A_FIGHT",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EXOSKELETON",
+          "Hp": 1,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 3,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY BURNING_PACT -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY PILLAGE -\u003E EXOSKELETON",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 22,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=22 Blk=10 In=12 Cards=5 Score=1462 States=112 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 112
+      },
+      "ActionResults": [
+        {
+          "CardId": "BURNING_PACT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 45,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 45,
+      "MaxHp": 80,
+      "DrawPileCount": 8,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "PILLAGE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "EXPECT_A_FIGHT",
+          "Cost": 2
+        },
+        {
+          "Id": "DEFEND_IRONCLAD",
+          "Cost": 1
+        },
+        {
+          "Id": "THUNDERCLAP",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "EXOSKELETON",
+          "Hp": 1,
+          "MaxHp": 28,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 2,
+          "WeakStacks": 0,
+          "StrengthStacks": 4,
+          "Powers": [
+            {
+              "Name": "HardToKillPower",
+              "Amount": 9
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 4
+            },
+            {
+              "Name": "VulnerablePower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 3,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [],
+      "PotionCount": 0,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY DEFEND_IRONCLAD -\u003E self",
+          "PLAY PILLAGE -\u003E EXOSKELETON",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 22,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=22 Blk=10 In=12 Cards=4 Score=1420 States=21 Char=IRONCLAD Src=fallback: dmg=0 blk=5",
+        "StatesExplored": 21
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "DEFEND_IRONCLAD",
+          "Success": true
+        },
+        {
+          "CardId": "PILLAGE",
+          "Success": true,
+          "Target": "EXOSKELETON"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 51,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

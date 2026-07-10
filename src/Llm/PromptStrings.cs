@@ -1,0 +1,473 @@
+using System.Collections.Generic;
+
+namespace TokenSpire2.Llm;
+
+public enum PromptLang { En, Zh }
+
+public static class PromptStrings
+{
+    public static PromptLang Language { get; set; } = PromptLang.Zh;
+
+    public static string Get(string key) =>
+        _strings.TryGetValue(key, out var pair)
+            ? (Language == PromptLang.Zh ? pair.Zh : pair.En)
+            : $"[MISSING:{key}]";
+
+    public static string Get(string key, params object[] args) =>
+        string.Format(Get(key), args);
+
+    private static readonly Dictionary<string, (string En, string Zh)> _strings = new()
+    {
+        // ========== System Prompt ==========
+        ["SystemPrompt"] = (
+@"You are an expert Slay the Spire 2 player making decisions in a live game. You will receive game state descriptions and must respond with your decision.
+
+RESPONSE FORMAT — follow these EXACTLY:
+
+For COMBAT turns:
+- List cards to play, one per line: PLAY <card_index> or PLAY <card_index> -> <enemy_index>
+- Card indices are numbers [1], [2], etc. Enemy indices are letters [A], [B], etc.
+- To use a potion: POTION <P_index> or POTION <P_index> -> <enemy_letter> (potions are free, no energy cost)
+- If you want to end your turn after playing, add END_TURN on its own line
+- If a card draws more cards, OMIT END_TURN — you will be shown the updated hand and can continue playing
+- Example (use a potion then play cards):
+  POTION P1 -> A
+  PLAY 3 -> A
+  PLAY 2
+  PLAY 1 -> A
+  END_TURN
+- Example (play a draw card, then wait to see new cards):
+  PLAY 2
+  PLAY 1 -> A
+
+For CHOICE decisions (events, map, rest site, relics, card grid, etc.):
+- Reply with just the number on the first line: CHOOSE <number>
+- Example: CHOOSE 2
+
+For REWARDS (after combat):
+- TAKE <number> to claim a reward (gold, potion, etc.)
+- CARD <number> to pick a specific card from the card reward (or omit to skip cards)
+- End with DONE
+- Example:
+  TAKE 1
+  TAKE 2
+  CARD 2
+  DONE
+
+For SHOP decisions:
+- List items to buy, one per line: BUY <number>
+- End with LEAVE on its own line
+- Example:
+  BUY 3
+  BUY 7
+  LEAVE
+
+STRATEGY GUIDELINES:
+- In combat, try to block ALL incoming damage — survival is the top priority
+- AVOID all elite fights regardless of HP level
+- Prefer unknown rooms (?) for more events and resources
+- Build deck synergy — don't add cards that don't fit your archetype
+- Manage energy efficiently — play high-impact cards first
+- Remove weak cards (Strikes) from your deck when possible
+
+CONTINUAL LEARNING:
+You are in a continual learning loop. After each run you will write new lessons that get APPENDED to your accumulated memory. Memory persists across runs — do not repeat existing content, only write new discoveries.
+
+Output ONLY action commands. Do not add any reasoning or explanation.",
+
+@"你是一位杰出的《杀戮尖塔2》玩家，正在实时游戏中做决策。你会收到游戏状态描述，必须在思考后回复你的决定。
+
+请在思考过程中分析当前局势，然后严格按以下格式输出最终决策。
+
+回复格式 — 严格遵守：
+
+战斗回合：
+- 每行打出一张牌：PLAY <卡牌序号> 或 PLAY <卡牌序号> -> <敌人字母>
+- 卡牌序号为数字 [1], [2] 等，敌人序号为字母 [A], [B] 等
+- 使用药水：POTION <P序号> 或 POTION <P序号> -> <敌人字母>（药水免费，不消耗能量）
+- 打完牌后结束回合，单独写一行 END_TURN
+- 如果某张牌会抽牌，不要写 END_TURN —— 系统会展示更新后的手牌让你继续出牌
+- 示例（先用药水再出牌）：
+  POTION P1 -> A
+  PLAY 3 -> A
+  PLAY 2
+  PLAY 1 -> A
+  END_TURN
+- 示例（打出抽牌卡，等待新手牌）：
+  PLAY 2
+  PLAY 1 -> A
+
+选择类决策（事件、地图、休息点、遗物、卡牌选择等）：
+- 第一行回复数字：CHOOSE <编号>
+- 示例：CHOOSE 2
+
+战斗奖励：
+- TAKE <编号> 领取奖励（金币、药水等）
+- CARD <编号> 选择一张卡牌奖励（不选则跳过）
+- 最后写 DONE
+- 示例：
+  TAKE 1
+  TAKE 2
+  CARD 2
+  DONE
+
+商店决策：
+- 每行购买一件物品：BUY <编号>
+- 最后单独写 LEAVE
+- 示例：
+  BUY 3
+  BUY 7
+  LEAVE
+
+战斗策略指南（重要）：
+- 每回合先评估敌人意图伤害总量，优先格挡致命伤害
+- 如果无法全部格挡，优先保命——宁可少打伤害也要活下来
+- 注意能量分配：先算好需要多少格挡，再用剩余能量打伤害
+- 优先打高价值牌（高伤害比、强力效果），避免浪费能量打0费低效牌
+- 面对多敌人时优先集火消灭威胁最大的那个
+- 药水在危急时刻使用，不要浪费在已经稳赢的战斗中
+- 注意抽牌堆和弃牌堆的数量，管理好牌组循环
+
+路线策略指南：
+- 精英战收益高（遗物+稀有卡）但风险大 —— 血量>60%时可挑战，血量低时避开
+- 商店在金币充裕（>150g）时优先去
+- 休息点优先升级关键牌，血量<40%时才考虑休息
+- 未知房间(?)平均收益高于普通战斗，可优先选择
+
+牌组构建指南：
+- 注意牌组曲线——不要加入过多高费牌导致卡手
+- 优先构建牌组联动（力量流、格挡流、消耗流等），不要盲目加牌
+- 有机会时优先移除打击/防御等基础牌
+- 不要在牌组超过25张后继续加牌，除非有强力过牌手段
+
+你的最终输出部分只包含操作指令，但请在思考中充分分析。"
+        ),
+
+        // ========== Game Over ==========
+        // {0} = run stats, {1} = current memory (or "empty")
+        ["GameOverReflection"] = (
+@"=== GAME OVER ===
+This run has ended. Here are the stats:
+{0}
+Your current memory file:
+---
+{1}
+---
+
+Rewrite the FULL memory file incorporating lessons from this run. Your output REPLACES the entire memory. Keep useful old lessons, remove outdated ones, add new insights from this run. Summarize each run in one line, then list consolidated strategy insights. Target 1000-4000 tokens.",
+
+@"=== 游戏结束 ===
+本局游戏已结束。以下是本局统计：
+{0}
+你当前的记忆文件：
+---
+{1}
+---
+
+重写完整的记忆文件，融入本局的教训。你的输出将完整替换现有记忆。保留有用的旧教训，删除过时的内容，加入本局新发现。先用一行总结每局数据，然后列出整合后的策略心得。目标1000-4000 token。"
+        ),
+
+        // ========== Combat ==========
+        ["CombatUnavailable"] = (
+            "Combat state unavailable.",
+            "战斗状态不可用。"
+        ),
+        ["CombatHeader"] = (
+            "=== COMBAT — YOUR TURN ===",
+            "=== 战斗 — 你的回合 ==="
+        ),
+        ["HpBlockEnergy"] = (
+            "HP: {0}/{1} | Block: {2} | Energy: {3}/{4}",
+            "生命值: {0}/{1} | 格挡: {2} | 能量: {3}/{4}"
+        ),
+        ["YourRelics"] = (
+            "Relics: {0}",
+            "遗物: {0}"
+        ),
+        ["YourPowers"] = (
+            "Your powers: {0}",
+            "你的能力: {0}"
+        ),
+        ["Hand"] = (
+            "Hand:",
+            "手牌："
+        ),
+        ["TargetSingleEnemy"] = (
+            " [Target: Single Enemy]",
+            " [目标: 单体敌人]"
+        ),
+        ["Unplayable"] = (
+            " (UNPLAYABLE)",
+            " (无法打出)"
+        ),
+        ["Energy"] = (
+            "energy",
+            "能量"
+        ),
+        ["Stars"] = (
+            "stars",
+            "星光"
+        ),
+        ["DrawDiscardPile"] = (
+            "Draw pile: {0} | Discard pile: {1}",
+            "抽牌堆: {0} | 弃牌堆: {1}"
+        ),
+        ["DrawPile"] = ("Draw pile", "抽牌堆"),
+        ["DiscardPile"] = ("Discard pile", "弃牌堆"),
+        ["ExhaustPile"] = ("Exhaust pile", "消耗牌堆"),
+        ["Potions"] = (
+            "Potions:",
+            "药水："
+        ),
+        ["Summons"] = (
+            "Your Summons:",
+            "你的召唤物："
+        ),
+        ["Orbs"] = ("Orbs", "充能球"),
+        ["Empty"] = ("empty", "空"),
+        ["Enemies"] = (
+            "Enemies:",
+            "敌人："
+        ),
+        ["Unknown"] = (
+            "Unknown",
+            "未知"
+        ),
+        ["Intent"] = (
+            "Intent: {0}",
+            "意图: {0}"
+        ),
+        ["Attack"] = (
+            "Attack {0}",
+            "攻击 {0}"
+        ),
+        ["AttackUnknown"] = (
+            "Attack ?",
+            "攻击 ?"
+        ),
+        ["Powers"] = (
+            "Powers: {0}",
+            "能力: {0}"
+        ),
+        ["CombatInstruction"] = (
+@"Which cards/potions do you play this turn?
+Format: PLAY <index> [-> <enemy_letter>] or POTION <P_index> [-> <enemy_letter>], then END_TURN.
+Example:
+  POTION P1
+  PLAY 3 -> A
+  PLAY 1
+  END_TURN
+If a card has draw effects or similar, you may skip END_TURN — the system will show your updated hand and let you continue.",
+@"这回合打哪些牌/用哪些药水？
+格式：PLAY <序号> [-> <敌人字母>] 或 POTION <P序号> [-> <敌人字母>]，最后 END_TURN。
+示例：
+  POTION P1
+  PLAY 3 -> A
+  PLAY 1
+  END_TURN
+如果打出的牌有抽牌等效果，可以不写END_TURN —— 系统会显示更新后的手牌让你继续操作。"
+        ),
+
+        // ========== Card Reward ==========
+        ["CardRewardHeader"] = (
+            "=== CARD REWARD ===",
+            "=== 卡牌奖励 ==="
+        ),
+        ["ChooseCardForDeck"] = (
+            "Choose a card to add to your deck:",
+            "选择一张牌加入你的牌组："
+        ),
+        ["UnknownCard"] = (
+            "(unknown card)",
+            "(未知卡牌)"
+        ),
+        ["SkipCard"] = (
+            "Skip (don't add any card)",
+            "跳过（不添加卡牌）"
+        ),
+        ["ReplyChoose"] = (
+            "Reply with CHOOSE <number>.",
+            "请回复 CHOOSE <编号>。"
+        ),
+
+        // ========== Rewards ==========
+        ["RewardsHeader"] = (
+            "=== REWARDS ===",
+            "=== 奖励 ==="
+        ),
+        ["RewardsIntro"] = (
+            "You may TAKE multiple rewards. Available:",
+            "你可以领取多个奖励，可选项："
+        ),
+        ["GoldReward"] = (
+            "Gold ({0}g)",
+            "金币 ({0}g)"
+        ),
+        ["CardRewardDesc"] = (
+            "Card Reward (pick one below, or skip)",
+            "卡牌奖励（从下方选择一张，或跳过）"
+        ),
+        ["PotionReward"] = (
+            "Potion: {0}",
+            "药水: {0}"
+        ),
+        ["CardChoicesFor"] = (
+            "Card choices for reward {0} (pick ONE card, or SKIP):",
+            "奖励 {0} 的卡牌选项（选一张，或跳过）："
+        ),
+        ["RewardsInstruction"] = (
+            "Reply with TAKE commands, then DONE:",
+            "请用 TAKE 命令领取，最后写 DONE："
+        ),
+        ["TakeInstruction"] = (
+            "  TAKE <number> — take a reward (gold, potion, etc.)",
+            "  TAKE <编号> — 领取奖励（金币、药水等）"
+        ),
+        ["CardInstruction"] = (
+            "  CARD <number> — pick a card from the card reward (or omit to skip cards)",
+            "  CARD <编号> — 选择一张卡牌奖励（不选则跳过）"
+        ),
+        ["DoneInstruction"] = (
+            "  DONE — proceed to next room",
+            "  DONE — 前往下一个房间"
+        ),
+        ["RewardsExample"] = (
+            "Example: TAKE 1 / CARD 2 / DONE",
+            "示例: TAKE 1 / CARD 2 / DONE"
+        ),
+
+        // ========== Map ==========
+        ["MapHeader"] = (
+            "=== MAP — CHOOSE NEXT ROOM ===",
+            "=== 地图 — 选择下一个房间 ==="
+        ),
+        ["CurrentPosition"] = (
+            "Current position: row {0}, col {1}",
+            "当前位置: 第{0}行, 第{1}列"
+        ),
+        ["CurrentPositionStart"] = (
+            "Current position: start (not yet on map)",
+            "当前位置: 起点（尚未进入地图）"
+        ),
+        ["HpGold"] = (
+            "HP: {0}/{1} | Gold: {2}",
+            "生命值: {0}/{1} | 金币: {2}"
+        ),
+        ["FullMap"] = (
+            "Full map (row 1 = first rooms, higher rows = closer to boss):",
+            "完整地图（第1行=起始房间，行数越大越接近Boss）："
+        ),
+        ["AvailableNextRooms"] = (
+            "Available next rooms:",
+            "可选的下一个房间："
+        ),
+
+        // ========== Event ==========
+        ["EventHeader"] = (
+            "=== EVENT ===",
+            "=== 事件 ==="
+        ),
+        ["EventNoOptions"] = (
+            "(No options available yet — dialogue in progress)",
+            "（暂无可选项 —— 对话进行中）"
+        ),
+        ["ChooseOption"] = (
+            "Choose an option:",
+            "选择一个选项："
+        ),
+        ["ProceedLeave"] = (
+            "(Proceed/Leave)",
+            "（继续/离开）"
+        ),
+        ["Option"] = (
+            "Option",
+            "选项"
+        ),
+
+        // ========== Rest Site ==========
+        ["RestSiteHeader"] = (
+            "=== REST SITE ===",
+            "=== 休息点 ==="
+        ),
+        ["AvailableOptions"] = (
+            "Available options:",
+            "可选操作："
+        ),
+
+        // ========== Shop ==========
+        ["ShopHeader"] = (
+            "=== SHOP ===",
+            "=== 商店 ==="
+        ),
+        ["GoldHp"] = (
+            "Gold: {0} | HP: {1}/{2}",
+            "金币: {0} | 生命值: {1}/{2}"
+        ),
+        ["ShopUnavailable"] = (
+            "(Shop inventory not available)",
+            "（商店库存不可用）"
+        ),
+        ["Cards"] = (
+            "Cards:",
+            "卡牌："
+        ),
+        ["Relics"] = (
+            "Relics:",
+            "遗物："
+        ),
+        ["Sale"] = (
+            " [SALE]",
+            " [折扣]"
+        ),
+        ["NotEnoughGold"] = (
+            " (NOT ENOUGH GOLD)",
+            " (金币不足)"
+        ),
+        ["RemoveCard"] = (
+            "Remove a card",
+            "移除一张牌"
+        ),
+        ["Cost"] = (
+            "Cost: {0}g",
+            "价格: {0}g"
+        ),
+        ["LeaveShop"] = (
+            "Leave shop (buy nothing more)",
+            "离开商店（不再购买）"
+        ),
+        ["ShopInstruction"] = (
+            "You may BUY multiple items. Reply with BUY <number> for each item, then LEAVE on its own line.",
+            "你可以购买多件物品。每件写 BUY <编号>，最后单独写 LEAVE。"
+        ),
+
+        // ========== Card Grid ==========
+        ["ChooseCardFromDeck"] = (
+            "Choose a card from your deck:",
+            "从你的牌组中选择一张牌："
+        ),
+
+        // ========== Generic Choice ==========
+        ["GenericChoice"] = (
+            "Choose from {0} options (1-{1}).",
+            "从 {0} 个选项中选择 (1-{1})。"
+        ),
+
+        // ========== Card Selector (mid-combat) ==========
+        ["SelectCards"] = (
+            "=== SELECT {0} CARD(S) ===",
+            "=== 选择 {0} 张牌 ==="
+        ),
+        ["SelectCardsIntro"] = (
+            "A card effect requires you to choose {0} card(s). Check the screen title above for what this selection does:",
+            "一个卡牌/药水/遗物效果需要你选择 {0} 张牌（请参考上方标题了解具体效果）："
+        ),
+        ["SelectCardsNonCombat"] = (
+            "An effect requires you to choose {0} card(s) from your deck. Check the screen title above for what this selection does:",
+            "一个效果需要你从牌组中选择 {0} 张牌（请参考上方标题了解具体效果）："
+        ),
+        ["ReplyChooseCount"] = (
+            "Reply with CHOOSE <number> (pick {0}).",
+            "请回复 CHOOSE <编号>（选 {0} 张）。"
+        ),
+    };
+}

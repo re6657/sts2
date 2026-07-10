@@ -1,0 +1,28 @@
+{
+  "score": 100.0,
+  "generated_at": "2026-07-06 15:50:30",
+  "missing_capabilities": [
+    {
+      "status": "missing",
+      "severity": "WARNING",
+      "state_type": "COMBAT",
+      "action": "DISCARD_POTION",
+      "times_available": 1,
+      "times_considered": 0,
+      "times_chosen": 0,
+      "consideration_rate": 0,
+      "selection_rate": 0,
+      "message": "❌ COMBAT/DISCARD_POTION: 在 1 次可用机会中，AI **从未考虑过**此选项。这是代码缺陷，不是参数问题。",
+      "fix_type": "code_change",
+      "likely_cause": [
+        "药水满时未考虑丢弃选项",
+        "缺少对 PotionSlotFull 状态的处理"
+      ],
+      "related_params": [
+        "未知，需人工分析"
+      ]
+    }
+  ],
+  "never_chosen_capabilities": [],
+  "suspicious_patterns": []
+}

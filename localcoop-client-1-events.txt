@@ -1,0 +1,860 @@
+2026-07-10T18:16:16.1428123+08:00 Broker mode enabled: clientId=client-1 role=Client endpoint=127.0.0.1:9999 sessionId=coop-session.
+2026-07-10T18:16:16.3947036+08:00 Harmony patch installed: LocalCoop.Mod.Patches.BrokerClientJoinFlowPatch.
+2026-07-10T18:16:16.3982247+08:00 Harmony patch installed: LocalCoop.Mod.Patches.BrokerVFPatch_GetFriendCount.
+2026-07-10T18:16:16.4009767+08:00 Harmony patch installed: LocalCoop.Mod.Patches.BrokerVFPatch_GetFriendByIndex.
+2026-07-10T18:16:16.4024535+08:00 Harmony patch installed: LocalCoop.Mod.Patches.BrokerVFPatch_GetFriendPersonaName.
+2026-07-10T18:16:16.4039808+08:00 Harmony patch installed: LocalCoop.Mod.Patches.BrokerVFPatch_GetFriendGamePlayed.
+2026-07-10T18:16:16.4059713+08:00 Harmony patch installed: LocalCoop.Mod.Patches.BrokerHostSteamStartupBypassPatch.
+2026-07-10T18:16:16.4094802+08:00 Harmony patch installed: LocalCoop.Mod.Patches.BrokerHostENetStartupBypassPatch.
+2026-07-10T18:16:16.4116827+08:00 Harmony patch installed: LocalCoop.Mod.Patches.BrokerClientSteamConnectBypassPatch.
+2026-07-10T18:16:16.4136649+08:00 Harmony patch installed: LocalCoop.Mod.Patches.BrokerClientENetConnectBypassPatch.
+2026-07-10T18:16:16.4245795+08:00 Harmony patch installed: LocalCoop.Mod.Patches.BrokerForceLobbyTransitionPatch.
+2026-07-10T18:16:16.4309435+08:00 Harmony patch installed: LocalCoop.Mod.Patches.BrokerLobbyServiceSubstitutionPatch.
+2026-07-10T18:16:16.4367965+08:00 Harmony patch installed: LocalCoop.Mod.Patches.BrokerBeginRunPatch.
+2026-07-10T18:16:16.4387109+08:00 Harmony patch installed: LocalCoop.Mod.Patches.SteamCrashSuppressionPatch.
+2026-07-10T18:16:16.4416516+08:00 Harmony patch installed: LocalCoop.Mod.Patches.SteamControllerInputSelectionPatches.
+2026-07-10T18:16:16.4511847+08:00 Harmony patch installed: LocalCoop.Mod.Patches.ControllerInputOwnershipPatches.
+2026-07-10T18:16:16.4534493+08:00 Harmony patch installed: LocalCoop.Mod.Patches.RunIdentityLaunchPatch.
+2026-07-10T18:16:16.9293480+08:00 Harmony patch failed: LocalCoop.Mod.Patches.RunIdentityDualRoleAdventureVoidGuardPatch: HarmonyException: Patching exception in method null
+2026-07-10T18:16:17.0729281+08:00 Harmony patch failed: LocalCoop.Mod.Patches.RunIdentityDualRoleAdventureBoolGuardPatch: HarmonyException: Patching exception in method null
+2026-07-10T18:16:17.1209199+08:00 Harmony patch installed: LocalCoop.Mod.Patches.RunIdentityLocalUiAlignmentPatch.
+2026-07-10T18:16:17.1534363+08:00 Harmony patch installed: LocalCoop.Mod.Patches.RunIdentityRewardAlignmentPatch.
+2026-07-10T18:16:17.1563724+08:00 Harmony patch installed: LocalCoop.Mod.Patches.RunIdentityPotionAnimationGuardPatch.
+2026-07-10T18:16:17.1625735+08:00 Harmony patch installed: LocalCoop.Mod.Patches.RunIdentityRelicInventoryVisualGuardPatch.
+2026-07-10T18:16:17.1671847+08:00 Harmony patch installed: LocalCoop.Mod.Patches.RunIdentityRemoteEventUiGuardPatch.
+2026-07-10T18:16:17.1796913+08:00 Harmony patch installed: LocalCoop.Mod.Patches.RunIdentityLocalActionGuardPatch.
+2026-07-10T18:16:17.1845928+08:00 Harmony patch installed: LocalCoop.Mod.Patches.RunIdentityRemoteMutationGuardPatch.
+2026-07-10T18:16:17.1867719+08:00 Harmony patch installed: LocalCoop.Mod.Patches.RunIdentityRemoteMutationTaskGuardPatch.
+2026-07-10T18:16:21.3827755+08:00 LocalCoop input router: clientIndex=1 playerSlot=1 inputMode=auto controllerClientCount=<unknown> source=SteamInput fallback="SteamInput primary; native fallback if unavailable" Steam controller selection: unavailable playerSlot=1 connected=0 controllerClients=<unknown> reason=no connected Steam controller at playerSlot=1.
+2026-07-10T18:16:21.5402621+08:00 [AutoSlay] ♥ heartbeat screen=NONE coop=True human=False autoBattle=True
+2026-07-10T18:16:26.7102193+08:00 [AutoSlay] ♥ heartbeat screen=NONE coop=True human=False autoBattle=True
+2026-07-10T18:16:33.1296258+08:00 [MpController] [MpController] Inactive → MainMenu (screen=MAIN_MENU)
+2026-07-10T18:16:33.1795085+08:00 [MpScreenHandler] Clicked: type=NMainMenuTextButton name="MultiplayerButton" (searched for "Multiplayer")
+2026-07-10T18:16:33.8873615+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:16:35.1994815+08:00 [MpController] [MpController] MainMenu → EnteringMultiplayer (screen=MULTIPLAYER_SUBMENU)
+2026-07-10T18:16:35.2011703+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:16:35.2018609+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:16:35.2025503+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:16:37.1893168+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:16:37.1907071+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:16:37.1918093+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:16:38.8869405+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:16:39.2048213+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:16:39.2056296+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:16:39.2062178+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:16:41.2225533+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:16:41.2237481+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:16:41.2425691+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:16:43.2218224+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:16:43.2229426+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:16:43.2235999+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:16:43.8867797+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:16:45.2379416+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:16:45.2386693+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:16:45.2392046+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:16:47.2550068+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:16:47.2558937+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:16:47.2566819+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:16:48.9036668+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:16:49.2729018+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:16:49.2743986+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:16:49.2761085+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:16:51.2880145+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:16:51.2888751+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:16:51.2895909+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:16:53.3042380+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:16:53.3053720+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:16:53.3061683+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:16:53.9231623+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:16:55.3210319+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:16:55.3218675+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:16:55.3224822+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:16:57.3373747+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:16:57.3380031+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:16:57.3386215+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:16:58.9847476+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:16:59.3414267+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:16:59.3421827+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:16:59.3431644+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:01.3600072+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:01.3606910+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:01.3690815+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:03.3745095+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:03.3752820+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:03.3758012+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:04.0071215+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:17:05.3744975+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:05.3752214+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:05.3758454+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:07.3802569+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:07.3816134+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:07.3823260+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:09.0070428+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:17:09.3746243+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:09.3754760+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:09.3761770+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:11.3743539+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:11.3750032+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:11.3755440+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:13.3741831+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:13.3748726+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:13.3756888+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:14.0064425+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:17:15.3741861+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:15.3748179+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:15.3752850+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:17.3746134+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:17.3753149+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:17.3758357+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:19.0411420+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:17:19.3757658+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:19.3769547+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:19.3780578+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:21.3752948+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:21.3763009+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:21.3770523+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:23.3780319+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:23.3795217+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:23.3805161+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:24.0733585+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:17:25.3758762+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:25.3770857+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:25.3781416+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:27.3756377+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:27.3773736+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:27.3782787+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:29.1066781+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:17:29.3756004+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:29.3767420+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:29.3777102+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:31.3750374+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:31.3759686+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:31.3768938+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:33.3747703+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:33.3761951+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:33.3770647+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:34.1396855+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:17:35.4011497+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:35.4018994+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:35.4027341+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:37.3750022+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:37.3761001+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:37.3769966+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:39.1739201+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:17:39.3749404+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:39.3758130+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:39.3764864+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:41.3771009+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:41.3785976+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:41.3795861+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:43.3744654+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:43.3753056+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:43.3760915+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:44.2068662+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:17:45.3749636+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:45.3761519+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:45.3768973+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:47.3742889+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:47.3750278+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:47.3756032+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:49.2407873+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:17:49.3755395+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:49.3769744+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:49.3779542+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:51.3755665+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:51.3767790+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:51.3780453+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:53.3753034+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:53.3761765+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:53.3768629+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:54.2733004+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:17:55.3745059+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:55.3759964+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:55.3768968+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:57.3741730+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:57.3750726+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:57.3763307+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:17:59.3063050+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:17:59.3766683+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:17:59.3784276+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:17:59.3795628+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:01.3761499+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:01.3775041+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:01.3788226+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:03.3752189+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:03.3768215+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:03.3784018+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:04.3396613+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:18:05.3739817+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:05.3747327+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:05.3753541+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:07.3740050+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:07.3746999+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:07.3752840+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:09.3727055+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:18:09.3747675+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:09.3754110+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:09.3759680+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:11.3740557+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:11.3747963+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:11.3756555+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:13.3742459+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:13.3751535+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:13.3759457+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:14.4072088+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:18:15.3751871+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:15.3777100+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:15.3788256+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:17.3740683+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:17.3749155+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:17.3758629+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:19.3741038+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:19.3750699+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:19.3762581+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:19.4393073+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:18:21.3747514+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:21.3763525+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:21.3771467+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:23.3758142+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:23.3774270+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:23.3784940+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:24.4738870+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:18:25.3742311+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:25.3754450+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:25.3763285+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:27.3736929+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:27.3745948+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:27.3752165+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:29.3748037+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:29.3760546+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:29.3770725+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:29.5062958+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:18:31.3742455+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:31.3753426+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:31.3759882+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:33.4035261+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:33.4048468+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:33.4056830+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:34.5391053+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:18:35.3750888+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:35.3763594+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:35.3773617+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:37.3737964+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:37.3744598+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:37.3750879+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:39.3739238+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:39.3746086+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:39.3752467+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:39.5723462+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:18:41.3758059+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:41.3766802+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:41.3773026+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:43.3740767+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:43.3752489+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:43.3759719+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:44.6056694+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:18:45.3735577+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:45.3742229+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:45.3748171+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:47.3736591+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:47.3745451+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:47.3751366+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:49.3737308+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:49.3745172+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:49.3751558+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:49.6395187+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:18:51.3737248+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:51.3744073+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:51.3749458+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:53.3736339+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:53.3744873+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:53.3751391+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:54.6724145+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:18:55.3735142+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:55.3741849+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:55.3749216+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:57.3735432+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:57.3742748+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:57.3748926+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:59.3733731+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:18:59.3741400+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:18:59.3747510+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:18:59.7055478+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:19:01.3745352+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:01.3754975+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:01.3761610+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:03.3735012+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:03.3743390+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:03.3750370+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:04.7390140+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:19:05.3738019+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:05.3747729+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:05.3756754+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:07.3756170+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:07.3773772+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:07.3794138+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:09.3740232+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:09.3752502+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:09.3763610+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:09.7722425+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:19:11.3744593+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:11.3752222+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:11.3758798+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:13.3739877+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:13.3756266+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:13.3772622+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:14.8053297+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:19:15.3749052+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:15.3760814+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:15.3776804+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:17.3741239+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:17.3754124+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:17.3761635+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:19.3761588+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:19.3775937+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:19.3788021+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:19.8392427+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:19:21.3746283+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:21.3759354+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:21.3768126+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:23.3747843+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:23.3761908+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:23.3769884+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:24.8722155+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:19:25.3733195+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:25.3740687+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:25.3747478+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:27.3740377+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:27.3757005+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:27.3767706+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:29.3739650+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:29.3749189+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:29.3756410+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:29.9056301+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:19:31.3766924+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:31.3788300+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:31.3806252+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:33.3728490+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:33.3736427+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:33.3742165+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:34.9385171+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:19:35.3758436+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:35.3775551+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:35.3787381+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:37.3733145+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:37.3740364+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:37.3746348+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:39.3732742+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:39.3741232+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:39.3746905+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:39.9722924+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:19:41.3760902+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:41.3782025+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:41.3797210+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:43.3736921+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:43.3745560+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:43.3750895+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:45.0052508+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:19:45.3732621+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:45.3741611+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:45.3748109+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:47.3740320+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:47.3749997+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:47.3756361+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:49.3737054+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:49.3757991+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:49.3768616+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:50.0383738+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:19:51.3745112+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:51.3761095+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:51.3774921+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:53.3737656+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:53.3752171+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:53.3761045+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:55.0716440+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:19:55.3726833+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:55.3735029+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:55.3740193+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:57.3738561+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:57.3747193+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:57.3753346+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:19:59.3731788+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:19:59.3741275+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:19:59.3748225+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:00.1050983+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:20:01.3730591+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:01.3739720+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:01.3745873+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:03.3740044+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:03.3751144+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:03.3760187+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:05.1381430+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:20:05.3738053+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:05.3748374+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:05.3758742+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:07.3735909+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:07.3747242+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:07.3756640+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:09.3730817+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:09.3738878+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:09.3744746+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:10.1717413+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:20:11.3730721+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:11.3738815+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:11.3744901+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:13.3745678+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:13.3763890+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:13.3775589+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:15.2050864+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:20:15.3731931+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:15.3741682+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:15.3750212+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:17.3756854+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:17.3779942+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:17.3803513+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:19.3728176+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:19.3739952+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:19.3751399+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:20.2383447+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:20:21.3739444+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:21.3751750+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:21.3759738+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:23.3730211+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:23.3738081+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:23.3744083+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:25.2720994+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:20:25.3736008+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:25.3743155+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:25.3750870+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:27.3749154+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:27.3763410+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:27.3774807+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:29.3728293+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:29.3739471+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:29.3747716+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:30.3053104+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:20:31.3726587+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:31.3734532+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:31.3742455+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:33.3993240+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:33.4000274+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:33.4006067+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:35.3390791+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:20:35.3727995+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:35.3735912+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:35.3742460+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:37.3736733+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:37.3748689+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:37.3757388+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:39.3730951+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:39.3740708+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:39.3747331+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:40.3712356+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:20:41.3737086+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:41.3751425+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:41.3765502+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:43.3738268+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:43.3753593+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:43.3767955+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:45.3723780+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:45.3731703+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:45.3737356+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:45.4044367+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:20:47.3748169+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:47.3764385+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:47.3773396+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:49.3732002+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:49.3740319+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:49.3746940+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:50.4384909+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:20:51.3730168+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:51.3752667+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:51.3759801+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:53.3723857+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:53.3732453+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:53.3738609+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:55.3745954+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:55.3761658+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:55.3773801+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:55.4712405+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:20:57.3723160+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:57.3732769+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:57.3740410+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:20:59.3739886+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:20:59.3753768+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:20:59.3766334+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:00.5046032+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:21:01.3730754+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:01.3742528+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:01.3750177+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:03.3727571+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:03.3735011+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:03.3740639+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:05.3733265+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:05.3740737+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:05.3747509+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:05.5378730+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:21:07.3724039+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:07.3731890+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:07.3737893+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:09.3720725+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:09.3727385+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:09.3732764+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:10.5715819+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:21:11.3734052+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:11.3753577+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:11.3770530+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:13.3722517+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:13.3729731+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:13.3736383+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:15.3728433+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:15.3737061+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:15.3751242+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:15.6047592+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:21:17.3724048+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:17.3732038+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:17.3738618+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:19.3752570+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:19.3761270+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:19.3767647+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:20.6377561+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:21:21.3735382+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:21.3750324+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:21.3759788+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:23.3733154+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:23.3746534+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:23.3756819+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:25.3742092+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:25.3757462+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:25.3769861+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:25.6715095+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:21:27.3730307+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:27.3740884+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:27.3748691+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:29.3789142+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:29.3811028+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:29.3822447+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:30.7048303+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:21:31.3737226+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:31.3750929+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:31.3760266+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:33.3735006+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:33.3743537+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:33.3749678+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:35.3728954+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:35.3745072+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:35.3751241+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:35.7375311+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:21:37.4052241+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:37.4061988+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:37.4069095+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:39.4384074+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:39.4392280+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:39.4398214+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:40.7708508+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:21:41.4720861+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:41.4729961+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:41.4737495+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:43.5070127+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:43.5087361+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:43.5105387+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:45.5388739+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:45.5400243+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:45.5408166+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:45.8044590+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:21:47.5721329+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:47.5728507+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:47.5734575+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:49.6055348+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:49.6066290+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:49.6072922+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:50.8378623+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:21:51.6405376+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:51.6422410+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:51.6437637+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:53.6724695+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:53.6734096+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:53.6740610+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:55.7063601+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:55.7078964+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:55.7090019+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:55.8707581+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:21:57.7402242+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:57.7420378+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:57.7430097+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:21:59.7719549+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:21:59.7735122+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:21:59.7742225+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:00.9039632+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:22:01.8057208+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:01.8066655+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:01.8073389+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:03.8391594+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:03.8404209+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:03.8412384+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:05.8725132+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:05.8732628+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:05.8738175+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:05.9370608+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:22:07.9069957+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:07.9085618+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:07.9098116+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:09.9382163+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:09.9390014+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:09.9395987+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:10.9702804+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:22:11.9717081+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:11.9726093+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:11.9733375+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:14.0051322+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:14.0059182+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:14.0064536+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:16.0036950+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:22:16.0380297+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:16.0388165+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:16.0393331+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:18.0721835+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:18.0731898+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:18.0740902+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:20.1175494+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:20.1197549+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:20.1216391+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:21.0372242+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:22:22.1384325+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:22.1393495+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:22.1399172+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:24.1723562+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:24.1733467+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:24.1741893+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:26.0712154+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:22:26.2050261+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:26.2058292+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:26.2063981+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:28.2383227+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:28.2391049+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:28.2398943+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:30.2721014+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:30.2730627+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:30.2737542+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:31.1035517+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:22:32.3307284+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:32.3317202+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:32.3324499+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:34.3381211+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:34.3404644+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:34.3415057+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:36.1373367+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:22:36.3740723+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:36.3769260+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:36.3795747+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:38.4046065+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:38.4058125+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:38.4065850+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:40.4378621+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:40.4385740+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:40.4391074+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:41.1701461+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:22:42.4720819+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:42.4733026+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:42.4742018+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:44.5044878+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:44.5052457+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:44.5058944+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:46.2032503+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:22:46.5387870+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:46.5411810+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:46.5418786+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:48.5711527+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:48.5724816+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:48.5730579+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:50.6062968+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:50.6088034+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:50.6099151+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:51.2366902+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:22:52.6386629+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:52.6393596+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:52.6400322+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:54.6725431+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:54.6738219+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:54.6744966+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:56.2705170+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:22:56.7064996+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:56.7079966+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:56.7091256+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:22:58.7376866+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:22:58.7385616+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:22:58.7392928+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:00.7720662+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:00.7733206+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:00.7743337+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:01.3034978+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:23:02.8043213+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:02.8052841+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:02.8059277+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:04.8384202+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:04.8393479+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:04.8400554+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:06.3364021+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:23:06.8713833+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:06.8721017+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:06.8728291+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:08.9042089+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:08.9050634+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:08.9056709+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:10.9376469+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:10.9383832+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:10.9389866+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:11.3702077+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:23:12.9710841+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:12.9720755+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:12.9729415+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:15.0056631+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:15.0068837+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:15.0086200+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:16.4032799+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:23:17.0382448+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:17.0398265+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:17.0413592+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:19.0710329+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:19.0718186+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:19.0723752+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:21.1044319+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:21.1053115+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:21.1059430+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:21.4363308+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:23:23.1403418+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:23.1418408+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:23.1428160+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:25.1725566+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:25.1733935+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:25.1740822+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:26.4705874+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:23:27.2066292+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:27.2085547+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:27.2096066+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:29.2388166+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:29.2400170+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:29.2408479+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:31.2710873+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:31.2720452+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:31.2730147+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:31.5030914+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:23:33.3303517+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:33.3313329+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:33.3320610+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:35.3371716+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:35.3379271+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:35.3384822+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:36.5368135+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:23:37.3730049+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:37.3742679+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:37.3748224+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:39.4043421+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:39.4056952+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:39.4068629+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:41.4376201+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:41.4393984+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:41.4407312+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:41.5694984+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:23:43.4713014+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:43.4731558+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:43.4746908+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:45.5046109+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:45.5060619+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:45.5073121+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:46.6028463+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:23:47.5376342+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:47.5387240+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:47.5398146+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:49.5707877+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:49.5719800+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:49.5726790+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:51.6045920+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:51.6057186+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:51.6066766+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:51.6360202+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:23:53.6381132+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:53.6391225+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:53.6401241+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:55.6740010+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:55.6762776+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:55.6794633+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:56.6691321+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:23:57.7041659+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:57.7049082+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:57.7055370+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:23:59.7381241+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:23:59.7390039+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:23:59.7395717+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:01.7027804+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:24:01.7711905+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:01.7725154+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:01.7742142+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:03.8038319+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:03.8050639+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:03.8057266+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:05.8466375+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:05.8483415+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:05.8491446+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:06.7360071+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:24:07.8717614+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:07.8728016+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:07.8736210+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:09.9056495+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:09.9084964+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:09.9100603+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:11.7694914+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:24:11.9372932+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:11.9382429+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:11.9389149+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:13.9711527+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:13.9732684+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:13.9745722+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:16.0058806+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:16.0074726+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:16.0086800+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:16.8026698+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:24:18.0371080+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:18.0379382+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:18.0385701+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:20.0703215+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:20.0712103+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:20.0718025+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:21.8355969+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:24:22.1059288+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:22.1074167+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:22.1088611+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:24.1381834+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:24.1395470+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:24.1415886+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:26.1702051+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:26.1709350+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:26.1715407+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:26.8700472+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:24:28.2056160+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:28.2068769+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:28.2078921+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:30.2382819+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:30.2395030+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:30.2404070+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:31.9024596+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:24:32.2722797+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:32.2741601+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:32.2754507+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:34.3054482+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:34.3072009+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:34.3083884+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:36.3376544+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:36.3386411+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:36.3392002+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:36.9357068+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:24:38.3715875+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:38.3731856+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:38.3743054+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:40.4034810+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:40.4042689+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:40.4048520+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.
+2026-07-10T18:24:41.9691481+08:00 [AutoSlay] ♥ heartbeat screen=MAIN_MENU coop=True human=False autoBattle=True
+2026-07-10T18:24:42.4830468+08:00 [MpController] [MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → will be intercepted by BrokerClientJoinFlowPatch.
+2026-07-10T18:24:42.4844284+08:00 [MpController] [MpController] TriggerJoinFlowBegin FAILED: TargetException: Non-static method requires a target.
+2026-07-10T18:24:42.4852362+08:00 [MpController] [MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.

@@ -1,0 +1,57 @@
+using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
+namespace TokenSpire2.Llm;
+
+public class LlmConfig
+{
+    public string Url { get; set; } = "";
+    public string Key { get; set; } = "";
+    public string Model { get; set; } = "gpt-4o";
+    public string Lang { get; set; } = "zh";
+    public bool Thinking { get; set; } = true;
+    [JsonPropertyName("thinking_budget")]
+    public int ThinkingBudget { get; set; } = 2048;
+    public string Seed { get; set; } = "";
+    public string Character { get; set; } = "IRONCLAD";
+    [JsonPropertyName("hp_multiplier")]
+    public float HpMultiplier { get; set; } = 1.0f;
+
+    public static LlmConfig? Load()
+    {
+        // Look for config file next to mod DLL
+        // Use .txt extension to prevent the game's mod scanner from treating
+        // it as a mod manifest (the game recursively scans all .json files!)
+        var asmDir = Path.GetDirectoryName(
+            System.Reflection.Assembly.GetExecutingAssembly().Location);
+        string? path = asmDir != null ? Path.Combine(asmDir, "llm_config.json") : null;
+        if (path == null || !File.Exists(path))
+        {
+            // Fallback: try .txt extension (avoids mod scanner false positives)
+            path = asmDir != null ? Path.Combine(asmDir, "llm_config.txt") : null;
+        }
+
+        if (string.IsNullOrEmpty(path) || !File.Exists(path))
+            return null;
+
+        try
+        {
+            var json = File.ReadAllText(path);
+            var config = JsonSerializer.Deserialize<LlmConfig>(json, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+            if (config == null || string.IsNullOrEmpty(config.Url) || string.IsNullOrEmpty(config.Key))
+                return null;
+            PromptStrings.Language = config.Lang?.ToLower() == "en" ? PromptLang.En : PromptLang.Zh;
+            MainFile.Logger.Info($"[AutoSlay] LLM config loaded from {path}, model={config.Model}, lang={config.Lang}, thinking={config.Thinking}");
+            return config;
+        }
+        catch (System.Exception ex)
+        {
+            MainFile.Logger.Info($"[AutoSlay] Failed to load LLM config: {ex.Message}");
+            return null;
+        }
+    }
+}
