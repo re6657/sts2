@@ -1,11 +1,15 @@
 # TokenSpire2 LAN Multiplayer Launcher
-# Launches two STS2 instances with different Steam persona names
+# Uses the game's built-in --fastmp mode for ENet transport (127.0.0.1:33771)
+# No Steam lobby/matchmaking needed — direct ENet connection on localhost.
+#
 # Window 1: Host (human player, auto-battle OFF)
 # Window 2: Client (bot, auto-battle ON)
 #
-# Each instance gets its own config file via TOKENSPIRE2_CONFIG env var
-# to avoid the race condition where the second write overwrites the first
-# before the first instance finishes reading it.
+# Flow:
+#   1. Launch host — human navigates Multiplayer → Host → Standard
+#      Game creates ENet server on 127.0.0.1:33771
+#   2. Launch client — bot navigates Multiplayer → Join
+#      Game auto-connects to 127.0.0.1:33771 via ENet (FastMpJoin)
 #
 # Usage: .\launch_lan.ps1 [Character] [Seed]
 #   Character: IRONCLAD, SILENT, DEFECT, REGENT, NECROBINDER (default: IRONCLAD)
@@ -24,6 +28,7 @@ $GameExe = Join-Path $GameDir "SlayTheSpire2.exe"
 $ModDir = Join-Path $GameDir "mods\TokenSpire2"
 $HostConfigFile = Join-Path $ModDir "batch_config_host.json"
 $ClientConfigFile = Join-Path $ModDir "batch_config_client.json"
+$SteamFixIni = Join-Path $GameDir "SteamFix.ini"
 
 # Validate
 if (-not (Test-Path $GameExe)) {
@@ -39,18 +44,7 @@ if ($Seed) { Write-Host "Seed: $Seed" }
 $seedJson = if ($Seed) { "`"$Seed`"" } else { "null" }
 
 # ──── Write per-instance config files ──────────────────────────
-# We write to the shared batch_config.json sequentially. Each instance reads
-# the shared file ONCE during AppConfig.Initialize() at startup. After reading,
-# the mod writes a "config_read.signal" file. The launcher polls for this
-# signal before overwriting the config for the next instance.
-#
-# Godot's .NET runtime does NOT pass arbitrary CLI args through to
-# Environment.GetCommandLineArgs(), so --config doesn't work. The env var
-# approach also fails with Start-Process in PowerShell.
-
 $SharedConfigFile = Join-Path $ModDir "batch_config.json"
-# Per-role signal files — host writes config_read_host.signal,
-# client writes config_read_client.signal. This prevents overwrite.
 $HostSignalFile = Join-Path $ModDir "config_read_host.signal"
 $ClientSignalFile = Join-Path $ModDir "config_read_client.signal"
 
@@ -76,7 +70,11 @@ Remove-Item -Path $HostSignalFile -Force -ErrorAction SilentlyContinue
 Remove-Item -Path $ClientSignalFile -Force -ErrorAction SilentlyContinue
 
 $hostConfig | Set-Content -Path $SharedConfigFile -Encoding UTF8
-Start-Process -FilePath $GameExe -WorkingDirectory $GameDir
+
+# Launch with --fastmp for ENet transport (bypasses Steam matchmaking)
+$hostArgs = "--fastmp"
+Write-Host "[Host] Launch args: $hostArgs"
+Start-Process -FilePath $GameExe -ArgumentList $hostArgs -WorkingDirectory $GameDir
 Write-Host "[Host] Launched at $(Get-Date -Format 'HH:mm:ss')"
 
 # Poll for host to read config (role-specific signal file)
@@ -100,8 +98,13 @@ if (Test-Path $HostSignalFile) {
 Write-Host ""
 Write-Host "[Client] Starting Window 2 (Bot, auto-battle ON)..."
 Write-Host "[Client] Config: $clientConfig"
+
 $clientConfig | Set-Content -Path $SharedConfigFile -Encoding UTF8
-Start-Process -FilePath $GameExe -WorkingDirectory $GameDir
+
+# Launch with --fastmp for ENet transport (bypasses Steam matchmaking)
+$clientArgs = "--fastmp"
+Write-Host "[Client] Launch args: $clientArgs"
+Start-Process -FilePath $GameExe -ArgumentList $clientArgs -WorkingDirectory $GameDir
 Write-Host "[Client] Launched at $(Get-Date -Format 'HH:mm:ss')"
 
 # Wait for client to read config (optional, for diagnostics)
@@ -122,9 +125,9 @@ if (Test-Path $ClientSignalFile) {
 
 Write-Host ""
 Write-Host "=== Both instances launched ==="
-Write-Host "Window 1 (Host/Human): Create room via Multiplayer -> Host"
-Write-Host "Window 2 (Bot/Client): Bot auto-navigates to Multiplayer -> Join"
-Write-Host "                      Human clicks Join on bot window to connect"
+Write-Host "Window 1 (Host/Human): Navigate Multiplayer -> Host -> Standard"
+Write-Host "Window 2 (Bot/Client): Bot auto-navigates Multiplayer -> Join"
+Write-Host "                      Joins automatically via ENet (127.0.0.1:33771)"
 Write-Host ""
 Write-Host "Config files:"
 Write-Host "  Host:  $HostConfigFile"

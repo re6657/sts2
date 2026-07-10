@@ -145,9 +145,6 @@ public partial class AutoSlayNode : Node
     private bool _isMultiplayerHost;
     private bool _multiplayerJoined;
     private bool _multiplayerReady;
-    private bool _exportHostSteamIdPending;
-    private int _exportHostSteamIdFrame;
-    private int _loadHostSteamIdFrame;
 
     public override void _Ready()
     {
@@ -175,13 +172,6 @@ public partial class AutoSlayNode : Node
             if (_multiplayerMode)
             {
                 MainFile.Logger.Info($"[AutoSlay] Multiplayer mode: IsHost={_isMultiplayerHost}, PersonaName={cfg.SteamPersonaName}");
-
-                // ── Host: export Steam ID so client can inject us as a virtual friend ──
-                if (_isMultiplayerHost)
-                {
-                    // Schedule export for after Steam is initialized (deferred a few frames)
-                    _exportHostSteamIdPending = true;
-                }
             }
         }
 
@@ -314,29 +304,6 @@ public partial class AutoSlayNode : Node
 
         if (_paused) return;
 
-        // ── Multiplayer: deferred host Steam ID export ──────────────────
-        // Wait a few frames after _Ready for Steam to finish initializing.
-        if (_exportHostSteamIdPending)
-        {
-            _exportHostSteamIdFrame++;
-            if (_exportHostSteamIdFrame > 180) // ~3 seconds at 60fps
-            {
-                _exportHostSteamIdPending = false;
-                Patches.VirtualFriendData.ExportHostSteamId();
-            }
-        }
-
-        // ── Multiplayer: client periodically loads host Steam ID ───────
-        if (_multiplayerMode && !_isMultiplayerHost && !Patches.VirtualFriendData.IsReady)
-        {
-            _loadHostSteamIdFrame++;
-            if (_loadHostSteamIdFrame % 120 == 0) // every 2 seconds
-            {
-                if (Patches.VirtualFriendData.TryLoadHostSteamId())
-                    MainFile.Logger.Info("[AutoSlay] Virtual friend loaded — host should appear in friend list");
-            }
-        }
-
         // ── Diagnostic heartbeat (every 5 seconds) ──────────────────
         _dbgTimer -= delta;
         if (_dbgTimer <= 0)
@@ -375,6 +342,14 @@ public partial class AutoSlayNode : Node
         _cooldown -= delta;
         _combatCardDelay -= delta;
         _logTimer -= delta;
+
+        // ── Multiplayer: dismiss any error popups (e.g. "Connection failed") ──
+        // FastMpJoin() shows an error dialog if the host's ENet server isn't
+        // ready yet. Dismiss it so the bot can retry.
+        if (_multiplayerMode && !_isMultiplayerHost)
+        {
+            DismissContinuePrompt();
+        }
 
         // ── Stuck detection: 60s without combat/play → kill game ──────
         bool inCombat = CombatManager.Instance?.IsInProgress == true;
@@ -1690,10 +1665,34 @@ public partial class AutoSlayNode : Node
             // back to main menu every time the screen briefly shows it during
             // transitions. The bot should do NOTHING on the main menu after
             // joining — just wait for LOBBY or CHARACTER_SELECT to appear.
+            //
+            // BUT: if we've been waiting too long (connection failed, error popup
+            // dismissed, now back at main menu), reset and retry.
             if (_multiplayerMode && !_isMultiplayerHost && _multiplayerJoined)
             {
+                double joinWaitElapsed = (_mpJoinClickedTime > 0)
+                    ? Time.GetUnixTimeFromSystem() - _mpJoinClickedTime
+                    : 0;
+
+                // If we're back at the main menu with the Multiplayer button
+                // visible AND we've waited >15s since clicking Join, the
+                // connection likely failed. Reset and let HandleMultiplayerMenu
+                // retry.
+                var mpBtnCheck = mainMenu.GetNodeOrNull<NButton>("MainMenuTextButtons/MultiplayerButton");
+                bool mainMenuReady = mpBtnCheck != null && mpBtnCheck.Visible;
+
+                if (mainMenuReady && joinWaitElapsed > MP_JOIN_RETRY_DELAY)
+                {
+                    MainFile.Logger.Warn($"[AutoSlay] Join likely failed (back at main menu after {joinWaitElapsed:F0}s). Resetting for retry.");
+                    _multiplayerJoined = false;
+                    _mpButtonClicked = false; // re-navigate from scratch
+                    _mpSubmenuSeenTime = 0;
+                    _cooldown = 1.0;
+                    return;
+                }
+
                 if (_debugFrame % 120 == 0)
-                    MainFile.Logger.Info("[AutoSlay] Bot: waiting for lobby/character select (main menu guard active)");
+                    MainFile.Logger.Info($"[AutoSlay] Bot: waiting for lobby/character select ({joinWaitElapsed:F0}s elapsed)");
                 _cooldown = 1.0;
                 return;
             }
@@ -2557,35 +2556,36 @@ public partial class AutoSlayNode : Node
     }
 
     // ═══════════════════════════════════════════════════════════════════
-    // Multiplayer menu navigation
     // ═══════════════════════════════════════════════════════════════════
+    // Multiplayer menu navigation (--fastmp ENet mode)
+    // ═══════════════════════════════════════════════════════════════════
+    //
+    // With --fastmp flag, the game uses ENet transport (127.0.0.1:33771)
+    // instead of Steam matchmaking. No Steam lobby needed.
+    //
+    // Host: Human navigates Multiplayer → Host → Standard
+    //   → Game creates ENet server on port 33771
+    // Client: Bot clicks Multiplayer → Join
+    //   → NJoinFriendScreen.OnSubmenuOpened detects --fastmp
+    //   → Calls FastMpJoin() → auto-connects to 127.0.0.1:33771
+    //
+    // The client must only reach the Join screen AFTER the host has
+    // created the ENet server. Timing is handled by the launcher.
 
-    /// <summary>
-    /// Handle multiplayer menu navigation for the bot client.
-    /// Clicks Multiplayer → Join, then waits for the human to manually
-    /// select and join the host's lobby. Does NOT auto-join.
-    ///
-    /// Host (human): autoBattle disabled — returns idle cooldown.
-    /// </summary>
     private bool _mpButtonClicked;
+    private double _mpSubmenuSeenTime;      // real time when Join button first appeared
+    private int _mpJoinAttempt;             // how many times we've tried to join
+    private double _mpJoinClickedTime;       // real time when we last clicked Join
+    private const double MP_JOIN_DELAY = 25.0;       // seconds to wait before clicking Join (host needs time)
+    private const double MP_JOIN_RETRY_DELAY = 15.0; // seconds to wait after failed join before retrying
+    private const int MP_JOIN_MAX_ATTEMPTS = 5;
 
     private double HandleMultiplayerMenu(Control mainMenu)
     {
-        // ── Diagnostic logging ────────────────────────────────────────
-        if (_debugFrame % 60 == 0)
-        {
-            var diagMp = mainMenu.GetNodeOrNull<NButton>("MainMenuTextButtons/MultiplayerButton");
-            var diagJoin = mainMenu.GetNodeOrNull<NButton>("Submenus/MultiplayerSubmenu/JoinButton");
-            MainFile.Logger.Info($"[AutoSlay] HandleMultiplayerMenu: isHost={_isMultiplayerHost} " +
-                $"mpBtn={diagMp?.Visible}/{diagMp?.IsEnabled} " +
-                $"joinBtn={diagJoin?.Visible}/{diagJoin?.IsEnabled} " +
-                $"joined={_multiplayerJoined} mpClicked={_mpButtonClicked}");
-        }
-
         if (_isMultiplayerHost)
         {
             // Host: human plays manually, bot does nothing here
-            // Human navigates Multiplayer → Host → Create → Character → Lobby
+            // Human navigates: Multiplayer → Host → Standard → Character → Lobby
             return 1.0;
         }
 
@@ -2596,45 +2596,12 @@ public partial class AutoSlayNode : Node
             MainFile.Logger.Info("[AutoSlay] Clicking Multiplayer button...");
             mpBtn.ForceClick();
             _mpButtonClicked = true;
-            return 2.0; // wait for screen transition
+            _mpSubmenuSeenTime = 0; // reset — haven't seen Join yet
+            return 2.0;
         }
 
-        // ── After clicking Multiplayer, dump scene tree ONCE to find
-        // where the submenu/screen actually lives ─────────────────────
-        if (_mpButtonClicked && !_sceneTreeDumped)
-        {
-            _sceneTreeDumped = true;
-            DumpMultiplayerSceneTree(mainMenu);
-        }
-
-        // ── If mpBtn is STILL visible after clicking, the screen
-        // didn't transition. Don't re-click — that causes the loop. ──
-        if (_mpButtonClicked && mpBtn != null && mpBtn.Visible)
-        {
-            // Check if a submenu opened somewhere (not necessarily under mainMenu)
-            var root = GetNodeOrNull<Node>("/root/Game/RootSceneContainer");
-            if (root != null)
-            {
-                // Try common multiplayer screen paths
-                var mpScreen = root.GetNodeOrNull<Control>("MultiplayerMenu")
-                    ?? root.GetNodeOrNull<Control>("MultiplayerScreen")
-                    ?? root.GetNodeOrNull<Control>("Run/RoomContainer/MultiplayerRoom");
-                if (mpScreen != null)
-                {
-                    MainFile.Logger.Info($"[AutoSlay] Found multiplayer screen at separate path: {mpScreen.GetType().Name}");
-                    // TODO: handle this screen type
-                }
-            }
-
-            if (_debugFrame % 120 == 0)
-                MainFile.Logger.Info("[AutoSlay] Multiplayer button still visible after click — waiting for screen change");
-            return 2.0; // keep waiting, human might need to interact
-        }
-
-        // ── Step 2: Click Join on multiplayer submenu (if visible) ───
-        // The submenu structure is:
-        //   Submenus/NMultiplayerSubmenu/ButtonContainer/[HostButton, JoinButton, ...]
-        // Buttons are inside ButtonContainer, not directly under MultiplayerSubmenu.
+        // ── Step 2: Find Join button on multiplayer submenu ──────────
+        // The Join button is inside ButtonContainer under MultiplayerSubmenu.
         var buttonContainer = mainMenu.GetNodeOrNull<Control>("Submenus/MultiplayerSubmenu/ButtonContainer");
         NButton? joinBtn = null;
 
@@ -2653,59 +2620,72 @@ public partial class AutoSlayNode : Node
                     }
                 }
             }
-            // If no Join-specific button found, look for ANY button (might be differently named)
-            if (joinBtn == null && _debugFrame % 120 == 0)
+        }
+
+        // ── Step 3: Wait for host before clicking Join ────────────────
+        // The host creates the ENet server when the human clicks "Standard"
+        // on the host submenu. The human needs time to navigate there.
+        // We wait MP_JOIN_DELAY seconds after first seeing the Join button
+        // before clicking it, giving the human a window to set up the host.
+        if (joinBtn != null && _mpJoinAttempt < MP_JOIN_MAX_ATTEMPTS)
+        {
+            double now = Time.GetUnixTimeFromSystem();
+
+            // Record when we first saw the Join button
+            if (_mpSubmenuSeenTime <= 0)
             {
-                var sb = new System.Text.StringBuilder();
-                foreach (var child in buttonContainer.GetChildren())
+                _mpSubmenuSeenTime = now;
+                MainFile.Logger.Info($"[AutoSlay] Join button visible — waiting {MP_JOIN_DELAY}s for host to create game...");
+            }
+
+            double elapsed = now - _mpSubmenuSeenTime;
+
+            // Also check: if we previously clicked Join but ended up back here,
+            // we need to wait before retrying (connection failed, retry after delay).
+            double timeSinceLastClick = (_mpJoinClickedTime > 0) ? (now - _mpJoinClickedTime) : 999.0;
+
+            bool waitedEnough = elapsed >= MP_JOIN_DELAY;
+            bool retryCooldownPassed = timeSinceLastClick >= MP_JOIN_RETRY_DELAY;
+
+            if (waitedEnough && retryCooldownPassed)
+            {
+                _mpJoinAttempt++;
+                MainFile.Logger.Info($"[AutoSlay] Clicking Join (attempt {_mpJoinAttempt}/{MP_JOIN_MAX_ATTEMPTS}) — " +
+                    $"waited {elapsed:F0}s for host ENet server");
+                joinBtn.ForceClick();
+                _multiplayerJoined = true;
+                _mpJoinClickedTime = now;
+                _mpSubmenuSeenTime = 0; // reset for next attempt
+                return 2.0;
+            }
+            else
+            {
+                // Still waiting — log every 5 seconds
+                if (_debugFrame % 300 == 0)
                 {
-                    if (child is NButton btn)
-                        sb.Append($"[{btn.Name} vis={btn.Visible} en={btn.IsEnabled}] ");
+                    double remaining = MP_JOIN_DELAY - elapsed;
+                    double retryRemaining = MP_JOIN_RETRY_DELAY - timeSinceLastClick;
+                    MainFile.Logger.Info($"[AutoSlay] Waiting to click Join: hostDelay={remaining:F0}s, retryCooldown={retryRemaining:F0}s");
                 }
-                MainFile.Logger.Info($"[AutoSlay] ButtonContainer contents: {sb}");
+                return 1.0; // check back frequently
             }
         }
 
-        if (joinBtn != null && joinBtn.Visible && joinBtn.IsEnabled)
+        if (joinBtn != null && _mpJoinAttempt >= MP_JOIN_MAX_ATTEMPTS)
         {
-            MainFile.Logger.Info($"[AutoSlay] Clicking Join button: {joinBtn.Name}");
-            joinBtn.ForceClick();
-            _multiplayerJoined = true;
-            return 2.0;
+            if (_debugFrame % 300 == 0)
+                MainFile.Logger.Error($"[AutoSlay] Max join attempts ({MP_JOIN_MAX_ATTEMPTS}) reached! Giving up.");
+            return 5.0;
         }
 
-        // ── Dump submenu buttons for diagnostics ─────────────────────
+        // ── Diagnostic logging ────────────────────────────────────────
         if (_debugFrame % 120 == 0)
         {
-            var root2 = GetNodeOrNull<Node>("/root/Game/RootSceneContainer");
-            if (root2 != null)
-            {
-                var sb = new System.Text.StringBuilder();
-                DumpVisibleButtons(root2, sb, "  ", 0, 2);
-                MainFile.Logger.Info($"[AutoSlay] Scene button dump:\n{sb}");
-            }
+            MainFile.Logger.Info($"[AutoSlay] HandleMultiplayerMenu: mpClicked={_mpButtonClicked} " +
+                $"joinBtnFound={joinBtn != null} mpBtnVisible={mpBtn?.Visible} attempt={_mpJoinAttempt}");
         }
 
         return 1.0;
-    }
-
-    private bool _sceneTreeDumped;
-    private void DumpMultiplayerSceneTree(Control mainMenu)
-    {
-        try
-        {
-            var root = GetNodeOrNull<Node>("/root/Game/RootSceneContainer");
-            if (root == null) return;
-
-            var sb = new System.Text.StringBuilder();
-            sb.AppendLine("[AutoSlay] Scene tree after Multiplayer click:");
-            DumpNodeTree(root, sb, "  ", 0, 3);
-            MainFile.Logger.Info(sb.ToString());
-        }
-        catch (Exception ex)
-        {
-            MainFile.Logger.Info($"[AutoSlay] Scene tree dump error: {ex.Message}");
-        }
     }
 
     private void DumpNodeTree(Node node, System.Text.StringBuilder sb, string indent, int depth, int maxDepth)
