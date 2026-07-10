@@ -52,6 +52,11 @@ public partial class AutoSlayNode : Node
     private bool _debugMaxHp = false;  // set to true for optimizer: max HP 999, evaluate via HP loss not win/loss
     private bool _paused;
     private bool _tWasDown;
+    // ── Feature toggles: F1/F2/F3 ──────────────────────────────────────
+    private bool _autoNavigate;  // F1: auto map pathing + rest/shop decisions
+    private bool _autoBattle;    // F2: auto combat (play cards + end turn)
+    private bool _autoEvent;     // F3: auto event choices + card rewards/picks
+    private bool _f1WasDown, _f2WasDown, _f3WasDown;
     private IDisposable? _cardSelectorScope;
     private AutoSlayCardSelector? _cardSelector;
     private readonly System.Random _rng = new();
@@ -172,6 +177,29 @@ public partial class AutoSlayNode : Node
             if (_multiplayerMode)
             {
                 MainFile.Logger.Info($"[AutoSlay] Multiplayer mode: IsHost={_isMultiplayerHost}, PersonaName={cfg.SteamPersonaName}");
+                // ── Feature toggle defaults ──────────────────────────────
+                // Client (bot): all auto features ON
+                // Host (human): all OFF, can toggle ON with F1/F2/F3
+                if (_isMultiplayerHost)
+                {
+                    _autoNavigate = false;
+                    _autoBattle = false;
+                    _autoEvent = false;
+                }
+                else
+                {
+                    _autoNavigate = true;
+                    _autoBattle = true;
+                    _autoEvent = true;
+                }
+                MainFile.Logger.Info($"[AutoSlay] Toggles: Nav={_autoNavigate} Battle={_autoBattle} Event={_autoEvent} (F1/F2/F3 to change)");
+            }
+            else
+            {
+                // Singleplayer: all ON
+                _autoNavigate = true;
+                _autoBattle = true;
+                _autoEvent = true;
             }
         }
 
@@ -301,6 +329,31 @@ public partial class AutoSlayNode : Node
             }
         }
         _tWasDown = tDown;
+
+        // ── Feature toggles (F1/F2/F3) ──────────────────────────────────────
+        bool f1Down = Input.IsKeyPressed(Key.F1);
+        if (f1Down && !_f1WasDown)
+        {
+            _autoNavigate = !_autoNavigate;
+            MainFile.Logger.Info($"[AutoSlay] F1: Auto-Navigate = {_autoNavigate}");
+        }
+        _f1WasDown = f1Down;
+
+        bool f2Down = Input.IsKeyPressed(Key.F2);
+        if (f2Down && !_f2WasDown)
+        {
+            _autoBattle = !_autoBattle;
+            MainFile.Logger.Info($"[AutoSlay] F2: Auto-Battle = {_autoBattle}");
+        }
+        _f2WasDown = f2Down;
+
+        bool f3Down = Input.IsKeyPressed(Key.F3);
+        if (f3Down && !_f3WasDown)
+        {
+            _autoEvent = !_autoEvent;
+            MainFile.Logger.Info($"[AutoSlay] F3: Auto-Event = {_autoEvent}");
+        }
+        _f3WasDown = f3Down;
 
         if (_paused) return;
 
@@ -680,6 +733,13 @@ public partial class AutoSlayNode : Node
             if (!cm.PlayerActionsDisabled)
             {
                 // ── We have an active turn — reset watchdogs
+
+                // ── Toggle guard: skip if auto-battle is OFF ──
+                if (!_autoBattle)
+                {
+                    _lastCombatActivity = 0; // reset stuck detector — human is playing
+                    return;
+                }
 
                 // Pause check: obey auto-battle toggle
                 if (TokenSpire2.Core.AppConfig.Instance.AutoBattlePaused)
@@ -1484,38 +1544,85 @@ public partial class AutoSlayNode : Node
                     // If it doesn't, the end-turn button click was silently
                     // rejected (button disabled, animation in progress, etc.).
                     //
+                    // In multiplayer (client/bot), PlayerActionsDisabled stays
+                    // false until ALL players have ended their turn — the bot
+                    // must wait for the human host to finish playing. Use a much
+                    // longer timeout and reset the stuck detector so we don't
+                    // kill the game while waiting.
+                    //
                     // ⚠️ We do NOT use Thread.Sleep — _Process runs on Godot's
                     // main thread. Sleeping blocks the engine and prevents the
                     // game from processing input events, creating a permanent
                     // green-screen freeze. Instead we use frame-based counting:
                     // spread retries across frames so the game can breathe.
                     _combatTurnRequestedDuration += _delta;
-                    if (_combatTurnRequestedDuration > 5.0)
+                    double deadlockTimeout = _multiplayerMode ? 120.0 : 5.0;
+                    if (_combatTurnRequestedDuration > deadlockTimeout)
                     {
-                        MainFile.Logger.Error(
-                            $"[AutoSlay] DEADLOCK DETECTED: _combatTurnRequested=true for " +
-                            $"{_combatTurnRequestedDuration:F1}s, PlayerActionsDisabled=false. " +
-                            "Retrying end turn via PlayerCmd...");
-                        _combatTurnRequestedDuration = 0;
-                        _combatTurnRequested = false;
-                        _combatPlan = null;
-                        _combatCardDelay = 0.2;
-                        try
+                        if (_multiplayerMode)
                         {
-                            var rs2 = RunManager.Instance?.DebugOnlyGetState();
-                            var pl2 = rs2 != null ? LocalContext.GetMe(rs2) : null;
-                            if (pl2 != null && CombatManager.Instance is { PlayerActionsDisabled: false })
+                            // In multiplayer: after 120s of waiting, the end-turn
+                            // was probably silently rejected. Retry via action queue.
+                            MainFile.Logger.Error(
+                                $"[AutoSlay] MP DEADLOCK: _combatTurnRequested=true for " +
+                                $"{_combatTurnRequestedDuration:F1}s, PlayerActionsDisabled=false (IsHost={_isMultiplayerHost}). " +
+                                "Retrying end turn via ActionQueueSynchronizer...");
+                            _combatTurnRequestedDuration = 0;
+                            _combatTurnRequested = false;
+                            _combatPlan = null;
+                            _combatCardDelay = 0.2;
+                            try
                             {
-                                PlayerCmd.EndTurn(pl2, canBackOut: false);
-                                MainFile.Logger.Info("[AutoSlay] Deadlock recovery: end turn sent via PlayerCmd");
-                                _combatTurnRequested = true; _combatTurnRequestedDuration = 0;
-                                _combatCardDelay = 0.5;
+                                var rs2 = RunManager.Instance?.DebugOnlyGetState();
+                                var pl2 = rs2 != null ? LocalContext.GetMe(rs2) : null;
+                                if (pl2 != null && CombatManager.Instance is { PlayerActionsDisabled: false })
+                                {
+                                    int tn = pl2.PlayerCombatState.TurnNumber;
+                                    RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(
+                                        new MegaCrit.Sts2.Core.GameActions.EndPlayerTurnAction(pl2, tn));
+                                    MainFile.Logger.Info($"[AutoSlay] MP Deadlock recovery: EndPlayerTurnAction turn#{tn} enqueued");
+                                    _combatTurnRequested = true; _combatTurnRequestedDuration = 0;
+                                    _combatCardDelay = 0.5;
+                                }
+                            }
+                            catch (Exception deadlockEx)
+                            {
+                                MainFile.Logger.Error($"[AutoSlay] MP Deadlock recovery CRASH: {deadlockEx.Message}");
                             }
                         }
-                        catch (Exception deadlockEx)
+                        else
                         {
-                            MainFile.Logger.Error($"[AutoSlay] Deadlock recovery CRASH: {deadlockEx.Message}");
+                            // Singleplayer: normal 5-second deadlock retry
+                            MainFile.Logger.Error(
+                                $"[AutoSlay] DEADLOCK DETECTED: _combatTurnRequested=true for " +
+                                $"{_combatTurnRequestedDuration:F1}s, PlayerActionsDisabled=false. " +
+                                "Retrying end turn via PlayerCmd...");
+                            _combatTurnRequestedDuration = 0;
+                            _combatTurnRequested = false;
+                            _combatPlan = null;
+                            _combatCardDelay = 0.2;
+                            try
+                            {
+                                var rs2 = RunManager.Instance?.DebugOnlyGetState();
+                                var pl2 = rs2 != null ? LocalContext.GetMe(rs2) : null;
+                                if (pl2 != null && CombatManager.Instance is { PlayerActionsDisabled: false })
+                                {
+                                    PlayerCmd.EndTurn(pl2, canBackOut: false);
+                                    MainFile.Logger.Info("[AutoSlay] Deadlock recovery: end turn sent via PlayerCmd");
+                                    _combatTurnRequested = true; _combatTurnRequestedDuration = 0;
+                                    _combatCardDelay = 0.5;
+                                }
+                            }
+                            catch (Exception deadlockEx)
+                            {
+                                MainFile.Logger.Error($"[AutoSlay] Deadlock recovery CRASH: {deadlockEx.Message}");
+                            }
                         }
+                    }
+                    else if (_multiplayerMode)
+                    {
+                        // Reset stuck detector — we're alive, just waiting for other player
+                        _lastCombatActivity = 0;
                     }
                     return;
                 }
@@ -1716,6 +1823,12 @@ public partial class AutoSlayNode : Node
                 _cooldown = 3.0;
                 return;
             }
+            // ── Toggle guard: skip if auto-navigate is OFF ──
+            if (!_autoNavigate)
+            {
+                _cooldown = 3.0;
+                return;
+            }
 
             _gameOverReflected = false;
             RunSummaryLogger.Reset();
@@ -1740,6 +1853,12 @@ public partial class AutoSlayNode : Node
         {
             // ── Multiplayer bot: follow host, don't make event decisions ──
             if (_multiplayerMode && !_isMultiplayerHost)
+            {
+                _cooldown = 3.0;
+                return;
+            }
+            // ── Toggle guard: skip if auto-event is OFF ──
+            if (!_autoEvent)
             {
                 _cooldown = 3.0;
                 return;
@@ -1783,6 +1902,12 @@ public partial class AutoSlayNode : Node
                 _cooldown = 3.0;
                 return;
             }
+            // ── Toggle guard: skip if auto-event is OFF ──
+            if (!_autoEvent)
+            {
+                _cooldown = 3.0;
+                return;
+            }
 
             MainFile.Logger.Info("[AutoSlay] TREASURE room detected, calling DecisionEngine");
             try { DecisionEngine.Decide(GameScreen.TREASURE, delta); }
@@ -1805,6 +1930,12 @@ public partial class AutoSlayNode : Node
         {
             // ── Multiplayer bot: follow host, don't make rest decisions ──
             if (_multiplayerMode && !_isMultiplayerHost)
+            {
+                _cooldown = 3.0;
+                return;
+            }
+            // ── Toggle guard: skip if auto-navigate is OFF ──
+            if (!_autoNavigate)
             {
                 _cooldown = 3.0;
                 return;
@@ -1983,6 +2114,12 @@ public partial class AutoSlayNode : Node
         {
             // ── Multiplayer bot: follow host, don't make shop decisions ──
             if (_multiplayerMode && !_isMultiplayerHost)
+            {
+                _cooldown = 3.0;
+                return;
+            }
+            // ── Toggle guard: skip if auto-navigate is OFF ──
+            if (!_autoNavigate)
             {
                 _cooldown = 3.0;
                 return;
@@ -4223,13 +4360,37 @@ public partial class AutoSlayNode : Node
     }
 
     /// <summary>
-    /// End the current player's turn via direct API call.
+    /// End the current player's turn. In multiplayer, the end-turn action MUST go
+    /// through the network-synced action queue — ALWAYS, for both host and client.
+    ///
+    /// The game's NEndTurnButton uses:
+    ///   ActionQueueSynchronizer.RequestEnqueue(new EndPlayerTurnAction(me, turnNumber))
+    ///
+    /// ActionQueueSynchronizer handles the role automatically:
+    ///   - Host: enqueues directly into the synced queue
+    ///   - Client: sends a message to host requesting enqueue
+    ///
+    /// PlayerCmd.EndTurn() is LOCAL-ONLY — it does NOT propagate to other peers.
+    /// Using it in multiplayer causes the turn to never advance because the host
+    /// never knows the other player is ready. Only use it in singleplayer.
     /// </summary>
     private void EndTurnViaUiOrApi(Player player)
     {
         try
         {
-            PlayerCmd.EndTurn(player, canBackOut: false);
+            if (_multiplayerMode)
+            {
+                // ── Multiplayer (host OR client): must use synced action queue ──
+                int turnNumber = player.PlayerCombatState.TurnNumber;
+                RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(
+                    new MegaCrit.Sts2.Core.GameActions.EndPlayerTurnAction(player, turnNumber));
+                MainFile.Logger.Info($"[AutoSlay] MP EndTurn: enqueued EndPlayerTurnAction turn#{turnNumber} (IsHost={_isMultiplayerHost})");
+            }
+            else
+            {
+                // ── Singleplayer: direct API is fine ──
+                PlayerCmd.EndTurn(player, canBackOut: false);
+            }
         }
         catch (Exception ex)
         {

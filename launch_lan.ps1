@@ -71,8 +71,8 @@ Remove-Item -Path $ClientSignalFile -Force -ErrorAction SilentlyContinue
 
 $hostConfig | Set-Content -Path $SharedConfigFile -Encoding UTF8
 
-# Launch with --fastmp for ENet transport (bypasses Steam matchmaking)
-$hostArgs = "--fastmp"
+# Launch with --fastmp host_standard for ENet host (bypasses Steam matchmaking)
+$hostArgs = "--fastmp host_standard"
 Write-Host "[Host] Launch args: $hostArgs"
 Start-Process -FilePath $GameExe -ArgumentList $hostArgs -WorkingDirectory $GameDir
 Write-Host "[Host] Launched at $(Get-Date -Format 'HH:mm:ss')"
@@ -101,8 +101,8 @@ Write-Host "[Client] Config: $clientConfig"
 
 $clientConfig | Set-Content -Path $SharedConfigFile -Encoding UTF8
 
-# Launch with --fastmp for ENet transport (bypasses Steam matchmaking)
-$clientArgs = "--fastmp"
+# Launch with --fastmp join for ENet client (bypasses Steam matchmaking)
+$clientArgs = "--fastmp join"
 Write-Host "[Client] Launch args: $clientArgs"
 Start-Process -FilePath $GameExe -ArgumentList $clientArgs -WorkingDirectory $GameDir
 Write-Host "[Client] Launched at $(Get-Date -Format 'HH:mm:ss')"
