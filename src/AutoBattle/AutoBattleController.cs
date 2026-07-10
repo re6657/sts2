@@ -60,8 +60,8 @@ public partial class AutoBattleController : Node
 
         // Configure stuck detector
         var cfg = AppConfig.Instance;
-        _stuckDetector.IsHumanPlayer = cfg.IsHumanPlayer;
-        _stuckDetector.NeverKill = cfg.CoopMode;
+        _stuckDetector.IsHumanPlayer = false;
+        _stuckDetector.NeverKill = false;
         _stuckDetector.OnBeforeKill += OnBeforeStuckKill;
 
         // Load seed/character from config
@@ -120,7 +120,7 @@ public partial class AutoBattleController : Node
         var screen = ScreenDetector.Detect();
 
         // ── Stuck check ─────────────────────────────────────────
-        if (!AppConfig.Instance.CoopMode && !AppConfig.Instance.IsHumanPlayer)
+        if (true) // always run stuck detection (single-player only)
         {
             var stuckResult = _stuckDetector.Update(delta);
             if (stuckResult == StuckResult.KillProcess)

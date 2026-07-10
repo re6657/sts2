@@ -36,8 +36,7 @@ using MegaCrit.Sts2.Core.Nodes.Rewards;
 using TokenSpire2.Handlers;
 using TokenSpire2.Llm;
 using TokenSpire2.Solver;
-using TokenSpire2.Multiplayer;
-using LocalCoop.Mod.Runtime;
+using TokenSpire2.Core;
 using System.Threading;
 
 namespace TokenSpire2;
@@ -58,17 +57,14 @@ public partial class AutoSlayNode : Node
     private readonly System.Random _rng = new();
     private long _debugFrame;
     private double _dbgTimer;
-	private double _delta; // frame delta from _Process, used by MpController
+	private double _delta;
 
     // Stuck detection: if no combat/card play for 60s, kill game
     private double _lastCombatActivity = -1;
 
-    // ── Multiplayer controller (replaces HandleMultiplayerMainMenu) ──
-    private MpController? _mpController;
     private const double STUCK_TIMEOUT = 45.0;       // kill if stuck >45s in combat (was 30s, too aggressive for long enemy turns)
     private const double NONCOMBAT_STUCK_TIMEOUT = 45.0; // kill if stuck >45s on same non-combat screen
     private const double COMBAT_NONCOMBAT_STUCK_TIMEOUT = 90.0; // kill if stuck >90s on combat screen (backup for combat stuck)
-    private const double COOP_STUCK_TIMEOUT = 120.0; // co-op safe: force recovery (not kill) if stuck >120s
 
     // Non-combat stuck detection: track screen/overlay changes
     private string _lastScreenType = "";
@@ -115,10 +111,6 @@ public partial class AutoSlayNode : Node
     private int _lastTurnPlayableNotPlayed; // playable cards not played last turn
     private bool _combatTurnRequested; // prevent re-requesting same turn
     private double _combatTurnRequestedDuration; // watchdog: seconds since _combatTurnRequested=true without PlayerActionsDisabled
-    // Fix B: co-op safe stuck tracking — seconds since last meaningful action
-    private double _lastCombatActivityCoop;
-    // Fix E: duration stuck with PlayerActionsDisabled=true (waiting for other player)
-    private double _waitingForTurnDuration; // Fix E: seconds continuously stuck with PlayerActionsDisabled=true in co-op
     private bool _combatPlanEndTurn; // true if LLM explicitly said END_TURN after plays
     private bool _drawJustFinished; // hand was empty, now has cards — wait for full draw to stabilize
     private int _drawStableCount;   // consecutive frames with same handCount — draw is complete when >= 3
@@ -148,6 +140,15 @@ public partial class AutoSlayNode : Node
     private int _lastTurnHp, _lastTurnBlock, _lastTurnMaxHp;
     private int _lastTurnAliveEnemyCount;
 
+    // ── Multiplayer mode ────────────────────────────────────────────
+    private bool _multiplayerMode;
+    private bool _isMultiplayerHost;
+    private bool _multiplayerJoined;
+    private bool _multiplayerReady;
+    private bool _exportHostSteamIdPending;
+    private int _exportHostSteamIdFrame;
+    private int _loadHostSteamIdFrame;
+
     public override void _Ready()
     {
         Console.WriteLine("[AutoSlay] _Ready() called! Node entering tree...");
@@ -165,15 +166,23 @@ public partial class AutoSlayNode : Node
         // ── Batch config: read seed/character/hpMultiplier from JSON ──────
         LoadBatchConfig();
 
-        // ── LAN Co-op: bot (client) auto-joins human's room and auto-plays.
-        //    Human (host) creates room and uses T key to toggle auto-battle. ──
-        if (Coop.CoopManager.IsCoopMode && Coop.CoopManager.IsBot)
+        // ── Multiplayer config: read from AppConfig ────────────────────
+        if (AppConfig.IsInitialized)
         {
-            MainFile.Logger.Info("[AutoSlay] Bot instance (client) — auto-join + auto-battle enabled.");
-        }
-        if (Coop.CoopManager.IsCoopMode && Coop.CoopManager.IsHumanPlayer)
-        {
-            MainFile.Logger.Info("[AutoSlay] Human instance (host) — manual play, T key to toggle auto-battle.");
+            var cfg = AppConfig.Instance;
+            _multiplayerMode = cfg.MultiplayerMode;
+            _isMultiplayerHost = cfg.IsMultiplayerHost;
+            if (_multiplayerMode)
+            {
+                MainFile.Logger.Info($"[AutoSlay] Multiplayer mode: IsHost={_isMultiplayerHost}, PersonaName={cfg.SteamPersonaName}");
+
+                // ── Host: export Steam ID so client can inject us as a virtual friend ──
+                if (_isMultiplayerHost)
+                {
+                    // Schedule export for after Steam is initialized (deferred a few frames)
+                    _exportHostSteamIdPending = true;
+                }
+            }
         }
 
         // Register card selector for mid-combat card selections (e.g. Armaments).
@@ -305,6 +314,29 @@ public partial class AutoSlayNode : Node
 
         if (_paused) return;
 
+        // ── Multiplayer: deferred host Steam ID export ──────────────────
+        // Wait a few frames after _Ready for Steam to finish initializing.
+        if (_exportHostSteamIdPending)
+        {
+            _exportHostSteamIdFrame++;
+            if (_exportHostSteamIdFrame > 180) // ~3 seconds at 60fps
+            {
+                _exportHostSteamIdPending = false;
+                Patches.VirtualFriendData.ExportHostSteamId();
+            }
+        }
+
+        // ── Multiplayer: client periodically loads host Steam ID ───────
+        if (_multiplayerMode && !_isMultiplayerHost && !Patches.VirtualFriendData.IsReady)
+        {
+            _loadHostSteamIdFrame++;
+            if (_loadHostSteamIdFrame % 120 == 0) // every 2 seconds
+            {
+                if (Patches.VirtualFriendData.TryLoadHostSteamId())
+                    MainFile.Logger.Info("[AutoSlay] Virtual friend loaded — host should appear in friend list");
+            }
+        }
+
         // ── Diagnostic heartbeat (every 5 seconds) ──────────────────
         _dbgTimer -= delta;
         if (_dbgTimer <= 0)
@@ -313,18 +345,8 @@ public partial class AutoSlayNode : Node
             try
             {
                 var screen = GameStateDetector.Detect();
-                var msg = $"[AutoSlay] ♥ heartbeat screen={screen} coop={Coop.CoopManager.IsCoopMode} human={Coop.CoopManager.IsHumanPlayer} autoBattle={Coop.CoopManager.IsAutoBattleActive}";
+                var msg = $"[AutoSlay] ♥ heartbeat screen={screen}";
                 MainFile.Logger?.Info(msg);
-                // Also write to event log for visibility
-                try
-                {
-                    var modDir = TokenSpire2.Core.AppConfig.ModDirectory;
-                    var logPath = System.IO.Path.Combine(modDir,
-                        $"localcoop-{(TokenSpire2.Core.AppConfig.Instance.IsHost ? "host" : "client")}-{TokenSpire2.Core.AppConfig.Instance.ClientIndex}-events.txt");
-                    var evtLog = new LocalCoop.Mod.Runtime.BrokerEventLog(logPath);
-                    evtLog.Write(msg);
-                }
-                catch { }
             }
             catch (Exception ex)
             {
@@ -359,74 +381,16 @@ public partial class AutoSlayNode : Node
         if (inCombat)
         {
             if (_lastCombatActivity < 0) _lastCombatActivity = 0; // init timer
-
-            // In multiplayer co-op, the bot ends its turn immediately but must wait
-            // for the human host to also end their turn. During this wait,
-            // PlayerActionsDisabled is true and the bot cannot play any cards.
-            // Don't accumulate the stuck timer during this period — the bot is
-            // not stuck, it's just waiting for the other player.
-            bool waitingForOtherPlayer = Coop.CoopManager.IsCoopMode
-                && (CombatManager.Instance?.PlayerActionsDisabled ?? false);
-            if (!waitingForOtherPlayer)
-            {
-                _lastCombatActivity += delta;
-            }
-
-            // Fix B: track co-op activity time separately (includes waiting periods)
-            if (Coop.CoopManager.IsCoopMode)
-            {
-                _lastCombatActivityCoop += delta;
-            }
+            _lastCombatActivity += delta;
         }
         else
         {
             _lastCombatActivity = -1; // reset when not in combat
-            _lastCombatActivityCoop = 0;  // Fix B: reset co-op timer outside combat
         }
 
-        // Human player controls their own pace — never kill their game.
-        // Only the bot instance should be killed on stuck detection.
-        // In co-op/LAN mode: DON'T kill — instead force a re-solve recovery.
-        // Killing one instance would hang the other waiting for network messages.
-
-        // ── Fix B: Co-op safe stuck detection (does NOT kill process)
-        // Uses _lastCombatActivityCoop which keeps counting even during
-        // "waiting for other player" periods where _lastCombatActivity is paused.
-        if (Coop.CoopManager.IsCoopMode
-            && _lastCombatActivityCoop > 120.0)
+        // Combat stuck detection — kill game if stuck for too long
+        if (_lastCombatActivity > STUCK_TIMEOUT)
         {
-            MainFile.Logger.Error(
-                $"[AutoSlay] COOP STUCK: {_lastCombatActivityCoop:F0}s " +
-                "without activity. Forcing re-solve...");
-            _lastCombatActivityCoop = 0;
-            _combatTurnRequested = false; _combatTurnRequestedDuration = 0;
-            _combatPlan = null;
-            _combatCardDelay = 1.0;
-            _combatTurnRequestedDuration = 0;
-            return;
-        }
-
-        if (!Coop.CoopManager.IsHumanPlayer
-            && _lastCombatActivity > STUCK_TIMEOUT)
-        {
-            if (Coop.CoopManager.IsCoopMode)
-            {
-                // ── Co-op safe recovery ──────────────────────────────────────
-                // Instead of killing, force a re-solve. This recovers from
-                // deadlocks where the bot can't make progress (e.g., end-turn
-                // button not found, card play stuck, etc.)
-                MainFile.Logger.Error(
-                    $"[AutoSlay] COOP COMBAT STUCK: {_lastCombatActivity:F0}s without activity. " +
-                    "Forcing re-solve recovery...");
-                WriteStuckDiagnostics("COOP_COMBAT_STUCK", _lastCombatActivity);
-                _lastCombatActivity = 0;
-                _lastCombatActivityCoop = 0;  // Fix B: reset co-op activity timer
-                _combatTurnRequested = false; _combatTurnRequestedDuration = 0;
-                _combatPlan = null;
-                _combatCardDelay = 1.0;
-                return;
-            }
-            // Single-player: kill the process (original behavior)
             WriteStuckDiagnostics("COMBAT_STUCK", _lastCombatActivity);
             SignalRunComplete();
             MainFile.Logger.Error($"[AutoSlay] STUCK: {_lastCombatActivity:F0}s in combat without activity! Killing game...");
@@ -469,29 +433,15 @@ public partial class AutoSlayNode : Node
         // Non-combat screens use the standard 45s timeout.
         double effectiveNonCombatTimeout = _lastScreenType?.StartsWith("COMBAT") == true
             ? COMBAT_NONCOMBAT_STUCK_TIMEOUT : NONCOMBAT_STUCK_TIMEOUT;
-        // Human player controls their own pace — never kill their game.
-        // Only the bot instance should be killed on stuck detection.
-        // In co-op/LAN mode: DON'T kill — instead force recovery.
-        if (!Coop.CoopManager.IsHumanPlayer
-            && _sameScreenDuration > effectiveNonCombatTimeout && _sameScreenTickCount > 30)
+        // ── Multiplayer guard: bot is expected to WAIT for human input ──
+        // Don't kill the game when waiting at main menu for join.
+        if (_multiplayerMode && !_isMultiplayerHost)
         {
-            if (Coop.CoopManager.IsCoopMode)
-            {
-                // ── Co-op safe recovery ──────────────────────────────────────
-                MainFile.Logger.Error(
-                    $"[AutoSlay] COOP NONCOMBAT STUCK: {_lastScreenType} for " +
-                    $"{_sameScreenDuration:F0}s ({_sameScreenTickCount} ticks). " +
-                    "Forcing re-solve recovery...");
-                WriteStuckDiagnostics("COOP_NONCOMBAT_STUCK", _sameScreenDuration);
-                _lastScreenType = "";
-                _sameScreenDuration = 0;
-                _sameScreenTickCount = 0;
-                _combatTurnRequested = false; _combatTurnRequestedDuration = 0;
-                _combatPlan = null;
-                _combatCardDelay = 1.0;
-                return;
-            }
-            // Single-player: kill the process (original behavior)
+            effectiveNonCombatTimeout = 300.0; // 5 minutes — human needs time
+        }
+        // Non-combat stuck detection — kill on bot instance
+        if (_sameScreenDuration > effectiveNonCombatTimeout && _sameScreenTickCount > 30)
+        {
             WriteStuckDiagnostics("NONCOMBAT_STUCK", _sameScreenDuration);
             SignalRunComplete();
             MainFile.Logger.Error($"[AutoSlay] NON-COMBAT STUCK: {_lastScreenType} for {_sameScreenDuration:F0}s ({_sameScreenTickCount} ticks)! Killing game...");
@@ -658,7 +608,6 @@ public partial class AutoSlayNode : Node
                     _turnPlansWithoutPlay = 0;  // reset — we forced progress
                     _combatTurnRequested = false; _combatTurnRequestedDuration = 0;
                     _lastCombatActivity = 0;     // actual progress
-                    _lastCombatActivityCoop = 0;  // Fix B: reset co-op activity timer
                     var rs = RunManager.Instance?.DebugOnlyGetState();
                     var pl = rs != null ? LocalContext.GetMe(rs) : null;
                     if (CombatManager.Instance is { PlayerActionsDisabled: false } && pl != null)
@@ -755,25 +704,11 @@ public partial class AutoSlayNode : Node
 
             if (!cm.PlayerActionsDisabled)
             {
-                // ── We have an active turn — reset waiting-for-enemy-tick watchdog
-                _waitingForTurnDuration = 0;
+                // ── We have an active turn — reset watchdogs
 
-                // ── LAN Co-op: T key toggles auto-battle.
-                //    Human (host) can press T to pause/resume auto-battle.
-                //    Bot (client) always auto-battles regardless.
-                //    When human pauses, the bot still plays its cards and ends
-                //    its own turn, but the human must also end their turn for
-                //    the round to advance. This is standard STS2 multiplayer. ──
-                if (Coop.CoopManager.IsHumanPlayer && TokenSpire2.Core.AppConfig.Instance.AutoBattlePaused)
+                // Pause check: obey auto-battle toggle
+                if (TokenSpire2.Core.AppConfig.Instance.AutoBattlePaused)
                 {
-                    if (dbgLog)
-                        MainFile.Logger.Info("[AutoSlay] Human player paused — press T to resume auto-battle");
-                    return;
-                }
-                if (Coop.CoopManager.IsHumanPlayer && !Coop.CoopManager.IsAutoBattleActive)
-                {
-                    if (dbgLog)
-                        MainFile.Logger.Info("[AutoSlay] Human player skip: auto-battle disabled by toggle");
                     return;
                 }
 
@@ -815,7 +750,6 @@ public partial class AutoSlayNode : Node
                                     _combatTurnRequested = true; _combatTurnRequestedDuration = 0;
                                     _combatCardDelay = 0.5;
                                     _lastCombatActivity = 0; // reset — waiting for end turn
-                                    _lastCombatActivityCoop = 0;  // Fix B: reset co-op timer on turn end
                                     return;
                                 }
                                 // Reset stability tracking — draw hasn't started
@@ -1569,20 +1503,26 @@ public partial class AutoSlayNode : Node
                 }
                 else
                 {
-                    // ── Turn-requested watchdog ──────────────────────────────
+                    // ── Turn-requested watchdog (Fix A) ──────────────────────
                     // _combatTurnRequested=true means we asked to end our turn.
                     // PlayerActionsDisabled should become true shortly after.
-                    // If it doesn't (end-turn button click failed silently),
-                    // we are deadlocked with no escape path. Detect and recover.
+                    // If it doesn't, the end-turn button click was silently
+                    // rejected (button disabled, animation in progress, etc.).
+                    //
+                    // ⚠️ We do NOT use Thread.Sleep — _Process runs on Godot's
+                    // main thread. Sleeping blocks the engine and prevents the
+                    // game from processing input events, creating a permanent
+                    // green-screen freeze. Instead we use frame-based counting:
+                    // spread retries across frames so the game can breathe.
                     _combatTurnRequestedDuration += _delta;
                     if (_combatTurnRequestedDuration > 5.0)
                     {
                         MainFile.Logger.Error(
                             $"[AutoSlay] DEADLOCK DETECTED: _combatTurnRequested=true for " +
                             $"{_combatTurnRequestedDuration:F1}s, PlayerActionsDisabled=false. " +
-                            "Retrying end turn...");
+                            "Retrying end turn via PlayerCmd...");
                         _combatTurnRequestedDuration = 0;
-                        _combatTurnRequested = false; _combatTurnRequestedDuration = 0;
+                        _combatTurnRequested = false;
                         _combatPlan = null;
                         _combatCardDelay = 0.2;
                         try
@@ -1591,20 +1531,10 @@ public partial class AutoSlayNode : Node
                             var pl2 = rs2 != null ? LocalContext.GetMe(rs2) : null;
                             if (pl2 != null && CombatManager.Instance is { PlayerActionsDisabled: false })
                             {
-                                var handler = new Multiplayer.MpScreenHandler();
-                                for (int retry = 0; retry < 5; retry++)
-                                {
-                                    if (handler.ClickEndTurnButton())
-                                    {
-                                        MainFile.Logger.Info($"[AutoSlay] Deadlock recovery: end turn clicked (retry #{retry})");
-                                        _combatTurnRequested = true; _combatTurnRequestedDuration = 0;
-                                        _combatTurnRequestedDuration = 0;
-                                        _combatCardDelay = 0.5;
-                                        return;
-                                    }
-                                    System.Threading.Thread.Sleep(200);
-                                }
-                                MainFile.Logger.Error("[AutoSlay] Deadlock recovery FAILED — all 5 retries exhausted!");
+                                PlayerCmd.EndTurn(pl2, canBackOut: false);
+                                MainFile.Logger.Info("[AutoSlay] Deadlock recovery: end turn sent via PlayerCmd");
+                                _combatTurnRequested = true; _combatTurnRequestedDuration = 0;
+                                _combatCardDelay = 0.5;
                             }
                         }
                         catch (Exception deadlockEx)
@@ -1630,56 +1560,7 @@ public partial class AutoSlayNode : Node
                 if (!_wasEnemyTurn)
                 {
                     _lastCombatActivity = 0;
-                    _lastCombatActivityCoop = 0;  // Fix B: reset co-op timer on new round
                     _wasEnemyTurn = true;
-                }
-
-                // ── Fix E: Co-op waiting-for-turn watchdog ────────────────────────
-                // When PlayerActionsDisabled=true in co-op, the bot has ended its
-                // turn and is waiting for the round to advance (enemy turn OR other
-                // player to end their turn). The normal stuck timer is PAUSED during
-                // this wait (see lines 363-368), so we need a SEPARATE watchdog here.
-                // If PlayerActionsDisabled remains true for way too long, something
-                // is stuck — the human host may be idling with autoBattle disabled,
-                // or the enemy turn may have hung. Try to recover.
-                _waitingForTurnDuration += _delta;
-                if (Coop.CoopManager.IsCoopMode && _waitingForTurnDuration > 45.0)
-                {
-                    MainFile.Logger.Error(
-                        $"[AutoSlay] STUCK-WAITING: PlayerActionsDisabled=true " +
-                        $"for {_waitingForTurnDuration:F0}s in co-op. " +
-                        "Bot has no actions available. Trying recovery...");
-                    _waitingForTurnDuration = 0;
-                    _wasEnemyTurn = false;
-                    try
-                    {
-                        var handler = new Multiplayer.MpScreenHandler();
-                        // Try clicking End Turn — in co-op this is normally
-                        // disabled during enemy turn, but if the game is stuck
-                        // it may respond and advance the round. Worst case:
-                        // it does nothing and we retry in another 45 seconds.
-                        if (handler.ClickEndTurnButton())
-                        {
-                            MainFile.Logger.Info(
-                                "[AutoSlay] STUCK-WAITING: End turn button clicked successfully");
-                            _combatTurnRequested = true; _combatTurnRequestedDuration = 0;
-                            _combatCardDelay = 0.5;
-                        }
-                        else
-                        {
-                            MainFile.Logger.Error(
-                                "[AutoSlay] STUCK-WAITING: End turn button not found or " +
-                                "not interactable. Check if human host needs to end turn. " +
-                                "Will retry in ~45s.");
-                            // Reset the waiting timer to give another chance
-                            _waitingForTurnDuration = 30.0; // retry in ~15s
-                        }
-                    }
-                    catch (Exception stuckEx)
-                    {
-                        MainFile.Logger.Error(
-                            $"[AutoSlay] STUCK-WAITING recovery CRASH: {stuckEx.Message}");
-                    }
                 }
             }
             return;
@@ -1724,7 +1605,7 @@ public partial class AutoSlayNode : Node
                 // This is MORE RELIABLE than the overlay-based GameOver detection,
                 // because the death transition may not use the overlay system.
                 // CO-OP GUARD: never signal run complete in co-op mode.
-                if (_batchMode && !Coop.CoopManager.IsCoopMode && !victory)
+                if (_batchMode && !victory)
                 {
                     MainFile.Logger.Error($"[AutoSlay] PLAYER DIED in batch mode — signaling run complete");
                     SignalRunComplete();
@@ -1773,50 +1654,52 @@ public partial class AutoSlayNode : Node
         }
         _rewardsLlmDone = false; // reset once we're past overlays
 
-        // ── CO-OP CLIENT: MpController drives multiplayer menu navigation ──
-        // Runs BEFORE the main menu handler so it can navigate through
-        // Main Menu → Multiplayer → Join Game → Friend List → click "人机一号".
-        if (Coop.CoopManager.IsCoopMode && Coop.CoopManager.IsClient)
+        // ── Multiplayer: lobby screen (bot auto-ready after joining) ─────
+        if (_multiplayerMode && !_isMultiplayerHost && _multiplayerJoined)
         {
-            if (_mpController == null)
+            // Check for lobby screen
+            var lobbyNode = GetNodeOrNull<Node>("/root/Game/RootSceneContainer/Run/RoomContainer/LobbyRoom")
+                ?? GetNodeOrNull<Control>("/root/Game/RootSceneContainer/Lobby");
+            if (lobbyNode != null)
             {
-                _mpController = new MpController();
-                MainFile.Logger.Info("[AutoSlay] MpController initialized for broker client navigation.");
-            }
-
-            var mpScreen = TokenSpire2.Core.ScreenDetector.Detect();
-            var mpResult = _mpController.Update(mpScreen, delta);
-            if (mpResult > 0)
-            {
-                _cooldown = mpResult;
+                _cooldown = HandleMultiplayerLobby();
                 return;
             }
+        }
 
-            // If MpController is idle (returns 0) and we're not in a menu screen,
-            // fall through to normal handling (combat, etc.)
-            // BUT if we're in menu screens, keep running MpController
-            if (mpScreen >= TokenSpire2.Core.GameScreen.MAIN_MENU && mpScreen <= TokenSpire2.Core.GameScreen.MULTIPLAYER_FRIEND_LIST)
+        // ── Multiplayer: character select screen ────────────────────────
+        if (_multiplayerMode && !_isMultiplayerHost && _multiplayerJoined)
+        {
+            var mpCharSelect = GetNodeOrNull<Node>("/root/Game/RootSceneContainer/Run/RoomContainer/CharacterSelectRoom")
+                ?? GetNodeOrNull<Control>("/root/Game/RootSceneContainer/CharacterSelectScreen")
+                ?? GetNodeOrNull<Control>("/root/Game/RootSceneContainer/CharacterSelect");
+            if (mpCharSelect != null)
             {
-                _cooldown = 2.0;
+                _cooldown = HandleMultiplayerCharacterSelect();
                 return;
             }
         }
 
         // ── Main Menu — auto-start run (HIGHEST priority before non-combat) ──
-        // MUST come before IsHumanPlayer guard and before DismissContinuePrompt.
         var mainMenu = GetNodeOrNull<Control>("/root/Game/RootSceneContainer/MainMenu");
         if (mainMenu != null && mainMenu.IsVisibleInTree())
         {
+            // ── Multiplayer bot: after joining, WAIT for screen transition ──
+            // Do NOT fall through to single-player HandleMainMenu logic, which
+            // would click "New Game" / "Continue" and cause the page to jump
+            // back to main menu every time the screen briefly shows it during
+            // transitions. The bot should do NOTHING on the main menu after
+            // joining — just wait for LOBBY or CHARACTER_SELECT to appear.
+            if (_multiplayerMode && !_isMultiplayerHost && _multiplayerJoined)
+            {
+                if (_debugFrame % 120 == 0)
+                    MainFile.Logger.Info("[AutoSlay] Bot: waiting for lobby/character select (main menu guard active)");
+                _cooldown = 1.0;
+                return;
+            }
+
             _hpBoosted = false;
             _cooldown = HandleMainMenu(mainMenu);
-            return;
-        }
-
-        // ── LAN Co-op: human (host) skips all non-combat auto-decisions ──
-        // Map/event/shop/rest decisions are manual for the human host.
-        if (Coop.CoopManager.IsHumanPlayer)
-        {
-            _cooldown = 2.0;
             return;
         }
 
@@ -1828,6 +1711,13 @@ public partial class AutoSlayNode : Node
         var mapScreen = NMapScreen.Instance;
         if (mapScreen != null && mapScreen.IsOpen && NOverlayStack.Instance?.ScreenCount == 0)
         {
+            // ── Multiplayer bot: follow host, don't make map decisions ──
+            if (_multiplayerMode && !_isMultiplayerHost)
+            {
+                _cooldown = 3.0;
+                return;
+            }
+
             _gameOverReflected = false;
             RunSummaryLogger.Reset();
             if (_llm != null)
@@ -1849,6 +1739,13 @@ public partial class AutoSlayNode : Node
             "/root/Game/RootSceneContainer/Run/RoomContainer/EventRoom");
         if (eventRoom != null)
         {
+            // ── Multiplayer bot: follow host, don't make event decisions ──
+            if (_multiplayerMode && !_isMultiplayerHost)
+            {
+                _cooldown = 3.0;
+                return;
+            }
+
             if (_llm != null)
             {
                 var options = AutoSlayHelpers.FindAll<NEventOptionButton>(eventRoom)
@@ -1881,6 +1778,13 @@ public partial class AutoSlayNode : Node
             "/root/Game/RootSceneContainer/Run/RoomContainer/TreasureRoom");
         if (treasureRoom != null)
         {
+            // ── Multiplayer bot: follow host, don't open treasure chests ──
+            if (_multiplayerMode && !_isMultiplayerHost)
+            {
+                _cooldown = 3.0;
+                return;
+            }
+
             MainFile.Logger.Info("[AutoSlay] TREASURE room detected, calling DecisionEngine");
             try { DecisionEngine.Decide(GameScreen.TREASURE, delta); }
             catch (Exception ex) { MainFile.Logger.Error($"[AutoSlay] TREASURE DecisionEngine CRASH: {ex.Message}"); }
@@ -1900,6 +1804,13 @@ public partial class AutoSlayNode : Node
         bool screenIsRest = GameStateDetector.Detect() == GameScreen.REST;
         if (restRoom != null && screenIsRest)
         {
+            // ── Multiplayer bot: follow host, don't make rest decisions ──
+            if (_multiplayerMode && !_isMultiplayerHost)
+            {
+                _cooldown = 3.0;
+                return;
+            }
+
             // ── Reset choice flag when entering a NEW rest site ──────────
             // SpeedX AutoProceed may have clicked Proceed on the previous rest site,
             // bypassing our reset at line 1654. Without this, _restSiteChoiceMade
@@ -2071,6 +1982,13 @@ public partial class AutoSlayNode : Node
             "/root/Game/RootSceneContainer/Run/RoomContainer/MerchantRoom");
         if (shopRoom != null)
         {
+            // ── Multiplayer bot: follow host, don't make shop decisions ──
+            if (_multiplayerMode && !_isMultiplayerHost)
+            {
+                _cooldown = 3.0;
+                return;
+            }
+
             // Leaving state: click proceed when available
             if (_shopLeaving)
             {
@@ -2432,17 +2350,6 @@ public partial class AutoSlayNode : Node
 
     private double HandleMainMenu(Control mainMenu)
     {
-        // ═══════════════════════════════════════════════════════════════════
-        // CO-OP/LAN GUARD: never auto-abandon, auto-signal-run-complete,
-        // or auto-embark in co-op mode. Both instances must stay alive and
-        // the human player controls navigation manually.
-        //
-        // IMPORTANT: Do NOT return early here. Co-op instances need to
-        // navigate through the MpController (event-driven state machine) to enter
-        // the lobby. Instead, add !IsCoopMode guards to the specific
-        // batch-mode kill paths below (runComplete freeze, abandon, death).
-        // ═══════════════════════════════════════════════════════════════════
-
         // ── Diagnostic: log menu state every 60 frames ──────────────────
         if (_debugFrame % 60 == 0)
         {
@@ -2466,12 +2373,20 @@ public partial class AutoSlayNode : Node
         // CO-OP GUARD: never freeze at main menu in co-op mode.
         // Both instances must stay alive for LAN multiplayer.
         // ═══════════════════════════════════════════════════════════════════
-        if (_runCompleteSignaled && !Coop.CoopManager.IsCoopMode)
+        if (_runCompleteSignaled)
         {
             // Run is done — freeze. Don't touch the main menu at all.
             // The batch runner will kill the game process shortly.
             return 2.0;
         }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // MULTIPLAYER: route to multiplayer menu instead of singleplayer
+        // Client (bot): navigate Multiplayer → Join, then wait for human
+        // Host (human): autoBattle disabled, returns idle cooldown
+        // ═══════════════════════════════════════════════════════════════════
+        if (_multiplayerMode && !_multiplayerJoined)
+            return HandleMultiplayerMenu(mainMenu);
 
         // ═══════════════════════════════════════════════════════════════════
         // Find AbandonRunButton
@@ -2480,10 +2395,8 @@ public partial class AutoSlayNode : Node
 
         // ═══════════════════════════════════════════════════════════════════
         // BATCH MODE: auto-abandon stale saves
-        // CO-OP GUARD: never auto-abandon in co-op mode — both instances
-        // must stay alive for LAN multiplayer.
         // ═══════════════════════════════════════════════════════════════════
-        if (_batchMode && !Coop.CoopManager.IsCoopMode && abandonBtn != null && abandonBtn.Visible && abandonBtn.IsEnabled)
+        if (_batchMode && abandonBtn != null && abandonBtn.Visible && abandonBtn.IsEnabled)
         {
             // ── Check if confirmation popup is open ───────────────────────
             var modal = NModalContainer.Instance?.OpenModal;
@@ -2569,43 +2482,10 @@ public partial class AutoSlayNode : Node
         // Character select → embark
         // ═══════════════════════════════════════════════════════════════════
 
-        // Co-op mode guard: if auto-start is disabled, do NOT auto-navigate menus.
-        // The human player will manually set up the game (character select, etc.).
-        if (Coop.CoopManager.IsCoopMode && !Coop.CoopManager.Config.AutoStartEnabled)
-        {
-            return 2.0; // idle — wait for manual setup
-        }
-
-        // ═══════════════════════════════════════════════════════════════════
-        // CO-OP MODE: The MpController dispatch at the top of the game loop
-        // handles multiplayer menu navigation for the client (bot).
-        // If we reach HandleMainMenu while in co-op client mode, it's a
-        // secondary path — just idle. The host navigates manually.
-        //
-        // Direction D: Bot navigates MainMenu → Multiplayer → Join Game →
-        // friend list with "人机一号" (injected by BrokerVirtualFriendSteamPatch)
-        // → click "人机一号" → JoinGameAsync → JoinFlow.Begin →
-        // BrokerClientJoinFlowPatch intercepts → broker handshake → lobby.
-        // ═══════════════════════════════════════════════════════════════════
-        if (Coop.CoopManager.IsCoopMode)
-        {
-            if (_debugFrame % 60 == 0)
-                MainFile.Logger.Info($"[AutoSlay] Co-op HandleMainMenu idle — IsHost={Coop.CoopManager.IsHost} IsClient={Coop.CoopManager.IsClient}.");
-            return 2.0;
-        }
-
-        // Check if character select is already open — select Ironclad and embark
+        // Check if character select is already open — select character and embark
         var charSelect = mainMenu.GetNodeOrNull<Control>("Submenus/CharacterSelectScreen");
         if (charSelect != null && charSelect.Visible)
         {
-            // ── LAN Co-op: human (host) chooses character manually; bot auto-embarks ──
-            if (Coop.CoopManager.IsHumanPlayer)
-            {
-                if (_debugFrame % 60 == 0)
-                    MainFile.Logger.Info("[AutoSlay] Human at character select — idling for manual pick.");
-                return 2.0;
-            }
-
             // Try to click embark if already selected
             var embark = charSelect.GetNodeOrNull<NConfirmButton>("ConfirmButton");
             if (embark != null && embark.IsEnabled)
@@ -2676,25 +2556,302 @@ public partial class AutoSlayNode : Node
         return 1.0; // waiting for menu to be ready
     }
 
+    // ═══════════════════════════════════════════════════════════════════
+    // Multiplayer menu navigation
+    // ═══════════════════════════════════════════════════════════════════
+
     /// <summary>
-    /// Write a message to BOTH the main logger and the BrokerEventLog file
-    /// so we can see it in localcoop-*.txt event logs.
+    /// Handle multiplayer menu navigation for the bot client.
+    /// Clicks Multiplayer → Join, then waits for the human to manually
+    /// select and join the host's lobby. Does NOT auto-join.
+    ///
+    /// Host (human): autoBattle disabled — returns idle cooldown.
     /// </summary>
-    private static void BroLog(string msg)
+    private bool _mpButtonClicked;
+
+    private double HandleMultiplayerMenu(Control mainMenu)
     {
-        MainFile.Logger?.Info(msg);
-        try
+        // ── Diagnostic logging ────────────────────────────────────────
+        if (_debugFrame % 60 == 0)
         {
-            var modDir = TokenSpire2.Core.AppConfig.ModDirectory;
-            if (!string.IsNullOrEmpty(modDir))
+            var diagMp = mainMenu.GetNodeOrNull<NButton>("MainMenuTextButtons/MultiplayerButton");
+            var diagJoin = mainMenu.GetNodeOrNull<NButton>("Submenus/MultiplayerSubmenu/JoinButton");
+            MainFile.Logger.Info($"[AutoSlay] HandleMultiplayerMenu: isHost={_isMultiplayerHost} " +
+                $"mpBtn={diagMp?.Visible}/{diagMp?.IsEnabled} " +
+                $"joinBtn={diagJoin?.Visible}/{diagJoin?.IsEnabled} " +
+                $"joined={_multiplayerJoined} mpClicked={_mpButtonClicked}");
+        }
+
+        if (_isMultiplayerHost)
+        {
+            // Host: human plays manually, bot does nothing here
+            // Human navigates Multiplayer → Host → Create → Character → Lobby
+            return 1.0;
+        }
+
+        // ── Client (bot): Step 1 — Click Multiplayer button ONCE ─────
+        var mpBtn = mainMenu.GetNodeOrNull<NButton>("MainMenuTextButtons/MultiplayerButton");
+        if (!_mpButtonClicked && mpBtn != null && mpBtn.Visible && mpBtn.IsEnabled)
+        {
+            MainFile.Logger.Info("[AutoSlay] Clicking Multiplayer button...");
+            mpBtn.ForceClick();
+            _mpButtonClicked = true;
+            return 2.0; // wait for screen transition
+        }
+
+        // ── After clicking Multiplayer, dump scene tree ONCE to find
+        // where the submenu/screen actually lives ─────────────────────
+        if (_mpButtonClicked && !_sceneTreeDumped)
+        {
+            _sceneTreeDumped = true;
+            DumpMultiplayerSceneTree(mainMenu);
+        }
+
+        // ── If mpBtn is STILL visible after clicking, the screen
+        // didn't transition. Don't re-click — that causes the loop. ──
+        if (_mpButtonClicked && mpBtn != null && mpBtn.Visible)
+        {
+            // Check if a submenu opened somewhere (not necessarily under mainMenu)
+            var root = GetNodeOrNull<Node>("/root/Game/RootSceneContainer");
+            if (root != null)
             {
-                var logPath = System.IO.Path.Combine(modDir,
-                    $"localcoop-{(TokenSpire2.Core.AppConfig.Instance.IsHost ? "host" : "client")}-{TokenSpire2.Core.AppConfig.Instance.ClientIndex}-events.txt");
-                var evtLog = new LocalCoop.Mod.Runtime.BrokerEventLog(logPath);
-                evtLog.Write(msg);
+                // Try common multiplayer screen paths
+                var mpScreen = root.GetNodeOrNull<Control>("MultiplayerMenu")
+                    ?? root.GetNodeOrNull<Control>("MultiplayerScreen")
+                    ?? root.GetNodeOrNull<Control>("Run/RoomContainer/MultiplayerRoom");
+                if (mpScreen != null)
+                {
+                    MainFile.Logger.Info($"[AutoSlay] Found multiplayer screen at separate path: {mpScreen.GetType().Name}");
+                    // TODO: handle this screen type
+                }
+            }
+
+            if (_debugFrame % 120 == 0)
+                MainFile.Logger.Info("[AutoSlay] Multiplayer button still visible after click — waiting for screen change");
+            return 2.0; // keep waiting, human might need to interact
+        }
+
+        // ── Step 2: Click Join on multiplayer submenu (if visible) ───
+        // The submenu structure is:
+        //   Submenus/NMultiplayerSubmenu/ButtonContainer/[HostButton, JoinButton, ...]
+        // Buttons are inside ButtonContainer, not directly under MultiplayerSubmenu.
+        var buttonContainer = mainMenu.GetNodeOrNull<Control>("Submenus/MultiplayerSubmenu/ButtonContainer");
+        NButton? joinBtn = null;
+
+        if (buttonContainer != null)
+        {
+            foreach (var child in buttonContainer.GetChildren())
+            {
+                if (child is NButton btn && btn.Visible && btn.IsEnabled)
+                {
+                    var nm = btn.Name?.ToString() ?? "";
+                    if (nm.Contains("Join", StringComparison.OrdinalIgnoreCase)
+                        || nm.Contains("加入", StringComparison.OrdinalIgnoreCase))
+                    {
+                        joinBtn = btn;
+                        break;
+                    }
+                }
+            }
+            // If no Join-specific button found, look for ANY button (might be differently named)
+            if (joinBtn == null && _debugFrame % 120 == 0)
+            {
+                var sb = new System.Text.StringBuilder();
+                foreach (var child in buttonContainer.GetChildren())
+                {
+                    if (child is NButton btn)
+                        sb.Append($"[{btn.Name} vis={btn.Visible} en={btn.IsEnabled}] ");
+                }
+                MainFile.Logger.Info($"[AutoSlay] ButtonContainer contents: {sb}");
             }
         }
-        catch { }
+
+        if (joinBtn != null && joinBtn.Visible && joinBtn.IsEnabled)
+        {
+            MainFile.Logger.Info($"[AutoSlay] Clicking Join button: {joinBtn.Name}");
+            joinBtn.ForceClick();
+            _multiplayerJoined = true;
+            return 2.0;
+        }
+
+        // ── Dump submenu buttons for diagnostics ─────────────────────
+        if (_debugFrame % 120 == 0)
+        {
+            var root2 = GetNodeOrNull<Node>("/root/Game/RootSceneContainer");
+            if (root2 != null)
+            {
+                var sb = new System.Text.StringBuilder();
+                DumpVisibleButtons(root2, sb, "  ", 0, 2);
+                MainFile.Logger.Info($"[AutoSlay] Scene button dump:\n{sb}");
+            }
+        }
+
+        return 1.0;
+    }
+
+    private bool _sceneTreeDumped;
+    private void DumpMultiplayerSceneTree(Control mainMenu)
+    {
+        try
+        {
+            var root = GetNodeOrNull<Node>("/root/Game/RootSceneContainer");
+            if (root == null) return;
+
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine("[AutoSlay] Scene tree after Multiplayer click:");
+            DumpNodeTree(root, sb, "  ", 0, 3);
+            MainFile.Logger.Info(sb.ToString());
+        }
+        catch (Exception ex)
+        {
+            MainFile.Logger.Info($"[AutoSlay] Scene tree dump error: {ex.Message}");
+        }
+    }
+
+    private void DumpNodeTree(Node node, System.Text.StringBuilder sb, string indent, int depth, int maxDepth)
+    {
+        if (depth > maxDepth) return;
+        foreach (var child in node.GetChildren())
+        {
+            try
+            {
+                var type = child.GetType().Name;
+                var name = child.Name?.ToString() ?? "?";
+                var visible = child is CanvasItem ci ? ci.Visible : true;
+                sb.AppendLine($"{indent}[{type}] {name} vis={visible}");
+                if (visible)
+                    DumpNodeTree(child, sb, indent + "  ", depth + 1, maxDepth);
+            }
+            catch { }
+        }
+        // If we hit max depth but there are visible children, log a summary
+        if (depth == maxDepth)
+        {
+            foreach (var child in node.GetChildren())
+            {
+                try
+                {
+                    if (child is CanvasItem ci && ci.Visible && child.GetChildCount() > 0)
+                    {
+                        var type = child.GetType().Name;
+                        var name = child.Name?.ToString() ?? "?";
+                        var childTypes = new System.Text.StringBuilder();
+                        foreach (var gc in child.GetChildren())
+                        {
+                            if (gc is CanvasItem gci && gci.Visible)
+                                childTypes.Append($"[{gc.GetType().Name}]{(gc.Name?.ToString() ?? "?")} ");
+                        }
+                        if (childTypes.Length > 0)
+                            sb.AppendLine($"{indent}  → children of [{type}] {name}: {childTypes}");
+                    }
+                }
+                catch { }
+            }
+        }
+    }
+
+    private void DumpVisibleButtons(Node node, System.Text.StringBuilder sb, string indent, int depth, int maxDepth)
+    {
+        if (depth > maxDepth) return;
+        foreach (var child in node.GetChildren())
+        {
+            try
+            {
+                var type = child.GetType().Name;
+                var name = child.Name?.ToString() ?? "?";
+                if (child is NButton btn && btn.Visible)
+                    sb.AppendLine($"{indent}[{type}] {name} enabled={btn.IsEnabled}");
+                if (child is CanvasItem ci && ci.Visible)
+                    DumpVisibleButtons(child, sb, indent + "  ", depth + 1, maxDepth);
+            }
+            catch { }
+        }
+    }
+
+    /// <summary>
+    /// Handle lobby screen — bot clicks Ready after joining.
+    /// </summary>
+    private double HandleMultiplayerLobby()
+    {
+        if (_multiplayerReady) return 2.0;
+
+        var root = GetNodeOrNull<Node>("/root/Game/RootSceneContainer");
+        if (root == null) return 1.0;
+
+        // Search for Ready button — by node name (e.g. "ReadyButton", "Ready")
+        // or look for ConfirmButton / any enabled button in the lobby
+        foreach (var btn in AutoSlayHelpers.FindAll<NButton>(root))
+        {
+            if (!btn.Visible || !btn.IsEnabled) continue;
+            var btnName = btn.Name?.ToString() ?? "";
+            if (btnName.Contains("Ready", StringComparison.OrdinalIgnoreCase)
+                || btnName.Contains("Confirm", StringComparison.OrdinalIgnoreCase)
+                || btn is NConfirmButton)
+            {
+                LogOnce($"Clicking lobby button: {btnName}");
+                btn.ForceClick();
+                _multiplayerReady = true;
+                return 1.0;
+            }
+        }
+
+        if (_debugFrame % 120 == 0)
+        {
+            var lobbyBtns = new System.Text.StringBuilder();
+            foreach (var btn in AutoSlayHelpers.FindAll<NButton>(root))
+            {
+                if (btn.Visible)
+                    lobbyBtns.Append($"[{btn.Name}] ");
+            }
+            MainFile.Logger.Info($"[AutoSlay] Lobby buttons: {lobbyBtns}");
+        }
+        return 1.0;
+    }
+
+    /// <summary>
+    /// Handle multiplayer character select — select configured character and confirm.
+    /// </summary>
+    private double HandleMultiplayerCharacterSelect()
+    {
+        var root = GetNodeOrNull<Node>("/root/Game/RootSceneContainer");
+        if (root == null) return 0.5;
+
+        // Find the character select screen
+        var charSelect = root.GetNodeOrNull<Control>("Run/RoomContainer/CharacterSelectRoom")
+            ?? (Control)root.GetNodeOrNull<Node>("CharacterSelectScreen")
+            ?? (Control)root.GetNodeOrNull<Node>("CharacterSelect");
+
+        if (charSelect == null) return 0.5;
+
+        // Try to click confirm if already selected
+        var confirmBtn = charSelect.GetNodeOrNull<NConfirmButton>("ConfirmButton");
+        if (confirmBtn != null && confirmBtn.IsEnabled)
+        {
+            LogOnce("Multiplayer character select: confirming");
+            confirmBtn.ForceClick();
+            return 2.0;
+        }
+
+        // Select the configured character
+        var targetChar = _character;
+        if (targetChar == "RANDOM")
+            targetChar = ValidCharacters[_rng.Next(ValidCharacters.Length)];
+
+        var buttonContainer = charSelect.GetNodeOrNull<Node>("CharSelectButtons/ButtonContainer");
+        if (buttonContainer != null)
+        {
+            foreach (var btn in AutoSlayHelpers.FindAll<NCharacterSelectButton>(buttonContainer))
+            {
+                if (!btn.IsLocked && btn.Character?.Id.Entry == targetChar)
+                {
+                    btn.Select();
+                    MainFile.Logger.Info($"[AutoSlay] MP: Selected character: {targetChar}");
+                    break;
+                }
+            }
+        }
+
+        return 0.5;
     }
 
     /// <summary>
@@ -2838,6 +2995,10 @@ public partial class AutoSlayNode : Node
     {
         if (_runCompleteSignaled) return;
         _runCompleteSignaled = true;
+
+        // ── Reset multiplayer state for next run ────────────────────
+        _multiplayerJoined = false;
+        _multiplayerReady = false;
         try
         {
             var asmDir = System.IO.Path.GetDirectoryName(
@@ -3289,143 +3450,7 @@ public partial class AutoSlayNode : Node
         _combatPlanStep = 0;
     }
 
-    /// <summary>
-    /// Find the human player's creature for multiplayer ally-targeting cards.
-    /// In coop mode, the bot controls Player 1 and the human controls Player 2.
-    /// Returns the human player's creature, or null if not in multiplayer.
-    /// </summary>
-    private static Creature? FindHumanPlayerCreature()
-    {
-        try
-        {
-            var rs = RunManager.Instance?.DebugOnlyGetState();
-            if (rs == null) return null;
-
-            var me = LocalContext.GetMe(rs);
-            if (me == null) return null;
-
-            // ── Approach 0: CombatManager.Instance.Players (most direct) ──
-            // When AddPlayerDebug() is called, the second player appears here.
-            var cm = CombatManager.Instance;
-            if (cm != null)
-            {
-                // Try the Players property on CombatManager itself
-                var cmPlayersProp = cm.GetType().GetProperty("Players",
-                    System.Reflection.BindingFlags.Public |
-                    System.Reflection.BindingFlags.NonPublic |
-                    System.Reflection.BindingFlags.Instance);
-                if (cmPlayersProp != null)
-                {
-                    var players = cmPlayersProp.GetValue(cm);
-                    if (players is System.Collections.IEnumerable playerList)
-                    {
-                        int idx = 0;
-                        foreach (var p in playerList)
-                        {
-                            if (p == null) { idx++; continue; }
-                            if (!ReferenceEquals(p, me))
-                            {
-                                var creatureProp = p.GetType().GetProperty("Creature");
-                                if (creatureProp != null)
-                                {
-                                    var creature = creatureProp.GetValue(p) as Creature;
-                                    if (creature != null && creature.IsAlive)
-                                    {
-                                        MainFile.Logger?.Info($"[AutoSlay] Found human player via CombatManager.Players[{idx}]");
-                                        return creature;
-                                    }
-                                }
-                                // Some Player types expose Creature directly as a field
-                                var creatureField = p.GetType().GetField("Creature",
-                                    System.Reflection.BindingFlags.Public |
-                                    System.Reflection.BindingFlags.NonPublic |
-                                    System.Reflection.BindingFlags.Instance);
-                                if (creatureField != null)
-                                {
-                                    var creature = creatureField.GetValue(p) as Creature;
-                                    if (creature != null && creature.IsAlive)
-                                    {
-                                        MainFile.Logger?.Info($"[AutoSlay] Found human player via CombatManager.Players[{idx}].Creature field");
-                                        return creature;
-                                    }
-                                }
-                            }
-                            idx++;
-                        }
-                        MainFile.Logger?.Info($"[AutoSlay] CombatManager.Players has {idx} player(s), none are the human");
-                    }
-                }
-            }
-
-            // ── Approach 1: combatState.Players / AllPlayers / Allies ──
-            var combatState = cm?.DebugOnlyGetState();
-            if (combatState != null)
-            {
-                var allPlayersProp = combatState.GetType().GetProperty("Players")
-                    ?? combatState.GetType().GetProperty("AllPlayers")
-                    ?? combatState.GetType().GetProperty("Allies");
-
-                if (allPlayersProp != null)
-                {
-                    var players = allPlayersProp.GetValue(combatState);
-                    if (players is System.Collections.IEnumerable playerList)
-                    {
-                        foreach (var p in playerList)
-                        {
-                            if (p == null || ReferenceEquals(p, me)) continue;
-                            var creatureProp = p.GetType().GetProperty("Creature");
-                            if (creatureProp != null)
-                            {
-                                var creature = creatureProp.GetValue(p) as Creature;
-                                if (creature != null && creature.IsAlive)
-                                {
-                                    MainFile.Logger?.Info($"[AutoSlay] Found human player via combatState.Players");
-                                    return creature;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            // ── Approach 2: LocalContext list ──
-            var localContextsField = typeof(LocalContext).GetField("_contexts",
-                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
-                ?? typeof(LocalContext).GetField("_all",
-                System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
-
-            if (localContextsField != null)
-            {
-                var contexts = localContextsField.GetValue(null);
-                if (contexts is System.Collections.IEnumerable contextList)
-                {
-                    foreach (var ctx in contextList)
-                    {
-                        if (ctx == null) continue;
-                        var getMeMethod = ctx.GetType().GetMethod("GetMe");
-                        if (getMeMethod == null) continue;
-                        var player = getMeMethod.Invoke(ctx, new object[] { rs });
-                        if (player == null || ReferenceEquals(player, me)) continue;
-                        var creatureProp = player.GetType().GetProperty("Creature");
-                        if (creatureProp != null)
-                        {
-                            var creature = creatureProp.GetValue(player) as Creature;
-                            if (creature != null && creature.IsAlive)
-                            {
-                                MainFile.Logger?.Info($"[AutoSlay] Found human player via LocalContext list");
-                                return creature;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            MainFile.Logger.Info($"[AutoSlay] FindHumanPlayerCreature failed: {ex.Message}");
-        }
-        return null;
-    }
+    // FindHumanPlayerCreature removed — LAN multiplayer deleted
 
     private static Creature? ParseEnemyTarget(string[] parts, List<Creature> enemies)
     {
@@ -3531,7 +3556,6 @@ public partial class AutoSlayNode : Node
                     : "solver deliberately played 0 cards (e.g. only Defend vs buffing enemy)";
                 MainFile.Logger.Info($"[AutoSlay] Combat plan complete, ending turn ({reason})");
                 _lastCombatActivity = 0; // actual progress
-                _lastCombatActivityCoop = 0;  // Fix B: reset co-op timer on plan completion
                 if (CombatManager.Instance is { PlayerActionsDisabled: false })
                     EndTurnViaUiOrApi(player);
                 _combatCardDelay = 0.5;
@@ -3562,7 +3586,6 @@ public partial class AutoSlayNode : Node
                 ?? PotionHelper.GetTarget(action.Potion, player?.Creature?.CombatState as CombatState);
             MainFile.Logger.Info($"[AutoSlay] Using potion {action.Potion.Id.Entry}{(action.Target != null ? $" -> {action.Target.Monster?.Id.Entry}" : "")}");
             _lastCombatActivity = 0; // actual progress
-            _lastCombatActivityCoop = 0;  // Fix B: reset co-op timer on potion use
             action.Potion.EnqueueManualUse(potionTarget);
             // Re-solve after potion use to get optimal follow-up
             _combatPlan = null;
@@ -3616,31 +3639,7 @@ public partial class AutoSlayNode : Node
                     || matchingCard.TargetType == TargetType.Self;
                 var cardTarget = skipTarget ? null : action.Target;
 
-                // ── Multiplayer ally targeting ────────────────────────────
-                // Cards that target AnyAlly must target the human player (Player 2).
-                // The solver returns null for non-enemy targets, so we need to
-                // find the human player's creature here.
-                bool isAllyTarget = matchingCard.TargetType == TargetType.AnyAlly
-                    || MultiplayerCards.NeedsAllyTarget(cardId);
-                if (isAllyTarget && cardTarget == null)
-                {
-                    cardTarget = FindHumanPlayerCreature();
-                    if (cardTarget != null)
-                        MainFile.Logger.Info($"[AutoSlay] MP ally-target: {cardId} -> human player");
-                }
                 MainFile.Logger.Info($"[AutoSlay] Playing {cardId} (type={matchingCard.TargetType}, cost={matchingCard.EnergyCost.Canonical}){(cardTarget != null ? $" -> {cardTarget.Monster?.Id.Entry}" : "")}");
-                // ── Co-op diagnostic: log pre-play state ──────────────────
-                if (Coop.CoopManager.IsCoopMode)
-                {
-                    try
-                    {
-                        int preEnergy = player?.PlayerCombatState?.Energy ?? -1;
-                        int preHandSize = PileType.Hand.GetPile(player)?.Cards?.Count ?? -1;
-                        var preHp = player?.Creature?.CurrentHp;
-                        MainFile.Logger.Info($"[AutoSlay/COOP] Pre-play: energy={preEnergy} hand={preHandSize} hp={preHp}");
-                    }
-                    catch { }
-                }
                 if (!matchingCard.TryManualPlay(cardTarget))
                 {
                     MainFile.Logger.Info($"[AutoSlay] TryManualPlay FAILED for {cardId}");
@@ -3648,18 +3647,6 @@ public partial class AutoSlayNode : Node
                 }
                 else
                 {
-                    // ── Co-op diagnostic: log post-play state ─────────────────
-                    if (Coop.CoopManager.IsCoopMode)
-                    {
-                        try
-                        {
-                            int postEnergy = player?.PlayerCombatState?.Energy ?? -1;
-                            int postHandSize = PileType.Hand.GetPile(player)?.Cards?.Count ?? -1;
-                            var postHp = player?.Creature?.CurrentHp;
-                            MainFile.Logger.Info($"[AutoSlay/COOP] Post-play: energy={postEnergy} hand={postHandSize} hp={postHp}");
-                        }
-                        catch { }
-                    }
                     _combatPlanStuckFrames = 0; // reset — successful card play
                     _turnPlansWithoutPlay = 0;  // reset — successful card play
                     _consecutiveRechecks = 0;   // reset — successful card play broke any recheck cycle
@@ -4123,8 +4110,7 @@ public partial class AutoSlayNode : Node
             // Clicking continue goes back to main menu where HandleMainMenu falls through
             // to start a new run with the SAME seed. We must wait for the batch runner
             // to kill this process and launch a new one with a fresh seed.
-            // CO-OP GUARD: never signal run complete in co-op mode.
-            if (_batchMode && !Coop.CoopManager.IsCoopMode)
+            if (_batchMode)
             {
                 SignalRunComplete();
                 return 3.0; // Just wait — batch runner will kill the game
@@ -4257,100 +4243,13 @@ public partial class AutoSlayNode : Node
     }
 
     /// <summary>
-    /// End the current player's turn. In co-op mode, clicks the End Turn button
-    /// in the combat UI (which goes through the network action pipeline and syncs
-    /// to the other player). In single-player, uses PlayerCmd.EndTurn.
-    ///
-    /// CRITICAL: In co-op mode, NEVER falls back to PlayerCmd.EndTurn.
-    /// PlayerCmd.EndTurn is local-only — it would end the turn on this instance
-    /// but NOT on the other instance, causing immediate state divergence and
-    /// a "Multiplayer data desync" freeze from CombatStateSynchronizer.
+    /// End the current player's turn via direct API call.
     /// </summary>
     private void EndTurnViaUiOrApi(Player player)
     {
-        // ═══════════════════════════════════════════════════════════════════
-        // In co-op mode, click the actual End Turn button in the combat UI.
-        // This goes through the game's network action pipeline (PlayerInputCmd)
-        // and syncs to ALL players — unlike PlayerCmd.EndTurn which is local-only.
-        //
-        // Uses a fresh MpScreenHandler (same as CombatHandler) so it works
-        // regardless of whether _mpController has been initialized yet.
-        // ═══════════════════════════════════════════════════════════════════
-        if (Coop.CoopManager.IsCoopMode)
-        {
-            try
-            {
-                var handler = new Multiplayer.MpScreenHandler();
-                if (handler.ClickEndTurnButton())
-                {
-                    MainFile.Logger.Info("[AutoSlay] End turn via UI button click (network-synced)");
-                    // ── Verify the turn actually ended ──────────────────────────
-                    // ClickEndTurnButton returns true if ForceClick was invoked,
-                    // but the game may reject the click (button disabled, animation
-                    // in progress, etc.). Wait briefly and check PlayerActionsDisabled.
-                    for (int i = 0; i < 15; i++) // up to 1.5 seconds
-                    {
-                        System.Threading.Thread.Sleep(100);
-                        if (CombatManager.Instance?.PlayerActionsDisabled == true)
-                        {
-                            MainFile.Logger.Info("[AutoSlay] End turn confirmed — PlayerActionsDisabled=true");
-                            return;
-                        }
-                    }
-                    // Button claimed success but turn didn't end — button may be
-                    // disabled or the game rejected the click. Don't give up:
-                    // the caller will set _combatTurnRequested=true, and the
-                    // watchdog (Fix A) will retry with more aggressive clicking.
-                    MainFile.Logger.Error(
-                        "[AutoSlay] End turn button clicked but PlayerActionsDisabled still false after 1.5s! " +
-                        "Watchdog will retry if deadlocked.");
-                    return;
-                }
-
-                // Retry up to 3 times with increasing delays
-                for (int retry = 0; retry < 3; retry++)
-                {
-                    System.Threading.Thread.Sleep(150 + retry * 150);
-                    if (handler.ClickEndTurnButton())
-                    {
-                        MainFile.Logger.Info($"[AutoSlay] End turn via UI button click (retry #{retry + 1} succeeded)");
-                        for (int i = 0; i < 15; i++)
-                        {
-                            System.Threading.Thread.Sleep(100);
-                            if (CombatManager.Instance?.PlayerActionsDisabled == true)
-                            {
-                                MainFile.Logger.Info("[AutoSlay] End turn confirmed after retry — PlayerActionsDisabled=true");
-                                return;
-                            }
-                        }
-                        MainFile.Logger.Error("[AutoSlay] End turn retry clicked but PlayerActionsDisabled still false!");
-                        return;
-                    }
-                }
-
-                // NEVER fall back to PlayerCmd.EndTurn in co-op mode.
-                // PlayerCmd.EndTurn is local-only — it ends the turn here but
-                // the other instance doesn't see it, causing checksum mismatch
-                // → StateDivergenceMessage flood → network shutdown → freeze.
-                MainFile.Logger.Error(
-                    "[AutoSlay] CRITICAL: UI EndTurn button not found in co-op mode after 4 attempts. " +
-                    "NOT falling back to local-only PlayerCmd.EndTurn — this would cause state divergence!");
-                return;
-            }
-            catch (Exception ex)
-            {
-                MainFile.Logger.Error(
-                    $"[AutoSlay] CRITICAL: UI EndTurn error in co-op mode: {ex.Message}. " +
-                    "NOT falling back to local-only PlayerCmd.EndTurn to prevent desync!");
-                return;
-            }
-        }
-
-        // Single-player: direct API call (safe — no other instance to desync with)
         try
         {
             PlayerCmd.EndTurn(player, canBackOut: false);
-            MainFile.Logger.Info("[AutoSlay] End turn via PlayerCmd.EndTurn (local only)");
         }
         catch (Exception ex)
         {

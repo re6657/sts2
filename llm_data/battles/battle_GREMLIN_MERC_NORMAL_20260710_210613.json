@@ -1,0 +1,2350 @@
+{
+  "EncounterName": "GREMLIN_MERC_NORMAL",
+  "Floor": 6,
+  "Character": "SILENT",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-10T21:05:55.0506185+08:00",
+  "EndTime": "2026-07-10T21:06:13.7980798+08:00",
+  "DurationSeconds": 18.7474613,
+  "Victory": true,
+  "EndHp": 60,
+  "TotalTurns": 22,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 4,
+  "TotalEnemiesKilled": 1,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 64,
+      "MaxHp": 70,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "NEUTRALIZE",
+          "Cost": 0
+        },
+        {
+          "Id": "DASH",
+          "Cost": 2
+        },
+        {
+          "Id": "PREPARED",
+          "Cost": 0
+        },
+        {
+          "Id": "PRECISE_CUT",
+          "Cost": 0
+        },
+        {
+          "Id": "FLICK_FLACK",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 48,
+          "MaxHp": 48,
+          "Block": 0,
+          "IntentDamage": 14,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY NEUTRALIZE -\u003E GREMLIN_MERC",
+          "PLAY PREPARED -\u003E self",
+          "PLAY DASH -\u003E GREMLIN_MERC",
+          "PLAY PRECISE_CUT -\u003E GREMLIN_MERC",
+          "PLAY FLICK_FLACK -\u003E GREMLIN_MERC",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 24,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=24 Blk=10 In=14 Cards=6 Score=338 States=325 Char=SILENT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 325
+      },
+      "ActionResults": [
+        {
+          "CardId": "NEUTRALIZE",
+          "Success": true,
+          "Target": "GREMLIN_MERC"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 64,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 5,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 64,
+      "MaxHp": 70,
+      "DrawPileCount": 10,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "DASH",
+          "Cost": 2
+        },
+        {
+          "Id": "PREPARED",
+          "Cost": 0
+        },
+        {
+          "Id": "PRECISE_CUT",
+          "Cost": 0
+        },
+        {
+          "Id": "FLICK_FLACK",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SLICE",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 48,
+          "MaxHp": 48,
+          "Block": 0,
+          "IntentDamage": 14,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY PREPARED -\u003E self",
+          "PLAY SLICE -\u003E GREMLIN_MERC",
+          "PLAY DASH -\u003E GREMLIN_MERC",
+          "PLAY FLICK_FLACK -\u003E GREMLIN_MERC",
+          "PLAY PRECISE_CUT -\u003E GREMLIN_MERC",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 25,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=25 Blk=10 In=14 Cards=6 Score=0 States=798 Char=SILENT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 798
+      },
+      "ActionResults": [
+        {
+          "CardId": "PREPARED",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 64,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 6,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 64,
+      "MaxHp": 70,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 3,
+      "Hand": [
+        {
+          "Id": "DASH",
+          "Cost": 2
+        },
+        {
+          "Id": "PRECISE_CUT",
+          "Cost": 0
+        },
+        {
+          "Id": "FLICK_FLACK",
+          "Cost": 1
+        },
+        {
+          "Id": "SLICE",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 45,
+          "MaxHp": 48,
+          "Block": 0,
+          "IntentDamage": 10,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 1,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            },
+            {
+              "Name": "WeakPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY FLICK_FLACK -\u003E GREMLIN_MERC",
+          "PLAY PRECISE_CUT -\u003E GREMLIN_MERC",
+          "PLAY DASH -\u003E GREMLIN_MERC",
+          "PLAY SLICE -\u003E GREMLIN_MERC",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 27,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=27 Blk=10 In=10 Cards=5 Score=311 States=151 Char=SILENT Src=reflection: dmg=10 blk=10",
+        "StatesExplored": 151
+      },
+      "ActionResults": [
+        {
+          "CardId": "FLICK_FLACK",
+          "Success": true,
+          "Target": "GREMLIN_MERC"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 64,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 64,
+      "MaxHp": 70,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 4,
+      "Hand": [
+        {
+          "Id": "DASH",
+          "Cost": 2
+        },
+        {
+          "Id": "PRECISE_CUT",
+          "Cost": 0
+        },
+        {
+          "Id": "SLICE",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 39,
+          "MaxHp": 48,
+          "Block": 0,
+          "IntentDamage": 10,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 1,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            },
+            {
+              "Name": "WeakPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY PRECISE_CUT -\u003E GREMLIN_MERC",
+          "PLAY SLICE -\u003E GREMLIN_MERC",
+          "PLAY DASH -\u003E GREMLIN_MERC",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 23,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=23 Blk=10 In=10 Cards=4 Score=273 States=26 Char=SILENT Src=reflection: dmg=10 blk=10",
+        "StatesExplored": 26
+      },
+      "ActionResults": [
+        {
+          "CardId": "PRECISE_CUT",
+          "Success": true,
+          "Target": "GREMLIN_MERC"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 64,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 64,
+      "MaxHp": 70,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "DASH",
+          "Cost": 2
+        },
+        {
+          "Id": "SLICE",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 32,
+          "MaxHp": 48,
+          "Block": 0,
+          "IntentDamage": 10,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 1,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            },
+            {
+              "Name": "WeakPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SLICE -\u003E GREMLIN_MERC",
+          "PLAY DASH -\u003E GREMLIN_MERC",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 16,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=16 Blk=10 In=10 Cards=3 Score=211 States=7 Char=SILENT Src=reflection: dmg=10 blk=10",
+        "StatesExplored": 7
+      },
+      "ActionResults": [
+        {
+          "CardId": "SLICE",
+          "Success": true,
+          "Target": "GREMLIN_MERC"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 64,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 64,
+      "MaxHp": 70,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "DASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 26,
+          "MaxHp": 48,
+          "Block": 0,
+          "IntentDamage": 10,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 1,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            },
+            {
+              "Name": "WeakPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DASH -\u003E GREMLIN_MERC",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=10 Blk=10 In=10 Cards=2 Score=159 States=2 Char=SILENT Src=reflection: dmg=10 blk=10",
+        "StatesExplored": 2
+      },
+      "ActionResults": [
+        {
+          "CardId": "DASH",
+          "Success": true,
+          "Target": "GREMLIN_MERC"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 64,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 2,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 1/2 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 64,
+      "MaxHp": 70,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SURVIVOR",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 16,
+          "MaxHp": 48,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY STRIKE_SILENT -\u003E GREMLIN_MERC",
+          "PLAY SURVIVOR -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 13,
+        "Score": "Dmg=6 Blk=13 In=12 Cards=4 Score=133 States=85 Char=SILENT Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 64,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 64,
+      "MaxHp": 70,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 9,
+      "Hand": [
+        {
+          "Id": "SURVIVOR",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 16,
+          "MaxHp": 48,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SURVIVOR -\u003E self",
+          "PLAY STRIKE_SILENT -\u003E GREMLIN_MERC",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=6 Blk=8 In=12 Cards=3 Score=114 States=16 Char=SILENT Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 16
+      },
+      "ActionResults": [
+        {
+          "CardId": "SURVIVOR",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 64,
+        "BlockAfter": 13,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 1,
+      "Block": 13,
+      "Hp": 64,
+      "MaxHp": 70,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 11,
+      "Hand": [
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 16,
+          "MaxHp": 48,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=12 Cards=2 Score=59 States=2 Char=SILENT Src=reflection: dmg=0 blk=5",
+        "StatesExplored": 2
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 64,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 2,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 1/2 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 64,
+      "MaxHp": 70,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRANGLE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 16,
+          "MaxHp": 48,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 2,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "WeakPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY STRANGLE -\u003E GREMLIN_MERC",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 4,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=4 Blk=10 In=8 Cards=4 Score=90 States=85 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 64,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 64,
+      "MaxHp": 70,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRANGLE",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 16,
+          "MaxHp": 48,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 2,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "WeakPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY STRANGLE -\u003E GREMLIN_MERC",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 4,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=4 Blk=5 In=8 Cards=3 Score=79 States=16 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 16
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 64,
+        "BlockAfter": 10,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 12,
+      "Energy": 1,
+      "Block": 10,
+      "Hp": 64,
+      "MaxHp": 70,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRANGLE",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 16,
+          "MaxHp": 48,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 2,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "WeakPower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRANGLE -\u003E GREMLIN_MERC",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 4,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=4 Blk=0 In=8 Cards=2 Score=52 States=3 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRANGLE",
+          "Success": true,
+          "Target": "GREMLIN_MERC"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 64,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 13,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 64,
+      "MaxHp": 70,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "NEUTRALIZE",
+          "Cost": 0
+        },
+        {
+          "Id": "PREPARED",
+          "Cost": 0
+        },
+        {
+          "Id": "DASH",
+          "Cost": 2
+        },
+        {
+          "Id": "PRECISE_CUT",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 10,
+          "MaxHp": 48,
+          "Block": 0,
+          "IntentDamage": 18,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 1,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "WeakPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY NEUTRALIZE -\u003E GREMLIN_MERC",
+          "PLAY PREPARED -\u003E self",
+          "PLAY DASH -\u003E GREMLIN_MERC",
+          "PLAY PRECISE_CUT -\u003E GREMLIN_MERC",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=10 Blk=10 In=18 Cards=5 Score=1382 States=193 Char=SILENT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 193
+      },
+      "ActionResults": [
+        {
+          "CardId": "NEUTRALIZE",
+          "Success": true,
+          "Target": "GREMLIN_MERC"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 64,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 1/5 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 14,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 64,
+      "MaxHp": 70,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "PREPARED",
+          "Cost": 0
+        },
+        {
+          "Id": "DASH",
+          "Cost": 2
+        },
+        {
+          "Id": "PRECISE_CUT",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 8,
+          "MaxHp": 48,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 1,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            },
+            {
+              "Name": "WeakPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 1,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "WeakPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY PRECISE_CUT -\u003E GREMLIN_MERC",
+          "PLAY PREPARED -\u003E self",
+          "PLAY STRIKE_SILENT -\u003E GREMLIN_MERC",
+          "PLAY DASH -\u003E GREMLIN_MERC",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=12 Blk=10 In=12 Cards=5 Score=1378 States=38 Char=SILENT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 38
+      },
+      "ActionResults": [
+        {
+          "CardId": "PRECISE_CUT",
+          "Success": true,
+          "Target": "GREMLIN_MERC"
+        },
+        {
+          "CardId": "PREPARED",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 64,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 4,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 15,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 64,
+      "MaxHp": 70,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 9,
+      "Hand": [
+        {
+          "Id": "DASH",
+          "Cost": 2
+        },
+        {
+          "Id": "SLICE",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "GREMLIN_MERC",
+          "Hp": 3,
+          "MaxHp": 48,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 1,
+          "StrengthStacks": 2,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "SurprisePower",
+              "Amount": 1
+            },
+            {
+              "Name": "ThieveryPower",
+              "Amount": 20
+            },
+            {
+              "Name": "StrengthPower",
+              "Amount": 2
+            },
+            {
+              "Name": "WeakPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 1,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "WeakPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SLICE -\u003E GREMLIN_MERC",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 3,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=3 Blk=0 In=12 Cards=2 Score=1284 States=2 Char=SILENT Src=reflection: dmg=8 blk=10",
+        "StatesExplored": 2
+      },
+      "ActionResults": [
+        {
+          "CardId": "SLICE",
+          "Success": true,
+          "Target": "GREMLIN_MERC"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 64,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 2,
+        "Issues": [
+          "ENERGY_WASTED: 3 energy left, 1/2 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 16,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 64,
+      "MaxHp": 70,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "DASH",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SNEAKY_GREMLIN",
+          "Hp": 14,
+          "MaxHp": 14,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Stun",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "FAT_GREMLIN",
+          "Hp": 17,
+          "MaxHp": 17,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Stun",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HeistPower",
+              "Amount": 60
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 1,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "WeakPower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DASH -\u003E FAT_GREMLIN",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=6 Blk=10 In=0 Cards=2 Score=77 States=2 Char=SILENT Src=reflection: dmg=8 blk=10",
+        "StatesExplored": 2
+      },
+      "ActionResults": [
+        {
+          "CardId": "DASH",
+          "Success": true,
+          "Target": "FAT_GREMLIN"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 64,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 1,
+        "Issues": []
+      }
+    },
+    {
+      "TurnNumber": 17,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 64,
+      "MaxHp": 70,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 11,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "FLICK_FLACK",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SNEAKY_GREMLIN",
+          "Hp": 14,
+          "MaxHp": 14,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "FAT_GREMLIN",
+          "Hp": 10,
+          "MaxHp": 17,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Escape",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HeistPower",
+              "Amount": 60
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY FLICK_FLACK -\u003E SNEAKY_GREMLIN",
+          "PLAY STRIKE_SILENT -\u003E FAT_GREMLIN",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 18,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=18 Blk=5 In=9 Cards=4 Score=944 States=130 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 130
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 64,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 18,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 64,
+      "MaxHp": 70,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 12,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "FLICK_FLACK",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SNEAKY_GREMLIN",
+          "Hp": 14,
+          "MaxHp": 14,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "FAT_GREMLIN",
+          "Hp": 10,
+          "MaxHp": 17,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Escape",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HeistPower",
+              "Amount": 60
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_SILENT -\u003E FAT_GREMLIN",
+          "PLAY FLICK_FLACK -\u003E SNEAKY_GREMLIN",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 16,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=16 Blk=0 In=9 Cards=3 Score=905 States=23 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 23
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_SILENT",
+          "Success": true,
+          "Target": "FAT_GREMLIN"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 64,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 19,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 64,
+      "MaxHp": 70,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 13,
+      "Hand": [
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "FLICK_FLACK",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SNEAKY_GREMLIN",
+          "Hp": 14,
+          "MaxHp": 14,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        },
+        {
+          "Index": 1,
+          "Id": "FAT_GREMLIN",
+          "Hp": 4,
+          "MaxHp": 17,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Escape",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "HeistPower",
+              "Amount": 60
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY FLICK_FLACK -\u003E SNEAKY_GREMLIN",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=10 Blk=0 In=9 Cards=2 Score=859 States=3 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "FLICK_FLACK",
+          "Success": true,
+          "Target": "SNEAKY_GREMLIN"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 60,
+        "BlockAfter": 0,
+        "DamageTaken": 4,
+        "EnemiesKilled": 1,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 20,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 60,
+      "MaxHp": 70,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "SURVIVOR",
+          "Cost": 1
+        },
+        {
+          "Id": "DASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "PREPARED",
+          "Cost": 0
+        },
+        {
+          "Id": "STRANGLE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SNEAKY_GREMLIN",
+          "Hp": 8,
+          "MaxHp": 14,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_SILENT -\u003E SNEAKY_GREMLIN",
+          "PLAY PREPARED -\u003E self",
+          "PLAY DASH -\u003E SNEAKY_GREMLIN",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 16,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=16 Blk=10 In=9 Cards=4 Score=1236 States=39 Char=SILENT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 39
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_SILENT",
+          "Success": true,
+          "Target": "SNEAKY_GREMLIN"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 60,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 21,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 60,
+      "MaxHp": 70,
+      "DrawPileCount": 12,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "SURVIVOR",
+          "Cost": 1
+        },
+        {
+          "Id": "DASH",
+          "Cost": 2
+        },
+        {
+          "Id": "PREPARED",
+          "Cost": 0
+        },
+        {
+          "Id": "STRANGLE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SNEAKY_GREMLIN",
+          "Hp": 2,
+          "MaxHp": 14,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY PREPARED -\u003E self",
+          "PLAY DASH -\u003E SNEAKY_GREMLIN",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=10 Blk=10 In=9 Cards=3 Score=1190 States=11 Char=SILENT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 11
+      },
+      "ActionResults": [
+        {
+          "CardId": "PREPARED",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 60,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 22,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 60,
+      "MaxHp": 70,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 3,
+      "Hand": [
+        {
+          "Id": "SURVIVOR",
+          "Cost": 1
+        },
+        {
+          "Id": "DASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRANGLE",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SNEAKY_GREMLIN",
+          "Hp": 2,
+          "MaxHp": 14,
+          "Block": 0,
+          "IntentDamage": 9,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "FIRE_POTION"
+      ],
+      "PotionCount": 1,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DASH -\u003E SNEAKY_GREMLIN",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=10 Blk=10 In=9 Cards=2 Score=1165 States=4 Char=SILENT Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "DASH",
+          "Success": true,
+          "Target": "SNEAKY_GREMLIN"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 60,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

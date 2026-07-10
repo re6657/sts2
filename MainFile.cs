@@ -5,27 +5,18 @@ using System.Runtime.InteropServices;
 using System.Text;
 using Godot;
 using HarmonyLib;
-using LocalCoop.Mod.Runtime;
 using MegaCrit.Sts2.Core.Modding;
 using TokenSpire2.Core;
-using TokenSpire2.Coop;
-using TokenSpire2.AutoBattle;
-using TokenSpire2.Multiplayer;
 
 namespace TokenSpire2;
 
 /// <summary>
 /// Entry point for the TokenSpire2 mod.
 ///
-/// Architecture (v2 rewrite):
+/// Architecture:
 ///   AppConfig          — single source of truth for all config
-///   CoopManager        — backward-compat shim (delegates to AppConfig)
-///   PatchRegistry      — centralized Harmony patch installer
-///   AutoBattleController — new event-driven controller (skeleton, co-exists with old)
-///   MpController       — multiplayer state machine (active in CoopMode)
-///
-/// Old AutoSlayNode is still attached for backward compatibility
-/// until all handlers are migrated to IScreenHandler implementations.
+///   AutoSlayNode       — main bot controller (_Process loop)
+///   AutoBattleController — event-driven controller (skeleton)
 /// </summary>
 [ModInitializer(nameof(Initialize))]
 public partial class MainFile : Node
@@ -47,68 +38,16 @@ public partial class MainFile : Node
         var modDirectory = Path.GetDirectoryName(typeof(MainFile).Assembly.Location) ?? ".";
         Logger.Info($"[TokenSpire2] Mod directory: {modDirectory}");
 
-        // ── Step 1: Load unified config (coop_config.json + broker markers) ─
+        // ── Step 1: Load unified config ────────────────────────────────
         AppConfig.Initialize(modDirectory);
-        Logger.Info($"[TokenSpire2] AppConfig loaded. CoopMode={AppConfig.Instance.CoopMode}, " +
-            $"IsHost={AppConfig.Instance.IsHost}, Broker={AppConfig.Instance.BrokerEnabled}");
+        Logger.Info($"[TokenSpire2] AppConfig loaded. AutoBattleEnabled={AppConfig.Instance.AutoBattleEnabled}");
 
-        // ── Step 2: Init CoopManager as backward-compat shim ───────────
-        CoopManager.Initialize(modDirectory);
-        Logger.Info("[TokenSpire2] CoopManager initialized (compat shim).");
+        // ── Step 2: Install Harmony patches ────────────────────────────
+        var harmony = new Harmony("TokenSpire2");
+        harmony.PatchAll(typeof(MainFile).Assembly);
+        Logger.Info("[TokenSpire2] Harmony patches installed.");
 
-        // ── Step 3: Harmony patches ───────────────────────────────
-        //
-        // Install ALL patches via LocalCoopPatchInstaller.
-        // This replaces both the old ModuleInitializer approach (which
-        // wasn't called by the game's mod loader) and the fallback
-        // PatchAll (which fails on broker patches with missing target
-        // methods).
-        //
-        // Patch order: broker networking patches first, then dual-role
-        // isolation patches.
-        var assembly = typeof(MainFile).Assembly;
-        var cfg = AppConfig.Instance;
-
-        if (cfg.CoopMode && cfg.BrokerEnabled)
-        {
-            // ── Broker Mode: install ALL patches ──────────────────
-            Logger.Info("[TokenSpire2] Broker mode — installing ALL patches.");
-            var result = LocalCoopPatchInstaller.Install(assembly, msg =>
-            {
-                if (msg.Contains("failed", StringComparison.OrdinalIgnoreCase))
-                    Logger.Error($"[TokenSpire2] {msg}");
-                else
-                    Logger.Info($"[TokenSpire2] {msg}");
-            });
-
-            if (result.Success)
-                Logger.Info($"[TokenSpire2] All broker+dual patches installed successfully.");
-            else
-                Logger.Warn($"[TokenSpire2] {result.Failures.Count} patch(es) failed — continuing.");
-            foreach (var f in result.Failures)
-                Logger.Error($"[TokenSpire2] Patch failure: {f}");
-        }
-        else
-        {
-            // ── Single-player / Dual-instance mode: dual-role only ─
-            Logger.Info("[TokenSpire2] Non-broker mode — installing dual-role patches only.");
-            var result = LocalCoopPatchInstaller.InstallDualRoleOnly(assembly, msg =>
-            {
-                if (msg.Contains("failed", StringComparison.OrdinalIgnoreCase))
-                    Logger.Error($"[TokenSpire2] {msg}");
-                else
-                    Logger.Info($"[TokenSpire2] {msg}");
-            });
-
-            if (result.Success)
-                Logger.Info($"[TokenSpire2] Dual-role patches installed successfully.");
-            else
-                Logger.Warn($"[TokenSpire2] {result.Failures.Count} patch(es) failed — continuing.");
-            foreach (var f in result.Failures)
-                Logger.Error($"[TokenSpire2] Patch failure: {f}");
-        }
-
-        // ── Step 4: Attach runtime nodes to scene tree ─────────────────
+        // ── Step 3: Attach runtime nodes to scene tree ─────────────────
         AttachNodes();
 
         if (ConsoleEnabled)
@@ -119,12 +58,6 @@ public partial class MainFile : Node
 
     /// <summary>
     /// Attach runtime nodes to the Godot scene tree.
-    /// Old AutoSlayNode still runs the show. New controllers are
-    /// attached as no-op skeletons until handlers are fully migrated.
-    ///
-    /// NOTE: There's also a Harmony patch (AttachAutoSlayNodePatch)
-    /// that attaches AutoSlayNode to NGame._Ready. We check for
-    /// existing instances to prevent double-attachment.
     /// </summary>
     private static void AttachNodes()
     {
@@ -135,7 +68,7 @@ public partial class MainFile : Node
             var root = sceneTree.Root;
             if (root == null) return;
 
-            // ── Legacy: AutoSlayNode (only if not already attached by Harmony patch) ─
+            // ── AutoSlayNode (only if not already attached by Harmony patch) ─
             bool alreadyHasAutoSlay = false;
             foreach (var child in root.GetChildren())
             {
@@ -154,18 +87,6 @@ public partial class MainFile : Node
                 root.AddChild(autoSlay);
                 Logger?.Info("[TokenSpire2] AutoSlayNode attached directly (fallback).");
             }
-
-            // ── New: AutoBattleController (no-op skeleton, ready for handler migration) ─
-            var autoBattle = new AutoBattleController();
-            autoBattle.Name = "AutoBattleController";
-            root.AddChild(autoBattle);
-            Logger?.Info("[TokenSpire2] AutoBattleController attached (new architecture skeleton).");
-
-            // ── Config UI (in-game overlay for toggling settings) ──────
-            var configUI = new CoopConfigUI();
-            configUI.Name = "CoopConfigUI";
-            root.AddChild(configUI);
-            Logger?.Info("[TokenSpire2] CoopConfigUI attached.");
 
             Logger?.Info($"[TokenSpire2] {root.GetChildCount()} nodes attached to scene root.");
         }

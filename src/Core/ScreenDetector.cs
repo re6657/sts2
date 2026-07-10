@@ -123,13 +123,13 @@ public static class ScreenDetector
         var node = GetRootNode();
         if (node != null)
         {
-            // Character select screen
+            // Character select screen — check multiple possible node names.
+            // In the main menu, the node may be named "CharacterSelectScreen" or "CharacterSelect".
+            // In a run, it's at "Run/RoomContainer/CharacterSelectRoom".
             if (node.GetNodeOrNull<Node>("Run/RoomContainer/CharacterSelectRoom") != null
-                || node.GetNodeOrNull<Control>("CharacterSelect") != null)
+                || node.GetNodeOrNull<Control>("CharacterSelect") != null
+                || node.GetNodeOrNull<Control>("CharacterSelectScreen") != null)
             {
-                // Distinguish single vs multiplayer character select
-                if (AppConfig.IsInitialized && AppConfig.Instance.CoopMode)
-                    return GameScreen.CHARACTER_SELECT_MULTIPLAYER;
                 return GameScreen.CHARACTER_SELECT;
             }
 

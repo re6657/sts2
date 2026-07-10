@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using TokenSpire2.Core;
 using TokenSpire2.Solver;
 
 namespace TokenSpire2.Solver;

@@ -1,0 +1,1773 @@
+{
+  "EncounterName": "SHRINKER_BEETLE_WEAK",
+  "Floor": 4,
+  "Character": "SILENT",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-10T21:05:41.1738611+08:00",
+  "EndTime": "2026-07-10T21:05:54.9617312+08:00",
+  "DurationSeconds": 13.7878701,
+  "Victory": true,
+  "EndHp": 61,
+  "TotalTurns": 17,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 0,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "NEUTRALIZE",
+          "Cost": 0
+        },
+        {
+          "Id": "DEADLY_POISON",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 40,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "DebuffStrong",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ENERGY_POTION",
+        "COLORLESS_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY NEUTRALIZE -\u003E SHRINKER_BEETLE",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY DEADLY_POISON -\u003E SHRINKER_BEETLE",
+          "PLAY STRIKE_SILENT -\u003E SHRINKER_BEETLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 9,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=9 Blk=5 In=0 Cards=5 Score=839 States=181 Char=SILENT Src=reflection: dmg=3 blk=0",
+        "StatesExplored": 181
+      },
+      "ActionResults": [
+        {
+          "CardId": "NEUTRALIZE",
+          "Success": true,
+          "Target": "SHRINKER_BEETLE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEADLY_POISON",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 37,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "DebuffStrong",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ENERGY_POTION",
+        "COLORLESS_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEADLY_POISON -\u003E SHRINKER_BEETLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=0 Cards=2 Score=741 States=156 Char=SILENT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 156
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEADLY_POISON",
+          "Success": true,
+          "Target": "SHRINKER_BEETLE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 5,
+        "TotalPlayableInHand": 6,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 5/6 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 37,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "DebuffStrong",
+          "VulnerableStacks": 0,
+          "WeakStacks": 1,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "WeakPower",
+              "Amount": 1
+            },
+            {
+              "Name": "PoisonPower",
+              "Amount": 5
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ENERGY_POTION",
+        "COLORLESS_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=0 Blk=10 In=0 Cards=3 Score=752 States=25 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 25
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 7,
+      "DiscardPileCount": 3,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 37,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "DebuffStrong",
+          "VulnerableStacks": 0,
+          "WeakStacks": 1,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "WeakPower",
+              "Amount": 1
+            },
+            {
+              "Name": "PoisonPower",
+              "Amount": 5
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ENERGY_POTION",
+        "COLORLESS_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=0 Cards=1 Score=748 States=4 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 4
+      },
+      "ActionResults": [],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 3,
+        "PlayableCardsNotPlayed": 4,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 3 energy left, 4/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SUCKER_PUNCH",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 32,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ShrinkPower",
+            "Amount": -1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ENERGY_POTION",
+        "COLORLESS_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_SILENT -\u003E SHRINKER_BEETLE",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 4,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=4 Blk=10 In=7 Cards=4 Score=660 States=85 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_SILENT",
+          "Success": true,
+          "Target": "SHRINKER_BEETLE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SUCKER_PUNCH",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 28,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ShrinkPower",
+            "Amount": -1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ENERGY_POTION",
+        "COLORLESS_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=0 Blk=10 In=7 Cards=3 Score=628 States=16 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 16
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 2,
+      "DiscardPileCount": 9,
+      "Hand": [
+        {
+          "Id": "SUCKER_PUNCH",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 28,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ShrinkPower",
+            "Amount": -1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ENERGY_POTION",
+        "COLORLESS_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=7 Cards=2 Score=621 States=3 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SURVIVOR",
+          "Cost": 1
+        },
+        {
+          "Id": "DEADLY_POISON",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 24,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 13,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ShrinkPower",
+            "Amount": -1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ENERGY_POTION",
+        "COLORLESS_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY DEADLY_POISON -\u003E SHRINKER_BEETLE",
+          "PLAY SURVIVOR -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 13,
+        "Score": "Dmg=0 Blk=13 In=13 Cards=4 Score=1249 States=85 Char=SILENT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SURVIVOR",
+          "Cost": 1
+        },
+        {
+          "Id": "DEADLY_POISON",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 24,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 13,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ShrinkPower",
+            "Amount": -1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ENERGY_POTION",
+        "COLORLESS_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SURVIVOR -\u003E self",
+          "PLAY DEADLY_POISON -\u003E SHRINKER_BEETLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=0 Blk=8 In=13 Cards=3 Score=1225 States=16 Char=SILENT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 16
+      },
+      "ActionResults": [
+        {
+          "CardId": "SURVIVOR",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 13,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 1,
+      "Block": 13,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 3,
+      "Hand": [
+        {
+          "Id": "DEADLY_POISON",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 24,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 13,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ShrinkPower",
+            "Amount": -1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ENERGY_POTION",
+        "COLORLESS_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEADLY_POISON -\u003E SHRINKER_BEETLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=13 Cards=2 Score=1185 States=2 Char=SILENT Src=fallback: dmg=0 blk=0",
+        "StatesExplored": 2
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEADLY_POISON",
+          "Success": true,
+          "Target": "SHRINKER_BEETLE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 2,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 1/2 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "NEUTRALIZE",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 16,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 7
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ShrinkPower",
+            "Amount": -1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ENERGY_POTION",
+        "COLORLESS_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_SILENT -\u003E SHRINKER_BEETLE",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY NEUTRALIZE -\u003E SHRINKER_BEETLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=6 Blk=10 In=7 Cards=5 Score=1118 States=181 Char=SILENT Src=reflection: dmg=2 blk=0",
+        "StatesExplored": 181
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_SILENT",
+          "Success": true,
+          "Target": "SHRINKER_BEETLE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 12,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "NEUTRALIZE",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 12,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 7
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ShrinkPower",
+            "Amount": -1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ENERGY_POTION",
+        "COLORLESS_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY NEUTRALIZE -\u003E SHRINKER_BEETLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 2,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=2 Blk=10 In=7 Cards=4 Score=1086 States=34 Char=SILENT Src=reflection: dmg=2 blk=0",
+        "StatesExplored": 34
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 13,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "NEUTRALIZE",
+          "Cost": 0
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 12,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 7,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 7
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ShrinkPower",
+            "Amount": -1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ENERGY_POTION",
+        "COLORLESS_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY NEUTRALIZE -\u003E SHRINKER_BEETLE",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 2,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=2 Blk=5 In=7 Cards=3 Score=1092 States=7 Char=SILENT Src=reflection: dmg=2 blk=0",
+        "StatesExplored": 7
+      },
+      "ActionResults": [
+        {
+          "CardId": "NEUTRALIZE",
+          "Success": true,
+          "Target": "SHRINKER_BEETLE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "CARDS_UNPLAYED: 1 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 14,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 10,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 5,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 1,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 7
+            },
+            {
+              "Name": "WeakPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ShrinkPower",
+            "Amount": -1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ENERGY_POTION",
+        "COLORLESS_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=5 Cards=2 Score=1060 States=2 Char=SILENT Src=reflection: dmg=4 blk=0",
+        "StatesExplored": 2
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 1,
+        "TotalPlayableInHand": 2,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 1/2 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 15,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SUCKER_PUNCH",
+          "Cost": 1
+        },
+        {
+          "Id": "SURVIVOR",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 3,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 13,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ShrinkPower",
+            "Amount": -1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ENERGY_POTION",
+        "COLORLESS_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY SUCKER_PUNCH -\u003E SHRINKER_BEETLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=6 Blk=10 In=13 Cards=4 Score=1352 States=35 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 35
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 16,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SUCKER_PUNCH",
+          "Cost": 1
+        },
+        {
+          "Id": "SURVIVOR",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 3,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 13,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ShrinkPower",
+            "Amount": -1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ENERGY_POTION",
+        "COLORLESS_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY SUCKER_PUNCH -\u003E SHRINKER_BEETLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=6 Blk=5 In=13 Cards=3 Score=1348 States=10 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 10
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 10,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 17,
+      "Energy": 1,
+      "Block": 10,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SUCKER_PUNCH",
+          "Cost": 1
+        },
+        {
+          "Id": "SURVIVOR",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "SHRINKER_BEETLE",
+          "Hp": 3,
+          "MaxHp": 40,
+          "Block": 0,
+          "IntentDamage": 13,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": [
+          {
+            "Name": "ShrinkPower",
+            "Amount": -1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "ENERGY_POTION",
+        "COLORLESS_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_SILENT -\u003E SHRINKER_BEETLE",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 4,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=4 Blk=0 In=13 Cards=2 Score=1340 States=3 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_SILENT",
+          "Success": true,
+          "Target": "SHRINKER_BEETLE"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

@@ -110,73 +110,15 @@ public static class CombatHandler
             if (enemies.Count > 0) target = enemies[rng.Next(enemies.Count)];
         }
 
-        // ── Co-op diagnostic ──────────────────────────────────────────
-        if (Coop.CoopManager.IsCoopMode)
-        {
-            try
-            {
-                var rs = RunManager.Instance?.DebugOnlyGetState();
-                var pl = rs != null ? LocalContext.GetMe(rs) : null;
-                int preEnergy = pl?.PlayerCombatState?.Energy ?? -1;
-                MainFile.Logger.Info($"[CombatHandler/COOP] Pre-play: card={card.Id.Entry} energy={preEnergy}");
-            }
-            catch { }
-        }
         card.TryManualPlay(target);
-        if (Coop.CoopManager.IsCoopMode)
-        {
-            try
-            {
-                var rs = RunManager.Instance?.DebugOnlyGetState();
-                var pl = rs != null ? LocalContext.GetMe(rs) : null;
-                int postEnergy = pl?.PlayerCombatState?.Energy ?? -1;
-                MainFile.Logger.Info($"[CombatHandler/COOP] Post-play: card={card.Id.Entry} energy={postEnergy}");
-            }
-            catch { }
-        }
         return 0.4;
     }
 
     /// <summary>
-    /// End turn via UI button in co-op mode (network-synced), or direct API in single-player.
-    /// CRITICAL: In co-op mode, NEVER falls back to local-only PlayerCmd.EndTurn to prevent state divergence.
+    /// End turn via direct API call (single-player safe).
     /// </summary>
     private static void EndTurnViaUiOrApi(Player player)
     {
-        if (TokenSpire2.Coop.CoopManager.IsCoopMode)
-        {
-            try
-            {
-                var handler = new TokenSpire2.Multiplayer.MpScreenHandler();
-                if (handler.ClickEndTurnButton())
-                {
-                    MainFile.Logger.Info("[CombatHandler] End turn via UI button click (network-synced)");
-                    return;
-                }
-
-                // Retry once after a short delay
-                System.Threading.Thread.Sleep(100);
-                if (handler.ClickEndTurnButton())
-                {
-                    MainFile.Logger.Info("[CombatHandler] End turn via UI button click (retry succeeded)");
-                    return;
-                }
-
-                MainFile.Logger.Error(
-                    "[CombatHandler] CRITICAL: UI EndTurn button not found in co-op mode. " +
-                    "NOT falling back to local-only PlayerCmd.EndTurn to prevent desync!");
-                return;
-            }
-            catch (Exception ex)
-            {
-                MainFile.Logger.Error(
-                    $"[CombatHandler] CRITICAL: UI EndTurn error in co-op mode: {ex.Message}. " +
-                    "NOT falling back to prevent desync!");
-                return;
-            }
-        }
-
-        // Single-player: direct API call (safe — no other instance to desync with)
         PlayerCmd.EndTurn(player, canBackOut: false);
     }
 }

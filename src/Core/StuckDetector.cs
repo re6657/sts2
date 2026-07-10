@@ -79,12 +79,7 @@ public class StuckDetector
         {
             if (_combatInactivityTimer < 0) _combatInactivityTimer = 0;
 
-            // Don't accumulate timer while waiting for other player in co-op
-            bool waitingForOtherPlayer = false;
-            if (AppConfig.IsInitialized && AppConfig.Instance.CoopMode)
-                waitingForOtherPlayer = CombatManager.Instance?.PlayerActionsDisabled ?? false;
-
-            if (!waitingForOtherPlayer)
+            if (true) // single-player: always accumulate timer
             {
                 if (_activityOccurredThisFrame)
                     _combatInactivityTimer = 0;
@@ -193,8 +188,7 @@ public class StuckDetector
                 $"ScreenTicks: {_sameScreenTickCount}",
                 $"CombatInactivity: {_combatInactivityTimer:F1}s",
                 $"InCombat: {CombatManager.Instance?.IsInProgress}",
-                $"CoopMode: {(AppConfig.IsInitialized ? AppConfig.Instance.CoopMode : "unknown")}",
-                $"IsHost: {(AppConfig.IsInitialized ? AppConfig.Instance.IsHost : "unknown")}",
+                $"CoopMode: false (single-player)",
                 $"AutoBattleEnabled: {(AppConfig.IsInitialized ? AppConfig.Instance.AutoBattleEnabled : "unknown")}",
                 $"AutoBattlePaused: {(AppConfig.IsInitialized ? AppConfig.Instance.AutoBattlePaused : "unknown")}",
                 $"",
@@ -214,12 +208,7 @@ public class StuckDetector
         if (IsHumanPlayer) return true;
         // Never kill in co-op mode (both instances must stay alive)
         if (NeverKill) return true;
-        // Check AppConfig at runtime
-        if (AppConfig.IsInitialized)
-        {
-            if (AppConfig.Instance.IsHumanPlayer) return true;
-            if (AppConfig.Instance.CoopMode) return true;
-        }
+        // Single-player: never skip kill
         return false;
     }
 }

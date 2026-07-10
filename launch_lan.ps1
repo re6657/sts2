@@ -1,124 +1,131 @@
-# ============================================================================
-# TokenSpire2 Dual-Instance LAN Multiplayer Launcher (Broker Mode)
-# ============================================================================
-# Architecture:
-#   - BrokerServer.exe relays TCP messages between game instances
-#   - Harmony patches intercept Steam networking → redirect to TCP broker
-#   - HOST instance (human): creates room, selects character
-#   - CLIENT instance (bot): auto-joins, auto-plays
-# ============================================================================
+# TokenSpire2 LAN Multiplayer Launcher
+# Launches two STS2 instances with different Steam persona names
+# Window 1: Host (human player, auto-battle OFF)
+# Window 2: Client (bot, auto-battle ON)
+#
+# Each instance gets its own config file via TOKENSPIRE2_CONFIG env var
+# to avoid the race condition where the second write overwrites the first
+# before the first instance finishes reading it.
+#
+# Usage: .\launch_lan.ps1 [Character] [Seed]
+#   Character: IRONCLAD, SILENT, DEFECT, REGENT, NECROBINDER (default: IRONCLAD)
+#   Seed: optional run seed (default: random)
+
+param(
+    [string]$Character = "IRONCLAD",
+    [string]$Seed = $null
+)
 
 $ErrorActionPreference = "Stop"
 
-$STS2_DIR   = "E:\SteamLibrary\steamapps\common\Slay the Spire 2"
-$MOD_DIR    = "$STS2_DIR\mods\TokenSpire2"
-$BROKER_DIR = "$MOD_DIR\BrokerServer\bin\Release\net8.0"
-$SESSION_ID = "coop-session"
-$BROKER_PORT = 9999
-$ENDPOINT   = "127.0.0.1:$BROKER_PORT"
+# Paths
+$GameDir = "E:\SteamLibrary\steamapps\common\Slay the Spire 2"
+$GameExe = Join-Path $GameDir "SlayTheSpire2.exe"
+$ModDir = Join-Path $GameDir "mods\TokenSpire2"
+$HostConfigFile = Join-Path $ModDir "batch_config_host.json"
+$ClientConfigFile = Join-Path $ModDir "batch_config_client.json"
 
-Write-Host "========================================" -ForegroundColor Cyan
-Write-Host " TokenSpire2 LAN Multiplayer Launcher" -ForegroundColor Cyan
-Write-Host " Mode: TCP Broker" -ForegroundColor Cyan
-Write-Host "========================================" -ForegroundColor Cyan
-Write-Host " Session: $SESSION_ID" -ForegroundColor White
-Write-Host " Broker:  $ENDPOINT" -ForegroundColor White
-Write-Host ""
-
-# ── Step 0: Write per-instance marker files ───────────────────────────
-Write-Host "[0/4] Writing broker marker files..." -ForegroundColor Yellow
-
-$hostMarker = @"
-role=host
-clientIndex=0
-endpoint=$ENDPOINT
-sessionId=$SESSION_ID
-"@
-$hostMarker | Out-File -FilePath "$MOD_DIR\enable-local-broker-host.txt" -Encoding ASCII -NoNewline
-Write-Host "  Host marker: enable-local-broker-host.txt" -ForegroundColor Green
-
-$clientMarker = @"
-role=client
-clientIndex=1
-endpoint=$ENDPOINT
-sessionId=$SESSION_ID
-"@
-$clientMarker | Out-File -FilePath "$MOD_DIR\enable-local-broker-client.txt" -Encoding ASCII -NoNewline
-Write-Host "  Client marker: enable-local-broker-client.txt" -ForegroundColor Green
-
-# Remove shared marker if it exists (would cause ambiguity)
-Remove-Item "$MOD_DIR\enable-local-broker.txt" -ErrorAction SilentlyContinue
-
-# ── Step 1: Build BrokerServer if needed ───────────────────────────────
-Write-Host "[1/4] Checking BrokerServer..." -ForegroundColor Yellow
-$brokerExe = "$BROKER_DIR\BrokerServer.exe"
-if (-not (Test-Path $brokerExe)) {
-    Write-Host "  Building BrokerServer..." -ForegroundColor Yellow
-    dotnet publish "$MOD_DIR\BrokerServer\BrokerServer.csproj" -c Release -f net8.0 -o "$BROKER_DIR" --no-self-contained 2>&1 | Out-Null
-    if (-not (Test-Path $brokerExe)) {
-        Write-Host "  ERROR: Failed to build BrokerServer" -ForegroundColor Red
-        exit 1
-    }
-}
-Write-Host "  BrokerServer: OK" -ForegroundColor Green
-
-# ── Step 2: Start BrokerServer ─────────────────────────────────────────
-Write-Host "[2/4] Starting TCP Broker Server..." -ForegroundColor Yellow
-
-# Kill any stale broker from previous run
-Get-Process BrokerServer -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
-Start-Sleep -Seconds 1
-
-$brokerProc = Start-Process -FilePath $brokerExe -ArgumentList "--port $BROKER_PORT", "--session-id $SESSION_ID" -PassThru -WindowStyle Minimized
-Start-Sleep -Seconds 2
-
-if ($brokerProc.HasExited) {
-    Write-Host "  ERROR: BrokerServer exited immediately (code: $($brokerProc.ExitCode))" -ForegroundColor Red
+# Validate
+if (-not (Test-Path $GameExe)) {
+    Write-Error "Game executable not found: $GameExe"
     exit 1
 }
-Write-Host "  BrokerServer PID: $($brokerProc.Id)" -ForegroundColor Green
 
-# ── Step 3: Launch HOST instance (human player) ────────────────────────
-Write-Host "[3/4] Launching HOST instance..." -ForegroundColor Yellow
+Write-Host "=== TokenSpire2 LAN Multiplayer Launcher ==="
+Write-Host "Character: $Character"
+if ($Seed) { Write-Host "Seed: $Seed" }
 
-$hostBat = @"
-@echo off
-set TOKENSPIRE2_ROLE=host
-cd /D "$STS2_DIR"
-start "STS2 Host" SlayTheSpire2.exe
+# Build seed JSON fragment
+$seedJson = if ($Seed) { "`"$Seed`"" } else { "null" }
+
+# ──── Write per-instance config files ──────────────────────────
+# We write to the shared batch_config.json sequentially. Each instance reads
+# the shared file ONCE during AppConfig.Initialize() at startup. After reading,
+# the mod writes a "config_read.signal" file. The launcher polls for this
+# signal before overwriting the config for the next instance.
+#
+# Godot's .NET runtime does NOT pass arbitrary CLI args through to
+# Environment.GetCommandLineArgs(), so --config doesn't work. The env var
+# approach also fails with Start-Process in PowerShell.
+
+$SharedConfigFile = Join-Path $ModDir "batch_config.json"
+# Per-role signal files — host writes config_read_host.signal,
+# client writes config_read_client.signal. This prevents overwrite.
+$HostSignalFile = Join-Path $ModDir "config_read_host.signal"
+$ClientSignalFile = Join-Path $ModDir "config_read_client.signal"
+
+$hostConfig = @"
+{"Seed":$seedJson,"Character":"$Character","MultiplayerMode":true,"IsMultiplayerHost":true,"SteamPersonaName":"Player","AutoBattleEnabled":false}
 "@
-$hostBatPath = "$env:TEMP\sts2_host_launcher.bat"
-$hostBat | Out-File -FilePath $hostBatPath -Encoding ASCII
-$hostProc = Start-Process -FilePath $hostBatPath -PassThru
-Start-Sleep -Seconds 5
-Write-Host "  HOST launched (batch PID: $($hostProc.Id))" -ForegroundColor Green
 
-# ── Step 4: Wait then launch CLIENT instance (bot) ────────────────────
-Write-Host "[4/4] Waiting 25s for host to create lobby, then launching CLIENT..." -ForegroundColor Yellow
-Start-Sleep -Seconds 25
-
-$clientBat = @"
-@echo off
-set TOKENSPIRE2_ROLE=client
-cd /D "$STS2_DIR"
-start "STS2 Client" SlayTheSpire2.exe
+$clientConfig = @"
+{"Seed":$seedJson,"Character":"$Character","MultiplayerMode":true,"IsMultiplayerHost":false,"SteamPersonaName":"Bot","AutoBattleEnabled":true}
 "@
-$clientBatPath = "$env:TEMP\sts2_client_launcher.bat"
-$clientBat | Out-File -FilePath $clientBatPath -Encoding ASCII
-$clientProc = Start-Process -FilePath $clientBatPath -PassThru
-Write-Host "  CLIENT launched (batch PID: $($clientProc.Id))" -ForegroundColor Green
 
-# Cleanup temp batch files
-Start-Sleep -Seconds 3
-Remove-Item $hostBatPath -ErrorAction SilentlyContinue
-Remove-Item $clientBatPath -ErrorAction SilentlyContinue
+# Save per-instance configs for diagnostic reference
+$hostConfig | Set-Content -Path $HostConfigFile -Encoding UTF8
+$clientConfig | Set-Content -Path $ClientConfigFile -Encoding UTF8
+
+# ──── Launch Host (Window 1) ──────────────────────────────────
+Write-Host ""
+Write-Host "[Host] Starting Window 1 (Player, auto-battle OFF)..."
+Write-Host "[Host] Config: $hostConfig"
+
+# Delete old signal files before starting
+Remove-Item -Path $HostSignalFile -Force -ErrorAction SilentlyContinue
+Remove-Item -Path $ClientSignalFile -Force -ErrorAction SilentlyContinue
+
+$hostConfig | Set-Content -Path $SharedConfigFile -Encoding UTF8
+Start-Process -FilePath $GameExe -WorkingDirectory $GameDir
+Write-Host "[Host] Launched at $(Get-Date -Format 'HH:mm:ss')"
+
+# Poll for host to read config (role-specific signal file)
+Write-Host "[Host] Waiting for config_read_host.signal..."
+$timeout = 120  # seconds
+$waited = 0
+while (-not (Test-Path $HostSignalFile) -and $waited -lt $timeout) {
+    Start-Sleep -Seconds 2
+    $waited += 2
+    if ($waited % 10 -eq 0) { Write-Host "  ... waited ${waited}s" }
+}
+if (Test-Path $HostSignalFile) {
+    $signalContent = Get-Content $HostSignalFile -Raw
+    Write-Host "[Host] Signal received after ${waited}s:"
+    Write-Host $signalContent
+} else {
+    Write-Host "[WARNING] Host signal timeout after ${timeout}s. Launching client anyway."
+}
+
+# ──── Launch Client (Window 2) ────────────────────────────────
+Write-Host ""
+Write-Host "[Client] Starting Window 2 (Bot, auto-battle ON)..."
+Write-Host "[Client] Config: $clientConfig"
+$clientConfig | Set-Content -Path $SharedConfigFile -Encoding UTF8
+Start-Process -FilePath $GameExe -WorkingDirectory $GameDir
+Write-Host "[Client] Launched at $(Get-Date -Format 'HH:mm:ss')"
+
+# Wait for client to read config (optional, for diagnostics)
+Write-Host "[Client] Waiting for config_read_client.signal..."
+$waited2 = 0
+while (-not (Test-Path $ClientSignalFile) -and $waited2 -lt $timeout) {
+    Start-Sleep -Seconds 2
+    $waited2 += 2
+    if ($waited2 % 10 -eq 0) { Write-Host "  ... waited ${waited2}s" }
+}
+if (Test-Path $ClientSignalFile) {
+    $signalContent = Get-Content $ClientSignalFile -Raw
+    Write-Host "[Client] Signal received after ${waited2}s:"
+    Write-Host $signalContent
+} else {
+    Write-Host "[WARNING] Client signal timeout after ${timeout}s."
+}
 
 Write-Host ""
-Write-Host "========================================" -ForegroundColor Cyan
-Write-Host " Lanuch Complete!" -ForegroundColor Green
-Write-Host "========================================" -ForegroundColor Cyan
-Write-Host " HOST:   PID $($hostProc.Id) — create lobby, select character, Embark" -ForegroundColor White
-Write-Host " CLIENT: PID $($clientProc.Id) — auto-join, auto-ready, auto-play" -ForegroundColor White
-Write-Host " Broker: PID $($brokerProc.Id) — localhost:$BROKER_PORT" -ForegroundColor White
-Write-Host " Press T to toggle auto-battle on HOST" -ForegroundColor White
-Write-Host "========================================" -ForegroundColor Cyan
+Write-Host "=== Both instances launched ==="
+Write-Host "Window 1 (Host/Human): Create room via Multiplayer -> Host"
+Write-Host "Window 2 (Bot/Client): Bot auto-navigates to Multiplayer -> Join"
+Write-Host "                      Human clicks Join on bot window to connect"
+Write-Host ""
+Write-Host "Config files:"
+Write-Host "  Host:  $HostConfigFile"
+Write-Host "  Client: $ClientConfigFile"

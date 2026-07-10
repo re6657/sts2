@@ -6,6 +6,8 @@ using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Events;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 
+using TokenSpire2.Core;
+
 namespace TokenSpire2.Solver;
 
 /// <summary>

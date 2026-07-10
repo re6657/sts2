@@ -5,6 +5,8 @@ using MegaCrit.Sts2.Core.Nodes.CommonUi;
 using MegaCrit.Sts2.Core.Nodes.Screens.CardSelection;
 using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 
+using TokenSpire2.Core;
+
 namespace TokenSpire2.Solver;
 
 /// <summary>

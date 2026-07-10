@@ -10,6 +10,7 @@ using MegaCrit.Sts2.Core.Nodes.Screens.Map;
 using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 using MegaCrit.Sts2.Core.Nodes.Events.Custom.CrystalSphere;
 using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
+using TokenSpire2.Core;
 
 namespace TokenSpire2.Solver;
 
@@ -17,30 +18,9 @@ namespace TokenSpire2.Solver;
 /// Unified screen/room detection — pattern after CommunicationMod's
 /// ChoiceScreenUtils.getCurrentChoiceType(). Detects what screen the game
 /// is currently showing via scene-tree queries and singleton checks.
+///
+/// Uses GameScreen from TokenSpire2.Core (single authoritative enum).
 /// </summary>
-public enum GameScreen
-{
-    NONE,
-    MAIN_MENU,
-    COMBAT,
-    MAP,
-    EVENT,
-    TREASURE,
-    REST,
-    SHOP,
-    COMBAT_VICTORY,    // combat room proceed button visible
-    GAME_OVER,
-    // Overlay screens (appear on top of other screens)
-    OVERLAY_CARD_REWARD,     // NCardRewardSelectionScreen
-    OVERLAY_REWARDS,         // NRewardsScreen
-    OVERLAY_CHOOSE_CARD,     // NChooseACardSelectionScreen
-    OVERLAY_CHOOSE_BUNDLE,   // NChooseABundleSelectionScreen
-    OVERLAY_CHOOSE_RELIC,    // NChooseARelicSelection
-    OVERLAY_DECK_GRID,       // Upgrade/Transform/Enchant/Remove
-    OVERLAY_SIMPLE_SELECT,   // NSimpleCardSelectScreen
-    OVERLAY_CRYSTAL_SPHERE,  // NCrystalSphereScreen
-}
-
 public static class GameStateDetector
 {
     /// <summary>
@@ -116,32 +96,6 @@ public static class GameStateDetector
         }
 
         return GameScreen.NONE;
-    }
-
-    /// <summary>True if the current screen is a non-combat overlay that needs a decision.</summary>
-    public static bool IsOverlayScreen(GameScreen screen)
-    {
-        return screen >= GameScreen.OVERLAY_CARD_REWARD;
-    }
-
-    /// <summary>True if this screen type needs a strategic decision (not just mechanical clicking).</summary>
-    public static bool NeedsDecision(GameScreen screen)
-    {
-        return screen switch
-        {
-            GameScreen.MAP => true,
-            GameScreen.EVENT => true,
-            GameScreen.REST => true,
-            GameScreen.SHOP => true,
-            GameScreen.OVERLAY_CARD_REWARD => true,
-            GameScreen.OVERLAY_CHOOSE_CARD => true,
-            GameScreen.OVERLAY_CHOOSE_BUNDLE => true,
-            GameScreen.OVERLAY_CHOOSE_RELIC => true,
-            GameScreen.OVERLAY_DECK_GRID => true,
-            GameScreen.OVERLAY_SIMPLE_SELECT => true,
-            GameScreen.OVERLAY_CRYSTAL_SPHERE => true,
-            _ => false,
-        };
     }
 
     private static Node? GetRootNode()

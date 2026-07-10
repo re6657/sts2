@@ -1,0 +1,1764 @@
+{
+  "EncounterName": "MAWLER_NORMAL",
+  "Floor": 6,
+  "Character": "SILENT",
+  "AscensionLevel": 0,
+  "StartTime": "2026-07-10T21:06:15.164321+08:00",
+  "EndTime": "2026-07-10T21:06:28.9826932+08:00",
+  "DurationSeconds": 13.8183722,
+  "Victory": true,
+  "EndHp": 54,
+  "TotalTurns": 17,
+  "TotalDamageDealt": 0,
+  "TotalDamageTaken": 7,
+  "TotalEnemiesKilled": 0,
+  "SolverCrashes": 0,
+  "Turns": [
+    {
+      "TurnNumber": 1,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SUCKER_PUNCH",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 72,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "COLORLESS_POTION",
+        "STRENGTH_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY SUCKER_PUNCH -\u003E MAWLER",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 8,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=8 Blk=10 In=8 Cards=4 Score=114 States=85 Char=SILENT Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 2,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SUCKER_PUNCH",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "NEUTRALIZE",
+          "Cost": 0
+        },
+        {
+          "Id": "DEADLY_POISON",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 72,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "COLORLESS_POTION",
+        "STRENGTH_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY NEUTRALIZE -\u003E MAWLER",
+          "PLAY DEADLY_POISON -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 3,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=3 Blk=5 In=8 Cards=4 Score=829 States=96 Char=SILENT Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 96
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 10,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 6,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 3,
+      "Energy": 1,
+      "Block": 10,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SUCKER_PUNCH",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "NEUTRALIZE",
+          "Cost": 0
+        },
+        {
+          "Id": "DEADLY_POISON",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 72,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 8,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": []
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "COLORLESS_POTION",
+        "STRENGTH_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY NEUTRALIZE -\u003E MAWLER",
+          "PLAY DEADLY_POISON -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 3,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=3 Blk=0 In=8 Cards=3 Score=798 States=13 Char=SILENT Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 13
+      },
+      "ActionResults": [
+        {
+          "CardId": "NEUTRALIZE",
+          "Success": true,
+          "Target": "MAWLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 10,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 4,
+      "Energy": 1,
+      "Block": 10,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 9,
+      "DiscardPileCount": 3,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SUCKER_PUNCH",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEADLY_POISON",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 69,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 6,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 1,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "WeakPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "COLORLESS_POTION",
+        "STRENGTH_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEADLY_POISON -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=6 Cards=2 Score=757 States=4 Char=SILENT Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 4
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEADLY_POISON",
+          "Success": true,
+          "Target": "MAWLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 3/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 5,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "DAGGER_THROW",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 64,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 14,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "COLORLESS_POTION",
+        "STRENGTH_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY DASH -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 15,
+        "Score": "Dmg=10 Blk=15 In=14 Cards=3 Score=443 States=59 Char=SILENT Src=reflection: dmg=12 blk=0",
+        "StatesExplored": 59
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 6,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 4,
+      "DiscardPileCount": 8,
+      "Hand": [
+        {
+          "Id": "DAGGER_THROW",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DASH",
+          "Cost": 2
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 64,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 14,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 4
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "COLORLESS_POTION",
+        "STRENGTH_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DASH -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=10 Blk=10 In=14 Cards=2 Score=296 States=11 Char=SILENT Src=reflection: dmg=12 blk=0",
+        "StatesExplored": 11
+      },
+      "ActionResults": [
+        {
+          "CardId": "DASH",
+          "Success": true,
+          "Target": "MAWLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 1,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "ENERGY_WASTED: 1 energy left, 3/4 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 7,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SURVIVOR",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 50,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "COLORLESS_POTION",
+        "STRENGTH_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY STRIKE_SILENT -\u003E MAWLER",
+          "PLAY SURVIVOR -\u003E self",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 6,
+        "EstimatedBlock": 13,
+        "Score": "Dmg=6 Blk=13 In=0 Cards=4 Score=493 States=85 Char=SILENT Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 85
+      },
+      "ActionResults": [
+        {
+          "CardId": "STRIKE_SILENT",
+          "Success": true,
+          "Target": "MAWLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 8,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SURVIVOR",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 44,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "COLORLESS_POTION",
+        "STRENGTH_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=0 Cards=2 Score=442 States=16 Char=SILENT Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 16
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 3,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 3 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 9,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 2,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SURVIVOR",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 44,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 0,
+          "IntentType": "Debuff",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 3
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 0,
+        "AllPowers": []
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "COLORLESS_POTION",
+        "STRENGTH_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY SURVIVOR -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 8,
+        "Score": "Dmg=0 Blk=8 In=0 Cards=2 Score=440 States=3 Char=SILENT Src=reflection: dmg=0 blk=8",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "SURVIVOR",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 10,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 5,
+      "Hand": [
+        {
+          "Id": "NEUTRALIZE",
+          "Cost": 0
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SUCKER_PUNCH",
+          "Cost": 1
+        },
+        {
+          "Id": "DEADLY_POISON",
+          "Cost": 1
+        },
+        {
+          "Id": "DASH",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 41,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 21,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 2
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 3,
+        "AllPowers": [
+          {
+            "Name": "VulnerablePower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "COLORLESS_POTION",
+        "STRENGTH_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY NEUTRALIZE -\u003E MAWLER",
+          "PLAY DEADLY_POISON -\u003E MAWLER",
+          "PLAY DASH -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 13,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=13 Blk=10 In=21 Cards=4 Score=265 States=91 Char=SILENT Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 91
+      },
+      "ActionResults": [
+        {
+          "CardId": "NEUTRALIZE",
+          "Success": true,
+          "Target": "MAWLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 11,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 6,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SUCKER_PUNCH",
+          "Cost": 1
+        },
+        {
+          "Id": "DEADLY_POISON",
+          "Cost": 1
+        },
+        {
+          "Id": "DASH",
+          "Cost": 2
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 38,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 1,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 2
+            },
+            {
+              "Name": "WeakPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 3,
+        "AllPowers": [
+          {
+            "Name": "VulnerablePower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "COLORLESS_POTION",
+        "STRENGTH_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DASH -\u003E MAWLER",
+          "PLAY DEADLY_POISON -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 10,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=10 Blk=10 In=15 Cards=3 Score=458 States=22 Char=SILENT Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 22
+      },
+      "ActionResults": [
+        {
+          "CardId": "DASH",
+          "Success": true,
+          "Target": "MAWLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 61,
+        "BlockAfter": 10,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 12,
+      "Energy": 1,
+      "Block": 10,
+      "Hp": 61,
+      "MaxHp": 70,
+      "DrawPileCount": 6,
+      "DiscardPileCount": 7,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "SUCKER_PUNCH",
+          "Cost": 1
+        },
+        {
+          "Id": "DEADLY_POISON",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 28,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 15,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 1,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 2
+            },
+            {
+              "Name": "WeakPower",
+              "Amount": 1
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 3,
+        "AllPowers": [
+          {
+            "Name": "VulnerablePower",
+            "Amount": 3
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "COLORLESS_POTION",
+        "STRENGTH_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEADLY_POISON -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=0 Blk=0 In=15 Cards=2 Score=977 States=3 Char=SILENT Src=reflection: dmg=8 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEADLY_POISON",
+          "Success": true,
+          "Target": "MAWLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 56,
+        "BlockAfter": 0,
+        "DamageTaken": 5,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 13,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 56,
+      "MaxHp": 70,
+      "DrawPileCount": 1,
+      "DiscardPileCount": 10,
+      "Hand": [
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DAGGER_THROW",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 21,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 2,
+        "AllPowers": [
+          {
+            "Name": "VulnerablePower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "COLORLESS_POTION",
+        "STRENGTH_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DAGGER_THROW -\u003E MAWLER",
+          "PLAY STRIKE_SILENT -\u003E MAWLER",
+          "PLAY STRIKE_SILENT -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 24,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=24 Blk=0 In=12 Cards=4 Score=1663 States=98 Char=SILENT Src=reflection: dmg=12 blk=0",
+        "StatesExplored": 98
+      },
+      "ActionResults": [
+        {
+          "CardId": "DAGGER_THROW",
+          "Success": true,
+          "Target": "MAWLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 56,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 14,
+      "Energy": 2,
+      "Block": 0,
+      "Hp": 56,
+      "MaxHp": 70,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 12,
+      "Hand": [
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 9,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 2,
+        "AllPowers": [
+          {
+            "Name": "VulnerablePower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "COLORLESS_POTION",
+        "STRENGTH_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=0 Blk=10 In=12 Cards=3 Score=774 States=16 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 16
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 56,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 4,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 15,
+      "Energy": 1,
+      "Block": 5,
+      "Hp": 56,
+      "MaxHp": 70,
+      "DrawPileCount": 0,
+      "DiscardPileCount": 13,
+      "Hand": [
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 9,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 12,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 6
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 2,
+        "AllPowers": [
+          {
+            "Name": "VulnerablePower",
+            "Amount": 2
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "COLORLESS_POTION",
+        "STRENGTH_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 0,
+        "EstimatedBlock": 5,
+        "Score": "Dmg=0 Blk=5 In=12 Cards=2 Score=749 States=3 Char=SILENT Src=reflection: dmg=6 blk=0",
+        "StatesExplored": 3
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 54,
+        "BlockAfter": 0,
+        "DamageTaken": 2,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 2,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 3,
+        "Issues": [
+          "ENERGY_WASTED: 2 energy left, 2/3 playable cards not used"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 16,
+      "Energy": 3,
+      "Block": 0,
+      "Hp": 54,
+      "MaxHp": 70,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 0,
+      "Hand": [
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DAGGER_THROW",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 3,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 21,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 5
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 1,
+        "AllPowers": [
+          {
+            "Name": "VulnerablePower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "COLORLESS_POTION",
+        "STRENGTH_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY DEFEND_SILENT -\u003E self",
+          "PLAY DAGGER_THROW -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 10,
+        "Score": "Dmg=12 Blk=10 In=21 Cards=4 Score=1556 States=19 Char=SILENT Src=reflection: dmg=12 blk=0",
+        "StatesExplored": 19
+      },
+      "ActionResults": [
+        {
+          "CardId": "DEFEND_SILENT",
+          "Success": true
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 54,
+        "BlockAfter": 5,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 2,
+        "TotalPlayableInHand": 5,
+        "Issues": [
+          "CARDS_UNPLAYED: 2 playable cards left at 0 energy"
+        ]
+      }
+    },
+    {
+      "TurnNumber": 17,
+      "Energy": 2,
+      "Block": 5,
+      "Hp": 54,
+      "MaxHp": 70,
+      "DrawPileCount": 11,
+      "DiscardPileCount": 1,
+      "Hand": [
+        {
+          "Id": "DEFEND_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "DAGGER_THROW",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        },
+        {
+          "Id": "STRIKE_SILENT",
+          "Cost": 1
+        }
+      ],
+      "Enemies": [
+        {
+          "Index": 0,
+          "Id": "MAWLER",
+          "Hp": 3,
+          "MaxHp": 72,
+          "Block": 0,
+          "IntentDamage": 21,
+          "IntentType": "Attack",
+          "VulnerableStacks": 0,
+          "WeakStacks": 0,
+          "StrengthStacks": 0,
+          "DexterityStacks": 0,
+          "Powers": [
+            {
+              "Name": "PoisonPower",
+              "Amount": 5
+            }
+          ]
+        }
+      ],
+      "PlayerPowers": {
+        "Strength": 0,
+        "Dexterity": 0,
+        "Weak": 0,
+        "Frail": 0,
+        "Vulnerable": 1,
+        "AllPowers": [
+          {
+            "Name": "VulnerablePower",
+            "Amount": 1
+          }
+        ]
+      },
+      "Orbs": {
+        "OrbSlots": 0,
+        "Lightning": 0,
+        "Frost": 0,
+        "Dark": 0,
+        "Plasma": 0,
+        "Focus": 0,
+        "Stars": 0
+      },
+      "PotionIds": [
+        "COLORLESS_POTION",
+        "STRENGTH_POTION"
+      ],
+      "PotionCount": 2,
+      "SolverPlan": {
+        "Actions": [
+          "PLAY DAGGER_THROW -\u003E MAWLER",
+          "END_TURN"
+        ],
+        "EstimatedDamage": 12,
+        "EstimatedBlock": 0,
+        "Score": "Dmg=12 Blk=0 In=21 Cards=2 Score=1551 States=7 Char=SILENT Src=reflection: dmg=12 blk=0",
+        "StatesExplored": 7
+      },
+      "ActionResults": [
+        {
+          "CardId": "DAGGER_THROW",
+          "Success": true,
+          "Target": "MAWLER"
+        }
+      ],
+      "Outcome": {
+        "HpAfter": 54,
+        "BlockAfter": 0,
+        "DamageTaken": 0,
+        "EnemiesKilled": 0,
+        "EnergyRemaining": 0,
+        "PlayableCardsNotPlayed": 0,
+        "TotalPlayableInHand": 0,
+        "Issues": []
+      }
+    }
+  ]
+}

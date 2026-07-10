@@ -7,6 +7,8 @@ using MegaCrit.Sts2.Core.Nodes.GodotExtensions;
 using MegaCrit.Sts2.Core.Nodes.RestSite;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
 
+using TokenSpire2.Core;
+
 namespace TokenSpire2.Solver;
 
 /// <summary>
