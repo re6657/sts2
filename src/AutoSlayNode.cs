@@ -1817,12 +1817,6 @@ public partial class AutoSlayNode : Node
         var mapScreen = NMapScreen.Instance;
         if (mapScreen != null && mapScreen.IsOpen && NOverlayStack.Instance?.ScreenCount == 0)
         {
-            // ── Multiplayer bot: follow host, don't make map decisions ──
-            if (_multiplayerMode && !_isMultiplayerHost)
-            {
-                _cooldown = 3.0;
-                return;
-            }
             // ── Toggle guard: skip if auto-navigate is OFF ──
             if (!_autoNavigate)
             {
@@ -1851,12 +1845,6 @@ public partial class AutoSlayNode : Node
             "/root/Game/RootSceneContainer/Run/RoomContainer/EventRoom");
         if (eventRoom != null)
         {
-            // ── Multiplayer bot: follow host, don't make event decisions ──
-            if (_multiplayerMode && !_isMultiplayerHost)
-            {
-                _cooldown = 3.0;
-                return;
-            }
             // ── Toggle guard: skip if auto-event is OFF ──
             if (!_autoEvent)
             {
@@ -1896,12 +1884,6 @@ public partial class AutoSlayNode : Node
             "/root/Game/RootSceneContainer/Run/RoomContainer/TreasureRoom");
         if (treasureRoom != null)
         {
-            // ── Multiplayer bot: follow host, don't open treasure chests ──
-            if (_multiplayerMode && !_isMultiplayerHost)
-            {
-                _cooldown = 3.0;
-                return;
-            }
             // ── Toggle guard: skip if auto-event is OFF ──
             if (!_autoEvent)
             {
@@ -1928,12 +1910,6 @@ public partial class AutoSlayNode : Node
         bool screenIsRest = GameStateDetector.Detect() == GameScreen.REST;
         if (restRoom != null && screenIsRest)
         {
-            // ── Multiplayer bot: follow host, don't make rest decisions ──
-            if (_multiplayerMode && !_isMultiplayerHost)
-            {
-                _cooldown = 3.0;
-                return;
-            }
             // ── Toggle guard: skip if auto-navigate is OFF ──
             if (!_autoNavigate)
             {
@@ -2112,12 +2088,6 @@ public partial class AutoSlayNode : Node
             "/root/Game/RootSceneContainer/Run/RoomContainer/MerchantRoom");
         if (shopRoom != null)
         {
-            // ── Multiplayer bot: follow host, don't make shop decisions ──
-            if (_multiplayerMode && !_isMultiplayerHost)
-            {
-                _cooldown = 3.0;
-                return;
-            }
             // ── Toggle guard: skip if auto-navigate is OFF ──
             if (!_autoNavigate)
             {
