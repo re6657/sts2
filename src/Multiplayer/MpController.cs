@@ -1,7 +1,4 @@
 using System;
-using System.Linq;
-using System.Reflection;
-using HarmonyLib;
 using TokenSpire2.Core;
 
 namespace TokenSpire2.Multiplayer;
@@ -63,12 +60,8 @@ public class MpController
             _stateElapsed = 0;
             _recoveryAttempts = 0;
             _ui.ClearClickCache();
-            _brokerJoinTriggered = false;
-            _brokerJoinDone = false;
-            _brokerJoinFlowInvoked = false;
             _mainMenuDumped = false;
             _hostButtonInvoked = false;
-            _joinButtonInvoked = false;
         }
 
         // ── Step 3: Timeout → recover ──
@@ -156,27 +149,22 @@ public class MpController
     }
 
     private bool _hostButtonInvoked;
-    private bool _joinButtonInvoked;
-    private bool _brokerJoinFlowInvoked;
 
     private double HandleEnteringMultiplayer()
     {
         var cfg = AppConfig.Instance;
         if (cfg.IsHost)
         {
-            // First, try ForceClick + EmitSignal on HostButton
             if (_ui.ClickButton("Host"))     return 2.0;
 
-            // If the button click doesn't navigate, directly invoke the game's
-            // SteamHostButtonPressed method on NMultiplayerSubmenu via reflection.
-            // This bypasses any issues with the button's signal/slot wiring.
+            // If button click doesn't navigate, directly invoke OnHostPressed
             if (!_hostButtonInvoked)
             {
                 _hostButtonInvoked = true;
                 if (TryInvokeSteamHostButtonPressed())
                 {
-                    Log("[MpController] Directly invoked SteamHostButtonPressed on NMultiplayerSubmenu.");
-                    return 3.0; // give async hosting time
+                    Log("[MpController] Directly invoked OnHostPressed.");
+                    return 3.0;
                 }
             }
 
@@ -184,43 +172,18 @@ public class MpController
             if (_ui.ClickButton("创建"))     return 2.0;
             if (_ui.ClickButton("主持"))     return 2.0;
         }
-        else
+        else // IsClient — broker mode
         {
-            // ═══════════════════════════════════════════════════════════
-            // BROKER MODE (client): invoke JoinFlow.Begin directly.
-            //
-            // TriggerJoinFlowBegin calls JoinFlow.Begin(IClientConnectionInitializer, SceneTree)
-            // via reflection. BrokerClientJoinFlowPatch.Prefix intercepts and
-            // performs the broker handshake (TCP connect → InitialGameInfo →
-            // JoinRequest → JoinResponse). The JoinResult flows back through
-            // the game's normal JoinGameAsync pipeline → scene transition.
-            //
-            // This bypasses the Steam friend list entirely — no virtual friend
-            // patches needed. Both instances share the same Steam account so
-            // the friend list is always empty.
-            // ═══════════════════════════════════════════════════════════
-
-            // Trigger broker join directly (bypass friend list)
-            if (!_brokerJoinTriggered)
-            {
-                _brokerJoinTriggered = true;
-                if (TriggerJoinFlowBegin())
-                {
-                    Log("[MpController] Broker: TriggerJoinFlowBegin succeeded — waiting for lobby transition.");
-                    return 3.0;
-                }
-                Log("[MpController] Broker: TriggerJoinFlowBegin FAILED — will retry.");
-                _brokerJoinTriggered = false; // allow retry
-                return 2.0;
-            }
-
-            // Fallback: try clicking Join button (opens friend list)
+            // Simply click the Join button. BrokerJoinFriendScreenPatch
+            // intercepts OpenJoinFriendsScreen, creates a JoinFlow, and
+            // calls Begin() → BrokerClientJoinFlowPatch handles TCP handshake.
+            // No reflection needed here.
             if (_ui.ClickButton("Join"))     return 2.0;
             if (_ui.ClickButton("加入"))     return 2.0;
             if (_ui.ClickButton("参与"))     return 2.0;
         }
 
-        // One-time button dump if nothing matched
+        // One-time button dump on first failure
         if (!_mainMenuDumped)
         {
             _mainMenuDumped = true;
@@ -282,45 +245,6 @@ public class MpController
         }
     }
 
-    private bool TryInvokeJoinButtonPressed()
-    {
-        try
-        {
-            var node = FindMultiplayerSubmenu();
-            if (node == null) return false;
-
-            // The actual callback is OpenJoinFriendsScreen
-            var method = node.GetType().GetMethod("OpenJoinFriendsScreen",
-                System.Reflection.BindingFlags.Instance |
-                System.Reflection.BindingFlags.Public |
-                System.Reflection.BindingFlags.NonPublic);
-            if (method != null)
-            {
-                method.Invoke(node, new object?[] { null });
-                return true;
-            }
-
-            // Fallback: JoinButtonPressed
-            method = node.GetType().GetMethod("JoinButtonPressed",
-                System.Reflection.BindingFlags.Instance |
-                System.Reflection.BindingFlags.Public |
-                System.Reflection.BindingFlags.NonPublic);
-            if (method != null)
-            {
-                method.Invoke(node, null);
-                return true;
-            }
-
-            Log("[MpController] OpenJoinFriendsScreen/JoinButtonPressed not found.");
-            return false;
-        }
-        catch (Exception ex)
-        {
-            Log($"[MpController] JoinButtonPressed invoke failed: {ex.Message}");
-            return false;
-        }
-    }
-
     private static Godot.Node? FindMultiplayerSubmenu()
     {
         try
@@ -371,8 +295,6 @@ public class MpController
         return 2.0;
     }
 
-    private bool _brokerJoinTriggered;
-    private bool _brokerJoinDone;
     private bool _mainMenuDumped;
 
     private double HandleJoining()
@@ -387,214 +309,47 @@ public class MpController
 
     /// <summary>
     /// Friend list screen (Steam friend selection).
-    /// In broker mode, we bypass this by invoking JoinFlow.Begin()
-    /// via reflection. BrokerClientJoinFlowPatch intercepts the call.
+    /// In broker mode, BrokerJoinFriendScreenPatch intercepts
+    /// OpenJoinFriendsScreen before the friend list opens — we should
+    /// never reach this screen. If we do, escape back to the main menu.
+    /// In SteamFix64 mode, click friend/lobby entries directly.
     /// </summary>
     private double HandleFriendList()
     {
-        // ── SteamFix64 Mode ────────────────────────────────────────
-        // In SteamFix64 mode, the native DLL proxy (winmm.dll →
-        // SteamFix64.dll) intercepts the Steam Friends/Lobby APIs.
-        // LAN games appear as "friend" entries. Click them directly —
-        // the game's normal join flow works unchanged.
-        if (!AppConfig.Instance.BrokerEnabled)
+        // In broker mode, we should never reach this screen —
+        // BrokerJoinFriendScreenPatch intercepts OpenJoinFriendsScreen
+        // before the friend list opens. If we're here, press escape to go back.
+        if (AppConfig.Instance.BrokerEnabled)
         {
-            // Strategy 1: Click on lobby/friend entries by type name.
-            // NJoinFriendButton, NFriendListEntry, NJoinGameButton, etc.
-            if (_ui.ClickButton("JoinFriend"))  return 2.0;
-            if (_ui.ClickButton("Friend"))      return 2.0;
-            if (_ui.ClickButton("Lobby"))       return 2.0;
-            if (_ui.ClickButton("JoinGame"))    return 2.0;
-            if (_ui.ClickButton("Game"))        return 2.0;
-
-            // Strategy 2: Refresh button — may need to refresh to see host
-            if (_ui.ClickButton("Refresh"))     return 2.0;
-            if (_ui.ClickButton("刷新"))         return 2.0;
-
-            // Strategy 3: Click first enabled button (friend/lobby entry)
-            if (_ui.ClickFirstEnabledButton())
-            {
-                Log("[MpController] SteamFix64: clicked first enabled entry in friend list.");
-                return 2.0;
-            }
-
-            // Strategy 4: Nothing worked — dump for diagnostics and escape
-            if (!_mainMenuDumped)
-            {
-                _mainMenuDumped = true;
-                _ui.DumpVisibleButtons();
-                Log("[MpController] SteamFix64: FriendList dump complete — no clickable entries.");
-            }
-
-            Log("[MpController] SteamFix64: no entries in friend list — host may not be hosting yet. Pressing escape to retry.");
+            Log("[MpController] Unexpectedly on friend list in broker mode — escaping.");
             _ui.PressEscape();
             return 2.0;
         }
 
-        // ── Broker Mode ────────────────────────────────────────────
-        // BrokerVirtualFriendSteamPatch injects "人机一号" into the friend
-        // list. The player (human) or bot clicks it. No need to auto-invoke
-        // JoinFlow.Begin — the game's normal JoinGameAsync flow handles it.
-        // Just click the virtual friend entry.
-        if (_ui.ClickButton("人机一号"))     return 2.0;
-        if (_ui.ClickButton("Friend"))      return 2.0;
+        // SteamFix64 mode (non-broker): click friend/lobby entries
         if (_ui.ClickButton("JoinFriend"))  return 2.0;
+        if (_ui.ClickButton("Friend"))      return 2.0;
+        if (_ui.ClickButton("Lobby"))       return 2.0;
+        if (_ui.ClickButton("JoinGame"))    return 2.0;
+        if (_ui.ClickButton("Refresh"))     return 2.0;
+        if (_ui.ClickButton("刷新"))         return 2.0;
 
-        // Fallback: try clicking first enabled button (may be our virtual friend)
         if (_ui.ClickFirstEnabledButton())
         {
-            Log("[MpController] Broker: clicked first enabled entry in friend list.");
+            Log("[MpController] SteamFix64: clicked first enabled entry in friend list.");
             return 2.0;
         }
 
-        // Nothing clickable — dump for diagnostics and retry
         if (!_mainMenuDumped)
         {
             _mainMenuDumped = true;
             _ui.DumpVisibleButtons();
-            Log("[MpController] Broker: FriendList dump complete.");
+            Log("[MpController] FriendList dump complete.");
         }
 
-        Log("[MpController] Broker: no clickable entry, pressing escape.");
+        Log("[MpController] No entries in friend list — escaping to retry.");
         _ui.PressEscape();
         return 2.0;
-    }
-
-    /// <summary>
-    /// Invoke JoinFlow.Begin(IClientConnectionInitializer, SceneTree) directly
-    /// via reflection. Uses Harmony AccessTools for reliable type resolution
-    /// across all loaded assemblies.
-    ///
-    /// BrokerClientJoinFlowPatch.Prefix intercepts this call:
-    ///   1. Creates TCP connection to broker
-    ///   2. Performs broker handshake (InitialGameInfo → JoinRequest → JoinResponse)
-    ///   3. Stores service in BrokerPendingNetGameServiceRegistry
-    ///   4. Returns JoinResult → game transitions to character select / lobby
-    /// </summary>
-    private bool TriggerJoinFlowBegin()
-    {
-        try
-        {
-            // Use AccessTools (searches all loaded assemblies) — same as BrokerClientJoinFlowPatch
-            var joinFlowType = AccessTools.TypeByName("MegaCrit.Sts2.Core.Multiplayer.Game.JoinFlow");
-            if (joinFlowType == null)
-            {
-                Log("[MpController] TriggerJoinFlowBegin: JoinFlow type NOT FOUND.");
-                return false;
-            }
-
-            var initializerType = AccessTools.TypeByName(
-                "MegaCrit.Sts2.Core.Multiplayer.Connection.IClientConnectionInitializer");
-            if (initializerType == null)
-            {
-                Log("[MpController] TriggerJoinFlowBegin: IClientConnectionInitializer type NOT FOUND.");
-                return false;
-            }
-
-            // Use AccessTools.Method (same as BrokerClientJoinFlowPatch) instead of
-            // Type.GetMethod. AccessTools matches by type name/fullname which works
-            // across assembly load contexts. GetMethod requires exact CLR type identity.
-            var beginMethod = AccessTools.Method(joinFlowType, "Begin",
-                new[] { initializerType, typeof(Godot.SceneTree) });
-
-            if (beginMethod == null)
-            {
-                // Dump all methods on JoinFlow for diagnostics
-                var methods = joinFlowType.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance);
-                foreach (var m in methods)
-                {
-                    var parms = string.Join(", ", m.GetParameters().Select(p => $"{p.ParameterType.Name} {p.Name}"));
-                    Log($"[MpController] JoinFlow method: {m.ReturnType.Name} {m.Name}({parms}) [Static={m.IsStatic}]");
-                }
-                Log("[MpController] TriggerJoinFlowBegin: JoinFlow.Begin NOT FOUND (dumped all methods above).");
-                return false;
-            }
-
-            // Create placeholder initializer — the broker doesn't use Steam/ENet
-            var initializer = new LocalCoop.Mod.Runtime.BrokerClientJoinFlow
-                .PlaceholderClientConnectionInitializer();
-            var sceneTree = (Godot.SceneTree)Godot.Engine.GetMainLoop();
-
-            // JoinFlow.Begin is an INSTANCE method. Create a JoinFlow instance.
-            // Try parameterless constructor first. JoinFlow is a simple class
-            // that doesn't need special setup — the Harmony patch replaces all
-            // its internal logic with the broker handshake.
-            object? joinFlowInstance;
-            try
-            {
-                joinFlowInstance = Activator.CreateInstance(joinFlowType);
-            }
-            catch (MissingMethodException)
-            {
-                // No parameterless constructor — try finding existing instance
-                // in the scene tree or via static accessor
-                Log("[MpController] JoinFlow has no parameterless constructor, searching for instance...");
-                joinFlowInstance = FindJoinFlowInstance(joinFlowType);
-                if (joinFlowInstance == null)
-                {
-                    Log("[MpController] Cannot create or find JoinFlow instance.");
-                    return false;
-                }
-            }
-
-            Log("[MpController] TriggerJoinFlowBegin: Invoking JoinFlow.Begin(...) → " +
-                "will be intercepted by BrokerClientJoinFlowPatch.");
-            beginMethod.Invoke(joinFlowInstance, new object[] { initializer, sceneTree });
-            return true;
-        }
-        catch (Exception ex)
-        {
-            Log($"[MpController] TriggerJoinFlowBegin FAILED: {ex.GetType().Name}: {ex.Message}");
-            return false;
-        }
-    }
-
-    /// <summary>
-    /// Search for an existing JoinFlow instance in memory.
-    /// Fallback when Activator.CreateInstance fails (no parameterless ctor).
-    /// </summary>
-    private static object? FindJoinFlowInstance(Type joinFlowType)
-    {
-        // Strategy 1: Check if JoinFlow has a static Instance/Singleton property
-        foreach (var prop in joinFlowType.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static))
-        {
-            if (prop.Name.Contains("Instance") || prop.Name.Contains("Singleton") || prop.Name.Contains("Current"))
-            {
-                try
-                {
-                    var val = prop.GetValue(null);
-                    if (val != null && joinFlowType.IsInstanceOfType(val))
-                        return val;
-                }
-                catch { }
-            }
-        }
-
-        // Strategy 2: Search scene tree for a node of type JoinFlow
-        try
-        {
-            var tree = (Godot.SceneTree)Godot.Engine.GetMainLoop();
-            var root = tree.Root;
-            return FindNodeOfTypeRecursive(root, joinFlowType);
-        }
-        catch { }
-
-        return null;
-    }
-
-    private static object? FindNodeOfTypeRecursive(Godot.Node node, Type targetType)
-    {
-        if (targetType.IsInstanceOfType(node))
-            return node;
-        foreach (var child in node.GetChildren())
-        {
-            if (child is Godot.Node childNode)
-            {
-                var found = FindNodeOfTypeRecursive(childNode, targetType);
-                if (found != null) return found;
-            }
-        }
-        return null;
     }
 
     private double HandleCharacterSelect()
