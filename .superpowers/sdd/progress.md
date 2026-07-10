@@ -22,3 +22,5 @@
 - [x] Task 11: Final build + deploy — 0 errors, 291 warnings, DLL 890KB
 Task 1: complete (commits ff9c710..40520b7, review clean)
 Task 2: complete (commits 40520b7..1c12d5f, review clean)
+Task 3: complete (commits 1c12d5f..bfa331a, review clean)
+Task 4: complete (commit d9d8d2b, 8 files deleted + extracted RunIdentityDiagnosticsPatchTarget)

@@ -115,6 +115,9 @@ public partial class AutoSlayNode : Node
     private int _lastTurnPlayableNotPlayed; // playable cards not played last turn
     private bool _combatTurnRequested; // prevent re-requesting same turn
     private double _combatTurnRequestedDuration; // watchdog: seconds since _combatTurnRequested=true without PlayerActionsDisabled
+    // Fix B: co-op safe stuck tracking — seconds since last meaningful action
+    private double _lastCombatActivityCoop;
+    // Fix E: duration stuck with PlayerActionsDisabled=true (waiting for other player)
     private double _waitingForTurnDuration; // Fix E: seconds continuously stuck with PlayerActionsDisabled=true in co-op
     private bool _combatPlanEndTurn; // true if LLM explicitly said END_TURN after plays
     private bool _drawJustFinished; // hand was empty, now has cards — wait for full draw to stabilize
@@ -368,16 +371,41 @@ public partial class AutoSlayNode : Node
             {
                 _lastCombatActivity += delta;
             }
+
+            // Fix B: track co-op activity time separately (includes waiting periods)
+            if (Coop.CoopManager.IsCoopMode)
+            {
+                _lastCombatActivityCoop += delta;
+            }
         }
         else
         {
             _lastCombatActivity = -1; // reset when not in combat
+            _lastCombatActivityCoop = 0;  // Fix B: reset co-op timer outside combat
         }
 
         // Human player controls their own pace — never kill their game.
         // Only the bot instance should be killed on stuck detection.
         // In co-op/LAN mode: DON'T kill — instead force a re-solve recovery.
         // Killing one instance would hang the other waiting for network messages.
+
+        // ── Fix B: Co-op safe stuck detection (does NOT kill process)
+        // Uses _lastCombatActivityCoop which keeps counting even during
+        // "waiting for other player" periods where _lastCombatActivity is paused.
+        if (Coop.CoopManager.IsCoopMode
+            && _lastCombatActivityCoop > 120.0)
+        {
+            MainFile.Logger.Error(
+                $"[AutoSlay] COOP STUCK: {_lastCombatActivityCoop:F0}s " +
+                "without activity. Forcing re-solve...");
+            _lastCombatActivityCoop = 0;
+            _combatTurnRequested = false; _combatTurnRequestedDuration = 0;
+            _combatPlan = null;
+            _combatCardDelay = 1.0;
+            _combatTurnRequestedDuration = 0;
+            return;
+        }
+
         if (!Coop.CoopManager.IsHumanPlayer
             && _lastCombatActivity > STUCK_TIMEOUT)
         {
@@ -392,6 +420,7 @@ public partial class AutoSlayNode : Node
                     "Forcing re-solve recovery...");
                 WriteStuckDiagnostics("COOP_COMBAT_STUCK", _lastCombatActivity);
                 _lastCombatActivity = 0;
+                _lastCombatActivityCoop = 0;  // Fix B: reset co-op activity timer
                 _combatTurnRequested = false; _combatTurnRequestedDuration = 0;
                 _combatPlan = null;
                 _combatCardDelay = 1.0;
@@ -629,6 +658,7 @@ public partial class AutoSlayNode : Node
                     _turnPlansWithoutPlay = 0;  // reset — we forced progress
                     _combatTurnRequested = false; _combatTurnRequestedDuration = 0;
                     _lastCombatActivity = 0;     // actual progress
+                    _lastCombatActivityCoop = 0;  // Fix B: reset co-op activity timer
                     var rs = RunManager.Instance?.DebugOnlyGetState();
                     var pl = rs != null ? LocalContext.GetMe(rs) : null;
                     if (CombatManager.Instance is { PlayerActionsDisabled: false } && pl != null)
@@ -785,6 +815,7 @@ public partial class AutoSlayNode : Node
                                     _combatTurnRequested = true; _combatTurnRequestedDuration = 0;
                                     _combatCardDelay = 0.5;
                                     _lastCombatActivity = 0; // reset — waiting for end turn
+                                    _lastCombatActivityCoop = 0;  // Fix B: reset co-op timer on turn end
                                     return;
                                 }
                                 // Reset stability tracking — draw hasn't started
@@ -1599,6 +1630,7 @@ public partial class AutoSlayNode : Node
                 if (!_wasEnemyTurn)
                 {
                     _lastCombatActivity = 0;
+                    _lastCombatActivityCoop = 0;  // Fix B: reset co-op timer on new round
                     _wasEnemyTurn = true;
                 }
 
@@ -3499,6 +3531,7 @@ public partial class AutoSlayNode : Node
                     : "solver deliberately played 0 cards (e.g. only Defend vs buffing enemy)";
                 MainFile.Logger.Info($"[AutoSlay] Combat plan complete, ending turn ({reason})");
                 _lastCombatActivity = 0; // actual progress
+                _lastCombatActivityCoop = 0;  // Fix B: reset co-op timer on plan completion
                 if (CombatManager.Instance is { PlayerActionsDisabled: false })
                     EndTurnViaUiOrApi(player);
                 _combatCardDelay = 0.5;
@@ -3529,6 +3562,7 @@ public partial class AutoSlayNode : Node
                 ?? PotionHelper.GetTarget(action.Potion, player?.Creature?.CombatState as CombatState);
             MainFile.Logger.Info($"[AutoSlay] Using potion {action.Potion.Id.Entry}{(action.Target != null ? $" -> {action.Target.Monster?.Id.Entry}" : "")}");
             _lastCombatActivity = 0; // actual progress
+            _lastCombatActivityCoop = 0;  // Fix B: reset co-op timer on potion use
             action.Potion.EnqueueManualUse(potionTarget);
             // Re-solve after potion use to get optimal follow-up
             _combatPlan = null;
