@@ -129,17 +129,13 @@ foreach ($inst in $instances) {
     $json | Set-Content -Path $inst.ConfigPath -Encoding UTF8
     Write-Host "[Config] $($inst.Label): $($inst.ConfigPath)"
 
-    $argsList = @()
-    if ($inst.FastMp) {
-        $argsList += "--fastmp"
-        $argsList += $inst.FastMp
-    }
-    $argsList += "--config"
-    $argsList += "`"$($inst.ConfigPath)`""
+    # Build args as a single string (same format as launch_lan.ps1)
+    $fastmpArg = if ($inst.FastMp) { "--fastmp $($inst.FastMp) " } else { "" }
+    $argsString = "${fastmpArg}--config `"$($inst.ConfigPath)`""
 
     $launchJobs += @{
         Label      = $inst.Label
-        Args       = $argsList
+        Args       = $argsString
         Signal     = Join-Path $ModDir $inst.Signal
         ConfigPath = $inst.ConfigPath
     }
@@ -152,9 +148,8 @@ Write-Host ""
 
 $launchTime = Get-Date
 foreach ($job in $launchJobs) {
-    $argString = $job.Args -join " "
-    Write-Host "  [$($job.Label)] Launching: $argString"
-    Start-Process -FilePath $GameExe -ArgumentList $argString -WorkingDirectory $GameDir
+    Write-Host "  [$($job.Label)] Launching: $($job.Args)"
+    Start-Process -FilePath $GameExe -ArgumentList $job.Args -WorkingDirectory $GameDir
 }
 Write-Host ""
 Write-Host "[Launch] All $($launchJobs.Count) processes started at $($launchTime.ToString('HH:mm:ss'))"
