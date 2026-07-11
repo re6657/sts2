@@ -119,13 +119,14 @@ public class AppConfig
         Log($"[AppConfig] Config path: cli={cliConfigPath ?? "null"}, env={envConfigPath ?? "null"}, final={batchPath}");
         Log($"[AppConfig] File.Exists({batchPath}) = {File.Exists(batchPath)}");
 
+        BatchConfigFile? batch = null;
         if (File.Exists(batchPath))
         {
             try
             {
                 var json = File.ReadAllText(batchPath);
                 Log($"[AppConfig] Raw JSON: {json}");
-                var batch = JsonSerializer.Deserialize<BatchConfigFile>(json,
+                batch = JsonSerializer.Deserialize<BatchConfigFile>(json,
                     new JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                 if (batch != null)
                 {
@@ -148,20 +149,32 @@ public class AppConfig
 
         // ── Write role-specific signal file so launcher can detect
         // when each instance has read its config. Separate files prevent
-        // the client from overwriting the host's signal. ────────────
+        // multiple clients from overwriting each other's signal. ──────
         try
         {
-            var role = config.IsMultiplayerHost ? "host" : "client";
-            var signalPath = Path.Combine(modDirectory, $"config_read_{role}.signal");
+            // Prefer explicit SignalFile from config; fall back to role-based naming.
+            // The launcher writes a unique signal path per instance (e.g.,
+            // "config_read_bot1.signal", "config_read_host.signal").
+            string signalFile = batch?.SignalFile ?? "";
+            string signalPath;
+            if (!string.IsNullOrEmpty(signalFile))
+            {
+                signalPath = Path.Combine(modDirectory, signalFile);
+            }
+            else
+            {
+                var role = config.IsMultiplayerHost ? "host" : "client";
+                signalPath = Path.Combine(modDirectory, $"config_read_{role}.signal");
+            }
             File.WriteAllText(signalPath, $"Config read at {DateTime.Now:O}\n" +
                 $"MultiplayerMode={config.MultiplayerMode}\n" +
                 $"IsMultiplayerHost={config.IsMultiplayerHost}\n" +
                 $"SteamPersonaName={config.SteamPersonaName}\n" +
                 $"AutoBattleEnabled={config.AutoBattleEnabled}\n");
-            // Also write a shared signal for backward compatibility
+            // Also write a shared signal for backward compatibility (solo modes)
             var sharedPath = Path.Combine(modDirectory, "config_read.signal");
             File.WriteAllText(sharedPath, $"Config read at {DateTime.Now:O}\n" +
-                $"Role={role}\n" +
+                $"Role={(config.IsMultiplayerHost ? "host" : (config.MultiplayerMode ? "client" : "solo"))}\n" +
                 $"IsMultiplayerHost={config.IsMultiplayerHost}\n");
         }
         catch { /* best-effort, don't block startup */ }
@@ -210,5 +223,6 @@ public class AppConfig
         public bool IsMultiplayerHost { get; set; }
         public string? SteamPersonaName { get; set; }
         public bool AutoBattleEnabled { get; set; } = true;
+        public string? SignalFile { get; set; } // per-instance signal filename (e.g. "config_read_bot1.signal")
     }
 }
