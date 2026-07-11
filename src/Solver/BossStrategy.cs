@@ -41,6 +41,20 @@ public static class BossStrategy
         /// <summary>Threshold after which card play penalty applies.</summary>
         public int CardPlayPenaltyThreshold = 99;
 
+        /// <summary>
+        /// Multiplier on the selection weight in the two-dimensional combined score.
+        /// >1.0 = prioritize playing the RIGHT cards (card VALUE matters more).
+        /// <1.0 = selection weight is less important.
+        /// </summary>
+        public double SelectionWeightMult = 1.0;
+
+        /// <summary>
+        /// Multiplier on the order weight in the two-dimensional combined score.
+        /// >1.0 = card ORDER matters more (play setup/debuff cards first).
+        /// <1.0 = order matters less (just play whatever).
+        /// </summary>
+        public double OrderWeightMult = 1.0;
+
         /// <summary>Description for debug logs.</summary>
         public string Description = "";
     }

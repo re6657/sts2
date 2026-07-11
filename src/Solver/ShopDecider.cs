@@ -125,6 +125,7 @@ public static class ShopDecider
         }
 
         // Check card removal — prioritize when deck has Strike/Defend basics
+        // Defend prioritized over Strike for removal (matching CardGridDecider)
         var sp = SolverParams.Instance.Shop;
         int basicCount = state.CountBasicStrikes + state.CountBasicDefends;
         double removeScore;

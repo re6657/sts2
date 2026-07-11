@@ -200,6 +200,17 @@ public class SolverParams
         public double CardOrderingBoost { get; set; } = 15.0;
         /// <summary>Penalty when a BEFORE rule is violated.</summary>
         public double CardOrderingPenalty { get; set; } = -20.0;
+
+        // ── Two-dimensional ordering (Phase 2 redesign) ──
+
+        /// <summary>Enable the two-dimensional ordering score in EvaluateState.</summary>
+        public bool TwoDimensionalOrderingEnabled { get; set; } = true;
+
+        /// <summary>Score per point of correct order difference (higher = earlier card played first).</summary>
+        public double TwoDimOrderingScorePerPoint { get; set; } = 2.0;
+
+        /// <summary>Penalty per point of incorrect order difference (lower-order card played before higher).</summary>
+        public double TwoDimOrderingPenaltyPerPoint { get; set; } = 3.0;
     }
 
     // ═══════════════════════════════════════════════════════════════

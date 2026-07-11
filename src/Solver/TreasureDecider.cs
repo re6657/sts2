@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -13,24 +14,21 @@ using TokenSpire2.Core;
 namespace TokenSpire2.Solver;
 
 /// <summary>
-/// Treasure room: open chest, wait for animation, pick up relic, proceed.
-/// Uses frame-based delays to avoid "Attempted to pick relic while relic
-/// picking is not active!" errors caused by acting before the chest
-/// animation completes.
+/// Treasure room: open chest, pick up relic, proceed.
+/// Uses a simple state machine — no frame counting.
+/// Overlay dispatch (AutoSlayNode) handles NChooseARelicSelection separately.
 /// </summary>
 public static class TreasureDecider
 {
-    private static bool _chestOpened;
-    private static int _postChestFrames;   // frames waited since chest opened
-    private static int _pickupFailures;     // consecutive pickup failures
-    private const int CHEST_ANIM_DELAY = 45; // frames (~0.75s at 60fps) for chest open animation
-    private const int MAX_PICKUP_RETRIES = 10;
+    private enum State { Idle, ChestOpened, Picking }
+    private static State _state = State.Idle;
+    private static int _stuckFrames;
+    private const int STUCK_TIMEOUT = 300; // 5 seconds at 60fps
 
     public static void Reset()
     {
-        _chestOpened = false;
-        _postChestFrames = 0;
-        _pickupFailures = 0;
+        _state = State.Idle;
+        _stuckFrames = 0;
     }
 
     public static void Decide()
@@ -38,26 +36,24 @@ public static class TreasureDecider
         var room = GetTreasureRoom();
         if (room == null) return;
 
-        // ── Guard: if a relic selection overlay is showing, let the overlay
-        // handler (DispatchOverlay → RelicDecider) deal with it. Don't try
-        // to click NTreasureRoomRelicHolder while the overlay is active. ──
+        // ── Guard: if a relic selection overlay is active, let the
+        // overlay dispatcher (RelicDecider) handle it. Don't interact
+        // with the room while the overlay is showing. ──
         if (NOverlayStack.Instance?.Peek() is NChooseARelicSelection)
-        {
-            // Overlay is handling the relic choice — wait for it to dismiss
             return;
-        }
+
+        _stuckFrames++;
 
         // ── Step 1: Open chest ──────────────────────────────────────────
-        if (!_chestOpened)
+        if (_state == State.Idle)
         {
             var chest = room.GetNodeOrNull<NClickableControl>("Chest");
             if (chest != null && GodotObject.IsInstanceValid(chest) && chest.IsEnabled)
             {
                 MainFile.Logger.Info("[TreasureDecider] Opening chest");
                 chest.ForceClick();
-                _chestOpened = true;
-                _postChestFrames = 0;
-                _pickupFailures = 0;
+                _state = State.ChestOpened;
+                _stuckFrames = 0;
                 DecisionLogger.LogDecision(GameScreen.TREASURE, "TreasureOpen",
                     new List<DecisionLogger.OptionScore>(), 0, "OPEN_CHEST",
                     "Opening treasure chest");
@@ -65,51 +61,50 @@ public static class TreasureDecider
             return;
         }
 
-        // ── Wait for chest animation to finish ─────────────────────────
-        _postChestFrames++;
-        if (_postChestFrames < CHEST_ANIM_DELAY)
-            return;
-
-        // ── Step 2: Pick up relic(s) ────────────────────────────────────
-        var relics = AutoSlayHelpers.FindAll<NTreasureRoomRelicHolder>(room)
-            .Where(r => r.IsEnabled && r.Visible)
-            .ToList();
-
-        if (relics.Count > 0)
+        // ── Step 2: Pick up relic(s) from the room ─────────────────────
+        if (_state == State.ChestOpened || _state == State.Picking)
         {
-            try
+            var relics = AutoSlayHelpers.FindAll<NTreasureRoomRelicHolder>(room)
+                .Where(r => GodotObject.IsInstanceValid(r) && r.IsEnabled && r.Visible)
+                .ToList();
+
+            // Fallback: search for any clickable that looks like a relic
+            if (relics.Count == 0 && _stuckFrames > 60)
             {
-                MainFile.Logger.Info($"[TreasureDecider] Picking up relic ({relics.Count} available, waited {_postChestFrames}f)");
-                relics[0].ForceClick();
-                _pickupFailures = 0;
-                DecisionLogger.LogDecision(GameScreen.TREASURE, "TreasurePickup",
-                    new List<DecisionLogger.OptionScore>(), 0, "TAKE_RELIC",
-                    $"Taking treasure relic ({relics.Count} available)");
-                return;
+                relics = AutoSlayHelpers.FindAll<NTreasureRoomRelicHolder>(room)
+                    .Where(r => GodotObject.IsInstanceValid(r))
+                    .ToList();
             }
-            catch (System.InvalidOperationException ex)
+
+            if (relics.Count > 0)
             {
-                // "Attempted to pick relic while relic picking is not active!"
-                // The chest animation hasn't finished yet, or the game state
-                // isn't ready. Wait more frames and retry.
-                _pickupFailures++;
-                if (_pickupFailures >= MAX_PICKUP_RETRIES)
+                try
                 {
-                    // Reset and try opening chest again from scratch
-                    MainFile.Logger.Error($"[TreasureDecider] Pickup failed {_pickupFailures}x — resetting chest state (last error: {ex.Message})");
-                    _chestOpened = false;
-                    _postChestFrames = 0;
-                    _pickupFailures = 0;
+                    MainFile.Logger.Info($"[TreasureDecider] Picking up relic ({relics.Count} available, stuckFrames={_stuckFrames})");
+                    relics[0].ForceClick();
+                    _state = State.Picking;
+                    _stuckFrames = 0;
+                    DecisionLogger.LogDecision(GameScreen.TREASURE, "TreasurePickup",
+                        new List<DecisionLogger.OptionScore>(), 0, "TAKE_RELIC",
+                        $"Taking treasure relic ({relics.Count} available)");
+                }
+                catch (Exception ex)
+                {
+                    MainFile.Logger.Error($"[TreasureDecider] Relic click failed: {ex.Message}");
+                    // If clicking fails repeatedly, try proceeding anyway
+                    if (_stuckFrames > 90)
+                    {
+                        MainFile.Logger.Error("[TreasureDecider] Relic click failing repeatedly — skipping to Proceed");
+                        _state = State.Picking; // fall through to Proceed check
+                    }
                 }
                 return;
             }
         }
 
-        // ── Step 3: Proceed (only when no relics remain to pick up) ─────
-        // After the relic is picked up OR the NChooseARelicSelection overlay
-        // has been handled and dismissed, the Proceed button becomes enabled.
+        // ── Step 3: Proceed (when relics collected or none remain) ─────
         var proceed = room.ProceedButton;
-        if (proceed?.IsEnabled == true)
+        if (proceed != null && GodotObject.IsInstanceValid(proceed) && proceed.IsEnabled)
         {
             MainFile.Logger.Info("[TreasureDecider] Clicking treasure room proceed");
             proceed.ForceClick();
@@ -117,6 +112,22 @@ public static class TreasureDecider
             DecisionLogger.LogDecision(GameScreen.TREASURE, "TreasureProceed",
                 new List<DecisionLogger.OptionScore>(), 0, "PROCEED",
                 "Leaving treasure room");
+            return;
+        }
+
+        // ── Stuck detection — reset if nothing works ───────────────────
+        if (_stuckFrames > STUCK_TIMEOUT)
+        {
+            MainFile.Logger.Error($"[TreasureDecider] STUCK in state {_state} for {_stuckFrames} frames — force-resetting");
+
+            // Emergency: try clicking Proceed even if it appears disabled
+            if (proceed != null && GodotObject.IsInstanceValid(proceed))
+            {
+                try { proceed.ForceClick(); }
+                catch (Exception ex) { MainFile.Logger.Error($"[TreasureDecider] Emergency proceed failed: {ex.Message}"); }
+            }
+
+            Reset();
         }
     }
 

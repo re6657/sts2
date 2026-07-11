@@ -18,7 +18,7 @@ namespace TokenSpire2.Solver;
 /// Card grid decisions: Upgrade, Transform, Enchant, Remove.
 /// Upgrade: highest damage/block increase card.
 /// Transform: weakest Strike/Defend.
-/// Remove: Strike (if >3) > Defend (if >3) > Curses/Statuses.
+/// Remove: Defend (if >3) > Strike (if >3) > Curses/Statuses.
 /// </summary>
 public static class CardGridDecider
 {
@@ -322,15 +322,15 @@ public static class CardGridDecider
         return upgradeDelta + cardQuality * 0.3 + enchantedBonus;
     }
 
-    /// <summary>Transform uses the same priority as removal: Strike/Defend first.</summary>
+    /// <summary>Transform uses the same priority as removal: Defend > Strike > curses > statuses.</summary>
     private static NGridCardHolder PickForTransform(List<NGridCardHolder> cards, RunState state)
     {
-        // Same logic as card removal: transform Strikes > Defends > curses > statuses
+        // Same logic as card removal: transform Defends > Strikes > curses > statuses
         // Good cards (upgraded, enchanted, high value) are never transformed
         return Tiebreaker.PickBestAscending(cards, c => ScoreCardForRemove(c.CardModel, state));
     }
 
-    /// <summary>Remove Strike (if >3), then Defend (if >3), then curses/statuses.</summary>
+    /// <summary>Remove Defend (if >3), then Strike (if >3), then curses/statuses.</summary>
     private static NGridCardHolder PickForRemove(List<NGridCardHolder> cards, RunState state)
     {
         return Tiebreaker.PickBestAscending(cards, c => ScoreCardForRemove(c.CardModel, state));
@@ -408,35 +408,29 @@ public static class CardGridDecider
         if (card.Type == CardType.Status)
             return -900;
 
-        // ── Strikes: ALWAYS prioritize for removal ─────────────────
+        // ── Strikes: prioritize for removal (after Defends) ─────────
         // Use ID matching instead of IsBasicCard to avoid CardEffectReader
         // false positives (e.g., reflection incorrectly detecting block on a
         // vanilla Strike).  Enchanted/upgraded Strikes are protected above.
         if (id == "strike" || id.StartsWith("strike_"))
         {
-            // Double-check: if IsBasicCard says this Strike has extra effects
-            // but GetEnchantedBonus returned 0 (not enough effects), it's
-            // still a valid removal target — just lower priority.
-            // Use CountBasicStrikes (prefix-matched, excludes Pommel/Twin/etc.)
-            // NOT CountCardsById which uses Contains and matches non-basic Strikes.
             bool isTrulyBasic = IsBasicCard(card);
             int strikeCount = state.CountBasicStrikes;
             if (strikeCount > 3)
-                return isTrulyBasic ? -500 : -450;
-            else
-                return isTrulyBasic ? -100 : -90;
-        }
-
-        // ── Defends: ALWAYS prioritize for removal ──────────────────
-        if (id == "defend" || id.StartsWith("defend_"))
-        {
-            bool isTrulyBasic = IsBasicCard(card);
-            // Use CountBasicDefends (prefix-matched) NOT CountCardsById.
-            int defendCount = state.CountBasicDefends;
-            if (defendCount > 3)
                 return isTrulyBasic ? -400 : -350;
             else
                 return isTrulyBasic ? -80 : -70;
+        }
+
+        // ── Defends: HIGHEST priority for removal ────────────────────
+        if (id == "defend" || id.StartsWith("defend_"))
+        {
+            bool isTrulyBasic = IsBasicCard(card);
+            int defendCount = state.CountBasicDefends;
+            if (defendCount > 3)
+                return isTrulyBasic ? -500 : -450;
+            else
+                return isTrulyBasic ? -100 : -90;
         }
 
         // Keep good cards

@@ -367,9 +367,9 @@ public class CharacterConfig
             VulnerableWeight = 1.3,
             PowerWeight = 1.2,
             KillWeight = 1.0,
-            DamageWeight = 1.2,
-            BlockWeight = 1.6,
-            HealthPenaltyWeight = 2.5,
+            DamageWeight = 1.6,
+            BlockWeight = 0.7,
+            HealthPenaltyWeight = 1.0,
         };
         c.CardPriorities = new Dictionary<string, int>
         {
@@ -589,9 +589,9 @@ public class CharacterConfig
             WeakWeight = 1.5,
             PowerWeight = 1.0,
             DamageWeight = 0.8,
-            BlockWeight = 1.0,
+            BlockWeight = 0.7,
             KillWeight = 1.0,
-            HealthPenaltyWeight = 2.0,
+            HealthPenaltyWeight = 1.0,
             VulnerableWeight = 1.2,
             StrengthWeight = 0.7,       // Silent doesn't scale strength much
         };
@@ -736,10 +736,10 @@ public class CharacterConfig
             UsesOrbs = true,
             OrbValueWeight = 1.5,
             PowerWeight = 1.3,
-            BlockWeight = 0.7, // Frost orbs provide passive block
+            BlockWeight = 0.5, // Frost orbs provide passive block
             DamageWeight = 0.7, // Lightning orbs provide passive damage
             KillWeight = 1.1,
-            HealthPenaltyWeight = 2.2,
+            HealthPenaltyWeight = 1.1,
             VulnerableWeight = 1.1,
             WeakWeight = 1.3,           // Frost + weak = extreme mitigation
             StrengthWeight = 0.5,       // Defect rarely scales strength
@@ -929,9 +929,9 @@ public class CharacterConfig
             StarConservationWeight = 0.5,
             PowerWeight = 1.2,
             DamageWeight = 1.0,
-            BlockWeight = 0.9,
+            BlockWeight = 0.6,
             KillWeight = 1.1,               // Osty rewards aggressive play
-            HealthPenaltyWeight = 2.3,      // Fewer sustain options
+            HealthPenaltyWeight = 1.1,      // Accept some HP loss for stars/scaling
             VulnerableWeight = 1.0,
             WeakWeight = 1.1,
             StrengthWeight = 0.8,
@@ -1062,14 +1062,14 @@ public class CharacterConfig
         {
             CharacterId = "REGENT",
             DisplayName = "Regent",
-            DamageWeight = 1.2,
-            BlockWeight = 0.9,
+            DamageWeight = 1.4,
+            BlockWeight = 0.6,
             PowerWeight = 1.0,
             VulnerableWeight = 1.1,
             WeakWeight = 0.9,
             StrengthWeight = 1.1,
             KillWeight = 1.1,
-            HealthPenaltyWeight = 2.1,
+            HealthPenaltyWeight = 1.0,
         };
         c.CardPriorities = new Dictionary<string, int>
         {

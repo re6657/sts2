@@ -70,6 +70,7 @@ public static class IroncladSolver
     {
         public string CardId = "";
         public int Priority;
+        public int OrderPriority;     // 0-100, two-dimensional: when to play (higher = earlier)
         public bool IsZeroCostEnergy; // 0-cost card that gives energy
         public int EnergyGain;
         public bool IsSetupCard;      // priority <= PRIORITY_SETUP
@@ -211,6 +212,8 @@ public static class IroncladSolver
         public bool FromGameEngine;
         public bool IsOrbEvoke;   // Card evokes orbs (Dualcast, Multi-Cast, Recursion)
         public bool IsOrbChannel; // Card channels an orb (Zap, Ball Lightning, Cold Snap, etc.)
+        /// <summary>Two-dimensional play order (0-100): higher = play earlier in sequence.</summary>
+        public int OrderPriority;
 
         public CardEntry(CardModel card, CharacterConfig cfg)
         {
@@ -222,6 +225,17 @@ public static class IroncladSolver
                 card.Type == CardType.Skill ? CharacterConfig.PRIORITY_BLOCK :
                 card.Type == CardType.Attack ? CharacterConfig.PRIORITY_ATTACK :
                 CharacterConfig.PRIORITY_LAST);
+            // Two-dimensional: load play_order from CardDatabase, fall back to CardClassifier
+            try
+            {
+                OrderPriority = CardDatabase.Instance.GetPlayOrder(CardId);
+                if (OrderPriority == 0 || OrderPriority == 50) // 50 = default, 0 = unset
+                    OrderPriority = CardClassifier.GetDefaultPlayOrder(CardId);
+            }
+            catch
+            {
+                OrderPriority = CardClassifier.GetDefaultPlayOrder(CardId);
+            }
             CostsX = card.EnergyCost.CostsX;
             CanonicalCost = CostsX ? 0 : Math.Max(0, card.EnergyCost.Canonical);
             IsPower = card.Type == CardType.Power;
@@ -440,8 +454,9 @@ public static class IroncladSolver
                     return true;
                 })
                 .Select(c => new CardEntry(c, _cfg))
-                .OrderBy(ce => ce.Priority)
-                .ThenByDescending(ce => ce.BaseDamage + ce.BaseBlock)
+                .OrderByDescending(ce => GetCombinedScore(ce, energy, 0,
+                    _isBossCombat, false)) // initial sort: no cards played yet
+                .ThenBy(ce => ce.CanonicalCost)  // cheaper cards as tiebreaker
                 .ThenByDescending(ce => ce.Card.IsUpgraded ? 1 : 0) // 升级牌优先打出
                 .ToList(),
             DrawPile = drawPile ?? new List<CardModel>(),
@@ -521,6 +536,38 @@ public static class IroncladSolver
         return result;
     }
 
+    /// <summary>
+    /// Compute the combined "what to play next" score for a card entry
+    /// using the two-dimensional priority system.
+    ///
+    /// Formula: combinedScore = selectionWeight × Priority + orderWeight × OrderPriority
+    ///
+    /// Weights depend on combat context (energy, turn position, boss, lethal).
+    /// This is the core of the two-dimensional auto-battle redesign.
+    /// </summary>
+    private static double GetCombinedScore(CardEntry entry, int currentEnergy,
+        int cardsPlayedSoFar, bool isBossFight, bool lethalDetected)
+    {
+        var (selW, ordW) = CardDatabaseExtensions.GetContextWeights(
+            currentEnergy, cardsPlayedSoFar, isBossFight, lethalDetected);
+
+        // Boss-specific overrides
+        if (_bossStrategy != null)
+        {
+            selW *= _bossStrategy.SelectionWeightMult;
+            ordW *= _bossStrategy.OrderWeightMult;
+        }
+
+        // ── Upgraded card bonus ──────────────────────────────────────────
+        // Upgraded cards are strictly better (higher damage, lower cost, extra effects).
+        // Always prefer the upgraded version of the same card (e.g., Strike+ over Strike).
+        // This bonus ensures upgraded cards score higher than their non-upgraded twins
+        // even when everything else (priority, order, cost) is identical.
+        double upgradedBonus = entry.Card.IsUpgraded ? 15.0 : 0;
+
+        return selW * entry.Priority + ordW * entry.OrderPriority + upgradedBonus;
+    }
+
     // ── DFS search ────────────────────────────────────────────────────────
 
     private static void Search(
@@ -573,6 +620,7 @@ public static class IroncladSolver
                     {
                         CardId = entry.CardId,
                         Priority = entry.Priority,
+                        OrderPriority = entry.OrderPriority,
                         IsZeroCostEnergy = entry.CanonicalCost == 0 && entry.EnergyGain > 0,
                         EnergyGain = entry.EnergyGain,
                         IsSetupCard = entry.Priority <= CharacterConfig.PRIORITY_FREE_ENERGY
@@ -1776,6 +1824,53 @@ public static class IroncladSolver
                 score += MultiplayerCards.PlayBonus;
                 break; // bonus once per state, not per card
             }
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // NEW: Two-dimensional ordering score (Phase 2 redesign)
+        // ═══════════════════════════════════════════════════════════════════
+        // Reward playing high-order cards before low-order cards.
+        // This complements the BEFORE/AFTER hard rules above by adding
+        // a continuous gradient: partially correct order gets partial reward.
+        if (seq.TwoDimensionalOrderingEnabled && historyCount >= 2)
+        {
+            double orderingScore = 0;
+            var actions = state.ActionHistory;
+
+            for (int i = 0; i < actions.Count - 1; i++)
+            {
+                for (int j = i + 1; j < actions.Count; j++)
+                {
+                    int orderI = actions[i].OrderPriority;
+                    int orderJ = actions[j].OrderPriority;
+                    int orderDiff = orderI - orderJ;
+
+                    // Position weight: earlier positions matter more for correct ordering
+                    double positionWeight = 1.0 / (i + 1);
+
+                    if (orderDiff >= 0)
+                    {
+                        // Card i (played earlier) has higher/equal order → correct
+                        // Bonus proportional to the order gap
+                        orderingScore += orderDiff * positionWeight
+                            * seq.TwoDimOrderingScorePerPoint * 0.01;
+                    }
+                    else
+                    {
+                        // Card j should have been played before card i → wrong order
+                        // Penalty proportional to the order gap
+                        orderingScore -= (-orderDiff) * positionWeight
+                            * seq.TwoDimOrderingPenaltyPerPoint * 0.01;
+                    }
+                }
+            }
+
+            // Normalize by number of pairs to prevent bias toward many-card turns
+            int pairCount = historyCount * (historyCount - 1) / 2;
+            if (pairCount > 0)
+                orderingScore /= pairCount;
+
+            score += orderingScore;
         }
 
         return score;

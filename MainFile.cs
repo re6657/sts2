@@ -42,12 +42,16 @@ public partial class MainFile : Node
         AppConfig.Initialize(modDirectory);
         Logger.Info($"[TokenSpire2] AppConfig loaded. AutoBattleEnabled={AppConfig.Instance.AutoBattleEnabled}");
 
-        // ── Step 2: Install Harmony patches ────────────────────────────
+        // ── Step 2: Initialize card database ─────────────────────────
+        TokenSpire2.Solver.CardDatabase.Initialize(modDirectory);
+        Logger.Info("[TokenSpire2] CardDatabase initialized.");
+
+        // ── Step 3: Install Harmony patches ────────────────────────────
         var harmony = new Harmony("TokenSpire2");
         harmony.PatchAll(typeof(MainFile).Assembly);
         Logger.Info("[TokenSpire2] Harmony patches installed.");
 
-        // ── Step 3: Attach runtime nodes to scene tree ─────────────────
+        // ── Step 4: Attach runtime nodes to scene tree ─────────────────
         AttachNodes();
 
         if (ConsoleEnabled)
