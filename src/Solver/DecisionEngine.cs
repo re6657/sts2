@@ -86,6 +86,7 @@ public static class DecisionEngine
         _runState.Refresh();
         MapDecider.Reset();
         ShopDecider.Reset();
+        TreasureDecider.Reset();
         StateStabilityDetector.Reset();
         // Set character class for OP.GG stats lookup
         string ch = _runState.Character?.ToLower() ?? "ironclad";
