@@ -32,11 +32,13 @@ public static class ForceENetHostPatch
 
         try
         {
-            MainFile.Logger?.Info("[ForceENetHost] --fastmp detected, routing StartSteamHost → StartENetHost(33771)");
+            MainFile.Logger?.Info($"[ForceENetHost] --fastmp detected, original maxClients={maxClients}, overriding to 3 (host + 3 clients max)");
         }
         catch { }
 
-        var error = __instance.StartENetHost(33771, maxClients);
+        // Override maxClients: Standard mode may default to 1 (only 2 players total).
+        // We want 4 players max (host + 3 bots).
+        var error = __instance.StartENetHost(33771, maxClients: 3);
         __result = Task.FromResult<NetErrorInfo?>(error);
         return false; // skip original Steam host
     }

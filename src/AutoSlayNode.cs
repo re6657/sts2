@@ -725,7 +725,25 @@ public partial class AutoSlayNode : Node
             if (dbgLog)
             {
                 _dbgTimer = 0.0;
-                MainFile.Logger.Info($"[DBG] InCombat: playerDisabled={cm.PlayerActionsDisabled} delay={_combatCardDelay:F2} turnReq={_combatTurnRequested} plan={_combatPlan != null} localNetId={LocalContext.NetId}");
+                // In multiplayer, also log hand state to help diagnose card visibility issues
+                string mpExtra = "";
+                if (_multiplayerMode)
+                {
+                    try
+                    {
+                        var rsDbg = RunManager.Instance?.DebugOnlyGetState();
+                        var plDbg = rsDbg != null ? LocalContext.GetMe(rsDbg) : null;
+                        if (plDbg != null)
+                        {
+                            int handCnt = PileType.Hand.GetPile(plDbg)?.Cards?.Count ?? -1;
+                            int drawCnt = PileType.Draw.GetPile(plDbg)?.Cards?.Count ?? -1;
+                            int discardCnt = PileType.Discard.GetPile(plDbg)?.Cards?.Count ?? -1;
+                            mpExtra = $" hand={handCnt} draw={drawCnt} discard={discardCnt}";
+                        }
+                    }
+                    catch { }
+                }
+                MainFile.Logger.Info($"[DBG] InCombat: playerDisabled={cm.PlayerActionsDisabled} delay={_combatCardDelay:F2} turnReq={_combatTurnRequested} plan={_combatPlan != null} localNetId={LocalContext.NetId}{mpExtra}");
             }
 
             // CombatHandler.BoostHpIfNeeded();
@@ -1762,6 +1780,23 @@ public partial class AutoSlayNode : Node
             }
         }
 
+        // ── Multiplayer: character select for HOST ────────────────────────
+        // Host also needs auto-select — otherwise the human has to manually
+        // click their character and confirm. This auto-selects the configured
+        // character for the host, then auto-confirms after a short delay to
+        // give the human a chance to see what's happening.
+        if (_multiplayerMode && _isMultiplayerHost && _multiplayerJoined)
+        {
+            var mpCharSelect = GetNodeOrNull<Node>("/root/Game/RootSceneContainer/Run/RoomContainer/CharacterSelectRoom")
+                ?? GetNodeOrNull<Control>("/root/Game/RootSceneContainer/CharacterSelectScreen")
+                ?? GetNodeOrNull<Control>("/root/Game/RootSceneContainer/CharacterSelect");
+            if (mpCharSelect != null)
+            {
+                _cooldown = HandleMultiplayerCharacterSelect();
+                return;
+            }
+        }
+
         // ── Main Menu — auto-start run (HIGHEST priority before non-combat) ──
         var mainMenu = GetNodeOrNull<Control>("/root/Game/RootSceneContainer/MainMenu");
         if (mainMenu != null && mainMenu.IsVisibleInTree())
@@ -1793,6 +1828,8 @@ public partial class AutoSlayNode : Node
                     MainFile.Logger.Warn($"[AutoSlay] Join likely failed (back at main menu after {joinWaitElapsed:F0}s). Resetting for retry.");
                     _multiplayerJoined = false;
                     _mpButtonClicked = false; // re-navigate from scratch
+                    _mpHostButtonClicked = false;
+                    _mpStandardButtonClicked = false;
                     _mpSubmenuSeenTime = 0;
                     _cooldown = 1.0;
                     return;
@@ -2680,41 +2717,98 @@ public partial class AutoSlayNode : Node
     // created the ENet server. Timing is handled by the launcher.
 
     private bool _mpButtonClicked;
+    private bool _mpHostButtonClicked;
+    private bool _mpStandardButtonClicked;
     private double _mpSubmenuSeenTime;      // real time when Join button first appeared
     private int _mpJoinAttempt;             // how many times we've tried to join
     private double _mpJoinClickedTime;       // real time when we last clicked Join
-    private const double MP_JOIN_DELAY = 25.0;       // seconds to wait before clicking Join (host needs time)
-    private const double MP_JOIN_RETRY_DELAY = 15.0; // seconds to wait after failed join before retrying
+    private const double MP_JOIN_DELAY = 8.0;       // seconds to wait before clicking Join (host auto-navigates in ~3s)
+    private const double MP_JOIN_RETRY_DELAY = 12.0; // seconds to wait after failed join before retrying
     private const int MP_JOIN_MAX_ATTEMPTS = 5;
+
+    // ── Multiplayer character select ──────────────────────────────────
+    private bool _mpCharacterSelected;           // whether character was selected this screen
+    private double _mpCharacterSelectedTime;     // real time when character was selected
+    private const double MP_CHAR_SELECT_HOST_DELAY = 5.0; // seconds host waits before auto-confirm
 
     private double HandleMultiplayerMenu(Control mainMenu)
     {
-        if (_isMultiplayerHost)
-        {
-            // Host: human plays manually, bot does nothing here
-            // Human navigates: Multiplayer → Host → Standard → Character → Lobby
-            return 1.0;
-        }
-
-        // ── Client (bot): Step 1 — Click Multiplayer button ONCE ─────
+        // ── Shared: Step 1 — Click Multiplayer button ONCE ────────────
         var mpBtn = mainMenu.GetNodeOrNull<NButton>("MainMenuTextButtons/MultiplayerButton");
         if (!_mpButtonClicked && mpBtn != null && mpBtn.Visible && mpBtn.IsEnabled)
         {
-            MainFile.Logger.Info("[AutoSlay] Clicking Multiplayer button...");
+            MainFile.Logger.Info($"[AutoSlay] Clicking Multiplayer button... (isHost={_isMultiplayerHost})");
             mpBtn.ForceClick();
             _mpButtonClicked = true;
-            _mpSubmenuSeenTime = 0; // reset — haven't seen Join yet
+            _mpSubmenuSeenTime = 0;
             return 2.0;
         }
 
-        // ── Step 2: Find Join button on multiplayer submenu ──────────
-        // The Join button is inside ButtonContainer under MultiplayerSubmenu.
-        var buttonContainer = mainMenu.GetNodeOrNull<Control>("Submenus/MultiplayerSubmenu/ButtonContainer");
+        // ── HOST: Step 2 — Click Host button, then Standard ──────────
+        if (_isMultiplayerHost)
+        {
+            var buttonContainer = mainMenu.GetNodeOrNull<Control>("Submenus/MultiplayerSubmenu/ButtonContainer");
+            if (buttonContainer != null)
+            {
+                // Step 2a: Click "Host" button
+                if (!_mpHostButtonClicked)
+                {
+                    foreach (var child in buttonContainer.GetChildren())
+                    {
+                        if (child is NButton btn && btn.Visible && btn.IsEnabled)
+                        {
+                            var nm = btn.Name?.ToString() ?? "";
+                            if (nm.Contains("Host", StringComparison.OrdinalIgnoreCase)
+                                || nm.Contains("主持", StringComparison.OrdinalIgnoreCase))
+                            {
+                                MainFile.Logger.Info($"[AutoSlay] Host: clicking Host button ({nm})");
+                                btn.ForceClick();
+                                _mpHostButtonClicked = true;
+                                return 2.0;
+                            }
+                        }
+                    }
+                }
+
+                // Step 2b: Click "Standard" button (after Host submenu appears)
+                if (_mpHostButtonClicked && !_mpStandardButtonClicked)
+                {
+                    // The Standard button may be in a nested submenu
+                    var hostSubmenu = mainMenu.GetNodeOrNull<Control>("Submenus/HostSubmenu");
+                    var container = hostSubmenu?.GetNodeOrNull<Control>("ButtonContainer") ?? buttonContainer;
+                    foreach (var child in container.GetChildren())
+                    {
+                        if (child is NButton btn && btn.Visible && btn.IsEnabled)
+                        {
+                            var nm = btn.Name?.ToString() ?? "";
+                            if (nm.Contains("Standard", StringComparison.OrdinalIgnoreCase)
+                                || nm.Contains("标准", StringComparison.OrdinalIgnoreCase))
+                            {
+                                MainFile.Logger.Info($"[AutoSlay] Host: clicking Standard button ({nm})");
+                                btn.ForceClick();
+                                _mpStandardButtonClicked = true;
+                                _multiplayerJoined = true;
+                                return 3.0; // longer cooldown — game creates ENet server
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Host auto-navigation done — ENet server should be up now
+            if (_mpStandardButtonClicked && _debugFrame % 300 == 0)
+                MainFile.Logger.Info("[AutoSlay] Host: waiting for lobby/character screen...");
+
+            return 1.0;
+        }
+
+        // ── CLIENT (bot): Step 2 — Find and click Join button ─────────
+        var mpButtonContainer = mainMenu.GetNodeOrNull<Control>("Submenus/MultiplayerSubmenu/ButtonContainer");
         NButton? joinBtn = null;
 
-        if (buttonContainer != null)
+        if (mpButtonContainer != null)
         {
-            foreach (var child in buttonContainer.GetChildren())
+            foreach (var child in mpButtonContainer.GetChildren())
             {
                 if (child is NButton btn && btn.Visible && btn.IsEnabled)
                 {
@@ -2729,26 +2823,19 @@ public partial class AutoSlayNode : Node
             }
         }
 
-        // ── Step 3: Wait for host before clicking Join ────────────────
-        // The host creates the ENet server when the human clicks "Standard"
-        // on the host submenu. The human needs time to navigate there.
-        // We wait MP_JOIN_DELAY seconds after first seeing the Join button
-        // before clicking it, giving the human a window to set up the host.
+        // ── Step 3: Wait for host ENet server before clicking Join ────
+        // The host auto-navigates in ~3s. We wait MP_JOIN_DELAY (8s) to be safe.
         if (joinBtn != null && _mpJoinAttempt < MP_JOIN_MAX_ATTEMPTS)
         {
             double now = Time.GetUnixTimeFromSystem();
 
-            // Record when we first saw the Join button
             if (_mpSubmenuSeenTime <= 0)
             {
                 _mpSubmenuSeenTime = now;
-                MainFile.Logger.Info($"[AutoSlay] Join button visible — waiting {MP_JOIN_DELAY}s for host to create game...");
+                MainFile.Logger.Info($"[AutoSlay] Join button visible — waiting {MP_JOIN_DELAY}s for host ENet server...");
             }
 
             double elapsed = now - _mpSubmenuSeenTime;
-
-            // Also check: if we previously clicked Join but ended up back here,
-            // we need to wait before retrying (connection failed, retry after delay).
             double timeSinceLastClick = (_mpJoinClickedTime > 0) ? (now - _mpJoinClickedTime) : 999.0;
 
             bool waitedEnough = elapsed >= MP_JOIN_DELAY;
@@ -2762,19 +2849,18 @@ public partial class AutoSlayNode : Node
                 joinBtn.ForceClick();
                 _multiplayerJoined = true;
                 _mpJoinClickedTime = now;
-                _mpSubmenuSeenTime = 0; // reset for next attempt
+                _mpSubmenuSeenTime = 0;
                 return 2.0;
             }
             else
             {
-                // Still waiting — log every 5 seconds
                 if (_debugFrame % 300 == 0)
                 {
                     double remaining = MP_JOIN_DELAY - elapsed;
                     double retryRemaining = MP_JOIN_RETRY_DELAY - timeSinceLastClick;
                     MainFile.Logger.Info($"[AutoSlay] Waiting to click Join: hostDelay={remaining:F0}s, retryCooldown={retryRemaining:F0}s");
                 }
-                return 1.0; // check back frequently
+                return 1.0;
             }
         }
 
@@ -2897,6 +2983,10 @@ public partial class AutoSlayNode : Node
 
     /// <summary>
     /// Handle multiplayer character select — select configured character and confirm.
+    ///
+    /// Host: wait MP_CHAR_SELECT_HOST_DELAY seconds before auto-confirming so the
+    ///        human has a chance to see what's happening and change character if desired.
+    /// Bot:  confirm immediately after selection.
     /// </summary>
     private double HandleMultiplayerCharacterSelect()
     {
@@ -2910,32 +3000,70 @@ public partial class AutoSlayNode : Node
 
         if (charSelect == null) return 0.5;
 
-        // Try to click confirm if already selected
-        var confirmBtn = charSelect.GetNodeOrNull<NConfirmButton>("ConfirmButton");
-        if (confirmBtn != null && confirmBtn.IsEnabled)
-        {
-            LogOnce("Multiplayer character select: confirming");
-            confirmBtn.ForceClick();
-            return 2.0;
-        }
-
-        // Select the configured character
+        // Pick target character
         var targetChar = _character;
         if (targetChar == "RANDOM")
             targetChar = ValidCharacters[_rng.Next(ValidCharacters.Length)];
 
-        var buttonContainer = charSelect.GetNodeOrNull<Node>("CharSelectButtons/ButtonContainer");
-        if (buttonContainer != null)
+        // ── Step 1: Select the character ──────────────────────────────────
+        if (!_mpCharacterSelected)
         {
-            foreach (var btn in AutoSlayHelpers.FindAll<NCharacterSelectButton>(buttonContainer))
+            var buttonContainer = charSelect.GetNodeOrNull<Node>("CharSelectButtons/ButtonContainer");
+            if (buttonContainer != null)
             {
-                if (!btn.IsLocked && btn.Character?.Id.Entry == targetChar)
+                foreach (var btn in AutoSlayHelpers.FindAll<NCharacterSelectButton>(buttonContainer))
                 {
-                    btn.Select();
-                    MainFile.Logger.Info($"[AutoSlay] MP: Selected character: {targetChar}");
-                    break;
+                    if (!btn.IsLocked && btn.Character?.Id.Entry == targetChar)
+                    {
+                        btn.Select();
+                        _mpCharacterSelected = true;
+                        _mpCharacterSelectedTime = Time.GetUnixTimeFromSystem();
+                        MainFile.Logger.Info($"[AutoSlay] MP: Selected character: {targetChar} (isHost={_isMultiplayerHost})");
+                        break;
+                    }
                 }
             }
+            // If we couldn't find the button, keep trying
+            return 0.3;
+        }
+
+        // ── Step 2: Confirm (with host delay) ─────────────────────────────
+        var confirmBtn = charSelect.GetNodeOrNull<NConfirmButton>("ConfirmButton");
+        if (confirmBtn == null || !confirmBtn.IsEnabled)
+        {
+            // Confirm button not ready yet — wait
+            return 0.3;
+        }
+
+        if (!_isMultiplayerHost)
+        {
+            // Bot: confirm immediately — no need to wait.
+            // Do NOT reset _mpCharacterSelected here — the character select
+            // screen may still be visible during the transition animation,
+            // and resetting would cause re-entry into step 1 (re-select).
+            // The flag is reset in SignalRunComplete() when the run ends.
+            LogOnce("Multiplayer character select: confirming (bot)");
+            confirmBtn.ForceClick();
+            return 2.0;
+        }
+
+        // ── Host: wait before auto-confirming ─────────────────────────────
+        // Give the human time to see the selection and change character if desired.
+        double elapsed = Time.GetUnixTimeFromSystem() - _mpCharacterSelectedTime;
+        double remaining = MP_CHAR_SELECT_HOST_DELAY - elapsed;
+
+        if (_debugFrame % 90 == 0 && remaining > 0)
+        {
+            MainFile.Logger.Info($"[AutoSlay] Host character auto-confirm in {remaining:F0}s... " +
+                $"(press F1/F2/F3 to toggle auto-navigate/auto-battle/auto-event if you want manual control)");
+        }
+
+        if (elapsed >= MP_CHAR_SELECT_HOST_DELAY)
+        {
+            LogOnce("Multiplayer character select: auto-confirming (host)");
+            confirmBtn.ForceClick();
+            // Do NOT reset _mpCharacterSelected — same reason as bot path above.
+            return 2.0;
         }
 
         return 0.5;
@@ -3062,7 +3190,8 @@ public partial class AutoSlayNode : Node
             // Also write to mod directory so batch_runner can find it
             try
             {
-                var modDir = @"E:\SteamLibrary\steamapps\common\Slay the Spire 2\mods\TokenSpire2";
+                var modDir = System.IO.Path.GetDirectoryName(
+                    System.Reflection.Assembly.GetExecutingAssembly().Location) ?? ".";
                 var modPath = System.IO.Path.Combine(modDir, "stuck_diagnostics.json");
                 if (modPath != path)
                     System.IO.File.WriteAllText(modPath, json);
@@ -3086,6 +3215,7 @@ public partial class AutoSlayNode : Node
         // ── Reset multiplayer state for next run ────────────────────
         _multiplayerJoined = false;
         _multiplayerReady = false;
+        _mpCharacterSelected = false;
         try
         {
             var asmDir = System.IO.Path.GetDirectoryName(
@@ -3100,7 +3230,8 @@ public partial class AutoSlayNode : Node
             // This ensures the signal is found regardless of which path the game loads from
             try
             {
-                var modDir = @"E:\SteamLibrary\steamapps\common\Slay the Spire 2\mods\TokenSpire2";
+                var modDir = System.IO.Path.GetDirectoryName(
+                    System.Reflection.Assembly.GetExecutingAssembly().Location) ?? ".";
                 var modPath = System.IO.Path.Combine(modDir, "run_complete.txt");
                 if (modPath != path)
                     System.IO.File.WriteAllText(modPath, DateTime.Now.ToString("o"));
@@ -3112,7 +3243,8 @@ public partial class AutoSlayNode : Node
             {
                 try
                 {
-                    var modDir = @"E:\SteamLibrary\steamapps\common\Slay the Spire 2\mods\TokenSpire2";
+                    var modDir = System.IO.Path.GetDirectoryName(
+                        System.Reflection.Assembly.GetExecutingAssembly().Location) ?? ".";
                     var cfgPath = System.IO.Path.Combine(modDir, "batch_config.json");
                     int nextIndex = _currentSeedIndex + 1;
                     string nextSeed = _seeds[nextIndex];

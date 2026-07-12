@@ -8,11 +8,20 @@ namespace TokenSpire2.Patches;
 /// different display names per game instance in LAN multiplayer mode.
 ///
 /// When MultiplayerMode is enabled and SteamPersonaName is set in
-/// batch_config.json, this patch intercepts GetPersonaName() and
+/// the per-instance config, this patch intercepts GetPersonaName() and
 /// returns the configured name instead of the real Steam name.
 ///
-/// Host and client instances use different batch_config.json files,
+/// Host and client instances use different config files,
 /// so each gets its own display name (e.g., "Player" vs "Bot").
+///
+/// IMPORTANT: We do NOT override GetSteamID() or set_NetId.
+/// In --fastmp ENet mode, the game uses ENet peer IDs (not Steam IDs)
+/// to track player identity. Overriding Steam IDs corrupts the game's
+/// internal card/relic/player association, causing:
+///   - Host cannot see hand cards
+///   - Discard pile shows no cards
+///   - Relic textures broken
+///   - Bot UI only partial
 /// </summary>
 [HarmonyPatch(typeof(Steamworks.SteamFriends), nameof(Steamworks.SteamFriends.GetPersonaName))]
 public static class SteamPersonaNamePatch
