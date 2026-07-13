@@ -124,7 +124,7 @@ public partial class AutoBattleController : Node
         {
             var stuckResult = _stuckDetector.Update(delta);
             if (stuckResult == StuckResult.KillProcess)
-                return; // process will be killed
+                return; // stuck recovery handled by OnBeforeStuckKill — skip this frame
         }
 
         // ── Dispatch to handler ─────────────────────────────────
@@ -261,9 +261,10 @@ public partial class AutoBattleController : Node
     private void OnBeforeStuckKill(string reason)
     {
         _stuckDetector.WriteDiagnostics(reason, _stuckDetector.CombatStuckTimeoutSeconds);
-        Log($"[AutoBattle] STUCK: {reason} — killing process");
-        try { System.Diagnostics.Process.GetCurrentProcess().Kill(); }
-        catch { Environment.Exit(1); }
+        Log($"[AutoBattle] STUCK: {reason} — logging and recovering (game will NOT be killed)");
+        // ── Recovery: reset stuck detector state ──
+        _stuckDetector.Reset();
+        _nextActionAt = 1.0; // give the game time to settle
     }
 
     // ═══════════════════════════════════════════════════════════════

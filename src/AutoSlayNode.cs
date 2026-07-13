@@ -25,12 +25,14 @@ using MegaCrit.Sts2.Core.Nodes.Screens.GameOverScreen;
 using MegaCrit.Sts2.Core.Nodes.Screens.Map;
 using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 using MegaCrit.Sts2.Core.Nodes.Screens.Shops;
+using MegaCrit.Sts2.Core.Nodes.Screens.TreasureRoomRelic;
 using MegaCrit.Sts2.Core.Nodes.RestSite;
 using MegaCrit.Sts2.Core.Runs;
 using MegaCrit.Sts2.Core.Saves;
 using MegaCrit.Sts2.Core.Settings;
 using MegaCrit.Sts2.Core.Timeline;
 using MegaCrit.Sts2.Core.Unlocks;
+using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 using MegaCrit.Sts2.Core.Nodes.Rewards;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
@@ -73,6 +75,7 @@ public partial class AutoSlayNode : Node
     private const double STUCK_TIMEOUT = 45.0;       // kill if stuck >45s in combat (was 30s, too aggressive for long enemy turns)
     private const double NONCOMBAT_STUCK_TIMEOUT = 45.0; // kill if stuck >45s on same non-combat screen
     private const double COMBAT_NONCOMBAT_STUCK_TIMEOUT = 90.0; // kill if stuck >90s on combat screen (backup for combat stuck)
+    private const double NON_COMBAT_DECISION_TIMEOUT = 30.0; // 30s timeout → fall back to random control
 
     // Non-combat stuck detection: track screen/overlay changes
     private string _lastScreenType = "";
@@ -144,6 +147,7 @@ public partial class AutoSlayNode : Node
     private bool _wasInCombat;
     private bool _wasInRest;       // track rest site transitions for state reset
     private bool _wasEnemyTurn;     // track enemy→player turn transitions for stuck timer
+    private double _playerDisabledDuration; // MP watchdog: seconds spent with PlayerActionsDisabled=true
     private int _panicButtonTurnsRemaining; // PANIC_BUTTON debuff: turns of "no block from cards" remaining
     private int _lastTurnHp, _lastTurnBlock, _lastTurnMaxHp;
     private int _lastTurnAliveEnemyCount;
@@ -438,14 +442,27 @@ public partial class AutoSlayNode : Node
             _lastCombatActivity = -1; // reset when not in combat
         }
 
-        // Combat stuck detection — kill game if stuck for too long
+        // Combat stuck detection — log and recover instead of killing game
         if (_lastCombatActivity > STUCK_TIMEOUT)
         {
             WriteStuckDiagnostics("COMBAT_STUCK", _lastCombatActivity);
             SignalRunComplete();
-            MainFile.Logger.Error($"[AutoSlay] STUCK: {_lastCombatActivity:F0}s in combat without activity! Killing game...");
-            try { System.Diagnostics.Process.GetCurrentProcess().Kill(); }
-            catch { System.Environment.Exit(1); }
+            MainFile.Logger.Error($"[AutoSlay] STUCK: {_lastCombatActivity:F0}s in combat without activity! Logging and recovering (game will NOT be killed)...");
+            // ── Recovery: reset stuck timer and force-end current turn ──
+            _lastCombatActivity = 0;
+            _combatPlan = null;
+            _combatTurnRequested = false;
+            _combatTurnRequestedDuration = 0;
+            _combatPlanStuckFrames = 0;
+            try
+            {
+                var rs = RunManager.Instance?.DebugOnlyGetState();
+                var pl = rs != null ? LocalContext.GetMe(rs) : null;
+                if (CombatManager.Instance is { PlayerActionsDisabled: false } && pl != null)
+                    EndTurnViaUiOrApi(pl);
+            }
+            catch { }
+            _combatCardDelay = 0.5;
             return;
         }
 
@@ -489,14 +506,17 @@ public partial class AutoSlayNode : Node
         {
             effectiveNonCombatTimeout = 300.0; // 5 minutes — human needs time
         }
-        // Non-combat stuck detection — kill on bot instance
+        // Non-combat stuck detection — log and recover instead of killing game
         if (_sameScreenDuration > effectiveNonCombatTimeout && _sameScreenTickCount > 30)
         {
             WriteStuckDiagnostics("NONCOMBAT_STUCK", _sameScreenDuration);
             SignalRunComplete();
-            MainFile.Logger.Error($"[AutoSlay] NON-COMBAT STUCK: {_lastScreenType} for {_sameScreenDuration:F0}s ({_sameScreenTickCount} ticks)! Killing game...");
-            try { System.Diagnostics.Process.GetCurrentProcess().Kill(); }
-            catch { System.Environment.Exit(1); }
+            MainFile.Logger.Error($"[AutoSlay] NON-COMBAT STUCK: {_lastScreenType} for {_sameScreenDuration:F0}s ({_sameScreenTickCount} ticks)! Logging and recovering (game will NOT be killed)...");
+            // ── Recovery: reset stuck state and force a different action ──
+            _lastScreenType = "";
+            _sameScreenDuration = 0;
+            _sameScreenTickCount = 0;
+            _cooldown = 1.0; // give the game time to settle
             return;
         }
 
@@ -791,6 +811,7 @@ public partial class AutoSlayNode : Node
             if (!cm.PlayerActionsDisabled)
             {
                 // ── We have an active turn — reset watchdogs
+                _playerDisabledDuration = 0; // MP watchdog: we got our turn, reset disabled timer
 
                 // ── Toggle guard: skip if auto-battle is OFF ──
                 if (!_autoBattle)
@@ -1702,6 +1723,50 @@ public partial class AutoSlayNode : Node
                     _lastCombatActivity = 0;
                     _wasEnemyTurn = true;
                 }
+                // ── Multiplayer PlayerActionsDisabled watchdog ──────────────
+                // In MP, PlayerActionsDisabled=true means it's another player's turn.
+                // If the other player is stuck/dead, we'll wait here forever. Track
+                // how long we've been disabled and force a recovery if it exceeds the
+                // multiplayer stuck timeout (300s).
+                if (_multiplayerMode)
+                {
+                    _playerDisabledDuration += delta;
+                    double mpDisabledTimeout = _multiplayerMode ? 300.0 : 45.0;
+                    if (_playerDisabledDuration > mpDisabledTimeout)
+                    {
+                        MainFile.Logger.Error(
+                            $"[AutoSlay] MP DEADLOCK: PlayerActionsDisabled=true for " +
+                            $"{_playerDisabledDuration:F0}s. Combat frozen — " +
+                            "logging and signaling run complete to break out.");
+                        WriteStuckDiagnostics("MP_PLAYER_DISABLED_STUCK", _playerDisabledDuration);
+                        SignalRunComplete();
+                        _playerDisabledDuration = 0;
+                        _lastCombatActivity = 0;
+                        _combatPlan = null;
+                        _combatTurnRequested = false;
+                        _combatTurnRequestedDuration = 0;
+                        _combatPlanStuckFrames = 0;
+                        // Try force-ending our own turn even though disabled
+                        try
+                        {
+                            var rs3 = RunManager.Instance?.DebugOnlyGetState();
+                            var pl3 = rs3 != null ? LocalContext.GetMe(rs3) : null;
+                            if (pl3 != null)
+                            {
+                                int tn3 = pl3.PlayerCombatState.TurnNumber;
+                                RunManager.Instance?.ActionQueueSynchronizer.RequestEnqueue(
+                                    new MegaCrit.Sts2.Core.GameActions.EndPlayerTurnAction(pl3, tn3));
+                                MainFile.Logger.Info($"[AutoSlay] MP Disabled recovery: EndPlayerTurnAction turn#{tn3} enqueued");
+                            }
+                        }
+                        catch (Exception disabledEx)
+                        {
+                            MainFile.Logger.Error($"[AutoSlay] MP Disabled recovery CRASH: {disabledEx.Message}");
+                        }
+                        _combatCardDelay = 0.5;
+                        return;
+                    }
+                }
             }
             return;
         }
@@ -1784,6 +1849,14 @@ public partial class AutoSlayNode : Node
             }
             else if (overlayNode != null)
             {
+                // ── 30-second decision timeout: fall back to random ──
+                if (_sameScreenDuration > NON_COMBAT_DECISION_TIMEOUT && _sameScreenTickCount > 20)
+                {
+                    MainFile.Logger.Warn($"[AutoSlay] OVERLAY decision timeout ({_sameScreenDuration:F0}s, type={overlayNode.GetType().Name}) — falling back to random");
+                    _lastScreenType = ""; _sameScreenDuration = 0; _sameScreenTickCount = 0;
+                    RandomOverlayFallback(overlayNode);
+                    return;
+                }
                 if (_llm != null && TryRequestLlmForOverlay(overlayNode))
                     return;
                 try { _cooldown = DispatchOverlay(overlayNode, delta); }
@@ -1913,6 +1986,16 @@ public partial class AutoSlayNode : Node
                 _pendingContext = "map";
                 return;
             }
+            // ── 30-second decision timeout: fall back to random ──
+            if (_sameScreenDuration > NON_COMBAT_DECISION_TIMEOUT && _sameScreenTickCount > 20)
+            {
+                MainFile.Logger.Warn($"[AutoSlay] MAP decision timeout ({_sameScreenDuration:F0}s) — falling back to random");
+                _lastScreenType = ""; _sameScreenDuration = 0; _sameScreenTickCount = 0;
+                var pts = AutoSlayHelpers.FindAll<NMapPoint>(mapScreen).Where(p => p.IsEnabled).ToList();
+                if (pts.Count > 0) { var pt = pts[_rng.Next(pts.Count)]; mapScreen.OnMapPointSelectedLocally(pt); }
+                _cooldown = 2.0;
+                return;
+            }
             MainFile.Logger.Info("[AutoSlay] MAP screen detected, calling DecisionEngine");
             try { DecisionEngine.Decide(GameScreen.MAP, delta); }
             catch (Exception ex) { MainFile.Logger.Error($"[AutoSlay] MAP DecisionEngine CRASH: {ex.Message}"); }
@@ -1951,6 +2034,16 @@ public partial class AutoSlayNode : Node
                     return;
                 }
             }
+            // ── 30-second decision timeout: fall back to random ──
+            if (_sameScreenDuration > NON_COMBAT_DECISION_TIMEOUT && _sameScreenTickCount > 20)
+            {
+                MainFile.Logger.Warn($"[AutoSlay] EVENT decision timeout ({_sameScreenDuration:F0}s) — falling back to random");
+                _lastScreenType = ""; _sameScreenDuration = 0; _sameScreenTickCount = 0;
+                var eventOpts = AutoSlayHelpers.FindAll<NEventOptionButton>(eventRoom).Where(o => !o.Option.IsLocked).ToList();
+                if (eventOpts.Count > 0) { eventOpts[_rng.Next(eventOpts.Count)].ForceClick(); }
+                _cooldown = 1.0;
+                return;
+            }
             MainFile.Logger.Info("[AutoSlay] EVENT room detected, calling DecisionEngine");
             bool eventDecided = false;
             try { eventDecided = DecisionEngine.Decide(GameScreen.EVENT, delta); }
@@ -1971,6 +2064,18 @@ public partial class AutoSlayNode : Node
                 return;
             }
 
+            // ── 30-second decision timeout: fall back to random ──
+            if (_sameScreenDuration > NON_COMBAT_DECISION_TIMEOUT && _sameScreenTickCount > 20)
+            {
+                MainFile.Logger.Warn($"[AutoSlay] TREASURE decision timeout ({_sameScreenDuration:F0}s) — falling back to random");
+                _lastScreenType = ""; _sameScreenDuration = 0; _sameScreenTickCount = 0;
+                // Try chest first, then relic, then proceed
+                var tChest = treasureRoom.GetNodeOrNull<NClickableControl>("Chest");
+                if (tChest != null && GodotObject.IsInstanceValid(tChest) && tChest.IsEnabled) { tChest.ForceClick(); }
+                else { var tRelics = AutoSlayHelpers.FindAll<NTreasureRoomRelicHolder>(treasureRoom).Where(r => GodotObject.IsInstanceValid(r)).ToList(); if (tRelics.Count > 0) tRelics[0].ForceClick(); else treasureRoom.ProceedButton?.ForceClick(); }
+                _cooldown = 1.0;
+                return;
+            }
             MainFile.Logger.Info("[AutoSlay] TREASURE room detected, calling DecisionEngine");
             try { DecisionEngine.Decide(GameScreen.TREASURE, delta); }
             catch (Exception ex) { MainFile.Logger.Error($"[AutoSlay] TREASURE DecisionEngine CRASH: {ex.Message}"); }
@@ -2008,6 +2113,17 @@ public partial class AutoSlayNode : Node
                 _restStuckFrames = 0;
             }
 
+            // ── 30-second decision timeout: fall back to random ──
+            if (!_restSiteChoiceMade && _sameScreenDuration > NON_COMBAT_DECISION_TIMEOUT && _sameScreenTickCount > 20)
+            {
+                MainFile.Logger.Warn($"[AutoSlay] REST decision timeout ({_sameScreenDuration:F0}s) — falling back to random");
+                _lastScreenType = ""; _sameScreenDuration = 0; _sameScreenTickCount = 0;
+                var rBtns = AutoSlayHelpers.FindAll<NRestSiteButton>(restRoom).Where(b => b.Option.IsEnabled).ToList();
+                if (rBtns.Count > 0) { rBtns[_rng.Next(rBtns.Count)].ForceClick(); _restSiteChoiceMade = true; }
+                else { restRoom.ProceedButton?.ForceClick(); _restSiteChoiceMade = true; }
+                _cooldown = 1.5;
+                return;
+            }
             if (_llm != null && !_restSiteChoiceMade)
             {
                 var btns = AutoSlayHelpers.FindAll<NRestSiteButton>(restRoom)
@@ -2228,6 +2344,16 @@ public partial class AutoSlayNode : Node
             if (_shopPlan != null)
             {
                 ExecuteNextShopStep(shopRoom);
+                return;
+            }
+            // ── 30-second decision timeout: fall back to random (leave shop) ──
+            if (_sameScreenDuration > NON_COMBAT_DECISION_TIMEOUT && _sameScreenTickCount > 20)
+            {
+                MainFile.Logger.Warn($"[AutoSlay] SHOP decision timeout ({_sameScreenDuration:F0}s) — falling back to random (leaving shop)");
+                _lastScreenType = ""; _sameScreenDuration = 0; _sameScreenTickCount = 0;
+                shopRoom.ProceedButton?.ForceClick();
+                _shopLeaving = true; _shopStuckFrames = 0;
+                _cooldown = 1.0;
                 return;
             }
             if (_llm == null)
@@ -4321,6 +4447,144 @@ public partial class AutoSlayNode : Node
     // ─────────────────────────────────────────────────────────────────────────
     // Random overlay dispatch (used when LLM is off or for non-strategic overlays)
     // ─────────────────────────────────────────────────────────────────────────
+
+    /// <summary>
+    /// 30-second timeout random fallback for overlay screens.
+    /// Picks a random valid option for the current overlay type.
+    /// </summary>
+    private void RandomOverlayFallback(Node overlayNode)
+    {
+        try
+        {
+            // ── Card reward: pick random card or skip ──
+            if (overlayNode is NCardRewardSelectionScreen cardReward)
+            {
+                var cards = AutoSlayHelpers.FindAll<NCardHolder>(cardReward)
+                    .Where(c => GodotObject.IsInstanceValid(c)).ToList();
+                if (cards.Count > 0)
+                {
+                    int pick = _rng.Next(cards.Count);
+                    MainFile.Logger.Info($"[AutoSlay] Random overlay: picking card {pick}/{cards.Count}");
+                    cards[pick].EmitSignal(NCardHolder.SignalName.Pressed, cards[pick]);
+                }
+                else
+                {
+                    var altBtn = AutoSlayHelpers.FindFirst<NCardRewardAlternativeButton>(cardReward);
+                    if (altBtn != null) altBtn.ForceClick();
+                    else NOverlayStack.Instance?.Remove(cardReward as IOverlayScreen);
+                }
+                _cooldown = 1.0;
+                return;
+            }
+            // ── Relic selection: pick random relic (uses NClickableControl) ──
+            if (overlayNode is NChooseARelicSelection chooseRelic)
+            {
+                var relics = AutoSlayHelpers.FindAll<NClickableControl>(chooseRelic)
+                    .Where(r => GodotObject.IsInstanceValid(r)).ToList();
+                if (relics.Count > 0)
+                {
+                    MainFile.Logger.Info($"[AutoSlay] Random overlay: picking relic {_rng.Next(relics.Count)}/{relics.Count}");
+                    relics[_rng.Next(relics.Count)].ForceClick();
+                }
+                _cooldown = 1.0;
+                return;
+            }
+            // ── Card grid (upgrade/transform/enchant/remove): pick first card then confirm ──
+            if (overlayNode is NDeckUpgradeSelectScreen or NDeckTransformSelectScreen
+                or NDeckEnchantSelectScreen or NDeckCardSelectScreen)
+            {
+                var grid = AutoSlayHelpers.FindFirst<NCardGrid>((Node)(object)overlayNode);
+                if (grid != null)
+                {
+                    var gridCards = AutoSlayHelpers.FindAll<NGridCardHolder>((Node)(object)overlayNode);
+                    if (gridCards.Count > 0)
+                    {
+                        MainFile.Logger.Info($"[AutoSlay] Random overlay: picking card grid item 0/{gridCards.Count}");
+                        grid.EmitSignal(NCardGrid.SignalName.HolderPressed, gridCards[0]);
+                    }
+                }
+                var confirm = AutoSlayHelpers.FindFirst<NConfirmButton>((Node)(object)overlayNode);
+                if (confirm?.IsEnabled == true) confirm.ForceClick();
+                _cooldown = 0.5;
+                return;
+            }
+            // ── Simple card select: pick first card ──
+            if (overlayNode is NSimpleCardSelectScreen simpleSelect)
+            {
+                var holders = AutoSlayHelpers.FindAll<NCardHolder>(simpleSelect)
+                    .Where(h => GodotObject.IsInstanceValid(h)).ToList();
+                if (holders.Count > 0)
+                    holders[0].EmitSignal(NCardHolder.SignalName.Pressed, holders[0]);
+                var btn = AutoSlayHelpers.FindFirst<NConfirmButton>(simpleSelect);
+                if (btn?.IsEnabled == true) btn.ForceClick();
+                _cooldown = 0.5;
+                return;
+            }
+            // ── Choose card: pick first card then confirm ──
+            if (overlayNode is NChooseACardSelectionScreen chooseCard)
+            {
+                var cards = AutoSlayHelpers.FindAll<NCardHolder>(chooseCard)
+                    .Where(h => GodotObject.IsInstanceValid(h)).ToList();
+                if (cards.Count > 0)
+                    cards[0].EmitSignal(NCardHolder.SignalName.Pressed, cards[0]);
+                var c = AutoSlayHelpers.FindFirst<NConfirmButton>(chooseCard);
+                if (c?.IsEnabled == true) c.ForceClick();
+                _cooldown = 0.5;
+                return;
+            }
+            // ── Choose bundle: pick first (uses NCardBundle) ──
+            if (overlayNode is NChooseABundleSelectionScreen chooseBundle)
+            {
+                var bundles = AutoSlayHelpers.FindAll<NCardBundle>(chooseBundle)
+                    .Where(b => GodotObject.IsInstanceValid(b)).ToList();
+                if (bundles.Count > 0 && bundles[0].Hitbox != null)
+                    bundles[0].Hitbox.ForceClick();
+                _cooldown = 0.5;
+                return;
+            }
+            // ── Rewards screen: click proceed ──
+            if (overlayNode is NRewardsScreen rewards)
+            {
+                var proceed = AutoSlayHelpers.FindFirst<NProceedButton>(rewards);
+                if (proceed?.IsEnabled == true)
+                    proceed.ForceClick();
+                else
+                    NOverlayStack.Instance?.Remove(rewards as IOverlayScreen);
+                _cooldown = 1.0;
+                return;
+            }
+            // ── Game over: click continue ──
+            if (overlayNode is NGameOverScreen gameOver)
+            {
+                GameOverHandler.Handle(gameOver);
+                _cooldown = 1.0;
+                return;
+            }
+            // ── Crystal sphere: click first hidden cell ──
+            if (overlayNode is NCrystalSphereScreen crystal)
+            {
+                var cells = crystal.GetNodeOrNull<Control>("%Cells");
+                if (cells != null)
+                {
+                    var hidden = AutoSlayHelpers.FindAll<NCrystalSphereCell>(cells)
+                        .Where(c => GodotObject.IsInstanceValid(c) && c.Visible && c.Entity.IsHidden)
+                        .ToList();
+                    if (hidden.Count > 0)
+                        hidden[0].EmitSignal(NClickableControl.SignalName.Released, hidden[0]);
+                }
+                _cooldown = 0.5;
+                return;
+            }
+            // ── Unknown: try dismiss ──
+            UiUtils.TryDismissUnknownOverlay(overlayNode);
+            _cooldown = 0.5;
+        }
+        catch (Exception ex)
+        {
+            MainFile.Logger.Error($"[AutoSlay] RandomOverlayFallback CRASH for {overlayNode?.GetType().Name}: {ex.Message}");
+            _cooldown = 0.5;
+        }
+    }
 
     private double DispatchOverlay(Node overlayNode, double delta)
     {
