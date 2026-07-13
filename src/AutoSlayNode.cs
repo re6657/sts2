@@ -33,6 +33,7 @@ using MegaCrit.Sts2.Core.Timeline;
 using MegaCrit.Sts2.Core.Unlocks;
 using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 using MegaCrit.Sts2.Core.Nodes.Rewards;
+using MegaCrit.Sts2.Core.Nodes.Vfx;
 using TokenSpire2.Handlers;
 using TokenSpire2.Llm;
 using TokenSpire2.Solver;
@@ -150,6 +151,9 @@ public partial class AutoSlayNode : Node
     private bool _isMultiplayerHost;
     private bool _multiplayerJoined;
     private bool _multiplayerReady;
+
+    // ── Auto-chat meow timer ────────────────────────────────────────
+    private double _lastMeowTime;
 
     public override void _Ready()
     {
@@ -651,6 +655,9 @@ public partial class AutoSlayNode : Node
         var cm = CombatManager.Instance;
         if (cm != null && cm.IsInProgress)
         {
+            // ── Auto-chat meow: bot nudge host every 5s ──────────────────
+            TrySendMeow(delta);
+
             // Combat start detection
             if (!_wasInCombat)
             {
@@ -4559,6 +4566,43 @@ public partial class AutoSlayNode : Node
         catch (Exception ex)
         {
             MainFile.Logger.Error($"[AutoSlay] UnlockAll failed: {ex.Message}");
+        }
+    }
+
+    /// <summary>
+    /// Bot sends "喵喵喵" speech bubble every 5 seconds in multiplayer combat
+    /// to nudge the human host into playing faster.
+    ///
+    /// Uses the game's built-in FlavorSynchronizer.SendEndTurnPing() which sends
+    /// an EndTurnPingMessage over the network. Each peer (including the host)
+    /// creates a speech bubble locally upon receiving the message — so the
+    /// "喵喵喵" bubble appears on ALL players' screens, not just the bot's.
+    /// </summary>
+    private void TrySendMeow(double delta)
+    {
+        // Only in multiplayer mode, only as client (bot), only when auto-battle is on
+        if (!_multiplayerMode || _isMultiplayerHost || !_autoBattle) return;
+
+        _lastMeowTime += delta;
+        if (_lastMeowTime < 5.0) return;
+        _lastMeowTime = 0;
+
+        try
+        {
+            var flavorSync = RunManager.Instance?.FlavorSynchronizer;
+            if (flavorSync == null) return;
+
+            // SendEndTurnPing sends an EndTurnPingMessage via INetGameService.
+            // On each peer, HandleEndTurnPingMessage → CreateEndTurnPingDialogueIfNecessary
+            // which creates an NSpeechBubbleVfx above the player's creature.
+            // Our FlavorTextPatch overrides the default localized text with "喵喵喵".
+            flavorSync.SendEndTurnPing();
+
+            MainFile.Logger.Info($"[AutoSlay] 喵喵喵 — ping sent via FlavorSynchronizer");
+        }
+        catch (Exception ex)
+        {
+            MainFile.Logger.Info($"[AutoSlay] Meow failed: {ex.Message}");
         }
     }
 
