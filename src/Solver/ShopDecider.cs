@@ -84,7 +84,9 @@ public static class ShopDecider
         // B17: Verify previous purchase succeeded
         if (_lastKnownGold >= 0 && _lastPurchaseItemId != null)
         {
-            if (state.Gold >= _lastKnownGold)
+            // M8: use > instead of >= — only flag failure if gold strictly increased
+            // (>= would falsely flag zero-cost purchases or simultaneous gold gains)
+            if (state.Gold > _lastKnownGold)
             {
                 MainFile.Logger.Warn($"[ShopDecider] B17: Purchase of '{_lastPurchaseItemId}' may have FAILED — gold unchanged at {state.Gold}");
                 // Purchase was rejected — the item will naturally be excluded

@@ -102,7 +102,7 @@ public class ShopHandlerAdapter : IScreenHandler
 {
     public GameScreen Screen => GameScreen.SHOP;
     public double CooldownSeconds => 1.0;
-    private bool _handling;
+    private int _handling; // 0 = idle, 1 = handling (use int for Interlocked)
 
     public double Handle(double delta)
     {
@@ -110,16 +110,19 @@ public class ShopHandlerAdapter : IScreenHandler
         if (room == null) return 0.5;
 
         // ShopHandler is async — fire-and-forget with guard
-        if (!_handling)
+        if (System.Threading.Interlocked.CompareExchange(ref _handling, 1, 0) == 0)
         {
-            _handling = true;
-            ShopHandler.HandleAsync(room, SharedRng.Instance).ContinueWith(_ =>
+            ShopHandler.HandleAsync(room, SharedRng.Instance).ContinueWith(t =>
             {
-                _handling = false;
+                System.Threading.Interlocked.Exchange(ref _handling, 0);
+                if (t.IsFaulted && t.Exception != null)
+                {
+                    MainFile.Logger?.Info($"[ShopHandlerAdapter] HandleAsync failed: {t.Exception.InnerException?.Message ?? t.Exception.Message}");
+                }
             });
         }
-        return _handling ? 0.5 : 2.0;
+        return System.Threading.Volatile.Read(ref _handling) == 1 ? 0.5 : 2.0;
     }
 
-    public void OnActivated() { _handling = false; }
+    public void OnActivated() { System.Threading.Interlocked.Exchange(ref _handling, 0); }
 }

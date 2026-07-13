@@ -249,10 +249,13 @@ public static class GameStateExtractor
 
     private static int SumPower(Player player, string powerName)
     {
+        // M32: use exact power type name match to avoid substring false-matches
+        // (e.g. "Strength" matching "StrengthDrainPower")
         try
         {
+            string targetType = powerName + "Power";
             return player.Creature.Powers
-                .Where(p => p.GetType().Name.Contains(powerName, StringComparison.OrdinalIgnoreCase))
+                .Where(p => p.GetType().Name.Equals(targetType, StringComparison.OrdinalIgnoreCase))
                 .Sum(p => p.Amount);
         }
         catch { return 0; }

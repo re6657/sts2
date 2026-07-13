@@ -644,6 +644,7 @@ public class SolverParams
         public double HpCostNormalScore { get; set; } = -60;
         public double CurseNoSynergyPenalty { get; set; } = -120;
         public double CurseWithSynergyPenalty { get; set; } = -40;
+        public double StatusCardPenalty { get; set; } = -30; // M10: Wound/Burn/Slimed/Dazed/Void — milder than curses
         public double RepeatHardBlock { get; set; } = -500;
         public double RepeatPenalty2 { get; set; } = -150;
         public double TabletPenalty { get; set; } = -200;

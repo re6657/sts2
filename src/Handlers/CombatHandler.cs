@@ -32,19 +32,10 @@ public static class CombatHandler
         _attemptedCards.Clear();
     }
 
+    /// <summary>HP boosting is disabled — set to 9999 via params if needed.</summary>
     public static void BoostHpIfNeeded()
     {
-        // DISABLED — normal HP for real runs
-        _hpBoosted = true;
-        return;
-        var runState = RunManager.Instance?.DebugOnlyGetState();
-        var player = runState != null ? LocalContext.GetMe(runState) : null;
-        if (player?.Creature == null) return;
-
-        player.Creature.SetMaxHpInternal(9999);
-        player.Creature.SetCurrentHpInternal(9999);
-        MainFile.Logger.Info("[AutoSlay] Boosted player HP to 9999.");
-        _hpBoosted = true;
+        _hpBoosted = true; // L13: removed dead code; HP boost disabled for normal runs
     }
 
     public static void UsePotionsIfNeeded(System.Random rng)
@@ -57,7 +48,7 @@ public static class CombatHandler
         var player = runState != null ? LocalContext.GetMe(runState) : null;
         if (player == null) return;
 
-        var potions = player.Potions.ToList();
+        var potions = player.Potions?.ToList() ?? new List<PotionModel>();
         if (potions.Count == 0) { _potionsUsed = true; return; }
 
         var combatState = player.Creature.CombatState;
@@ -85,9 +76,10 @@ public static class CombatHandler
         var player = runState != null ? LocalContext.GetMe(runState) : null;
         if (player == null) return 0;
 
-        var playable = PileType.Hand.GetPile(player).Cards
-            .Where(c => !_attemptedCards.Contains(c) && c.CanPlay(out _, out _))
-            .ToList();
+        var pile = PileType.Hand.GetPile(player);
+        var playable = pile?.Cards
+            ?.Where(c => !_attemptedCards.Contains(c) && c.CanPlay(out _, out _))
+            .ToList() ?? new List<CardModel>();
 
         if (playable.Count == 0)
         {
@@ -106,7 +98,8 @@ public static class CombatHandler
         Creature? target = null;
         if (card.TargetType == TargetType.AnyEnemy)
         {
-            var enemies = card.CombatState?.HittableEnemies.ToList() ?? new List<Creature>();
+            var combatState = player.Creature?.CombatState;
+            var enemies = combatState?.HittableEnemies.ToList() ?? new List<Creature>();
             if (enemies.Count > 0) target = enemies[rng.Next(enemies.Count)];
         }
 

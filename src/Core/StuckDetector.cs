@@ -50,6 +50,7 @@ public class StuckDetector
     private int _sameScreenTickCount;
     private string _lastScreenId = "";
     private bool _activityOccurredThisFrame;
+    private double _lastWarningTime = -999; // rate-limit 50% warnings to once per 5s
 
     // ═══════════════════════════════════════════════════════════════
     // Events
@@ -104,9 +105,11 @@ public class StuckDetector
         string screenId = screen.ToString();
         try
         {
-            if (NOverlayStack.Instance?.ScreenCount > 0)
+            // M25/M29: cache Instance to avoid TOCTOU between ScreenCount check and Peek()
+            var overlayStack = NOverlayStack.Instance;
+            if (overlayStack?.ScreenCount > 0)
             {
-                var top = NOverlayStack.Instance.Peek();
+                var top = overlayStack.Peek();
                 screenId += "/" + (top?.GetType().Name ?? "?");
             }
         }
@@ -128,9 +131,10 @@ public class StuckDetector
             ? CombatAdjacentStuckTimeoutSeconds
             : NonCombatStuckTimeoutSeconds;
 
+        // M26: use >= instead of > to avoid 1-frame trigger delay
         if (!ShouldSkipKill()
-            && _sameScreenDuration > effectiveTimeout
-            && _sameScreenTickCount > MinStuckTicks)
+            && _sameScreenDuration >= effectiveTimeout
+            && _sameScreenTickCount >= MinStuckTicks)
         {
             var msg = $"Screen stuck: {_lastScreenId} for {_sameScreenDuration:F0}s ({_sameScreenTickCount} ticks)";
             OnStuckDetected?.Invoke(StuckSeverity.Critical, msg);
@@ -139,8 +143,12 @@ public class StuckDetector
         }
 
         // ── Warning threshold (50% of timeout) ─────────────────
-        if (_sameScreenDuration > effectiveTimeout * 0.5 && _sameScreenTickCount > MinStuckTicks / 2)
+        // Rate-limited to once per 5s to avoid log spam at 60fps
+        if (_sameScreenDuration > effectiveTimeout * 0.5
+            && _sameScreenTickCount > MinStuckTicks / 2
+            && (_sameScreenDuration - _lastWarningTime) > 5.0)
         {
+            _lastWarningTime = _sameScreenDuration;
             OnStuckDetected?.Invoke(StuckSeverity.Warning,
                 $"Screen may be stuck: {_lastScreenId} for {_sameScreenDuration:F0}s");
         }
@@ -172,18 +180,22 @@ public class StuckDetector
     }
 
     /// <summary>Write diagnostics to the mod directory for post-mortem analysis.</summary>
-    public void WriteDiagnostics(string reason, double duration)
+    // H20: removed redundant duration parameter — actual stuck duration comes from
+    // _sameScreenDuration and _combatInactivityTimer (the parameter was always
+    // passed the config timeout value, not the actual stuck time)
+    public void WriteDiagnostics(string reason)
     {
         try
         {
             if (!AppConfig.IsInitialized) return;
             var path = Path.Combine(AppConfig.ModDirectory, "stuck_diagnostics.txt");
+            double actual = Math.Max(_sameScreenDuration, _combatInactivityTimer);
             var lines = new[]
             {
                 $"=== Stuck Diagnostics ===",
                 $"Time: {DateTime.UtcNow:O}",
                 $"Reason: {reason}",
-                $"Duration: {duration:F1}s",
+                $"Duration: {actual:F1}s",
                 $"LastScreen: {_lastScreenId}",
                 $"ScreenTicks: {_sameScreenTickCount}",
                 $"CombatInactivity: {_combatInactivityTimer:F1}s",

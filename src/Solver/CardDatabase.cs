@@ -27,6 +27,7 @@ public class CardDatabase
     private static readonly object _lock = new();
     private static CardDatabase? _instance;
     private static string _modDirectory = "";
+    private static readonly HashSet<string> _fallbackLogged = new(StringComparer.OrdinalIgnoreCase); // M11: rate-limit fallback logs
 
     public static CardDatabase Instance
     {
@@ -195,7 +196,12 @@ public class CardDatabase
 
         // Fallback: compute from CardClassifier
         int fallback = CardClassifier.GetDefaultPlayPriority(cardId);
-        MainFile.Logger.Debug($"[CardDatabase] PlayPriority fallback for '{cardId}': {fallback}");
+        // M11: rate-limit — only log once per card ID to avoid hundreds of lines per turn
+        if (!_fallbackLogged.Contains(cardId))
+        {
+            _fallbackLogged.Add(cardId);
+            MainFile.Logger.Debug($"[CardDatabase] PlayPriority fallback for '{cardId}': {fallback}");
+        }
         return fallback;
     }
 

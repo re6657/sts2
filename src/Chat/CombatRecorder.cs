@@ -47,7 +47,12 @@ public static class CombatRecorder
     /// Set by OnCombatEnd() after API call completes.
     /// Consumed by TrySendAiChat() at the start of next combat.
     /// </summary>
-    public static List<string>? PreGeneratedDialogue { get; private set; }
+    private static List<string>? _preGeneratedDialogue;
+    public static List<string>? PreGeneratedDialogue
+    {
+        get => System.Threading.Volatile.Read(ref _preGeneratedDialogue);
+        private set => System.Threading.Volatile.Write(ref _preGeneratedDialogue, value);
+    }
 
     private static bool _active;
 
@@ -133,8 +138,9 @@ public static class CombatRecorder
     /// <summary>
     /// Call at combat end (first frame where IsInProgress becomes false after combat).
     /// Builds combat summary, starts async API call to generate dialogue for next combat.
+    /// Fire-and-forget: the async work runs on a background task; any exception is logged.
     /// </summary>
-    public static async void OnCombatEnd()
+    public static void OnCombatEnd()
     {
         if (!_active) return;
         _active = false;
@@ -163,18 +169,35 @@ public static class CombatRecorder
             var engine = ChatEngine.GetInstance();
             if (engine != null)
             {
-                var lines = await engine.SendPostCombatAsync(summary);
-                if (lines != null && lines.Length > 0)
-                {
-                    PreGeneratedDialogue = new List<string>(lines);
-                    MainFile.Logger?.Info($"[CombatRecorder] Pre-generated {lines.Length} lines for next combat: " +
-                        $"{string.Join(" | ", lines)}");
-                }
+                var summaryCopy = summary;
+                _ = OnCombatEndAsync(engine, summaryCopy);
             }
         }
         catch (Exception ex)
         {
             MainFile.Logger?.Info($"[CombatRecorder] OnCombatEnd error: {ex.Message}");
+        }
+    }
+
+    /// <summary>
+    /// Async work for post-combat dialogue generation. Fire-and-forget from OnCombatEnd().
+    /// All exceptions are caught and logged — this runs on a thread-pool thread after await.
+    /// </summary>
+    private static async Task OnCombatEndAsync(ChatEngine engine, string summary)
+    {
+        try
+        {
+            var lines = await engine.SendPostCombatAsync(summary).ConfigureAwait(false);
+            if (lines != null && lines.Length > 0)
+            {
+                PreGeneratedDialogue = new List<string>(lines);
+                MainFile.Logger?.Info($"[CombatRecorder] Pre-generated {lines.Length} lines for next combat: " +
+                    $"{string.Join(" | ", lines)}");
+            }
+        }
+        catch (Exception ex)
+        {
+            MainFile.Logger?.Info($"[CombatRecorder] OnCombatEndAsync error: {ex.Message}");
         }
     }
 

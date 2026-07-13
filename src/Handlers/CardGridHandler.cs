@@ -89,6 +89,12 @@ public static class CardGridHandler
             MainFile.Logger.Info($"[AutoSlay] Emitting HolderPressed for {pick.CardModel?.Id.Entry ?? "?"}");
             grid.EmitSignal(NCardGrid.SignalName.HolderPressed, pick);
         }
+        else
+        {
+            // Fallback: try click via EmitSignal if grid is missing
+            MainFile.Logger.Warn($"[AutoSlay] NCardGrid not found — falling back to EmitSignal on card holder");
+            try { pick?.EmitSignal(NCardGrid.SignalName.HolderPressed, pick); } catch { }
+        }
         return 0.3;
     }
 

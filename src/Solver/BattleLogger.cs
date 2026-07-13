@@ -216,8 +216,9 @@ public static class BattleLogger
             .Sum(t => t.Outcome?.DamageTaken ?? 0);
         _currentBattle.TotalEnemiesKilled = _currentBattle.Turns
             .Sum(t => t.Outcome?.EnemiesKilled ?? 0);
+        // L5: use double null-conditional — SolverPlan may be null if solver was never invoked
         _currentBattle.SolverCrashes = _currentBattle.Turns
-            .Count(t => t.SolverPlan?.Actions.Any(a => a.Contains("CRASH") == true) == true);
+            .Count(t => (t.SolverPlan?.Actions?.Any(a => a.Contains("CRASH"))) ?? false);
 
         SaveBattle();
         _currentBattle = null;

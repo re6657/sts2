@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Godot;
 using MegaCrit.Sts2.Core.Nodes.CommonUi;
@@ -23,7 +24,7 @@ public static class EventRoomHandler
 
         // Try unlocked event options
         var options = AutoSlayHelpers.FindAll<NEventOptionButton>(eventRoom)
-            .Where(o => !o.Option.IsLocked)
+            .Where(o => o.Option?.IsLocked == false)
             .ToList();
 
         if (options.Count > 0)
@@ -34,13 +35,28 @@ public static class EventRoomHandler
             return 1.0;
         }
 
-        // Try clicking dialogue hitbox (Ancient event)
-        var dialogueBtn = eventRoom.GetNodeOrNull<NButton>("%DialogueHitbox");
-        if (dialogueBtn != null && dialogueBtn.Visible && dialogueBtn.IsEnabled)
+        // Try clicking dialogue hitbox (Ancient event, etc.)
+        // Search by name with multiple type attempts — NButton, NClickableControl, or generic Node
+        var dialogueBtn = eventRoom.GetNodeOrNull<Node>("%DialogueHitbox");
+        if (dialogueBtn != null && GodotObject.IsInstanceValid(dialogueBtn))
         {
-            MainFile.Logger.Info("[AutoSlay] Clicking Ancient event dialogue");
-            dialogueBtn.EmitSignal(NClickableControl.SignalName.Released, dialogueBtn);
-            return 0.5;
+            // Check visibility/is-enabled via duck-typing to handle multiple possible types
+            try
+            {
+                bool visible = dialogueBtn is CanvasItem ci ? ci.Visible : true;
+                if (visible)
+                {
+                    MainFile.Logger.Info("[AutoSlay] Clicking event dialogue hitbox");
+                    if (dialogueBtn is NButton nb) nb.ForceClick();
+                    else if (dialogueBtn is NClickableControl ncc) ncc.ForceClick();
+                    else dialogueBtn.EmitSignal("pressed");
+                    return 0.5;
+                }
+            }
+            catch (Exception ex)
+            {
+                MainFile.Logger.Warn($"[AutoSlay] DialogueHitbox click failed: {ex.Message}");
+            }
         }
 
         return 0.5;

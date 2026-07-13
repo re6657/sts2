@@ -262,7 +262,7 @@ public class RunContext
             if (deck != null)
             {
                 var cardList = deck.ToList();
-                DeckCardIds = cardList.Select(c => c.Id.Entry).ToList();
+                DeckCardIds = cardList.Select(c => c.Id.Entry ?? "").ToList();
                 AttackCount = cardList.Count(c => c.Type == CardType.Attack);
                 SkillCount = cardList.Count(c => c.Type == CardType.Skill);
                 PowerCount = cardList.Count(c => c.Type == CardType.Power);
@@ -317,7 +317,7 @@ public class RunContext
             var relics = player.Relics;
             if (relics != null)
             {
-                RelicIds = relics.Select(r => r.Id.Entry).ToList();
+                RelicIds = relics.Select(r => r.Id.Entry ?? "").ToList();
 
                 HasEnergyRelic = RelicIds.Any(id =>
                     id.Contains("Prison") || id.Contains("Sozu") || id.Contains("Ectoplasm") ||
@@ -482,7 +482,7 @@ public class RunContext
                 var potionList = potions.ToList();
                 PotionSlotCount = potionList.Count;
                 PotionCount = potionList.Count(p => !p.IsQueued);
-                PotionIds = potionList.Where(p => !p.IsQueued).Select(p => p.Id.Entry).ToList();
+                PotionIds = potionList.Where(p => !p.IsQueued).Select(p => p.Id.Entry ?? "").ToList();
             }
         }
         catch { /* potions may fail */ }
@@ -537,6 +537,6 @@ public class RunContext
             }
         }
         catch { /* map access may fail at runtime */ }
-        return "";
+        return "BOSS_ACT" + Act; // H22: fallback to act-level boss ID instead of "" which disables all boss strategies
     }
 }

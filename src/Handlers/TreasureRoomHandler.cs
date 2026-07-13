@@ -20,7 +20,9 @@ public static class TreasureRoomHandler
         // Step 1: Open chest first (matching official AutoSlay flow)
         if (!_chestOpened)
         {
-            var chest = room.GetNodeOrNull<NClickableControl>("Chest");
+            // M16: try both "Chest" and "chest" — Godot node names are case-sensitive
+            var chest = room.GetNodeOrNull<NClickableControl>("Chest")
+                ?? room.GetNodeOrNull<NClickableControl>("chest");
             if (chest != null && GodotObject.IsInstanceValid(chest) && chest.IsEnabled)
             {
                 MainFile.Logger.Info("[AutoSlay] Opening chest");

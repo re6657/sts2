@@ -126,7 +126,9 @@ public static class IroncladSolver
         // Orb queue: index 0 = rightmost (next to be evoked when channeling into full slots)
         // Index N-1 = leftmost (newest orb). This matches the game's FIFO evoke order.
         public List<string> OrbQueue = new(); // e.g. ["Lightning","Frost","Dark"]
-        // Accumulated damage on dark orbs (grows by 6 each end-of-turn passive)
+        // Per-orb accumulated dark damage — parallel to OrbQueue.
+        // Non-dark slots hold 0. Each dark orb accumulates BaseDarkOrbDamage+Focus per turn.
+        public List<int> DarkOrbAccumulation = new();
         public int BaseDarkOrbDamage = 6;   // Starting value when dark orb is channeled
         public int TotalDarkOrbDamage = 0;  // Sum of accumulated damage across all dark orbs
         public int Stars;                 // Current stars (Necrobinder)
@@ -372,6 +374,7 @@ public static class IroncladSolver
         int orbSlots = 0, int lightningOrbs = 0, int frostOrbs = 0,
         int darkOrbs = 0, int plasmaOrbs = 0, int focus = 0,
         int loopCount = 0, List<string>? orbQueue = null,
+        List<int>? darkOrbAccumulation = null,
         int baseDarkOrbDamage = 6, int totalDarkOrbDamage = 0,
         int stars = 0,
         List<CardModel>? drawPile = null,
@@ -418,6 +421,7 @@ public static class IroncladSolver
             PlasmaOrbs = plasmaOrbs,
             LoopCount = loopCount,
             OrbQueue = orbQueue != null ? new List<string>(orbQueue) : new List<string>(),
+            DarkOrbAccumulation = darkOrbAccumulation != null ? new List<int>(darkOrbAccumulation) : new List<int>(),
             BaseDarkOrbDamage = baseDarkOrbDamage,
             TotalDarkOrbDamage = totalDarkOrbDamage,
             Stars = stars,
@@ -594,7 +598,7 @@ public static class IroncladSolver
             // when the hand had no other playable cards. At low HP with 0 energy,
             // playing Bloodletting is the ONLY way to avoid guaranteed death.
             // Exception: STILL block if the HP cost would kill us.
-            if (entry.HpCost > 0 && state.Hp - entry.HpCost <= 0) continue;
+            if (entry.HpCost > 0 && state.Hp - entry.HpCost < 0) continue;
 
             var energyOptions = GetEnergyOptions(entry, state.Energy);
 
@@ -610,7 +614,9 @@ public static class IroncladSolver
                     var newState = CloneState(state);
                     newState.Energy -= spentEnergy;
                     if (entry.CostsStars) newState.Stars -= entry.StarCost;
-                    newState.Hand.RemoveAt(i);
+                    // Remove by card identity, not index — robust against future filtering/sorting
+                    int removeIdx = newState.Hand.FindIndex(ce => ce.CardId == entry.CardId);
+                    if (removeIdx >= 0) newState.Hand.RemoveAt(removeIdx);
                     newState.CardsPlayed++;
 
                     ApplyCardEffects(newState, entry, target, spentEnergy);
@@ -741,13 +747,13 @@ public static class IroncladSolver
             return cost <= availableEnergy ? new List<int> { cost } : new List<int>();
         }
 
-        // X-cost cards always consume ALL remaining energy when played via
-        // TryManualPlay — the game UI defaults to max X.  We therefore only
-        // consider X = availableEnergy so that plans are actually executable.
-        // Cards placed after an X-cost play would have 0 energy and be
-        // unplayable, so X-cost cards are effectively turn-enders.
+        // H3: enumerate all possible X values so the solver can find optimal
+        // energy splits (e.g. Whirlwind@2 + Strike@1 instead of Whirlwind@3).
+        // The solver plays cards sequentially; playing X at less than max leaves
+        // remaining energy for follow-up plays.
         var options = new List<int>();
-        if (availableEnergy > 0) options.Add(availableEnergy);
+        for (int x = 1; x <= availableEnergy; x++)
+            options.Add(x);
         return options;
     }
 
@@ -887,6 +893,10 @@ public static class IroncladSolver
         }
 
         // ── Apply vulnerable ──
+        // FIXME: Effect order should match per-card text order. Most cards deal damage
+        // before applying debuffs (correct here), but cards like THUNDERCLAP apply
+        // Vulnerable FIRST then damage. For those cards, damage should get +50%.
+        // Future: add per-card ApplyDebuffBeforeDamage flag to CardEntry.
         if (entry.AppliesVulnerable && entry.VulnerableStacks > 0)
         {
             if (entry.IsAoe)
@@ -1085,11 +1095,16 @@ public static class IroncladSolver
 
         // Add orb to the LEFT (end of queue — newest position)
         state.OrbQueue.Add(orbType);
+        state.DarkOrbAccumulation.Add(0); // placeholder for all orb types
         switch (orbType)
         {
             case "Lightning": state.LightningOrbs++; break;
             case "Frost":     state.FrostOrbs++; break;
-            case "Dark":      state.DarkOrbs++; state.TotalDarkOrbDamage += state.BaseDarkOrbDamage; break;
+            case "Dark":
+                state.DarkOrbs++;
+                state.TotalDarkOrbDamage += state.BaseDarkOrbDamage;
+                state.DarkOrbAccumulation[state.DarkOrbAccumulation.Count - 1] = state.BaseDarkOrbDamage + state.Focus;
+                break;
             case "Plasma":    state.PlasmaOrbs++; break;
             case "Glass":     state.LightningOrbs++; break; // Glass approximated as Lightning
         }
@@ -1125,8 +1140,11 @@ public static class IroncladSolver
                 break;
 
             case "Dark":
-                // Evoke deals accumulated dark damage to lowest HP enemy
-                int darkDmg = state.BaseDarkOrbDamage;
+                // Evoke deals accumulated dark damage to lowest HP enemy.
+                // Use per-orb accumulation (DarkOrbAccumulation tracks this per queue position).
+                int darkDmg = state.DarkOrbAccumulation.Count > 0 ? state.DarkOrbAccumulation[0] : state.BaseDarkOrbDamage;
+                // Update TotalDarkOrbDamage to subtract what we're about to deal
+                state.TotalDarkOrbDamage = Math.Max(0, state.TotalDarkOrbDamage - darkDmg);
                 if (targetEnemy == null)
                     targetEnemy = state.Enemies.Where(e => e.IsAlive)
                         .OrderBy(e => e.Hp).FirstOrDefault();
@@ -1157,6 +1175,9 @@ public static class IroncladSolver
 
         string orbType = state.OrbQueue[0];
         state.OrbQueue.RemoveAt(0);
+        // Remove parallel dark orb accumulation entry (0 for non-dark orbs)
+        if (state.DarkOrbAccumulation.Count > 0)
+            state.DarkOrbAccumulation.RemoveAt(0);
 
         // Decrement orb count
         switch (orbType)
@@ -1928,6 +1949,7 @@ public static class IroncladSolver
             PlasmaOrbs = src.PlasmaOrbs,
             LoopCount = src.LoopCount,
             OrbQueue = new List<string>(src.OrbQueue),
+            DarkOrbAccumulation = new List<int>(src.DarkOrbAccumulation),
             BaseDarkOrbDamage = src.BaseDarkOrbDamage,
             TotalDarkOrbDamage = src.TotalDarkOrbDamage,
             Stars = src.Stars,
@@ -2113,7 +2135,10 @@ public static class IroncladSolver
             {
                 if (intent is MegaCrit.Sts2.Core.MonsterMoves.Intents.AttackIntent attack)
                 {
-                    var targets = enemy.CombatState?.PlayerCreatures?.ToList() ?? new List<Creature>();
+                    // Use enemy.CombatState for player creature list.
+                    // Fall back to empty list if null (rare, but defensive).
+                    var targets = enemy.CombatState?.PlayerCreatures?.ToList()
+                        ?? new List<Creature>();
                     total += attack.GetTotalDamage(targets, enemy);
                 }
             }

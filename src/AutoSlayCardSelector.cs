@@ -96,7 +96,7 @@ public class AutoSlayCardSelector : ICardSelector
         // The context matters critically — exhaust wants the WORST cards,
         // upgrade wants the BEST upgrade candidates, put-on-top wants the BEST cards.
         string context = "";
-        try { context = Solver.DecisionEngine.PendingCardSelectContext ?? ""; } catch { }
+        try { context = Solver.DecisionEngine.GetPendingCardSelectContext(); } catch { }
 
         var sorted = list
             .OrderByDescending(c =>
@@ -198,8 +198,13 @@ public class AutoSlayCardSelector : ICardSelector
             var trimmed = line.Trim().ToUpper();
             if (trimmed.StartsWith("CHOOSE") && trimmed.Length > 6)
             {
-                if (int.TryParse(trimmed.Substring(6).Trim(), out int idx) && idx >= 1 && idx <= max)
-                    choices.Add(idx);
+                var after = trimmed.Substring(6).Trim();
+                // M28: support comma-separated "1, 2, 3" as well as single "5"
+                foreach (var part in after.Split(',', StringSplitOptions.RemoveEmptyEntries))
+                {
+                    if (int.TryParse(part.Trim(), out int idx) && idx >= 1 && idx <= max)
+                        choices.Add(idx);
+                }
             }
         }
         if (choices.Count >= needed)
@@ -209,7 +214,17 @@ public class AutoSlayCardSelector : ICardSelector
 
     public CardRewardSelection GetSelectedCardReward(IReadOnlyList<CardCreationResult> options, IReadOnlyList<CardRewardAlternative> alternatives)
     {
-        if (options.Count == 0) return default;
+        if (options.Count == 0)
+        {
+            // M27: default struct has null .card — log warning, return first alternative (likely SKIP)
+            MainFile.Logger.Warn("[AutoSlay] GetSelectedCardReward called with 0 card options");
+            if (alternatives.Count > 0)
+            {
+                MainFile.Logger.Info("[AutoSlay] Selecting first alternative (0 card options)");
+                return new CardRewardSelection { card = null, alternative = alternatives[0] };
+            }
+            return default;
+        }
         var pick = options[_rng.Next(options.Count)];
         return new CardRewardSelection { card = pick.Card, alternative = null };
     }

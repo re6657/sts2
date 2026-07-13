@@ -12,7 +12,10 @@ public static class ChooseACardHandler
         var holders = AutoSlayHelpers.FindAll<NCardHolder>(screen);
         if (holders.Count == 0) return 0.5;
         var pick = holders[rng.Next(holders.Count)];
-        pick.EmitSignal(NCardHolder.SignalName.Pressed, pick);
+        // H15/M21: NCardHolder has no ForceClick — EmitSignal is the correct API here.
+        // Added IsInstanceValid guard to prevent operating on orphaned nodes.
+        if (GodotObject.IsInstanceValid(pick))
+            pick.EmitSignal(NCardHolder.SignalName.Pressed, pick);
         return 1.0;
     }
 }

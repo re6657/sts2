@@ -18,18 +18,28 @@ public class ChatEngine
 {
     private static readonly HttpClient _http = new();
     private static ChatEngine? _instance;
+    private static readonly Dictionary<string, ChatEngine> _instances = new(StringComparer.OrdinalIgnoreCase);
 
     private readonly string _apiKey;
     private readonly string _model;
     private readonly string _baseUrl;
     private readonly string _personaPrompt;
+    private readonly string _characterName;
     private readonly List<string> _recentMessages = new(); // prevent short-term repeats
 
     /// <summary>
     /// Returns the most recently created ChatEngine instance, or null.
-    /// Used by CombatRecorder to call the API outside of AutoSlayNode.
+    /// Deprecated: prefer GetInstanceByCharacter for multi-bot setups.
     /// </summary>
     public static ChatEngine? GetInstance() => _instance;
+
+    /// <summary>Get a ChatEngine by character name, falling back to the most recent instance.</summary>
+    public static ChatEngine? GetInstanceByCharacter(string characterName)
+    {
+        if (!string.IsNullOrEmpty(characterName) && _instances.TryGetValue(characterName, out var engine))
+            return engine;
+        return _instance;
+    }
 
     // ── Shared system prompt (Part A) ──────────────────────────────
     // This prompt defines HOW the character behaves in the game context.
@@ -85,9 +95,10 @@ Boss好恶心。
 - 不要用反问句给游戏建议
 ";
 
-    public ChatEngine(string personaPrompt, string? apiKey = null, string? model = null, string? baseUrl = null)
+    public ChatEngine(string personaPrompt, string? apiKey = null, string? model = null, string? baseUrl = null, string? characterName = null)
     {
         _personaPrompt = personaPrompt;
+        _characterName = characterName ?? "";
 
         if (apiKey != null)
             _apiKey = apiKey;
@@ -100,6 +111,8 @@ Boss好恶心。
         _baseUrl = baseUrl ?? (AiChatConfig.IsInitialized ? AiChatConfig.Instance.BaseUrl : "https://api.deepseek.com/v1");
 
         _instance = this;
+        if (!string.IsNullOrEmpty(_characterName))
+            _instances[_characterName] = this;
     }
 
     /// <summary>

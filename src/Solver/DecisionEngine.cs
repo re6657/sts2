@@ -47,12 +47,41 @@ public static class DecisionEngine
     //   "FETCH_ATTACK"— Secret Weapon: pick best Attack from draw pile
     //   ""            — Unknown context (default: use ScoreCard)
 
-    public static string PendingCardSelectContext { get; set; } = "";
+    private static string _pendingCardSelectContext = "";
+    private static DateTime _pendingContextSetAt = DateTime.MinValue;
+    private static readonly TimeSpan PendingContextTimeout = TimeSpan.FromSeconds(2);
+
+    /// <summary>
+    /// Card selection context for the current pending card-select screen.
+    /// Setting this records the timestamp; reading directly bypasses the timeout check.
+    /// Use <see cref="GetPendingCardSelectContext"/> for timeout-gated reads.
+    /// </summary>
+    public static string PendingCardSelectContext
+    {
+        get => _pendingCardSelectContext;
+        set { _pendingCardSelectContext = value; _pendingContextSetAt = DateTime.UtcNow; }
+    }
     public static string PendingCardSelectCardId { get; set; } = "";
+
+    /// <summary>Returns the pending context, or "" if it expired (>2s old).</summary>
+    public static string GetPendingCardSelectContext()
+    {
+        if (!string.IsNullOrEmpty(_pendingCardSelectContext)
+            && (DateTime.UtcNow - _pendingContextSetAt) < PendingContextTimeout)
+            return _pendingCardSelectContext;
+        // Expired — clear stale context
+        if (!string.IsNullOrEmpty(_pendingCardSelectContext))
+        {
+            MainFile.Logger.Info($"[DecisionEngine] CardSelect context '{_pendingCardSelectContext}' expired after {(DateTime.UtcNow - _pendingContextSetAt).TotalSeconds:F1}s");
+            ClearPendingCardSelect();
+        }
+        return "";
+    }
 
     /// <summary>Called when the solver plays a card that triggers card selection.</summary>
     public static void SetPendingCardSelect(string cardId)
     {
+        _pendingContextSetAt = DateTime.UtcNow;
         PendingCardSelectCardId = cardId;
         string upper = cardId.ToUpperInvariant();
         if (upper is "HEADBUTT" or "WARCRY")
@@ -77,6 +106,7 @@ public static class DecisionEngine
     {
         PendingCardSelectContext = "";
         PendingCardSelectCardId = "";
+        _pendingContextSetAt = DateTime.MinValue;
     }
 
     /// <summary>Initialize logging and reset state for a new run.</summary>

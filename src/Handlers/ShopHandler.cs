@@ -18,15 +18,23 @@ public static class ShopHandler
         int attempts = 0;
         while (attempts++ < 50 && GodotObject.IsInstanceValid(room))
         {
+            if (room.Inventory == null) break;
             var slots = room.Inventory.GetAllSlots()
                 .Where(s => s is not NMerchantCardRemoval
-                         && s.Entry.IsStocked
-                         && s.Entry.EnoughGold)
+                         && s.Entry?.IsStocked == true
+                         && s.Entry?.EnoughGold == true)
                 .ToList();
             if (slots.Count == 0) break;
 
-            await slots[rng.Next(slots.Count)].Entry.OnTryPurchaseWrapper(
-                room.Inventory.Inventory);
+            try
+            {
+                await slots[rng.Next(slots.Count)].Entry.OnTryPurchaseWrapper(
+                    room.Inventory.Inventory);
+            }
+            catch (Exception ex)
+            {
+                MainFile.Logger.Warn($"[AutoSlay] Purchase failed: {ex.Message}");
+            }
             await Task.Delay(300);
         }
 

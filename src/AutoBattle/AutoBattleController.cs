@@ -260,7 +260,7 @@ public partial class AutoBattleController : Node
 
     private void OnBeforeStuckKill(string reason)
     {
-        _stuckDetector.WriteDiagnostics(reason, _stuckDetector.CombatStuckTimeoutSeconds);
+        _stuckDetector.WriteDiagnostics(reason);
         Log($"[AutoBattle] STUCK: {reason} — logging and recovering (game will NOT be killed)");
         // ── Recovery: reset stuck detector state ──
         _stuckDetector.Reset();

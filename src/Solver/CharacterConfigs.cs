@@ -487,7 +487,6 @@ public class CharacterConfig
             ["PANIC_BUTTON"] = PRIORITY_FLEX, // 紧急按钮: 0-cost 30 block, exhausts, no block from cards for 2 turns
             ["DISARM"] = PRIORITY_FLEX,
             ["EXHUME"] = PRIORITY_FLEX,
-            ["EXHUME"] = PRIORITY_FLEX,
             ["SENTINEL"] = PRIORITY_FLEX,
             ["EVIL_EYE"] = PRIORITY_FLEX,
             ["CLUMSY"] = PRIORITY_FLEX,

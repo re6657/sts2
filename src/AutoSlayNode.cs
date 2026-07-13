@@ -474,9 +474,10 @@ public partial class AutoSlayNode : Node
         {
             var screen = GameStateDetector.Detect();
             currentScreenId = screen.ToString();
-            if (NOverlayStack.Instance?.ScreenCount > 0)
+            var ovs = NOverlayStack.Instance;
+            if (ovs?.ScreenCount > 0)
             {
-                var top = NOverlayStack.Instance.Peek();
+                var top = ovs.Peek();
                 currentScreenId += "/" + (top?.GetType().Name ?? "?");
             }
         }
@@ -560,6 +561,7 @@ public partial class AutoSlayNode : Node
             {
                 var errMsg = _pendingLlm.Exception?.InnerException?.Message ?? "unknown";
                 MainFile.Logger.Info($"[AutoSlay/LLM] Request failed: {errMsg}");
+                var failedContext = _pendingContext; // Capture BEFORE nulling
                 _pendingLlm = null;
                 _pendingContext = null;
                 _proceedTimer = -1;
@@ -567,11 +569,11 @@ public partial class AutoSlayNode : Node
 
                 // Track consecutive failures to prevent infinite retry loop
                 // (e.g. API key expired or insufficient balance)
-                if (_lastFailedContext == _pendingContext)
+                if (_lastFailedContext == failedContext)
                     _llmFailCount++;
                 else
                     _llmFailCount = 1;
-                _lastFailedContext = _pendingContext;
+                _lastFailedContext = failedContext;
 
                 if (_llmFailCount >= 3)
                 {
@@ -630,9 +632,10 @@ public partial class AutoSlayNode : Node
         }
 
         // ── Handle overlays that appear mid-combat (e.g. Headbutt card selection) ──
-        if (NOverlayStack.Instance?.ScreenCount > 0 && CombatManager.Instance?.IsInProgress == true)
+        var os3 = NOverlayStack.Instance;
+        if (os3?.ScreenCount > 0 && CombatManager.Instance?.IsInProgress == true)
         {
-            var overlay = NOverlayStack.Instance.Peek();
+            var overlay = os3.Peek();
             var overlayNode = overlay as Node;
             if (overlayNode != null)
             {
@@ -1250,6 +1253,7 @@ public partial class AutoSlayNode : Node
                                 orbSlots, lightningOrbs, frostOrbs,
                                 darkOrbs, plasmaOrbs, focus,
                                 loopCount, orbQueueList,
+                                null, // darkOrbAccumulation — solver tracks internally
                                 baseDarkOrbDamage, totalDarkOrbDamage,
                                 stars,
                                 drawPile, discardPile,
@@ -1657,7 +1661,7 @@ public partial class AutoSlayNode : Node
                                 if (pl2 != null && CombatManager.Instance is { PlayerActionsDisabled: false })
                                 {
                                     int tn = pl2.PlayerCombatState.TurnNumber;
-                                    RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(
+                                    RunManager.Instance?.ActionQueueSynchronizer?.RequestEnqueue(
                                         new MegaCrit.Sts2.Core.GameActions.EndPlayerTurnAction(pl2, tn));
                                     MainFile.Logger.Info($"[AutoSlay] MP Deadlock recovery: EndPlayerTurnAction turn#{tn} enqueued");
                                     _combatTurnRequested = true; _combatTurnRequestedDuration = 0;
@@ -1754,7 +1758,7 @@ public partial class AutoSlayNode : Node
                             if (pl3 != null)
                             {
                                 int tn3 = pl3.PlayerCombatState.TurnNumber;
-                                RunManager.Instance?.ActionQueueSynchronizer.RequestEnqueue(
+                                RunManager.Instance?.ActionQueueSynchronizer?.RequestEnqueue(
                                     new MegaCrit.Sts2.Core.GameActions.EndPlayerTurnAction(pl3, tn3));
                                 MainFile.Logger.Info($"[AutoSlay] MP Disabled recovery: EndPlayerTurnAction turn#{tn3} enqueued");
                             }
@@ -1831,9 +1835,10 @@ public partial class AutoSlayNode : Node
         LogState();
 
         // ── Overlay screens ──────────────────────────────────────────────────
-        if (NOverlayStack.Instance?.ScreenCount > 0)
+        var os2 = NOverlayStack.Instance;
+        if (os2?.ScreenCount > 0)
         {
-            var overlay = NOverlayStack.Instance.Peek();
+            var overlay = os2.Peek();
             var overlayNode = overlay as Node;
             // Skip rewards overlay when LLM is done with rewards — fall through to map
             if (overlayNode is NRewardsScreen rewardsForProceed && _rewardsLlmDone)
@@ -1897,11 +1902,10 @@ public partial class AutoSlayNode : Node
         }
 
         // ── Multiplayer: character select for HOST ────────────────────────
-        // Host also needs auto-select — otherwise the human has to manually
-        // click their character and confirm. This auto-selects the configured
-        // character for the host, then auto-confirms after a short delay to
-        // give the human a chance to see what's happening.
-        if (_multiplayerMode && _isMultiplayerHost && _multiplayerJoined)
+        // Only auto-select the host's character when auto-battle is ON
+        // (e.g. pure AI-vs-AI mode). When auto-battle is OFF, the human
+        // player should manually pick their character and confirm.
+        if (_multiplayerMode && _isMultiplayerHost && _multiplayerJoined && _autoBattle)
         {
             var mpCharSelect = GetNodeOrNull<Node>("/root/Game/RootSceneContainer/Run/RoomContainer/CharacterSelectRoom")
                 ?? GetNodeOrNull<Control>("/root/Game/RootSceneContainer/CharacterSelectScreen")
@@ -2526,9 +2530,10 @@ public partial class AutoSlayNode : Node
             // ── Check 2: NOverlayStack overlays ──────────────────────────
             try
             {
-                if (NOverlayStack.Instance?.ScreenCount > 0)
+                var overlayStack2 = NOverlayStack.Instance;
+                if (overlayStack2?.ScreenCount > 0)
                 {
-                    var overlay = NOverlayStack.Instance.Peek() as Node;
+                    var overlay = overlayStack2.Peek() as Node;
                     if (overlay != null && TryClickDismissInModal(overlay)) return;
                 }
             }
@@ -3340,11 +3345,12 @@ public partial class AutoSlayNode : Node
             {
                 var screen = GameStateDetector.Detect();
                 diag["detected_screen"] = screen.ToString();
-                if (NOverlayStack.Instance?.ScreenCount > 0)
+                var overlayStack3 = NOverlayStack.Instance;
+                if (overlayStack3?.ScreenCount > 0)
                 {
-                    var top = NOverlayStack.Instance.Peek();
+                    var top = overlayStack3.Peek();
                     diag["top_overlay"] = top?.GetType().Name ?? "?";
-                    diag["overlay_count"] = NOverlayStack.Instance.ScreenCount;
+                    diag["overlay_count"] = overlayStack3.ScreenCount;
                 }
             }
             catch { }
@@ -4435,12 +4441,10 @@ public partial class AutoSlayNode : Node
             }
         }
 
-        // Fallback: find first number in response
-        foreach (var ch in response)
-        {
-            if (char.IsDigit(ch))
-                return ch - '0';
-        }
+        // Fallback: find first number in response (supports multi-digit)
+        var match = System.Text.RegularExpressions.Regex.Match(response, @"\d+");
+        if (match.Success && int.TryParse(match.Value, out int fallbackVal))
+            return fallbackVal;
         return -1;
     }
 
@@ -4800,7 +4804,7 @@ public partial class AutoSlayNode : Node
             {
                 // ── Multiplayer (host OR client): must use synced action queue ──
                 int turnNumber = player.PlayerCombatState.TurnNumber;
-                RunManager.Instance.ActionQueueSynchronizer.RequestEnqueue(
+                RunManager.Instance?.ActionQueueSynchronizer?.RequestEnqueue(
                     new MegaCrit.Sts2.Core.GameActions.EndPlayerTurnAction(player, turnNumber));
                 MainFile.Logger.Info($"[AutoSlay] MP EndTurn: enqueued EndPlayerTurnAction turn#{turnNumber} (IsHost={_isMultiplayerHost})");
             }

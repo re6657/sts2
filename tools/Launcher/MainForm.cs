@@ -95,6 +95,12 @@ public partial class MainForm : Form
     private string[] _availableCharacters = Array.Empty<string>();
     private string[] _availableCharDisplayNames = Array.Empty<string>();
 
+    // ── Bot game character dropdowns ───────────────────────────────────
+    private readonly List<ComboBox> _botGameCharCombos = new();
+    private readonly List<Label> _botGameCharLabels = new();
+    private static readonly string[] GameCharacters = { "IRONCLAD", "SILENT", "DEFECT", "REGENT", "NECROBINDER", "RANDOM" };
+    private static readonly string[] GameCharNames = { "Ironclad 战士", "Silent 刺客", "Defect 机器人", "Regent 君王", "Necrobinder 亡灵", "随机" };
+
     // ── Character list ───────────────────────────────────────────────────
     private static readonly string[] Characters = { "IRONCLAD", "SILENT", "DEFECT", "REGENT", "NECROBINDER" };
     private static readonly string[] CharNames = { "Ironclad 战士", "Silent 刺客", "Defect 机器人", "Regent 君王", "Necrobinder 亡灵" };
@@ -107,7 +113,7 @@ public partial class MainForm : Form
     private void InitializeComponent()
     {
         Text = "TokenSpire2 多人启动器";
-        Size = new System.Drawing.Size(520, 720);
+        Size = new System.Drawing.Size(520, 800);
         StartPosition = FormStartPosition.CenterScreen;
         FormBorderStyle = FormBorderStyle.FixedSingle;
         MaximizeBox = false;
@@ -210,9 +216,25 @@ public partial class MainForm : Form
         {
             int bots = (int)_botCountSpinner.Value;
             infoLabel.Text = $"将启动窗口: 1 (Host) + {bots} Bot = 共 {bots + 1} 窗口";
+            UpdateBotGameCharacterDropdowns(bots);
             UpdateBotCharacterDropdowns(bots);
         };
         y += 35;
+
+        // ── Bot game character section ──────────────────────────────────
+        var botGameCharHeader = new Label
+        {
+            Text = "🎮 Bot 游戏角色:",
+            Font = new System.Drawing.Font("Microsoft YaHei", 10, System.Drawing.FontStyle.Bold),
+            Location = new System.Drawing.Point(15, y),
+            Size = new System.Drawing.Size(480, 25),
+        };
+        Controls.Add(botGameCharHeader);
+        y += 30;
+
+        // Reserve space for bot game character dropdowns (1-3 rows)
+        int _botGameCharY = y;
+        y += 90; // 3 rows × 30px
 
         // ── AI Chat section ────────────────────────────────────────────
         var aiSectionLabel = new Label
@@ -332,6 +354,7 @@ public partial class MainForm : Form
         // Scan available characters and load API key
         ScanAvailableCharacters();
         LoadApiKeyFromConfig();
+        UpdateBotGameCharacterDropdowns((int)_botCountSpinner.Value);
         UpdateBotCharacterDropdowns((int)_botCountSpinner.Value);
     }
 
@@ -432,7 +455,58 @@ public partial class MainForm : Form
     }
 
     /// <summary>
-    /// Create/update bot character dropdowns based on bot count.
+    /// Create/update bot game character dropdowns based on bot count.
+    /// </summary>
+    private void UpdateBotGameCharacterDropdowns(int botCount)
+    {
+        foreach (var combo in _botGameCharCombos)
+            Controls.Remove(combo);
+        foreach (var label in _botGameCharLabels)
+            Controls.Remove(label);
+        _botGameCharCombos.Clear();
+        _botGameCharLabels.Clear();
+
+        int startY = 365; // below "Bot 游戏角色:" header
+
+        for (int i = 0; i < botCount; i++)
+        {
+            var label = new Label
+            {
+                Text = $"  Bot {i + 1}:",
+                Location = new System.Drawing.Point(30, startY + i * 30),
+                Size = new System.Drawing.Size(60, 25),
+            };
+            Controls.Add(label);
+            _botGameCharLabels.Add(label);
+
+            var combo = new ComboBox
+            {
+                Location = new System.Drawing.Point(95, startY + i * 30),
+                Size = new System.Drawing.Size(200, 25),
+                DropDownStyle = ComboBoxStyle.DropDownList,
+            };
+            for (int j = 0; j < GameCharacters.Length; j++)
+                combo.Items.Add($"{GameCharacters[j]} — {GameCharNames[j]}");
+            // Default: first bot = different character each, or RANDOM
+            combo.SelectedIndex = Math.Min(i, GameCharacters.Length - 1);
+            Controls.Add(combo);
+            _botGameCharCombos.Add(combo);
+        }
+    }
+
+    private string GetSelectedBotGameCharacter(int botIndex)
+    {
+        if (botIndex >= 0 && botIndex < _botGameCharCombos.Count)
+        {
+            int selIdx = _botGameCharCombos[botIndex].SelectedIndex;
+            if (selIdx >= 0 && selIdx < GameCharacters.Length)
+                return GameCharacters[selIdx];
+        }
+        return "RANDOM"; // fallback
+    }
+
+    /// <summary>
+    /// Create/update bot AI character (persona) dropdowns based on bot count.
     /// </summary>
     private void UpdateBotCharacterDropdowns(int botCount)
     {
@@ -519,7 +593,9 @@ public partial class MainForm : Form
             Log($"AI 对话: {(aiChatEnabled ? "启用" : "关闭")}");
             for (int i = 0; i < botCount; i++)
             {
-                Log($"  Bot {i + 1} 角色: {GetSelectedBotCharacter(i)}");
+                string gameChar = GetSelectedBotGameCharacter(i);
+                string aiPersona = GetSelectedBotCharacter(i);
+                Log($"  Bot {i + 1}: 游戏={gameChar}  AI角色={aiPersona}");
             }
             Log($"==========================================");
 
@@ -557,13 +633,14 @@ public partial class MainForm : Form
                 string botSignal = $"config_read_bot{i}.signal";
                 string botPath = Path.Combine(GameDir, $"token_spire_bot{i}.json");
                 string botName = $"Bot{i}";
-                string botCharacter = GetSelectedBotCharacter(i - 1);
+                string botGameCharacter = GetSelectedBotGameCharacter(i - 1);
+                string botAiPersona = GetSelectedBotCharacter(i - 1);
                 string botConfig = $$"""
-                    {"Seed":{{seedJson}},"Character":"{{character}}","MultiplayerMode":true,"IsMultiplayerHost":false,"SteamPersonaName":"{{botName}}","AutoBattleEnabled":true,"SignalFile":"{{botSignal}}","AiChatEnabled":{{aiChatEnabled.ToString().ToLower()}},"AiChatCharacter":"{{botCharacter}}"}
+                    {"Seed":{{seedJson}},"Character":"{{botGameCharacter}}","MultiplayerMode":true,"IsMultiplayerHost":false,"SteamPersonaName":"{{botName}}","AutoBattleEnabled":true,"SignalFile":"{{botSignal}}","AiChatEnabled":{{aiChatEnabled.ToString().ToLower()}},"AiChatCharacter":"{{botAiPersona}}"}
                     """;
                 File.WriteAllText(botPath, botConfig);
                 botConfigs.Add((botPath, botSignal, botName));
-                Log($"✓ {botName} 配置: {botPath} (角色: {botCharacter})");
+                Log($"✓ {botName} 配置: {botPath} (游戏: {botGameCharacter}, AI: {botAiPersona})");
             }
 
             // ── Launch ALL windows at once (parallel) ──────────────────

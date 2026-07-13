@@ -8,14 +8,15 @@ namespace TokenSpire2.Core;
 /// <summary>
 /// Unified application configuration.
 ///
-/// Thread-safe: all public state reads use a reader-writer lock.
+/// NOT thread-safe. Instance access uses a simple lock for initialization only;
+/// public properties are plain { get; set; } with no synchronization.
 /// Loaded once at startup from batch_config.json.
 /// SolverParams are loaded separately via SolverParams.Load().
 /// </summary>
 public class AppConfig
 {
     private static readonly object _lock = new();
-    private static AppConfig? _instance;
+    private static volatile AppConfig? _instance; // H18: volatile prevents TOCTOU on lock-free getter
     private static string? _modDirectory;
 
     // ═══════════════════════════════════════════════════════════════

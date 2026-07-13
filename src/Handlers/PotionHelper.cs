@@ -18,7 +18,13 @@ public static class PotionHelper
         return potion.TargetType switch
         {
             TargetType.AnyEnemy => RandomEnemy(combatState, rng),
-            TargetType.AnyAlly or TargetType.AnyPlayer or TargetType.Self =>
+            // M20: Self should return the actual player creature (IsPlayer), not
+            // the first alive ally. In multiplayer co-op, PlayerCreatures may
+            // contain multiple players' creatures — filter for the main player.
+            TargetType.Self => combatState.PlayerCreatures
+                .FirstOrDefault(c => c.IsAlive && c.IsPlayer)
+                ?? combatState.PlayerCreatures.FirstOrDefault(c => c.IsAlive),
+            TargetType.AnyAlly or TargetType.AnyPlayer =>
                 combatState.PlayerCreatures.FirstOrDefault(c => c.IsAlive),
             _ => null,
         };

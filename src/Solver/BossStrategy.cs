@@ -230,9 +230,10 @@ public static class BossStrategy
 
         var upper = encounterId.ToUpperInvariant();
 
+        // M12: use StartsWith to avoid substring false-matches (e.g. "THE_KINSMAN" matching "THE_KIN")
         foreach (var (pattern, strategy) in BossStrategies)
         {
-            if (upper.Contains(pattern))
+            if (upper.StartsWith(pattern, StringComparison.Ordinal))
                 return strategy;
         }
         return null;

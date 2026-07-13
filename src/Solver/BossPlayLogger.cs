@@ -219,9 +219,10 @@ public static class BossPlayLogger
     {
         if (string.IsNullOrWhiteSpace(encounterId)) return "Unknown";
         // Extract just the boss name from encounter IDs like "SLIME_BOSS" or "GUARDIAN_BOSS"
+        // L8: use RemoveEmptyEntries to avoid double spaces from consecutive underscores
         var name = encounterId.Replace("_BOSS", "").Replace("_", " ");
-        return string.Join(" ", name.Split(' ').Select(w =>
-            w.Length > 0 ? char.ToUpper(w[0]) + w[1..].ToLower() : ""));
+        return string.Join(" ", name.Split(' ', StringSplitOptions.RemoveEmptyEntries).Select(w =>
+            char.ToUpper(w[0]) + w[1..].ToLower()));
     }
 
     // ── Data types ──────────────────────────────────────────────────────────

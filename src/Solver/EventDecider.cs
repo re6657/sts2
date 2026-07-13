@@ -94,7 +94,8 @@ public static class EventDecider
         string reason = $"Chose event option {best.index + 1}/{options.Count}: {best.label} score={best.score:F0}";
 
         // Track repeat count for this option
-        string repeatKey = $"{currentEventId}:{best.index}";
+        // M7: key by content label, not just index — some events randomize option order
+        string repeatKey = $"{currentEventId}:{best.label}";
         _repeatCounts.TryGetValue(repeatKey, out int count);
         _repeatCounts[repeatKey] = count + 1;
 
@@ -173,7 +174,10 @@ public static class EventDecider
         int idx = options.IndexOf(option);
         if (idx >= 0)
         {
-            string repeatKey = $"{_lastEventId}:{idx}";
+            // M7: key by content label + index — content-based for random-order events,
+            // index for distinguishing identical-text options (e.g. two "Leave" buttons)
+            string label = OptionLabel(option);
+            string repeatKey = $"{_lastEventId}:{label}:{idx}";
             _repeatCounts.TryGetValue(repeatKey, out repeatCount);
         }
 
@@ -229,6 +233,17 @@ public static class EventDecider
             || text.Contains("腐朽");
         if (givesCurse)
             score += state.HasExhaustSynergy ? ep.CurseWithSynergyPenalty : ep.CurseNoSynergyPenalty;
+
+        // ── STATUS CARD DETECTION ──────────────────────────────────────────
+        // M10: Wound, Burn, Slimed, Void, Dazed are status cards (removed after combat).
+        // They're less harmful than curses but still clog the deck during combat.
+        // Apply a mild penalty for events that add status cards.
+        bool givesStatus = text.Contains("wound") || text.Contains("burn")
+            || text.Contains("slimed") || text.Contains("dazed") || text.Contains("void")
+            || text.Contains("伤口") || text.Contains("灼伤") || text.Contains("粘液")
+            || text.Contains("眩晕") || text.Contains("虚空");
+        if (givesStatus)
+            score += ep.StatusCardPenalty;
 
         // ── Positive keywords (English + Chinese 中文) ──
         if (text.Contains("heal") || text.Contains("restore") || text.Contains("治疗") || text.Contains("回复") || text.Contains("恢复"))

@@ -458,13 +458,13 @@ public static class CardRewardDecider
         // ═══════════════════════════════════════════════════════════════════
 
         if (fx.BaseDamage > 0 && cost > 0)
-            score += (fx.BaseDamage / (double)cost) * sw.RawEfficiencyDamagePerEnergy;
-        else if (fx.BaseDamage > 0 && cost == 0)
+            score += ((double)fx.BaseDamage / cost) * sw.RawEfficiencyDamagePerEnergy;
+        else if (fx.BaseDamage > 0) // L4: cost must be 0 (already guarded in if)
             score += fx.BaseDamage * sw.ZeroCostDamagePerPoint;
 
         if (fx.BaseBlock > 0 && cost > 0)
-            score += (fx.BaseBlock / (double)cost) * sw.RawEfficiencyBlockPerEnergy;
-        else if (fx.BaseBlock > 0 && cost == 0)
+            score += ((double)fx.BaseBlock / cost) * sw.RawEfficiencyBlockPerEnergy;
+        else if (fx.BaseBlock > 0) // L4: cost must be 0 (already guarded in if)
             score += fx.BaseBlock * sw.ZeroCostBlockPerPoint;
 
         if (card.EnergyCost.CostsX) score += sw.XCostFlexibility;
@@ -526,7 +526,7 @@ public static class CardRewardDecider
         {
             case 1:
                 if (cost > 0 && fx.BaseDamage > 0)
-                    score += (fx.BaseDamage / cost) * sw.Act1DamagePerEnergyExtra;
+                    score += ((double)fx.BaseDamage / cost) * sw.Act1DamagePerEnergyExtra; // M1: avoid integer division truncation
                 if (PremiumAct1Attacks.Contains(cardIdUpper))
                     score += sw.Act1PremiumAttackBonus;
                 if (cost == 2 && fx.BaseDamage >= 12)

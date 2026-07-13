@@ -72,7 +72,7 @@ public static class GameStateSerializer
         // Hand
         sb.AppendLine();
         sb.AppendLine(P("Hand"));
-        var hand = PileType.Hand.GetPile(player).Cards.ToList();
+        var hand = PileType.Hand.GetPile(player)?.Cards?.ToList() ?? new List<CardModel>();
         for (int i = 0; i < hand.Count; i++)
         {
             var c = hand[i];
@@ -91,9 +91,9 @@ public static class GameStateSerializer
         }
 
         // Draw/Discard/Exhaust piles (card names only)
-        var drawCards = PileType.Draw.GetPile(player).Cards.ToList();
-        var discardCards = PileType.Discard.GetPile(player).Cards.ToList();
-        var exhaustCards = PileType.Exhaust.GetPile(player).Cards.ToList();
+        var drawCards = PileType.Draw.GetPile(player)?.Cards?.ToList() ?? new List<CardModel>();
+        var discardCards = PileType.Discard.GetPile(player)?.Cards?.ToList() ?? new List<CardModel>();
+        var exhaustCards = PileType.Exhaust.GetPile(player)?.Cards?.ToList() ?? new List<CardModel>();
         sb.AppendLine($"{P("DrawPile")} ({drawCards.Count}): {string.Join(", ", drawCards.Select(c => CardName(c)))}");
         sb.AppendLine($"{P("DiscardPile")} ({discardCards.Count}): {string.Join(", ", discardCards.Select(c => CardName(c)))}");
         if (exhaustCards.Count > 0)

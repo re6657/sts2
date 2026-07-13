@@ -127,6 +127,13 @@ public static class CardEffectReader
 
         if (!reflectionFoundValues && !fx.IsPower)
         {
+            // Log when fallback is used — silent underestimation can cause solver errors.
+            // Only log once per card ID to avoid spam.
+            if (!_fallbackLogged.Contains(idUpper))
+            {
+                _fallbackLogged.Add(idUpper);
+                MainFile.Logger.Warn($"[CardEffectReader] Using hardcoded fallback for '{idUpper}' — reflection returned 0/0");
+            }
             FallbackEstimate(card, ref fx);
         }
         else if (reflectionFoundValues)
@@ -275,6 +282,7 @@ public static class CardEffectReader
     /// </summary>
     // Throttle diagnostic logs — each card ID only logs once per run
     private static readonly System.Collections.Generic.HashSet<string> _diagnosticLogged = new();
+    private static readonly System.Collections.Generic.HashSet<string> _fallbackLogged = new();
 
     private static void ValidateAgainstFallback(string idUpper, CardModel card, ref CardEffects fx)
     {

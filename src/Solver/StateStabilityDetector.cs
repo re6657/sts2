@@ -190,7 +190,12 @@ public static class StateStabilityDetector
                             }
                         }
                     }
-                    catch { /* reflection may fail, assume stable */ }
+                    // M2: reflection may fail during scene transitions — assume unstable rather than stable
+                    catch
+                    {
+                        _stabilityCounter = 0;
+                        return false;
+                    }
 
                     if (!actionsEmpty)
                     {

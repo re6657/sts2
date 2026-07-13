@@ -16,7 +16,7 @@ public static class CrystalSphereHandler
 
         // If a child overlay appeared on top, let the main loop handle it
         var topOverlay = NOverlayStack.Instance?.Peek();
-        if (topOverlay != null && topOverlay != (IOverlayScreen)screen)
+        if (topOverlay != null && screen is IOverlayScreen overlay && topOverlay != overlay)
             return 0;
 
         // Try proceed button
@@ -38,7 +38,7 @@ public static class CrystalSphereHandler
         if (cells == null) return 0.5;
 
         var clickable = AutoSlayHelpers.FindAll<NCrystalSphereCell>(cells)
-            .Where(c => c.Visible && c.Entity.IsHidden)
+            .Where(c => c.Visible && c.Entity?.IsHidden == true)
             .ToList();
 
         if (clickable.Count == 0)
@@ -49,7 +49,7 @@ public static class CrystalSphereHandler
 
         var pick = clickable[rng.Next(clickable.Count)];
         MainFile.Logger.Info($"[AutoSlay] Clicking crystal sphere cell, {clickable.Count} clickable remaining");
-        pick.EmitSignal(NClickableControl.SignalName.Released, pick);
+        pick.ForceClick();
         return 0.5;
     }
 }

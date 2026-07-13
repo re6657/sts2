@@ -11,8 +11,8 @@ namespace TokenSpire2.Chat;
 ///
 /// File location: {modDir}/ai_chat_history.log
 ///
-/// Thread-safe and process-safe: uses File.AppendAllText with
-/// FileShare.Read to allow multiple game instances to write
+/// Thread-safe and process-safe: uses FileStream with
+/// FileShare.ReadWrite to allow multiple game instances to write
 /// to the same log concurrently.
 /// </summary>
 public static class ChatLogger
@@ -47,11 +47,11 @@ public static class ChatLogger
 
         try
         {
-            // File.AppendAllText opens with FileShare.Read, allowing
-            // concurrent writes from multiple processes on Windows.
-            // Short lines make interleaving at the byte level unlikely,
-            // and if it does happen it's cosmetic only.
-            File.AppendAllText(_logPath, line);
+            // H24: File.AppendAllText uses FileShare.Read which blocks concurrent writes.
+            // Use FileStream with FileShare.ReadWrite to allow multiple instances to write.
+            using var fs = new FileStream(_logPath, FileMode.Append, FileAccess.Write, FileShare.ReadWrite);
+            using var sw = new StreamWriter(fs);
+            sw.Write(line);
         }
         catch
         {

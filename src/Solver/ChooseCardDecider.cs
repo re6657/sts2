@@ -31,7 +31,7 @@ public static class ChooseCardDecider
         var holders = AutoSlayHelpers.FindAll<NCardHolder>(screen);
         if (holders.Count == 0) return false;
 
-        string context = DecisionEngine.PendingCardSelectContext;
+        string context = DecisionEngine.GetPendingCardSelectContext();
         string triggerCardId = DecisionEngine.PendingCardSelectCardId;
 
         var scored = holders.Select((h, i) =>

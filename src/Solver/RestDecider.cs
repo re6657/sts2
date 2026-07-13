@@ -18,9 +18,7 @@ namespace TokenSpire2.Solver;
 /// </summary>
 public static class RestDecider
 {
-    /// <summary>HP ratio below which we should rest instead of upgrade.</summary>
-    private const double REST_THRESHOLD = 0.50;
-
+    // M9: removed unused REST_THRESHOLD constant — actual thresholds come from SolverParams
     private static int _stuckFrames;
     private const int MaxStuckFrames = 90; // ~3 seconds before force-proceed
 

@@ -50,7 +50,7 @@ public static class SimpleSelectDecider
         // ── Determine how many cards need to be selected ──────────────
         int maxSelect = GetMaxSelectCount(screen);
         int selectedCount = CountSelectedCards(screen);
-        string context = DecisionEngine.PendingCardSelectContext;
+        string context = DecisionEngine.GetPendingCardSelectContext();
 
         MainFile.Logger.Info(
             $"[SimpleSelect] maxSelect={maxSelect} selected={selectedCount} " +

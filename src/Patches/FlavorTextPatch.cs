@@ -95,7 +95,7 @@ public static class FlavorTextPatch
                 if (File.Exists(filePath))
                 {
                     var text = File.ReadAllText(filePath).Trim();
-                    if (!string.IsNullOrEmpty(text) && text.Length <= 20)
+                    if (!string.IsNullOrEmpty(text) && text.Length <= 60)
                     {
                         // Don't delete — the file serves as a cache for all peers
                         return text;

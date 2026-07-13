@@ -20,7 +20,7 @@ public static class RewardsHandler
     private static int _sameScreenCount;
     private static int _forceRemoveCount;
 
-    public static void ClearTried() { _triedRewards.Clear(); _stuckFrames = 0; }
+    public static void ClearTried() { _triedRewards.Clear(); _stuckFrames = 0; _forceRemoveCount = 0; }
 
     public static double Handle(NRewardsScreen screen)
     {

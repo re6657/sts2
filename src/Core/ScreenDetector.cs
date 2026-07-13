@@ -81,9 +81,11 @@ public static class ScreenDetector
     private static GameScreen DetectInternal()
     {
         // ── Overlays (checked first, they stack on top of other screens) ──
-        if (NOverlayStack.Instance?.ScreenCount > 0)
+        // M25: cache Instance to prevent TOCTOU between ScreenCount check and Peek()
+        var overlayStack = NOverlayStack.Instance;
+        if (overlayStack?.ScreenCount > 0)
         {
-            var overlay = NOverlayStack.Instance.Peek();
+            var overlay = overlayStack.Peek();
             var overlayNode = overlay as Node;
             if (overlayNode != null)
             {
@@ -210,8 +212,18 @@ public static class ScreenDetector
     /// Searches for the characteristic "Refresh" / "刷新" button that only
     /// appears on this screen.
     /// </summary>
+    private static bool _friendListCached;
+    private static ulong _friendListCacheFrame;
+    private const ulong FRIEND_LIST_CACHE_FRAMES = 60; // H21: cache for ~1s to avoid per-frame full tree walk
+
     private static bool IsFriendListScreen(Node root)
     {
+        // H21: cache the result for 60 frames to avoid per-frame full scene-tree recursion
+        ulong frame = Engine.GetProcessFrames();
+        if (frame - _friendListCacheFrame < FRIEND_LIST_CACHE_FRAMES)
+            return _friendListCached;
+
+        _friendListCacheFrame = frame;
         try
         {
             foreach (var child in root.GetChildren())
@@ -223,12 +235,14 @@ public static class ScreenDetector
                         && (button.Text.Contains("刷新", StringComparison.OrdinalIgnoreCase)
                             || button.Text.Contains("Refresh", StringComparison.OrdinalIgnoreCase)))
                     {
+                        _friendListCached = true;
                         return true;
                     }
                 }
             }
         }
         catch { }
+        _friendListCached = false;
         return false;
     }
 
@@ -243,10 +257,11 @@ public static class ScreenDetector
     {
         if (node is Button btn)
             result.Add(btn);
+        // M24: copy children before iterating — nodes may be added/removed during traversal
+        var children = new List<Node>();
         foreach (var child in node.GetChildren())
-        {
-            if (child is Node childNode)
-                CollectButtons(childNode, result);
-        }
+            if (child is Node childNode) children.Add(childNode);
+        foreach (var childNode in children)
+            CollectButtons(childNode, result);
     }
 }
