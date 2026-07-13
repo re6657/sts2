@@ -2,8 +2,9 @@
 import re
 import json
 import os
+from pathlib import Path
 
-PCK_PATH = "E:/SteamLibrary/steamapps/common/Slay the Spire 2/SlayTheSpire2.pck"
+PCK_PATH = str(Path(__file__).parent.parent.parent.parent / "SlayTheSpire2.pck")
 
 # All character card IDs from STS2_Cards_by_Class.md
 IRONCLAD = [
@@ -159,7 +160,7 @@ def main():
           f"({total_found+total_missing} cards)")
 
     # Generate Python dict output
-    output_path = "E:/SteamLibrary/steamapps/common/Slay the Spire 2/mods/TokenSpire2/scripts/chinese_names_extracted.py"
+    output_path = str(Path(__file__).parent / "chinese_names_extracted.py")
     with open(output_path, 'w', encoding='utf-8') as f:
         f.write("# Auto-extracted Chinese card name translations from SlayTheSpire2.pck\n")
         f.write(f"# Total entries: {len(translations)}\n\n")
@@ -171,7 +172,7 @@ def main():
     print(f"\nSaved all translations to: {output_path}")
 
     # Also output JSON for direct use
-    json_path = "E:/SteamLibrary/steamapps/common/Slay the Spire 2/mods/TokenSpire2/scripts/chinese_names.json"
+    json_path = str(Path(__file__).parent / "chinese_names.json")
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(translations, f, ensure_ascii=False, indent=2)
     print(f"Saved translations JSON to: {json_path}")

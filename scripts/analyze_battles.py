@@ -595,11 +595,8 @@ def main():
         script_dir = Path(__file__).resolve().parent.parent
         battle_dir = script_dir / "llm_data" / "battles"
         if not battle_dir.exists():
-            # Fallback to hardcoded path
-            battle_dir = Path(
-                r"E:\SteamLibrary\steamapps\common\Slay the Spire 2"
-                r"\mods\TokenSpire2\llm_data\battles"
-            )
+            # Fallback to computed path relative to script
+            battle_dir = Path(__file__).parent.parent / "llm_data" / "battles"
 
     if not battle_dir.exists():
         print(f"ERROR: Battle log directory not found: {battle_dir}")

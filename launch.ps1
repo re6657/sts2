@@ -1,4 +1,4 @@
-# TokenSpire2 Unified Launcher — all modes, simultaneous window launch
+# TokenSpire2 Unified Launcher — all modes
 #
 # Usage:
 #   .\launch.ps1 -Mode solo_bot                     单角色自动战斗
@@ -24,7 +24,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 # ── Paths ────────────────────────────────────────────────────────────
-$GameDir  = "E:\SteamLibrary\steamapps\common\Slay the Spire 2"
+$GameDir  = Resolve-Path "$PSScriptRoot\..\.."
 $GameExe  = Join-Path $GameDir "SlayTheSpire2.exe"
 $ModDir   = Join-Path $GameDir "mods\TokenSpire2"
 $seedJson = if ($Seed) { "`"$Seed`"" } else { "null" }
@@ -34,13 +34,13 @@ if (-not (Test-Path $GameExe)) {
     exit 1
 }
 
-# ── Mode description ─────────────────────────────────────────────────
+# ── Mode info ─────────────────────────────────────────────────────────
 $modeInfo = @{
-    "solo_bot"    = @{ Windows=1; Desc="单角色自动战斗" }
-    "solo_player" = @{ Windows=1; Desc="单角色正常游戏" }
-    "coop_1bot"   = @{ Windows=2; Desc="1玩家 + 1人机" }
-    "coop_2bot"   = @{ Windows=3; Desc="1玩家 + 2人机" }
-    "coop_3bot"   = @{ Windows=4; Desc="1玩家 + 3人机" }
+    "solo_bot"    = @{ Windows=1; Desc="单角色自动战斗"; IsMultiplayer=$false }
+    "solo_player" = @{ Windows=1; Desc="单角色正常游戏"; IsMultiplayer=$false }
+    "coop_1bot"   = @{ Windows=2; Desc="1玩家 + 1人机"; IsMultiplayer=$true; BotCount=1 }
+    "coop_2bot"   = @{ Windows=3; Desc="1玩家 + 2人机"; IsMultiplayer=$true; BotCount=2 }
+    "coop_3bot"   = @{ Windows=4; Desc="1玩家 + 3人机"; IsMultiplayer=$true; BotCount=3 }
 }
 $info = $modeInfo[$Mode]
 Write-Host ""
@@ -53,7 +53,7 @@ if ($Seed) { Write-Host " Seed:      $Seed" }
 Write-Host "============================================================"
 Write-Host ""
 
-# ── Cleanup old signals/configs ──────────────────────────────────────
+# ── Cleanup ──────────────────────────────────────────────────────────
 Write-Host "[Cleanup] Removing old files..."
 @(
     "$ModDir\config_read.signal",
@@ -64,126 +64,148 @@ Write-Host "[Cleanup] Removing old files..."
     Remove-Item "$GameDir\token_spire_bot$_.json"   -Force -ErrorAction SilentlyContinue
 }
 Remove-Item "$ModDir\batch_config.json" -Force -ErrorAction SilentlyContinue
-Remove-Item "$GameDir\token_spire_host.json"  -Force -ErrorAction SilentlyContinue
-Remove-Item "$GameDir\token_spire_client.json" -Force -ErrorAction SilentlyContinue
+Remove-Item "$GameDir\token_spire_host.json" -Force -ErrorAction SilentlyContinue
+Remove-Item "$GameDir\token_spire_solo.json" -Force -ErrorAction SilentlyContinue
 
 # ── Build instance list ──────────────────────────────────────────────
 $instances = @()
 
 switch ($Mode) {
     "solo_bot" {
-        # 1 window: single-player auto-battle
         $instances += @{
-            Label     = "SoloBot"
-            Config    = @{ Seed=$seedJson; Character=$Character; MultiplayerMode=$false; IsMultiplayerHost=$false; AutoBattleEnabled=$true; SteamPersonaName="" }
-            FastMp    = $null
+            Label      = "SoloBot"
             ConfigPath = Join-Path $GameDir "token_spire_solo.json"
-            Signal    = "config_read.signal"
+            Signal     = "config_read.signal"
+            FastMp     = $null
+            Config     = @{ Seed=$seedJson; Character=$Character; MultiplayerMode=$false; IsMultiplayerHost=$false; AutoBattleEnabled=$true; SteamPersonaName="" }
         }
     }
     "solo_player" {
-        # 1 window: single-player normal game (no auto-battle)
         $instances += @{
-            Label     = "SoloPlayer"
-            Config    = @{ Seed=$seedJson; Character=$Character; MultiplayerMode=$false; IsMultiplayerHost=$false; AutoBattleEnabled=$false; SteamPersonaName="" }
-            FastMp    = $null
+            Label      = "SoloPlayer"
             ConfigPath = Join-Path $GameDir "token_spire_solo.json"
-            Signal    = "config_read.signal"
+            Signal     = "config_read.signal"
+            FastMp     = $null
+            Config     = @{ Seed=$seedJson; Character=$Character; MultiplayerMode=$false; IsMultiplayerHost=$false; AutoBattleEnabled=$false; SteamPersonaName="" }
         }
     }
     default {
         # coop_1bot / coop_2bot / coop_3bot
-        $botCount = [int]$Mode.Substring(5, 1)  # "coop_Xbot" → X
-        $totalWindows = $botCount + 1
+        $botCount = $info.BotCount
 
-        # Host: human player
+        # Host (human, auto-battle OFF)
         $instances += @{
-            Label     = "Host"
-            Config    = @{ Seed=$seedJson; Character=$Character; MultiplayerMode=$true; IsMultiplayerHost=$true; AutoBattleEnabled=$false; SteamPersonaName="Player" }
-            FastMp    = "host_standard"
+            Label      = "Host"
             ConfigPath = Join-Path $GameDir "token_spire_host.json"
-            Signal    = "config_read_host.signal"
+            Signal     = "config_read_host.signal"
+            FastMp     = "host_standard"
+            Config     = @{ Seed=$seedJson; Character=$Character; MultiplayerMode=$true; IsMultiplayerHost=$true; AutoBattleEnabled=$false; SteamPersonaName="Player" }
         }
 
-        # Bots: auto-battle clients
+        # Bots (auto-battle ON)
         for ($i = 1; $i -le $botCount; $i++) {
             $instances += @{
-                Label     = "Bot$i"
-                Config    = @{ Seed=$seedJson; Character=$Character; MultiplayerMode=$true; IsMultiplayerHost=$false; AutoBattleEnabled=$true; SteamPersonaName="Bot$i" }
-                FastMp    = "join"
+                Label      = "Bot$i"
                 ConfigPath = Join-Path $GameDir "token_spire_bot$i.json"
-                Signal    = "config_read_bot$i.signal"
+                Signal     = "config_read_bot$i.signal"
+                FastMp     = "join"
+                Config     = @{ Seed=$seedJson; Character=$Character; MultiplayerMode=$true; IsMultiplayerHost=$false; AutoBattleEnabled=$true; SteamPersonaName="Bot$i" }
             }
         }
     }
 }
 
-# ── Write config files & build launch args ───────────────────────────
-$launchJobs = @()
-
+# ── Write config files ───────────────────────────────────────────────
 foreach ($inst in $instances) {
-    $signalFile = [System.IO.Path]::GetFileName($inst.Signal)
     $json = @"
-{"Seed":$($inst.Config.Seed),"Character":"$($inst.Config.Character)","MultiplayerMode":$($inst.Config.MultiplayerMode.ToString().ToLower()),"IsMultiplayerHost":$($inst.Config.IsMultiplayerHost.ToString().ToLower()),"SteamPersonaName":"$($inst.Config.SteamPersonaName)","AutoBattleEnabled":$($inst.Config.AutoBattleEnabled.ToString().ToLower()),"SignalFile":"$signalFile"}
+{"Seed":$($inst.Config.Seed),"Character":"$($inst.Config.Character)","MultiplayerMode":$($inst.Config.MultiplayerMode.ToString().ToLower()),"IsMultiplayerHost":$($inst.Config.IsMultiplayerHost.ToString().ToLower()),"SteamPersonaName":"$($inst.Config.SteamPersonaName)","AutoBattleEnabled":$($inst.Config.AutoBattleEnabled.ToString().ToLower()),"SignalFile":"$($inst.Signal)"}
 "@
     $json | Set-Content -Path $inst.ConfigPath -Encoding UTF8
     Write-Host "[Config] $($inst.Label): $($inst.ConfigPath)"
+}
 
-    # Build args as a single string (same format as launch_lan.ps1)
-    $fastmpArg = if ($inst.FastMp) { "--fastmp $($inst.FastMp) " } else { "" }
-    $argsString = "${fastmpArg}--config `"$($inst.ConfigPath)`""
+# ── Launch ────────────────────────────────────────────────────────────
+# Solo modes: launch directly (no multiplayer dependencies)
+# Coop modes: sequential launch — host first, then bots (same proven pattern as launch_lan.ps1)
 
-    $launchJobs += @{
-        Label      = $inst.Label
-        Args       = $argsString
-        Signal     = Join-Path $ModDir $inst.Signal
-        ConfigPath = $inst.ConfigPath
+if (-not $info.IsMultiplayer) {
+    # ── Solo launch (simultaneous, only 1 window anyway) ──────────────
+    Write-Host ""
+    Write-Host "[Launch] Starting solo window..."
+    $inst = $instances[0]
+    $argsString = "--config `"$($inst.ConfigPath)`""
+    Write-Host "  Args: $argsString"
+    Start-Process -FilePath $GameExe -ArgumentList $argsString -WorkingDirectory $GameDir
+    Write-Host "[Launch] Started at $(Get-Date -Format 'HH:mm:ss')"
+
+    # Wait for signal
+    $signalPath = Join-Path $ModDir $inst.Signal
+    $timeout = 180; $waited = 0
+    while (-not (Test-Path $signalPath) -and $waited -lt $timeout) {
+        Start-Sleep -Seconds 3; $waited += 3
+    }
+    if (Test-Path $signalPath) {
+        Write-Host "[OK] Ready after ${waited}s"
+    } else {
+        Write-Host "[WARN] Timeout after ${timeout}s"
     }
 }
+else {
+    # ── Coop launch (sequential: host → bots) ────────────────────────
+    $hostInst = $instances[0]
+    $botInsts = $instances[1..($instances.Count - 1)]
+    $timeout = 180
 
-# ── Launch ALL windows simultaneously ────────────────────────────────
-Write-Host ""
-Write-Host "[Launch] Starting all $($launchJobs.Count) window(s) simultaneously..."
-Write-Host ""
+    # Launch host first
+    Write-Host ""
+    Write-Host "============================================================"
+    Write-Host "[Host] Starting Window 1 (Human, auto-battle OFF)..."
+    $hostConfigArg = "--config `"$($hostInst.ConfigPath)`""
+    $hostArgs = "--fastmp host_standard $hostConfigArg"
+    Write-Host "[Host] Args: $hostArgs"
+    Start-Process -FilePath $GameExe -ArgumentList $hostArgs -WorkingDirectory $GameDir
+    Write-Host "[Host] Launched at $(Get-Date -Format 'HH:mm:ss')"
 
-$launchTime = Get-Date
-foreach ($job in $launchJobs) {
-    Write-Host "  [$($job.Label)] Launching: $($job.Args)"
-    Start-Process -FilePath $GameExe -ArgumentList $job.Args -WorkingDirectory $GameDir
-}
-Write-Host ""
-Write-Host "[Launch] All $($launchJobs.Count) processes started at $($launchTime.ToString('HH:mm:ss'))"
+    # Wait for host signal
+    $hostSignalPath = Join-Path $ModDir $hostInst.Signal
+    Write-Host "[Host] Waiting for $($hostInst.Signal) ..."
+    $waited = 0
+    while (-not (Test-Path $hostSignalPath) -and $waited -lt $timeout) {
+        Start-Sleep -Seconds 3; $waited += 3
+        if ($waited % 15 -eq 0) { Write-Host "  ... waited ${waited}s" }
+    }
+    if (Test-Path $hostSignalPath) {
+        Write-Host "[Host] Signal received after ${waited}s"
+    } else {
+        Write-Host "[WARN] Host signal timeout after ${timeout}s"
+    }
 
-# ── Wait for all signals (non-blocking for solo modes) ──────────────
-Write-Host ""
-Write-Host "[Wait] Waiting for config signals..."
+    # Launch each bot sequentially
+    foreach ($bot in $botInsts) {
+        Write-Host ""
+        Write-Host "============================================================"
+        Write-Host "[$($bot.Label)] Starting bot window..."
 
-$timeout = 180
-$waited = 0
-$allReady = $false
+        $botConfigArg = "--config `"$($bot.ConfigPath)`""
+        $botArgs = "--fastmp join $botConfigArg"
+        Write-Host "[$($bot.Label)] Args: $botArgs"
+        Start-Process -FilePath $GameExe -ArgumentList $botArgs -WorkingDirectory $GameDir
+        Write-Host "[$($bot.Label)] Launched at $(Get-Date -Format 'HH:mm:ss')"
 
-while (-not $allReady -and $waited -lt $timeout) {
-    Start-Sleep -Seconds 3
-    $waited += 3
-    $allReady = $true
-    foreach ($job in $launchJobs) {
-        if (-not (Test-Path $job.Signal)) {
-            $allReady = $false
+        # Wait for this bot's signal
+        $botSignalPath = Join-Path $ModDir $bot.Signal
+        Write-Host "[$($bot.Label)] Waiting for $($bot.Signal) ..."
+        $waitedBot = 0
+        while (-not (Test-Path $botSignalPath) -and $waitedBot -lt $timeout) {
+            Start-Sleep -Seconds 3; $waitedBot += 3
+            if ($waitedBot % 15 -eq 0) { Write-Host "  ... waited ${waitedBot}s" }
+        }
+        if (Test-Path $botSignalPath) {
+            Write-Host "[$($bot.Label)] Signal received after ${waitedBot}s"
+        } else {
+            Write-Host "[WARN] $($bot.Label) signal timeout after ${timeout}s"
         }
     }
-    if ($waited % 30 -eq 0) {
-        $readyCount = ($launchJobs | Where-Object { Test-Path $_.Signal }).Count
-        Write-Host "  ... ${waited}s — $readyCount/$($launchJobs.Count) signals received"
-    }
-}
-
-Write-Host ""
-if ($allReady) {
-    Write-Host "[OK] All $($launchJobs.Count) instance(s) ready after ${waited}s"
-} else {
-    $missing = ($launchJobs | Where-Object { -not (Test-Path $_.Signal) })
-    Write-Host "[WARN] Timeout after ${timeout}s. Missing signals:"
-    $missing | ForEach-Object { Write-Host "  - $($_.Label): $($_.Signal)" }
 }
 
 # ── Summary ──────────────────────────────────────────────────────────
@@ -200,15 +222,13 @@ elseif ($Mode -eq "solo_player") {
     Write-Host "  Window: Normal game. Press T to enable auto-battle."
 }
 else {
-    Write-Host "  Host window:  Human player (auto-battle OFF)"
-    Write-Host "                F1=Nav F2=Battle F3=Event"
-    Write-Host ""
-    for ($i = 1; $i -le $botCount; $i++) {
-        Write-Host "  Bot$i window:   Auto-battle ON"
+    Write-Host "  Window 1 (Host/Human): ENet server on 127.0.0.1:33771"
+    Write-Host "                         F1=Nav F2=Battle F3=Event"
+    for ($i = 1; $i -le $info.BotCount; $i++) {
+        Write-Host "  Window $($i+1) (Bot$i):      Auto-joins via ENet, auto-battle ON"
     }
-    Write-Host ""
-    Write-Host "  Flow: Host navigates → bots follow → combat auto-plays"
 }
 Write-Host ""
 Write-Host "  Config files in: $GameDir"
 Write-Host "  Signals in:      $ModDir"
+Write-Host ""

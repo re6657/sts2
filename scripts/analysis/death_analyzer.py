@@ -13,7 +13,7 @@ from typing import Dict, List, Optional
 from dataclasses import dataclass, field
 
 
-MOD_DIR = Path(r"E:\SteamLibrary\steamapps\common\Slay the Spire 2\mods\TokenSpire2")
+MOD_DIR = Path(__file__).parent.parent.parent.resolve()
 
 
 @dataclass

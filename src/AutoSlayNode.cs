@@ -688,6 +688,21 @@ public partial class AutoSlayNode : Node
                 _consecutiveRechecks = 0;   // reset recheck counter for new combat
                 _turnPlansWithoutPlay = 0;  // reset per-turn plan counter
 
+                // ── Combat recorder: snapshot state for post-combat summary ──
+                try { Chat.CombatRecorder.OnCombatStart(); } catch { }
+
+                // ── Pre-generated dialogue: fire immediately at combat start ──
+                var preGen = Chat.CombatRecorder.ConsumePreGeneratedDialogue();
+                if (preGen != null && preGen.Count > 0)
+                {
+                    _chatQueue.Clear();
+                    _chatQueue.AddRange(preGen);
+                    _chatQueueIndex = 0;
+                    _chatInBatch = true;
+                    _lastMeowTime = _chatQuickInterval; // fire first message next frame
+                    MainFile.Logger.Info($"[AutoSlay] Pre-generated dialogue loaded: {preGen.Count} lines");
+                }
+
                 // DEBUG: heal to 999 at start of each combat (evaluate via HP loss)
                 if (_debugMaxHp)
                 {
@@ -1693,6 +1708,9 @@ public partial class AutoSlayNode : Node
         CombatHandler.OnCombatEnded();
         _combatTurnRequested = false; _combatTurnRequestedDuration = 0;
         _drawJustFinished = false;
+
+        // ── Post-combat: generate dialogue for next combat start ──
+        try { Chat.CombatRecorder.OnCombatEnd(); } catch { }
 
         // Combat end transition
         if (_wasInCombat)
@@ -3895,6 +3913,15 @@ public partial class AutoSlayNode : Node
                     _turnPlansWithoutPlay = 0;  // reset — successful card play
                     _consecutiveRechecks = 0;   // reset — successful card play broke any recheck cycle
                     try { BattleLogger.LogAction(cardId, true, target: targetId); } catch { }
+                    // ── Record for post-combat dialogue generation ──
+                    try
+                    {
+                        bool isAtk = matchingCard.Type == MegaCrit.Sts2.Core.Entities.Cards.CardType.Attack;
+                        bool isSkl = matchingCard.Type == MegaCrit.Sts2.Core.Entities.Cards.CardType.Skill;
+                        bool isPow = matchingCard.Type == MegaCrit.Sts2.Core.Entities.Cards.CardType.Power;
+                        Chat.CombatRecorder.RecordCardPlayed(cardId, isAtk, isSkl, isPow);
+                    }
+                    catch { }
                     // ── Boss play logging: record card play with effects ──
                     try
                     {

@@ -18,12 +18,13 @@ import sys
 import time
 import os
 import argparse
+from pathlib import Path
 
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("url", nargs="?", default="https://redlive.xiaohongshu.com/live_center_control")
-    parser.add_argument("--mod-dir", default=r"D:\SteamLibrary\steamapps\common\Slay the Spire 2\mods\TokenSpire2")
+    parser.add_argument("--mod-dir", default=str(Path(__file__).parent.parent.resolve()))
     parser.add_argument("--interval", type=float, default=0.5)
     args = parser.parse_args()
 

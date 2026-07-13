@@ -4,10 +4,12 @@ import glob
 import json
 import os
 import sys
+from pathlib import Path
 
 DEFAULT_MOD_PATHS = [
-    os.path.expandvars(r"%ProgramFiles(x86)%\..\SteamLibrary\steamapps\common\Slay the Spire 2\mods\TokenSpire2"),
-    os.path.expandvars(r"D:\SteamLibrary\steamapps\common\Slay the Spire 2\mods\TokenSpire2"),
+    # First: compute relative to this config file (tools/viewer/config.py → TokenSpire2)
+    str(Path(__file__).parent.parent.parent.resolve()),
+    # Common Steam library locations (fallbacks)
     os.path.expandvars(r"C:\Program Files (x86)\Steam\steamapps\common\Slay the Spire 2\mods\TokenSpire2"),
     os.path.expanduser("~/Library/Application Support/Steam/steamapps/common/Slay the Spire 2/SlayTheSpire2.app/Contents/MacOS/mods/TokenSpire2"),
 ]

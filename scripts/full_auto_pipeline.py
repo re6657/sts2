@@ -20,7 +20,7 @@ from optimizer import GeneticOptimizer, SensitivityAnalyzer, GENE_SPACE
 from capability_auditor import CapabilityAuditor
 
 
-MOD_DIR = Path(r"E:\SteamLibrary\steamapps\common\Slay the Spire 2\mods\TokenSpire2")
+MOD_DIR = Path(__file__).parent.parent.resolve()
 PARAMS_PATH = MOD_DIR / "params.json"
 
 

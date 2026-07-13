@@ -17,12 +17,19 @@ namespace TokenSpire2.Chat;
 public class ChatEngine
 {
     private static readonly HttpClient _http = new();
+    private static ChatEngine? _instance;
 
     private readonly string _apiKey;
     private readonly string _model;
     private readonly string _baseUrl;
     private readonly string _personaPrompt;
     private readonly List<string> _recentMessages = new(); // prevent short-term repeats
+
+    /// <summary>
+    /// Returns the most recently created ChatEngine instance, or null.
+    /// Used by CombatRecorder to call the API outside of AutoSlayNode.
+    /// </summary>
+    public static ChatEngine? GetInstance() => _instance;
 
     // ── Shared system prompt (Part A) ──────────────────────────────
     private const string SharedPrompt = @"
@@ -58,6 +65,8 @@ public class ChatEngine
 
         _model = model ?? (AiChatConfig.IsInitialized ? AiChatConfig.Instance.Model : "deepseek-chat");
         _baseUrl = baseUrl ?? (AiChatConfig.IsInitialized ? AiChatConfig.Instance.BaseUrl : "https://api.deepseek.com/v1");
+
+        _instance = this;
     }
 
     /// <summary>
@@ -178,6 +187,100 @@ public class ChatEngine
         catch (Exception ex)
         {
             MainFile.Logger?.Info($"[ChatEngine] Error: {ex.Message}");
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Generate dialogue REACTING to a combat that just ended.
+    /// Uses a different system prompt focused on post-combat reflection.
+    /// The generated lines are stored for delivery at the start of the
+    /// NEXT combat, so they read as natural post-battle commentary.
+    ///
+    /// Returns 4-6 short lines, or null on failure.
+    /// </summary>
+    public async Task<string[]?> SendPostCombatAsync(string combatSummary)
+    {
+        if (string.IsNullOrEmpty(_apiKey) || string.IsNullOrEmpty(combatSummary))
+            return null;
+
+        try
+        {
+            const string postCombatPrompt = @"
+你刚打完一场战斗。根据战斗结果，用角色的语气写4~6句短对话，作为战斗结束后的反应。
+
+格式要求（严格遵守）：
+- 每句独立一行，用换行分隔
+- 每句不超过15个中文字符
+- 不要编号，不要加前缀（如 1. 2. - 等）
+- 每句都应该是独立的一句台词
+- 符合角色的说话风格和口癖
+- 内容：评价战斗过程、关心队友伤势、吐槽敌人、或者得意炫耀
+- 不要：重复之前说过的话、说『作为AI』之类的话
+";
+
+            var fullSystemPrompt = _personaPrompt + "\n\n" + postCombatPrompt;
+
+            var requestBody = new
+            {
+                model = _model,
+                messages = new[]
+                {
+                    new { role = "system", content = fullSystemPrompt },
+                    new { role = "user", content = combatSummary }
+                },
+                max_tokens = 200,
+                temperature = AiChatConfig.IsInitialized ? AiChatConfig.Instance.Temperature : 0.9,
+            };
+
+            var json = JsonSerializer.Serialize(requestBody);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{_baseUrl}/chat/completions");
+            request.Headers.Add("Authorization", $"Bearer {_apiKey}");
+            request.Content = content;
+
+            using var cts = new System.Threading.CancellationTokenSource(TimeSpan.FromSeconds(10));
+            var response = await _http.SendAsync(request, cts.Token).ConfigureAwait(false);
+
+            if (!response.IsSuccessStatusCode)
+                return null;
+
+            var responseJson = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            using var doc = JsonDocument.Parse(responseJson);
+            var choices = doc.RootElement.GetProperty("choices");
+            if (choices.GetArrayLength() == 0)
+                return null;
+
+            var message = choices[0].GetProperty("message");
+            var text = message.GetProperty("content").GetString();
+
+            if (string.IsNullOrWhiteSpace(text))
+                return null;
+
+            // Parse lines (same logic as SendAsync)
+            var lines = text.Trim().Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            var result = new List<string>();
+            foreach (var rawLine in lines)
+            {
+                var line = rawLine.Trim();
+                while (line.Length > 0 && (char.IsDigit(line[0]) || line[0] == '.' || line[0] == '-' || line[0] == '、' || line[0] == '）' || line[0] == ')'))
+                    line = line[1..].Trim();
+                if (line.StartsWith("说：")) line = line[2..];
+                if (line.StartsWith(": ")) line = line[2..];
+                if (string.IsNullOrWhiteSpace(line) || line.Length < 2) continue;
+                if (line.Length > 15) line = line[..15];
+                result.Add(line);
+            }
+
+            if (result.Count == 0) return null;
+
+            MainFile.Logger?.Info($"[ChatEngine] Post-combat: {result.Count} lines — {string.Join(" | ", result)}");
+            return result.ToArray();
+        }
+        catch (Exception ex)
+        {
+            MainFile.Logger?.Info($"[ChatEngine] Post-combat error: {ex.Message}");
             return null;
         }
     }

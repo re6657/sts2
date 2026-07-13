@@ -6,8 +6,8 @@ into JSON files that the C# mod can load at runtime.
 import json, re, os
 from pathlib import Path
 
-REPORT = Path(r"E:\STS2_OPGG_Stats_Report.md")
-OUT_DIR = Path(r"E:\SteamLibrary\steamapps\common\Slay the Spire 2\mods\TokenSpire2\llm_data\opgg_stats")
+REPORT = Path(__file__).parent.parent.parent.parent / "STS2_OPGG_Stats_Report.md"
+OUT_DIR = Path(__file__).parent.parent / "llm_data" / "opgg_stats"
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # Class name mapping: report header → short key

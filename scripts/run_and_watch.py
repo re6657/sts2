@@ -30,7 +30,7 @@ from pathlib import Path
 
 # ── Configuration ────────────────────────────────────────────────────────────
 
-STS2_DIR = Path(r"E:\SteamLibrary\steamapps\common\Slay the Spire 2")
+STS2_DIR = Path(__file__).parent.parent.parent.parent.resolve()
 MOD_DIR = STS2_DIR / "mods" / "TokenSpire2"
 MOD_SRC = MOD_DIR / "src"
 MOD_CSPROJ = MOD_DIR / "TokenSpire2.csproj"

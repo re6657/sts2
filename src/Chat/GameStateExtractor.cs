@@ -186,10 +186,19 @@ public static class GameStateExtractor
         }
     }
 
-    private static string GetCharacterName(Player player)
+    /// <summary>
+    /// Public static helper so other classes (CombatRecorder) can get
+    /// character display names without duplicating the mapping.
+    /// </summary>
+    public static string GetCharacterNameStatic(Player player)
     {
         var id = player.Character?.Id?.Entry ?? "";
         return CharacterNames.GetValueOrDefault(id, id);
+    }
+
+    private static string GetCharacterName(Player player)
+    {
+        return GetCharacterNameStatic(player);
     }
 
     // Helpers use dynamic/var to avoid type visibility issues with publicized assemblies
