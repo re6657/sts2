@@ -146,6 +146,7 @@ public partial class AutoSlayNode : Node
     private int _combatTurnNumber;
     private bool _wasInCombat;
     private bool _wasInRest;       // track rest site transitions for state reset
+    private bool _wasInTreasure;  // track treasure room transitions for state reset
     private bool _wasEnemyTurn;     // track enemy→player turn transitions for stuck timer
     private double _playerDisabledDuration; // MP watchdog: seconds spent with PlayerActionsDisabled=true
     private int _panicButtonTurnsRemaining; // PANIC_BUTTON debuff: turns of "no block from cards" remaining
@@ -158,17 +159,18 @@ public partial class AutoSlayNode : Node
     private bool _multiplayerJoined;
     private bool _multiplayerReady;
 
-    // ── Auto-chat AI dialogue system ────────────────────────────────
+    // ── Auto-chat AI dialogue system (shared conversation) ──────────
+    // Bots share one conversation via ConversationManager (file-based log).
+    // Each bot polls the shared log, checks if it's their turn, and generates
+    // 1-2 lines that continue the conversation naturally.
     private double _lastMeowTime;
     private ChatEngine? _chatEngine;
     private string _aiChatCharacter = "";
     private string _aiChatDisplayName = "";    // cached for logging
-    private double _chatInterval = 5.0;       // seconds between message batches
-    private double _chatQuickInterval = 1.2;  // seconds between rapid-fire messages
+    private double _chatMyTurnCooldown = 3.0;  // seconds to wait AFTER my own message
+    private double _chatPollInterval = 1.8;    // seconds between checking the shared log
     private bool _aiChatInitialized;
-    private List<string> _chatQueue = new();  // pending messages to fire rapidly
-    private int _chatQueueIndex;
-    private bool _chatInBatch;                // true during rapid-fire sequence
+    private bool _conversationInitialized;
 
     public override void _Ready()
     {
@@ -718,12 +720,14 @@ public partial class AutoSlayNode : Node
                 var preGen = Chat.CombatRecorder.ConsumePreGeneratedDialogue();
                 if (preGen != null && preGen.Count > 0)
                 {
-                    _chatQueue.Clear();
-                    _chatQueue.AddRange(preGen);
-                    _chatQueueIndex = 0;
-                    _chatInBatch = true;
-                    _lastMeowTime = _chatQuickInterval; // fire first message next frame
-                    MainFile.Logger.Info($"[AutoSlay] Pre-generated dialogue loaded: {preGen.Count} lines");
+                    // Write directly to shared conversation log and fire pings
+                    foreach (var line in preGen)
+                    {
+                        Chat.ConversationManager.Append(_aiChatDisplayName, line);
+                        SendChatPing(line);
+                    }
+                    _lastMeowTime = 0; // start polling cycle
+                    MainFile.Logger.Info($"[AutoSlay] Pre-generated dialogue: {preGen.Count} lines");
                 }
 
                 // DEBUG: heal to 999 at start of each combat (evaluate via HP loss)
@@ -1781,6 +1785,9 @@ public partial class AutoSlayNode : Node
         // ── Post-combat: generate dialogue for next combat start ──
         try { Chat.CombatRecorder.OnCombatEnd(); } catch { }
 
+        // ── Clear shared conversation log for fresh start next combat ──
+        try { Chat.ConversationManager.Clear(); } catch { }
+
         // Combat end transition
         if (_wasInCombat)
         {
@@ -1968,6 +1975,37 @@ public partial class AutoSlayNode : Node
 
         RewardsHandler.ClearTried();
 
+        // ── Room state reset: ensure "was in room" flags are cleared when
+        // we've actually left the room. These resets MUST happen here (before
+        // map/room handling) because the Map handler returns early and would
+        // otherwise skip the per-room resets at the bottom of each block.
+        // Bug: _wasInRest leaked across campfires when map opened during cooldown
+        //      → next campfire skipped init → entered post-choice flow with
+        //      stale _restSiteChoiceMade=true → force-proceed → entire campfire skipped.
+        var currentNonCombatScreen = GameStateDetector.Detect();
+        if (currentNonCombatScreen != GameScreen.REST)
+        {
+            if (_wasInRest)
+            {
+                MainFile.Logger.Info("[AutoSlay] State: leaving rest site (detected via screen change)");
+                _wasInRest = false;
+                _restSiteChoiceMade = false;
+                _restStuckFrames = 0;
+            }
+        }
+        if (currentNonCombatScreen != GameScreen.TREASURE)
+        {
+            // Reset treasure room state machine when we're not in a treasure room.
+            // Prevents stale _state (ChestOpened/Picking) from leaking across rooms
+            // if the user manually interacted or a transition was missed.
+            if (_wasInTreasure)
+            {
+                MainFile.Logger.Info("[AutoSlay] State: leaving treasure room (detected via screen change)");
+                _wasInTreasure = false;
+                TokenSpire2.Solver.TreasureDecider.Reset();
+            }
+        }
+
         // ── Map ──────────────────────────────────────────────────────────────
         // Only handle map when no overlays are active — prevents expensive
         // path planning from running between card reward dismissals.
@@ -2066,6 +2104,14 @@ public partial class AutoSlayNode : Node
             {
                 _cooldown = 3.0;
                 return;
+            }
+
+            // ── Reset state machine when entering a NEW treasure room ──
+            if (!_wasInTreasure)
+            {
+                _wasInTreasure = true;
+                TokenSpire2.Solver.TreasureDecider.Reset();
+                MainFile.Logger.Info("[AutoSlay] Entering new treasure room");
             }
 
             // ── 30-second decision timeout: fall back to random ──
@@ -2267,7 +2313,7 @@ public partial class AutoSlayNode : Node
                 else
                 {
                     _restStuckFrames++;
-                    if (_restStuckFrames > 15) // ~22s at 1.5s cooldown
+                    if (_restStuckFrames > 10) // ~15s at 1.5s cooldown (was 15/~22s)
                     {
                         MainFile.Logger.Error($"[AutoSlay] REST: DecisionEngine failed {_restStuckFrames} times. Force-clicking proceed.");
                         var fallbackProceed = restRoom.ProceedButton;
@@ -4460,6 +4506,19 @@ public partial class AutoSlayNode : Node
     {
         try
         {
+            // ── Multiplayer host guard: never auto-pick for the human host ──
+            // If the host takes longer than 30s to decide, we still don't
+            // interfere — just reset the timer and let them continue.
+            if (_multiplayerMode && _isMultiplayerHost && !_autoBattle)
+            {
+                MainFile.Logger.Info("[AutoSlay] Host manual mode: suppressing RandomOverlayFallback, resetting timeout");
+                _sameScreenDuration = 0;
+                _sameScreenTickCount = 0;
+                _lastScreenType = "";
+                _cooldown = 3.0;
+                return;
+            }
+
             // ── Card reward: pick random card or skip ──
             if (overlayNode is NCardRewardSelectionScreen cardReward)
             {
@@ -4536,13 +4595,29 @@ public partial class AutoSlayNode : Node
                 _cooldown = 0.5;
                 return;
             }
-            // ── Choose bundle: pick first (uses NCardBundle) ──
+            // ── Choose bundle: pick first then confirm (uses NCardBundle) ──
             if (overlayNode is NChooseABundleSelectionScreen chooseBundle)
             {
+                // Step 1: Check if a bundle is already selected → confirm
+                var confirm = AutoSlayHelpers.FindFirst<NConfirmButton>(chooseBundle);
+                if (confirm?.IsEnabled == true)
+                {
+                    MainFile.Logger.Info("[AutoSlay] RandomOverlay: confirming bundle selection");
+                    confirm.ForceClick();
+                    _cooldown = 0.5;
+                    return;
+                }
+
+                // Step 2: Select a bundle via Hitbox click
                 var bundles = AutoSlayHelpers.FindAll<NCardBundle>(chooseBundle)
                     .Where(b => GodotObject.IsInstanceValid(b)).ToList();
-                if (bundles.Count > 0 && bundles[0].Hitbox != null)
-                    bundles[0].Hitbox.ForceClick();
+                if (bundles.Count > 0)
+                {
+                    var pick = bundles[0];
+                    MainFile.Logger.Info($"[AutoSlay] RandomOverlay: selecting bundle '{pick.Name}' (hitbox={(pick.Hitbox != null ? "yes" : "no")})");
+                    if (pick.Hitbox != null)
+                        pick.Hitbox.ForceClick();
+                }
                 _cooldown = 0.5;
                 return;
             }
@@ -4594,6 +4669,27 @@ public partial class AutoSlayNode : Node
     {
         try
         {
+        // ── Multiplayer host guard: when host has auto-battle OFF, skip ALL auto-decisions ──
+        // The human host should manually interact with all overlay screens.
+        // Only game-over screen is truly non-interactive (just reports results).
+        if (_multiplayerMode && _isMultiplayerHost && !_autoBattle)
+        {
+            if (overlayNode is NGameOverScreen)
+            {
+                // Game over: still auto-handle (just logs and shows stats)
+                MainFile.Logger.Info("[AutoSlay] Host manual mode: auto-handling game over screen");
+            }
+            else
+            {
+                // Reset screen tracking so timeout doesn't accumulate while human is deciding
+                _sameScreenDuration = 0;
+                _sameScreenTickCount = 0;
+                _lastScreenType = "";
+                _unknownOverlayRetries = 0;
+                return 3.0; // long cooldown — let the human play
+            }
+        }
+
         if (overlayNode is NCardRewardSelectionScreen cardReward)
         {
             MainFile.Logger.Info("[AutoSlay] Dispatching OVERLAY_CARD_REWARD");
@@ -4897,14 +4993,18 @@ public partial class AutoSlayNode : Node
                 return;
             }
 
-            var chatConfig = AiChatConfig.IsInitialized ? AiChatConfig.Instance : null;
-            _chatInterval = chatConfig?.IntervalSeconds ?? 5;
-
-            _chatEngine = new ChatEngine(persona);
+            _chatEngine = new ChatEngine(persona, characterName: _aiChatCharacter);
             _aiChatInitialized = true;
 
             _aiChatDisplayName = CharacterProfileManager.GetDisplayName(_aiChatCharacter);
-            MainFile.Logger.Info($"[AutoSlay] AI Chat initialized: {_aiChatDisplayName} ({_aiChatCharacter}), interval={_chatInterval}s");
+            MainFile.Logger.Info($"[AutoSlay] AI Chat initialized: {_aiChatDisplayName} ({_aiChatCharacter}), shared conversation mode");
+
+            // Initialize shared conversation log (once per process)
+            if (!_conversationInitialized && AppConfig.IsInitialized)
+            {
+                Chat.ConversationManager.Initialize(AppConfig.ModDirectory);
+                _conversationInitialized = true;
+            }
 
             // Initialize chat history logger
             Chat.ChatLogger.Initialize(AppConfig.ModDirectory);
@@ -4916,16 +5016,14 @@ public partial class AutoSlayNode : Node
     }
 
     /// <summary>
-    /// Bot sends AI-generated speech bubbles in multiplayer combat.
+    /// Shared multi-bot conversation with turn-taking.
     ///
-    /// Two-phase system:
-    ///   Phase 1 (Rapid-fire): Fire queued messages one by one with 1.2s gaps.
-    ///     Each message is written to a shared file AND set via OverrideText,
-    ///     then a ping is sent. This ensures ALL peers see the text.
-    ///   Phase 2 (Cooldown): After queue is exhausted, wait 8-10s then
-    ///     fetch a new batch of 6-8 short lines from DeepSeek API.
+    /// All bots read/write a shared conversation log (ConversationManager).
+    /// Each bot polls every ~1.8s: if the last speaker isn't me, it's my turn.
+    /// After speaking, the bot waits ~3s before checking again to let others respond.
     ///
-    /// Falls back to "喵喵喵" if AI chat is disabled or API fails.
+    /// This produces a natural back-and-forth with minimal gaps — no explicit
+    /// coordination needed beyond the shared file.
     /// </summary>
     private async void TrySendAiChat(double delta)
     {
@@ -4934,70 +5032,83 @@ public partial class AutoSlayNode : Node
 
         _lastMeowTime += delta;
 
-        // ── Phase 1: Rapid-fire messages from queue ──────────────────
-        if (_chatInBatch && _chatQueue.Count > 0)
+        // ── Determine polling interval ───────────────────────────────
+        // Longer cooldown after my own message; shorter when waiting for others.
+        var lastSpeaker = Chat.ConversationManager.GetLastSpeaker();
+        var isMyTurn = lastSpeaker == null ||
+                       !string.Equals(lastSpeaker, _aiChatDisplayName, StringComparison.OrdinalIgnoreCase);
+
+        var pollInterval = isMyTurn ? _chatPollInterval : _chatMyTurnCooldown;
+
+        if (_lastMeowTime < pollInterval) return;
+        _lastMeowTime = 0;
+
+        // ── Not my turn yet — skip ──────────────────────────────────
+        if (!isMyTurn)
         {
-            if (_lastMeowTime < _chatQuickInterval) return;
-            _lastMeowTime = 0;
-
-            // Fire next message
-            if (_chatQueueIndex < _chatQueue.Count)
-            {
-                var msg = _chatQueue[_chatQueueIndex];
-                _chatQueueIndex++;
-                SendChatPing(msg);
-            }
-
-            // Check if queue exhausted
-            if (_chatQueueIndex >= _chatQueue.Count)
-            {
-                _chatInBatch = false;
-                _chatQueue.Clear();
-                _chatQueueIndex = 0;
-                MainFile.Logger.Info($"[AutoSlay] Batch complete — waiting {_chatInterval}s for next batch");
-            }
             return;
         }
 
-        // ── Phase 2: Wait for next batch interval ────────────────────
-        if (!_chatInBatch)
+        // ── My turn — generate a response ───────────────────────────
+        if (_aiChatInitialized && _chatEngine != null)
         {
-            if (_lastMeowTime < _chatInterval) return;
-            _lastMeowTime = 0;
-
-            // Try AI chat first
-            if (_aiChatInitialized && _chatEngine != null)
+            try
             {
-                try
+                var state = GameStateExtractor.BuildContext();
+                if (string.IsNullOrEmpty(state))
                 {
-                    var state = GameStateExtractor.BuildContext();
-                    if (!string.IsNullOrEmpty(state))
-                    {
-                        var lines = await _chatEngine.SendAsync(state);
-                        if (lines != null && lines.Length > 0)
-                        {
-                            _chatQueue.AddRange(lines);
-                            _chatQueueIndex = 0;
-                            _chatInBatch = true;
-
-                            // Fire first message immediately
-                            var first = _chatQueue[0];
-                            _chatQueueIndex = 1;
-                            SendChatPing(first);
-                            MainFile.Logger.Info($"[AutoSlay] AI batch: {lines.Length} lines — \"{first}\"");
-                            return;
-                        }
-                    }
+                    return;
                 }
-                catch (Exception ex)
+
+                // Build conversation context: who else is talking, what was said
+                var convoHistory = Chat.ConversationManager.BuildContextString(6);
+                var otherNames = GetOtherBotNames();
+
+                MainFile.Logger.Info($"[AutoSlay] My turn ({_aiChatDisplayName}) — generating response");
+
+                var lines = await _chatEngine.SendConversationTurnAsync(
+                    state, convoHistory, _aiChatDisplayName, otherNames);
+
+                if (lines != null && lines.Length > 0)
                 {
-                    MainFile.Logger.Info($"[AutoSlay] AI Chat error: {ex.Message}");
+                    // Write each line as a separate message to the shared log
+                    foreach (var line in lines)
+                    {
+                        Chat.ConversationManager.Append(_aiChatDisplayName, line);
+                        SendChatPing(line);
+                        // Tiny delay between multi-line responses so they don't stack
+                        await Task.Delay(300);
+                    }
+                    MainFile.Logger.Info($"[AutoSlay] {_aiChatDisplayName} spoke: {string.Join(" | ", lines)}");
                 }
             }
-
-            // Fallback: single "喵喵喵"
+            catch (Exception ex)
+            {
+                MainFile.Logger.Info($"[AutoSlay] AI Chat turn error: {ex.Message}");
+            }
+        }
+        else
+        {
+            // Fallback: occasional meow if AI isn't initialized
             SendChatPing(null);
         }
+    }
+
+    /// <summary>
+    /// Collect the display names of all other bots currently in the conversation,
+    /// formatted for the AI prompt.
+    /// </summary>
+    private string GetOtherBotNames()
+    {
+        // Check the conversation log for distinct speakers that aren't us
+        var recent = Chat.ConversationManager.GetRecent(10);
+        var otherNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        foreach (var (name, _) in recent)
+        {
+            if (!string.Equals(name, _aiChatDisplayName, StringComparison.OrdinalIgnoreCase))
+                otherNames.Add(name);
+        }
+        return otherNames.Count > 0 ? string.Join("、", otherNames) : "";
     }
 
     /// <summary>

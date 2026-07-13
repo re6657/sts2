@@ -41,6 +41,29 @@ public class ChatEngine
         return _instance;
     }
 
+    // ── STS2 community knowledge (injected into all prompts) ──────
+    // Condensed memes, slang, and community lore the AI can reference naturally.
+    // Characters should drop these organically, not recite them like a textbook.
+    private const string Sts2Knowledge = @"
+【杀戮尖塔2 社区知识——自然引用，不要背书】
+你是一个资深杀戮尖塔玩家，了解以下社区梗和黑话。在合适的时机随口提及，像真正的老玩家一样。
+
+角色昵称：故障机器人=鸡煲（最弱的角色，经常被嘲笑），静默猎手=猎宝，铁甲战士=战士哥。
+鸡煲梗：被称为「第四强」「保五争四」，因为启动太慢（需要多回合打能力牌）。能力卡「偏差认知」会每回合掉集中，玩家用逐渐残缺的句子模仿「鸡煲是最好玩的角色 鸡煲是最好玩的角 鸡煲是最好玩的…」来调侃。经典笑话：鸡煲被嘲笑没输出，愤怒要用爪击肘人，大家笑它「连集中都没有」。精英怪「地精大块头」被称为「鸡煲严父」。联机三个鸡煲叫「三傻大闹堡莱坞」。官方亲自在卡面上把一代诅咒卡画成鸡煲（官方辱机）。
+蛇咬梗：静默猎手的「蛇咬」卡牌社区分裂成「倒蛇派」和「挺蛇派」。
+自刎归天：亡灵契约师玩嗨了血条消失，源自新三国鬼畜梗。
+老头：一代Boss时间吞噬者，限制出牌数。梗图「老头：听说是刀贼我就过来了」。
+地精搭高高：两只地精叠在一起的怪物，上面的戴老大头盔，打爆分裂。
+真假商人：看地毯（真:黄倒V,假:黄斑点）和面具颜色分辨。
+真理石板：事件，读到最后把生命上限降至1，纯粹恶作剧。
+游戏黑话：启动=前期打出能力牌进入状态。无限=一回合内无限循环出牌。烧牌=永久移除卡牌精简牌组。敲/敲位=在火堆升级卡牌。鬼抽=关键牌沉底抽不上来。碎心=击败最终隐藏Boss心脏。SL=保存退出重进悔棋。A20=最高难度进阶20。换四=开局用初始遗物换Boss遗物。带火=有火焰特效的精英怪。
+B站主播梗：菜农来辣（农神）的各种典中典操作：删光防御、6缴械战士、打天罚被塞100张灼伤。九阳豆浆官方号也播尖塔。
+贴吧梗：安东尼小故事（讽刺官方的故事）。吧主「拉斐尔」被指责为「官方孝子」。平衡性改动争议让很多人边喷边玩（断头饭）。
+联机涂鸦：地图涂鸦功能被称为「花88块钱买了个绘画软件」。
+神话火堆：发售初期Bug可以一次性升级所有卡牌。
+初代恩人：UP主王老菊带火游戏，谜之声制作汉化。
+";
+
     // ── Shared system prompt (Part A) ──────────────────────────────
     // This prompt defines HOW the character behaves in the game context.
     // It overrides the "life companion" default and forces "gaming buddy" mode.
@@ -137,7 +160,7 @@ Boss好恶心。
 
         try
         {
-            var fullSystemPrompt = _personaPrompt + "\n\n" + SharedPrompt;
+            var fullSystemPrompt = _personaPrompt + "\n\n" + Sts2Knowledge + "\n\n" + SharedPrompt;
 
             var requestBody = new
             {
@@ -279,7 +302,7 @@ Boss好恶心。
 再来一局。
 ";
 
-            var fullSystemPrompt = _personaPrompt + "\n\n" + postCombatPrompt;
+            var fullSystemPrompt = _personaPrompt + "\n\n" + Sts2Knowledge + "\n\n" + postCombatPrompt;
 
             var requestBody = new
             {
@@ -343,6 +366,152 @@ Boss好恶心。
             MainFile.Logger?.Info($"[ChatEngine] Post-combat error: {ex.Message}");
             return null;
         }
+    }
+
+    /// <summary>
+    /// Generate a conversation turn — 1-2 lines that continue a multi-bot
+    /// conversation. Includes recent chat history so the AI can respond to
+    /// what other characters just said.
+    /// </summary>
+    /// <param name="gameStateContext">Current game state (same format as SendAsync)</param>
+    /// <param name="conversationHistory">Recent messages from all bots, e.g. "德丽莎: 好恶心…"</param>
+    /// <param name="myName">This character's display name</param>
+    /// <param name="otherNames">Other characters in the conversation</param>
+    public async Task<string[]?> SendConversationTurnAsync(
+        string gameStateContext,
+        string conversationHistory,
+        string myName,
+        string otherNames)
+    {
+        if (string.IsNullOrEmpty(_apiKey) || string.IsNullOrEmpty(gameStateContext))
+            return null;
+
+        try
+        {
+            // Build a conversation-aware user message
+            var userMessage = gameStateContext;
+            if (!string.IsNullOrEmpty(conversationHistory))
+            {
+                userMessage = conversationHistory + "\n\n" + gameStateContext;
+            }
+            userMessage += $"\n\n现在该你说话了（{myName}）。说1~2句。";
+
+            var fullSystemPrompt = _personaPrompt + "\n\n" + ConversationPrompt(otherNames) + "\n\n" + Sts2Knowledge;
+
+            var requestBody = new
+            {
+                model = _model,
+                messages = new[]
+                {
+                    new { role = "system", content = fullSystemPrompt },
+                    new { role = "user", content = userMessage }
+                },
+                max_tokens = 100, // smaller — only 1-2 lines
+                temperature = AiChatConfig.IsInitialized ? AiChatConfig.Instance.Temperature : 0.9,
+            };
+
+            var json = JsonSerializer.Serialize(requestBody);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{_baseUrl}/chat/completions");
+            request.Headers.Add("Authorization", $"Bearer {_apiKey}");
+            request.Content = content;
+
+            using var cts = new System.Threading.CancellationTokenSource(TimeSpan.FromSeconds(8));
+            var response = await _http.SendAsync(request, cts.Token).ConfigureAwait(false);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorBody = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+                MainFile.Logger?.Info($"[ChatEngine] Conv API error {response.StatusCode}: {errorBody[..Math.Min(errorBody.Length, 200)]}");
+                return null;
+            }
+
+            var responseJson = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
+            using var doc = JsonDocument.Parse(responseJson);
+            var choices = doc.RootElement.GetProperty("choices");
+            if (choices.GetArrayLength() == 0) return null;
+
+            var message = choices[0].GetProperty("message");
+            var text = message.GetProperty("content").GetString();
+            if (string.IsNullOrWhiteSpace(text)) return null;
+
+            // Parse into 1-2 short lines
+            var lines = text.Trim().Split('\n', StringSplitOptions.RemoveEmptyEntries);
+            var result = new List<string>();
+            foreach (var rawLine in lines)
+            {
+                var line = rawLine.Trim();
+                while (line.Length > 0 && (char.IsDigit(line[0]) || line[0] == '.' || line[0] == '-' || line[0] == '、' || line[0] == '）' || line[0] == ')'))
+                    line = line[1..].Trim();
+                if (line.StartsWith("说：")) line = line[2..];
+                if (line.StartsWith(": ")) line = line[2..];
+                if (string.IsNullOrWhiteSpace(line) || line.Length < 2) continue;
+                if (line.Length > 15) line = line[..15];
+
+                // Skip duplicates
+                bool isDup = false;
+                foreach (var recent in _recentMessages)
+                {
+                    if (ComputeSimilarity(line, recent) > 0.7) { isDup = true; break; }
+                }
+                if (isDup) continue;
+
+                result.Add(line);
+                _recentMessages.Add(line);
+                if (_recentMessages.Count > 20) _recentMessages.RemoveAt(0);
+                if (result.Count >= 2) break; // max 2 lines per turn
+            }
+
+            if (result.Count == 0) return null;
+
+            MainFile.Logger?.Info($"[ChatEngine] Conv turn ({_characterName}): {string.Join(" | ", result)}");
+            return result.ToArray();
+        }
+        catch (TaskCanceledException)
+        {
+            MainFile.Logger?.Info("[ChatEngine] Conv request timed out");
+            return null;
+        }
+        catch (Exception ex)
+        {
+            MainFile.Logger?.Info($"[ChatEngine] Conv error: {ex.Message}");
+            return null;
+        }
+    }
+
+    /// <summary>
+    /// Build the conversation-mode system prompt that tells the AI it's
+    /// in a multi-character conversation.
+    /// </summary>
+    private static string ConversationPrompt(string otherNames)
+    {
+        var others = !string.IsNullOrEmpty(otherNames)
+            ? $"你正在和{otherNames}一起看玩家玩《杀戮尖塔2》。你们在聊天。"
+            : "你正在看玩家玩《杀戮尖塔2》。";
+
+        return $@"
+{others}
+
+【对话模式——你在群聊里】
+- 一次只说1~2句话，15字以内
+- 自然地接别人的话茬：赞同、反驳、追问、吐槽、或者完全跑题都行
+- 可以回应别人说的话，也可以看游戏局面说新的
+- 像真正的群聊一样——不用每条消息都「有意义」
+- 不需要每轮都说——没话就跳过
+
+【格式要求】
+- 输出1~2行
+- 每句不超过15个中文字符
+- 不要编号，不要前缀
+- 不要带自己的名字——系统会自动加上
+- 句子可以不完整
+
+【绝对禁止】
+- 不要说「作为AI」「德丽莎说」「希儿说」之类的话
+- 不要每条消息都带「~」「哦」「呢」「呀」
+- 不要在游戏中甜腻——打Boss时发「我会保护你的哦~」非常不合时宜
+";
     }
 
     /// <summary>

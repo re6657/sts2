@@ -249,7 +249,13 @@ public static class StateStabilityDetector
             return false; // Skip this frame, let it recover next frame
         }
 
-        return _stabilityCounter >= _stabilityRequired;
+        bool isStable = _stabilityCounter >= _stabilityRequired;
+        if (!isStable && _stabilityCounter == 1)
+        {
+            // Log once when we first start waiting for stability (not on every frame)
+            MainFile.Logger.Info($"[StabilityDetector] Waiting for stability: screen={currentScreen} counter={_stabilityCounter}/{_stabilityRequired}");
+        }
+        return isStable;
     }
 
     /// <summary>

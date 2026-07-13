@@ -15,7 +15,8 @@ namespace TokenSpire2.Solver;
 
 /// <summary>
 /// Treasure room: open chest, pick up relic, proceed.
-/// Uses a simple state machine — no frame counting.
+/// Uses a state machine with per-relic retry tracking to prevent
+/// infinite clicking of the same relic that never gets picked up.
 /// Overlay dispatch (AutoSlayNode) handles NChooseARelicSelection separately.
 /// </summary>
 public static class TreasureDecider
@@ -24,11 +25,20 @@ public static class TreasureDecider
     private static State _state = State.Idle;
     private static int _stuckFrames;
     private const int STUCK_TIMEOUT = 300; // 5 seconds at 60fps
+    private const int MAX_CLICKS_PER_RELIC = 3; // max attempts per relic before skipping
+
+    // Track which relics have been clicked (by node path) and how many times.
+    // This prevents the infinite loop where the same relic is clicked forever
+    // because it never gets disabled/removed after ForceClick().
+    private static readonly Dictionary<string, int> _relicClickCounts = new();
+    private static int _totalRelicClicks; // global counter to eventually force-proceed
 
     public static void Reset()
     {
         _state = State.Idle;
         _stuckFrames = 0;
+        _relicClickCounts.Clear();
+        _totalRelicClicks = 0;
     }
 
     public static void Decide()
@@ -64,41 +74,61 @@ public static class TreasureDecider
         // ── Step 2: Pick up relic(s) from the room ─────────────────────
         if (_state == State.ChestOpened || _state == State.Picking)
         {
-            var relics = AutoSlayHelpers.FindAll<NTreasureRoomRelicHolder>(room)
+            // Get all valid relic holders
+            var allRelics = AutoSlayHelpers.FindAll<NTreasureRoomRelicHolder>(room)
                 .Where(r => GodotObject.IsInstanceValid(r) && r.IsEnabled && r.Visible)
                 .ToList();
 
-            // Fallback: search for any clickable that looks like a relic
-            if (relics.Count == 0 && _stuckFrames > 60)
+            // Fallback: include disabled/invisible relics if stuck
+            if (allRelics.Count == 0 && _stuckFrames > 60)
             {
-                relics = AutoSlayHelpers.FindAll<NTreasureRoomRelicHolder>(room)
+                allRelics = AutoSlayHelpers.FindAll<NTreasureRoomRelicHolder>(room)
                     .Where(r => GodotObject.IsInstanceValid(r))
                     .ToList();
             }
 
-            if (relics.Count > 0)
+            // Filter out relics we've already clicked too many times
+            var unexhaustedRelics = allRelics
+                .Where(r =>
+                {
+                    var path = r.GetPath().ToString();
+                    var clicks = _relicClickCounts.GetValueOrDefault(path, 0);
+                    return clicks < MAX_CLICKS_PER_RELIC;
+                })
+                .ToList();
+
+            if (unexhaustedRelics.Count > 0)
             {
                 try
                 {
-                    MainFile.Logger.Info($"[TreasureDecider] Picking up relic ({relics.Count} available, stuckFrames={_stuckFrames})");
-                    relics[0].ForceClick();
+                    var relic = unexhaustedRelics[0];
+                    var path = relic.GetPath().ToString();
+                    var prevClicks = _relicClickCounts.GetValueOrDefault(path, 0);
+                    var newClicks = prevClicks + 1;
+
+                    MainFile.Logger.Info($"[TreasureDecider] Picking up relic ({allRelics.Count} visible, {unexhaustedRelics.Count} unexhausted, click #{newClicks} on {relic.Name}, stuckFrames={_stuckFrames})");
+                    relic.ForceClick();
                     _state = State.Picking;
-                    _stuckFrames = 0;
+
+                    // Track this click — do NOT reset _stuckFrames so timeout can still fire
+                    _relicClickCounts[path] = newClicks;
+                    _totalRelicClicks++;
+
                     DecisionLogger.LogDecision(GameScreen.TREASURE, "TreasurePickup",
                         new List<DecisionLogger.OptionScore>(), 0, "TAKE_RELIC",
-                        $"Taking treasure relic ({relics.Count} available)");
+                        $"Taking treasure relic ({allRelics.Count} visible, click #{newClicks}/{MAX_CLICKS_PER_RELIC})");
                 }
                 catch (Exception ex)
                 {
                     MainFile.Logger.Error($"[TreasureDecider] Relic click failed: {ex.Message}");
-                    // If clicking fails repeatedly, try proceeding anyway
-                    if (_stuckFrames > 90)
-                    {
-                        MainFile.Logger.Error("[TreasureDecider] Relic click failing repeatedly — skipping to Proceed");
-                        _state = State.Picking; // fall through to Proceed check
-                    }
                 }
                 return;
+            }
+
+            // All relics have been clicked enough times — force proceed
+            if (allRelics.Count > 0 && unexhaustedRelics.Count == 0)
+            {
+                MainFile.Logger.Warn($"[TreasureDecider] All {allRelics.Count} relics exhausted ({_totalRelicClicks} total clicks) — falling through to Proceed");
             }
         }
 
@@ -115,7 +145,7 @@ public static class TreasureDecider
             return;
         }
 
-        // ── Stuck detection — reset if nothing works ───────────────────
+        // ── Stuck detection — force-reset if nothing works ─────────────
         if (_stuckFrames > STUCK_TIMEOUT)
         {
             MainFile.Logger.Error($"[TreasureDecider] STUCK in state {_state} for {_stuckFrames} frames — force-resetting");
