@@ -89,6 +89,13 @@ public class AppConfig
     public string SteamPersonaName { get; set; } = "";
 
     // ═══════════════════════════════════════════════════════════════
+    // AI Chat settings
+    // ═══════════════════════════════════════════════════════════════
+
+    public bool AiChatEnabled { get; set; }
+    public string AiChatCharacter { get; set; } = "";
+
+    // ═══════════════════════════════════════════════════════════════
     // Loading
     // ═══════════════════════════════════════════════════════════════
 
@@ -136,6 +143,8 @@ public class AppConfig
                     config.MultiplayerMode = batch.MultiplayerMode;
                     config.IsMultiplayerHost = batch.IsMultiplayerHost;
                     config.SteamPersonaName = batch.SteamPersonaName ?? "";
+                    config.AiChatEnabled = batch.AiChatEnabled;
+                    config.AiChatCharacter = batch.AiChatCharacter ?? "";
 
                     // In multiplayer mode, set AutoBattleEnabled from batch config
                     if (config.MultiplayerMode)
@@ -170,7 +179,9 @@ public class AppConfig
                 $"MultiplayerMode={config.MultiplayerMode}\n" +
                 $"IsMultiplayerHost={config.IsMultiplayerHost}\n" +
                 $"SteamPersonaName={config.SteamPersonaName}\n" +
-                $"AutoBattleEnabled={config.AutoBattleEnabled}\n");
+                $"AutoBattleEnabled={config.AutoBattleEnabled}\n" +
+                $"AiChatEnabled={config.AiChatEnabled}\n" +
+                $"AiChatCharacter={config.AiChatCharacter}\n");
             // Also write a shared signal for backward compatibility (solo modes)
             var sharedPath = Path.Combine(modDirectory, "config_read.signal");
             File.WriteAllText(sharedPath, $"Config read at {DateTime.Now:O}\n" +
@@ -182,7 +193,8 @@ public class AppConfig
         Log($"[AppConfig] Initialized. AutoBattleEnabled={config.AutoBattleEnabled}, " +
             $"BatchMode={config.BatchMode}, Character={config.Character}, " +
             $"MultiplayerMode={config.MultiplayerMode}, IsMultiplayerHost={config.IsMultiplayerHost}, " +
-            $"SteamPersonaName={config.SteamPersonaName}");
+            $"SteamPersonaName={config.SteamPersonaName}, " +
+            $"AiChatEnabled={config.AiChatEnabled}, AiChatCharacter={config.AiChatCharacter}");
 
         return config;
     }
@@ -224,5 +236,7 @@ public class AppConfig
         public string? SteamPersonaName { get; set; }
         public bool AutoBattleEnabled { get; set; } = true;
         public string? SignalFile { get; set; } // per-instance signal filename (e.g. "config_read_bot1.signal")
+        public bool AiChatEnabled { get; set; }
+        public string? AiChatCharacter { get; set; }
     }
 }

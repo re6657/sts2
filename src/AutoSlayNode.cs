@@ -34,10 +34,12 @@ using MegaCrit.Sts2.Core.Unlocks;
 using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 using MegaCrit.Sts2.Core.Nodes.Rewards;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using TokenSpire2.Chat;
 using TokenSpire2.Handlers;
 using TokenSpire2.Llm;
 using TokenSpire2.Solver;
 using TokenSpire2.Core;
+using TokenSpire2.Patches;
 using System.Threading;
 
 namespace TokenSpire2;
@@ -152,8 +154,16 @@ public partial class AutoSlayNode : Node
     private bool _multiplayerJoined;
     private bool _multiplayerReady;
 
-    // ── Auto-chat meow timer ────────────────────────────────────────
+    // ── Auto-chat AI dialogue system ────────────────────────────────
     private double _lastMeowTime;
+    private ChatEngine? _chatEngine;
+    private string _aiChatCharacter = "";
+    private double _chatInterval = 5.0;       // seconds between message batches
+    private double _chatQuickInterval = 1.2;  // seconds between rapid-fire messages
+    private bool _aiChatInitialized;
+    private List<string> _chatQueue = new();  // pending messages to fire rapidly
+    private int _chatQueueIndex;
+    private bool _chatInBatch;                // true during rapid-fire sequence
 
     public override void _Ready()
     {
@@ -204,6 +214,13 @@ public partial class AutoSlayNode : Node
                 _autoNavigate = true;
                 _autoBattle = true;
                 _autoEvent = true;
+            }
+
+            // ── AI Chat initialization ───────────────────────────────────
+            if (cfg.AiChatEnabled && !string.IsNullOrEmpty(cfg.AiChatCharacter))
+            {
+                _aiChatCharacter = cfg.AiChatCharacter;
+                InitializeAiChat();
             }
         }
 
@@ -655,8 +672,8 @@ public partial class AutoSlayNode : Node
         var cm = CombatManager.Instance;
         if (cm != null && cm.IsInProgress)
         {
-            // ── Auto-chat meow: bot nudge host every 5s ──────────────────
-            TrySendMeow(delta);
+            // ── Auto-chat: AI dialogue or meow every N seconds ───────────
+            TrySendAiChat(delta);
 
             // Combat start detection
             if (!_wasInCombat)
@@ -4570,39 +4587,169 @@ public partial class AutoSlayNode : Node
     }
 
     /// <summary>
-    /// Bot sends "喵喵喵" speech bubble every 5 seconds in multiplayer combat
-    /// to nudge the human host into playing faster.
-    ///
-    /// Uses the game's built-in FlavorSynchronizer.SendEndTurnPing() which sends
-    /// an EndTurnPingMessage over the network. Each peer (including the host)
-    /// creates a speech bubble locally upon receiving the message — so the
-    /// "喵喵喵" bubble appears on ALL players' screens, not just the bot's.
+    /// Initialize the AI chat engine with the assigned character persona.
+    /// Called once during _Ready when AiChatEnabled + AiChatCharacter are set.
     /// </summary>
-    private void TrySendMeow(double delta)
+    private void InitializeAiChat()
+    {
+        try
+        {
+            var persona = CharacterProfileManager.GetPersona(_aiChatCharacter);
+            if (persona == null)
+            {
+                MainFile.Logger.Info($"[AutoSlay] AI Chat: character '{_aiChatCharacter}' not found — using meow fallback");
+                return;
+            }
+
+            var chatConfig = AiChatConfig.IsInitialized ? AiChatConfig.Instance : null;
+            _chatInterval = chatConfig?.IntervalSeconds ?? 5;
+
+            _chatEngine = new ChatEngine(persona);
+            _aiChatInitialized = true;
+
+            var displayName = CharacterProfileManager.GetDisplayName(_aiChatCharacter);
+            MainFile.Logger.Info($"[AutoSlay] AI Chat initialized: {displayName} ({_aiChatCharacter}), interval={_chatInterval}s");
+        }
+        catch (Exception ex)
+        {
+            MainFile.Logger.Info($"[AutoSlay] AI Chat init failed: {ex.Message} — using meow fallback");
+        }
+    }
+
+    /// <summary>
+    /// Bot sends AI-generated speech bubbles in multiplayer combat.
+    ///
+    /// Two-phase system:
+    ///   Phase 1 (Rapid-fire): Fire queued messages one by one with 1.2s gaps.
+    ///     Each message is written to a shared file AND set via OverrideText,
+    ///     then a ping is sent. This ensures ALL peers see the text.
+    ///   Phase 2 (Cooldown): After queue is exhausted, wait 8-10s then
+    ///     fetch a new batch of 6-8 short lines from DeepSeek API.
+    ///
+    /// Falls back to "喵喵喵" if AI chat is disabled or API fails.
+    /// </summary>
+    private async void TrySendAiChat(double delta)
     {
         // Only in multiplayer mode, only as client (bot), only when auto-battle is on
         if (!_multiplayerMode || _isMultiplayerHost || !_autoBattle) return;
 
         _lastMeowTime += delta;
-        if (_lastMeowTime < 5.0) return;
-        _lastMeowTime = 0;
 
+        // ── Phase 1: Rapid-fire messages from queue ──────────────────
+        if (_chatInBatch && _chatQueue.Count > 0)
+        {
+            if (_lastMeowTime < _chatQuickInterval) return;
+            _lastMeowTime = 0;
+
+            // Fire next message
+            if (_chatQueueIndex < _chatQueue.Count)
+            {
+                var msg = _chatQueue[_chatQueueIndex];
+                _chatQueueIndex++;
+                SendChatPing(msg);
+            }
+
+            // Check if queue exhausted
+            if (_chatQueueIndex >= _chatQueue.Count)
+            {
+                _chatInBatch = false;
+                _chatQueue.Clear();
+                _chatQueueIndex = 0;
+                MainFile.Logger.Info($"[AutoSlay] Batch complete — waiting {_chatInterval}s for next batch");
+            }
+            return;
+        }
+
+        // ── Phase 2: Wait for next batch interval ────────────────────
+        if (!_chatInBatch)
+        {
+            if (_lastMeowTime < _chatInterval) return;
+            _lastMeowTime = 0;
+
+            // Try AI chat first
+            if (_aiChatInitialized && _chatEngine != null)
+            {
+                try
+                {
+                    var state = GameStateExtractor.BuildContext();
+                    if (!string.IsNullOrEmpty(state))
+                    {
+                        var lines = await _chatEngine.SendAsync(state);
+                        if (lines != null && lines.Length > 0)
+                        {
+                            _chatQueue.AddRange(lines);
+                            _chatQueueIndex = 0;
+                            _chatInBatch = true;
+
+                            // Fire first message immediately
+                            var first = _chatQueue[0];
+                            _chatQueueIndex = 1;
+                            SendChatPing(first);
+                            MainFile.Logger.Info($"[AutoSlay] AI batch: {lines.Length} lines — \"{first}\"");
+                            return;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MainFile.Logger.Info($"[AutoSlay] AI Chat error: {ex.Message}");
+                }
+            }
+
+            // Fallback: single "喵喵喵"
+            SendChatPing(null);
+        }
+    }
+
+    /// <summary>
+    /// Send a single chat ping. If text is null, falls back to "喵喵喵".
+    /// Writes text to shared file for cross-process visibility,
+    /// sets OverrideText for the bot's own process, then sends the ping.
+    /// </summary>
+    private void SendChatPing(string? text)
+    {
         try
         {
             var flavorSync = RunManager.Instance?.FlavorSynchronizer;
             if (flavorSync == null) return;
 
-            // SendEndTurnPing sends an EndTurnPingMessage via INetGameService.
-            // On each peer, HandleEndTurnPingMessage → CreateEndTurnPingDialogueIfNecessary
-            // which creates an NSpeechBubbleVfx above the player's creature.
-            // Our FlavorTextPatch overrides the default localized text with "喵喵喵".
-            flavorSync.SendEndTurnPing();
+            if (text != null)
+            {
+                // Set thread-static override (works on bot's own process)
+                FlavorTextPatch.OverrideText = text;
 
-            MainFile.Logger.Info($"[AutoSlay] 喵喵喵 — ping sent via FlavorSynchronizer");
+                // Write to shared file (works on ALL processes — host + other bots)
+                try
+                {
+                    if (AppConfig.IsInitialized)
+                    {
+                        var filePath = System.IO.Path.Combine(AppConfig.ModDirectory, ".ai_chat_current.txt");
+                        System.IO.File.WriteAllText(filePath, text);
+                    }
+                }
+                catch { /* best effort */ }
+            }
+            else
+            {
+                FlavorTextPatch.OverrideText = null;
+                // Clear shared file so other peers also get meow
+                try
+                {
+                    if (AppConfig.IsInitialized)
+                    {
+                        var filePath = System.IO.Path.Combine(AppConfig.ModDirectory, ".ai_chat_current.txt");
+                        System.IO.File.WriteAllText(filePath, "");
+                    }
+                }
+                catch { /* best effort */ }
+            }
+
+            flavorSync.SendEndTurnPing();
+            MainFile.Logger.Info($"[AutoSlay] Chat ping: \"{text ?? "喵喵喵"}\"");
         }
         catch (Exception ex)
         {
-            MainFile.Logger.Info($"[AutoSlay] Meow failed: {ex.Message}");
+            MainFile.Logger.Info($"[AutoSlay] Chat ping failed: {ex.Message}");
         }
     }
 

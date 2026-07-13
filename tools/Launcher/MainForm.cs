@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text.Json;
 using System.Windows.Forms;
 
@@ -85,6 +87,14 @@ public partial class MainForm : Form
     private TextBox _logBox = null!;
     private CheckBox _autoBattleHostCheck = null!;
 
+    // ── AI Chat controls ──────────────────────────────────────────────
+    private TextBox _apiKeyBox = null!;
+    private CheckBox _aiChatEnabledCheck = null!;
+    private readonly List<ComboBox> _botCharCombos = new();
+    private readonly List<Label> _botCharLabels = new();
+    private string[] _availableCharacters = Array.Empty<string>();
+    private string[] _availableCharDisplayNames = Array.Empty<string>();
+
     // ── Character list ───────────────────────────────────────────────────
     private static readonly string[] Characters = { "IRONCLAD", "SILENT", "DEFECT", "REGENT", "NECROBINDER" };
     private static readonly string[] CharNames = { "Ironclad 战士", "Silent 刺客", "Defect 机器人", "Regent 君王", "Necrobinder 亡灵" };
@@ -97,7 +107,7 @@ public partial class MainForm : Form
     private void InitializeComponent()
     {
         Text = "TokenSpire2 多人启动器";
-        Size = new System.Drawing.Size(520, 520);
+        Size = new System.Drawing.Size(520, 720);
         StartPosition = FormStartPosition.CenterScreen;
         FormBorderStyle = FormBorderStyle.FixedSingle;
         MaximizeBox = false;
@@ -200,8 +210,83 @@ public partial class MainForm : Form
         {
             int bots = (int)_botCountSpinner.Value;
             infoLabel.Text = $"将启动窗口: 1 (Host) + {bots} Bot = 共 {bots + 1} 窗口";
+            UpdateBotCharacterDropdowns(bots);
         };
         y += 35;
+
+        // ── AI Chat section ────────────────────────────────────────────
+        var aiSectionLabel = new Label
+        {
+            Text = "🤖 AI 对话设置",
+            Font = new System.Drawing.Font("Microsoft YaHei", 10, System.Drawing.FontStyle.Bold),
+            Location = new System.Drawing.Point(15, y),
+            Size = new System.Drawing.Size(480, 25),
+        };
+        Controls.Add(aiSectionLabel);
+        y += 30;
+
+        // API Key
+        var apiKeyLabel = new Label
+        {
+            Text = "API Key:",
+            Location = new System.Drawing.Point(15, y),
+            Size = new System.Drawing.Size(80, 25),
+        };
+        Controls.Add(apiKeyLabel);
+
+        _apiKeyBox = new TextBox
+        {
+            Location = new System.Drawing.Point(100, y),
+            Size = new System.Drawing.Size(300, 25),
+            PlaceholderText = "sk-... (留空使用 aichat_config.json 中的 Key)",
+            PasswordChar = '*',
+        };
+        Controls.Add(_apiKeyBox);
+        y += 35;
+
+        // Enable AI Chat checkbox
+        _aiChatEnabledCheck = new CheckBox
+        {
+            Text = "启用 AI 对话（关闭则使用 喵喵喵）",
+            Location = new System.Drawing.Point(100, y),
+            Size = new System.Drawing.Size(300, 25),
+            Checked = true,
+        };
+        Controls.Add(_aiChatEnabledCheck);
+        y += 35;
+
+        // Bot character label header
+        var botCharHeaderLabel = new Label
+        {
+            Text = "Bot 角色分配:",
+            Location = new System.Drawing.Point(15, y),
+            Size = new System.Drawing.Size(100, 25),
+        };
+        Controls.Add(botCharHeaderLabel);
+        y += 30;
+
+        // Bot character dropdowns (dynamic, created in UpdateBotCharacterDropdowns)
+        // Placeholder labels + combos will be added below
+        var botCharPanelY = y;
+
+        // "Manage characters" button
+        y += 100; // reserve space for 3 dropdown rows
+        var manageBtn = new Button
+        {
+            Text = "📂 管理角色文件",
+            Location = new System.Drawing.Point(100, y),
+            Size = new System.Drawing.Size(150, 30),
+            Font = new System.Drawing.Font("Microsoft YaHei", 9),
+        };
+        manageBtn.Click += (_, _) =>
+        {
+            var charsDir = Path.Combine(ModDir, "characters");
+            if (!Directory.Exists(charsDir))
+                Directory.CreateDirectory(charsDir);
+            System.Diagnostics.Process.Start("explorer.exe", charsDir);
+        };
+        Controls.Add(manageBtn);
+        y += 40;
 
         // ── Launch button ────────────────────────────────────────────────
         _launchBtn = new Button
@@ -243,6 +328,162 @@ public partial class MainForm : Form
 
         // Initial info update
         infoLabel.Text = $"将启动窗口: 1 (Host) + {_botCountSpinner.Value} Bot = 共 {_botCountSpinner.Value + 1} 窗口";
+
+        // Scan available characters and load API key
+        ScanAvailableCharacters();
+        LoadApiKeyFromConfig();
+        UpdateBotCharacterDropdowns((int)_botCountSpinner.Value);
+    }
+
+    /// <summary>
+    /// Scan characters/ directory for .md files (excluding TEMPLATE.md).
+    /// Populates _availableCharacters and _availableCharDisplayNames.
+    /// </summary>
+    private void ScanAvailableCharacters()
+    {
+        try
+        {
+            var charsDir = Path.Combine(ModDir, "characters");
+            if (!Directory.Exists(charsDir))
+            {
+                Directory.CreateDirectory(charsDir);
+                _availableCharacters = new[] { "delilah", "seele", "elysia" };
+                _availableCharDisplayNames = new[] { "德丽莎·月下初拥", "希儿·Vollerei", "爱莉希雅" };
+                return;
+            }
+
+            var files = Directory.GetFiles(charsDir, "*.md");
+            var ids = new List<string>();
+            var names = new List<string>();
+
+            foreach (var file in files)
+            {
+                var id = Path.GetFileNameWithoutExtension(file);
+                if (string.IsNullOrEmpty(id) || id.Equals("TEMPLATE", StringComparison.OrdinalIgnoreCase))
+                    continue;
+
+                // Try to extract display name from first line
+                var displayName = id;
+                try
+                {
+                    var firstLine = File.ReadLines(file).FirstOrDefault()?.Trim() ?? "";
+                    if (firstLine.StartsWith("# "))
+                        firstLine = firstLine[2..].Trim();
+
+                    var slashIdx = firstLine.IndexOf('/');
+                    if (slashIdx >= 0)
+                        firstLine = firstLine[(slashIdx + 1)..].Trim();
+
+                    var dashIdx = firstLine.IndexOf("——");
+                    if (dashIdx < 0) dashIdx = firstLine.IndexOf("—");
+                    if (dashIdx >= 0)
+                        firstLine = firstLine[..dashIdx].Trim();
+
+                    var parenIdx = firstLine.IndexOf('（');
+                    if (parenIdx >= 0)
+                        firstLine = firstLine[..parenIdx].Trim();
+
+                    if (firstLine.Length > 0 && firstLine.Length < 30)
+                        displayName = firstLine;
+                }
+                catch { }
+
+                ids.Add(id);
+                names.Add(displayName);
+            }
+
+            if (ids.Count == 0)
+            {
+                ids.AddRange(new[] { "delilah", "seele", "elysia" });
+                names.AddRange(new[] { "德丽莎·月下初拥", "希儿·Vollerei", "爱莉希雅" });
+            }
+
+            _availableCharacters = ids.ToArray();
+            _availableCharDisplayNames = names.ToArray();
+        }
+        catch
+        {
+            _availableCharacters = new[] { "delilah", "seele", "elysia" };
+            _availableCharDisplayNames = new[] { "德丽莎·月下初拥", "希儿·Vollerei", "爱莉希雅" };
+        }
+    }
+
+    /// <summary>
+    /// Pre-load API key from aichat_config.json so users don't need to re-enter it.
+    /// </summary>
+    private void LoadApiKeyFromConfig()
+    {
+        try
+        {
+            var configPath = Path.Combine(ModDir, "aichat_config.json");
+            if (File.Exists(configPath))
+            {
+                var json = File.ReadAllText(configPath);
+                var doc = System.Text.Json.JsonDocument.Parse(json);
+                if (doc.RootElement.TryGetProperty("ApiKey", out var keyProp))
+                {
+                    var key = keyProp.GetString();
+                    if (!string.IsNullOrEmpty(key))
+                        _apiKeyBox.Text = key;
+                }
+            }
+        }
+        catch { /* best effort */ }
+    }
+
+    /// <summary>
+    /// Create/update bot character dropdowns based on bot count.
+    /// </summary>
+    private void UpdateBotCharacterDropdowns(int botCount)
+    {
+        // Remove old dropdowns
+        foreach (var combo in _botCharCombos)
+            Controls.Remove(combo);
+        foreach (var label in _botCharLabels)
+            Controls.Remove(label);
+        _botCharCombos.Clear();
+        _botCharLabels.Clear();
+
+        // Find the Y position (after the botCharHeaderLabel)
+        int startY = 310; // fixed position
+
+        for (int i = 0; i < botCount; i++)
+        {
+            var label = new Label
+            {
+                Text = $"  Bot {i + 1} 角色:",
+                Location = new System.Drawing.Point(30, startY + i * 30),
+                Size = new System.Drawing.Size(80, 25),
+            };
+            Controls.Add(label);
+            _botCharLabels.Add(label);
+
+            var combo = new ComboBox
+            {
+                Location = new System.Drawing.Point(115, startY + i * 30),
+                Size = new System.Drawing.Size(200, 25),
+                DropDownStyle = ComboBoxStyle.DropDownList,
+            };
+            for (int j = 0; j < _availableCharacters.Length; j++)
+            {
+                combo.Items.Add($"{_availableCharacters[j]} — {_availableCharDisplayNames[j]}");
+            }
+            // Default: cycle through available characters
+            combo.SelectedIndex = Math.Min(i, _availableCharacters.Length - 1);
+            Controls.Add(combo);
+            _botCharCombos.Add(combo);
+        }
+    }
+
+    private string GetSelectedBotCharacter(int botIndex)
+    {
+        if (botIndex >= 0 && botIndex < _botCharCombos.Count)
+        {
+            int selIdx = _botCharCombos[botIndex].SelectedIndex;
+            if (selIdx >= 0 && selIdx < _availableCharacters.Length)
+                return _availableCharacters[selIdx];
+        }
+        return "delilah"; // fallback
     }
 
     private void Log(string msg)
@@ -268,13 +509,25 @@ public partial class MainForm : Form
             string seed = _seedBox.Text.Trim();
             int botCount = (int)_botCountSpinner.Value;
             bool hostAutoBattle = _autoBattleHostCheck.Checked;
+            bool aiChatEnabled = _aiChatEnabledCheck.Checked;
 
             Log($"==========================================");
             Log($"角色: {character}");
             Log($"种子: {(string.IsNullOrEmpty(seed) ? "随机" : seed)}");
             Log($"Bot 数量: {botCount}");
             Log($"Host 自动战斗: {(hostAutoBattle ? "是" : "否")}");
+            Log($"AI 对话: {(aiChatEnabled ? "启用" : "关闭")}");
+            for (int i = 0; i < botCount; i++)
+            {
+                Log($"  Bot {i + 1} 角色: {GetSelectedBotCharacter(i)}");
+            }
             Log($"==========================================");
+
+            // Save API key to aichat_config.json if user entered one
+            if (!string.IsNullOrWhiteSpace(_apiKeyBox.Text))
+            {
+                SaveApiKey(_apiKeyBox.Text.Trim());
+            }
 
             // Verify paths
             if (!File.Exists(GameExe))
@@ -304,12 +557,13 @@ public partial class MainForm : Form
                 string botSignal = $"config_read_bot{i}.signal";
                 string botPath = Path.Combine(GameDir, $"token_spire_bot{i}.json");
                 string botName = $"Bot{i}";
+                string botCharacter = GetSelectedBotCharacter(i - 1);
                 string botConfig = $$"""
-                    {"Seed":{{seedJson}},"Character":"{{character}}","MultiplayerMode":true,"IsMultiplayerHost":false,"SteamPersonaName":"{{botName}}","AutoBattleEnabled":true,"SignalFile":"{{botSignal}}"}
+                    {"Seed":{{seedJson}},"Character":"{{character}}","MultiplayerMode":true,"IsMultiplayerHost":false,"SteamPersonaName":"{{botName}}","AutoBattleEnabled":true,"SignalFile":"{{botSignal}}","AiChatEnabled":{{aiChatEnabled.ToString().ToLower()}},"AiChatCharacter":"{{botCharacter}}"}
                     """;
                 File.WriteAllText(botPath, botConfig);
                 botConfigs.Add((botPath, botSignal, botName));
-                Log($"✓ {botName} 配置: {botPath}");
+                Log($"✓ {botName} 配置: {botPath} (角色: {botCharacter})");
             }
 
             // ── Launch ALL windows at once (parallel) ──────────────────
@@ -402,6 +656,50 @@ public partial class MainForm : Form
             waited += 3;
         }
         return File.Exists(signalPath);
+    }
+
+    /// <summary>
+    /// Save API key to aichat_config.json, preserving other settings.
+    /// </summary>
+    private static void SaveApiKey(string apiKey)
+    {
+        try
+        {
+            var configPath = Path.Combine(ModDir, "aichat_config.json");
+            // Read existing config or create default
+            string json;
+            if (File.Exists(configPath))
+            {
+                json = File.ReadAllText(configPath);
+            }
+            else
+            {
+                json = "{}";
+            }
+
+            var doc = System.Text.Json.JsonDocument.Parse(json);
+            var obj = new Dictionary<string, object>();
+            foreach (var prop in doc.RootElement.EnumerateObject())
+            {
+                if (prop.NameEquals("ApiKey"))
+                    obj["ApiKey"] = apiKey;
+                else if (prop.Value.ValueKind == System.Text.Json.JsonValueKind.String)
+                    obj[prop.Name] = prop.Value.GetString()!;
+                else if (prop.Value.ValueKind == System.Text.Json.JsonValueKind.Number)
+                    obj[prop.Name] = prop.Value.GetDouble();
+                else if (prop.Value.ValueKind == System.Text.Json.JsonValueKind.True)
+                    obj[prop.Name] = true;
+                else if (prop.Value.ValueKind == System.Text.Json.JsonValueKind.False)
+                    obj[prop.Name] = false;
+            }
+            // Ensure ApiKey is set
+            obj["ApiKey"] = apiKey;
+
+            var newJson = System.Text.Json.JsonSerializer.Serialize(obj,
+                new System.Text.Json.JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(configPath, newJson);
+        }
+        catch { /* best effort */ }
     }
 }
 

@@ -9,9 +9,24 @@ tools/page_dump.html
 config_read.signal
 config_read_host.signal
 config_read_client.signal
+config_read_bot*.signal
 run_complete.txt
 host_steam_id.txt
 stuck_diagnostics.json
+
+# AI chat runtime files
+.ai_chat_current.txt
+ai_chat_current.txt
+
+# AI chat config (contains API key — keep local only)
+aichat_config.json
+
+# Run summaries
+run_summary_*.json
+
+# Launcher build artifacts
+tools/Launcher/bin/
+tools/Launcher/obj/
 
 # Built binary
 TokenSpire2.dll

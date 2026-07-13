@@ -46,6 +46,11 @@ public partial class MainFile : Node
         TokenSpire2.Solver.CardDatabase.Initialize(modDirectory);
         Logger.Info("[TokenSpire2] CardDatabase initialized.");
 
+        // ── Step 2.5: Initialize AI chat systems ──────────────────────
+        TokenSpire2.Chat.AiChatConfig.Initialize(modDirectory);
+        TokenSpire2.Chat.CharacterProfileManager.Initialize(modDirectory);
+        Logger.Info("[TokenSpire2] AI Chat systems initialized.");
+
         // ── Step 3: Install Harmony patches ────────────────────────────
         var harmony = new Harmony("TokenSpire2");
         harmony.PatchAll(typeof(MainFile).Assembly);
