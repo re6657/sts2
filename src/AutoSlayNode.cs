@@ -158,6 +158,7 @@ public partial class AutoSlayNode : Node
     private double _lastMeowTime;
     private ChatEngine? _chatEngine;
     private string _aiChatCharacter = "";
+    private string _aiChatDisplayName = "";    // cached for logging
     private double _chatInterval = 5.0;       // seconds between message batches
     private double _chatQuickInterval = 1.2;  // seconds between rapid-fire messages
     private bool _aiChatInitialized;
@@ -4607,8 +4608,11 @@ public partial class AutoSlayNode : Node
             _chatEngine = new ChatEngine(persona);
             _aiChatInitialized = true;
 
-            var displayName = CharacterProfileManager.GetDisplayName(_aiChatCharacter);
-            MainFile.Logger.Info($"[AutoSlay] AI Chat initialized: {displayName} ({_aiChatCharacter}), interval={_chatInterval}s");
+            _aiChatDisplayName = CharacterProfileManager.GetDisplayName(_aiChatCharacter);
+            MainFile.Logger.Info($"[AutoSlay] AI Chat initialized: {_aiChatDisplayName} ({_aiChatCharacter}), interval={_chatInterval}s");
+
+            // Initialize chat history logger
+            Chat.ChatLogger.Initialize(AppConfig.ModDirectory);
         }
         catch (Exception ex)
         {
@@ -4745,6 +4749,13 @@ public partial class AutoSlayNode : Node
             }
 
             flavorSync.SendEndTurnPing();
+
+            // Log to chat history file (AI text only, not meow fallback)
+            if (text != null && !string.IsNullOrEmpty(_aiChatDisplayName))
+            {
+                Chat.ChatLogger.Log(_aiChatDisplayName, text);
+            }
+
             MainFile.Logger.Info($"[AutoSlay] Chat ping: \"{text ?? "喵喵喵"}\"");
         }
         catch (Exception ex)
