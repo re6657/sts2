@@ -195,6 +195,16 @@ public partial class AutoSlayNode : Node
             var cfg = AppConfig.Instance;
             _multiplayerMode = cfg.MultiplayerMode;
             _isMultiplayerHost = cfg.IsMultiplayerHost;
+
+            // ── Character override from AppConfig ────────────────────────
+            // In multiplayer mode, the per-instance config (--config path)
+            // specifies the character. This takes precedence over the old
+            // batch_config.json loaded by LoadBatchConfig() above.
+            if (_multiplayerMode && !string.IsNullOrEmpty(cfg.Character))
+            {
+                _character = cfg.Character;
+                MainFile.Logger.Info($"[AutoSlay] Multiplayer character override: {_character}");
+            }
             if (_multiplayerMode)
             {
                 MainFile.Logger.Info($"[AutoSlay] Multiplayer mode: IsHost={_isMultiplayerHost}, PersonaName={cfg.SteamPersonaName}");

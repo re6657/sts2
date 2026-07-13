@@ -137,6 +137,10 @@ public partial class MainForm : Form
         scrollPanel.Controls.Add(title);
         cy += 48;
 
+        // ── Load data BEFORE building any dropdowns ────────────────────
+        ScanPersonas();
+        LoadApiKeyFromConfig();
+
         // ═══════════════════════════════════════════════════════════════════
         // Section: 玩家设置
         // ═══════════════════════════════════════════════════════════════════
@@ -335,9 +339,6 @@ public partial class MainForm : Form
         scrollPanel.Controls.Add(_logBox);
         cy += 210;
 
-        // Load data
-        ScanPersonas();
-        LoadApiKeyFromConfig();
     }
 
     // ── Helpers ──────────────────────────────────────────────────────────
