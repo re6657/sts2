@@ -31,13 +31,6 @@ public static class MapDecider
     private static int _cachedPathIndex = -1;
     private static HashSet<(int row, int col)>? _clickedNodes;
 
-    // Stuck-detection backoff counters — prevent infinite click-loop.
-    // On first timeout: just wait longer (map animation may still be playing).
-    // On second timeout: clear cache and replan (genuinely stuck).
-    private static int _singleNodeStuckCount;
-    private static (int row, int col) _lastSingleNode = (-1, -1);
-    private static int _multiNodeStuckCount;
-
     public static void Reset()
     {
         _lastClickedRow = -1;
@@ -46,9 +39,6 @@ public static class MapDecider
         _cachedPath = null;
         _cachedPathIndex = -1;
         _clickedNodes = null;
-        _singleNodeStuckCount = 0;
-        _lastSingleNode = (-1, -1);
-        _multiNodeStuckCount = 0;
     }
 
     public static bool Decide(RunState state)
@@ -87,45 +77,18 @@ public static class MapDecider
                 if (InMultiplayerRun)
                     return false;
 
-                // Track which node we're stuck on
-                if ((r, c) != _lastSingleNode)
-                {
-                    _lastSingleNode = (r, c);
-                    _singleNodeStuckCount = 0;
-                }
-
                 double waited = _lastClickTime > 0
                     ? (Godot.Time.GetTicksMsec() / 1000.0) - _lastClickTime : 0;
-
-                // 2-strike backoff: first timeout just logs and waits longer
-                // (map animation may still be playing). Only clear cache and
-                // replan on the second timeout — prevents infinite click-loop.
-                if (_singleNodeStuckCount == 0 && waited > 15.0)
+                if (waited > 5.0)
                 {
-                    _singleNodeStuckCount++;
-                    MainFile.Logger.Warn($"[MapDecider] Single-node ({r},{c}) {NodeTypeName(only)} waiting {waited:F0}s — " +
-                        $"may be map animation, will retry in 15s");
-                    _lastClickTime = Godot.Time.GetTicksMsec() / 1000.0; // reset timer for second strike
-                    return false;
-                }
-
-                if (_singleNodeStuckCount >= 1 && waited > 15.0)
-                {
-                    MainFile.Logger.Error($"[MapDecider] Single-node ({r},{c}) {NodeTypeName(only)} stuck for {waited:F0}s " +
-                        $"(strike {_singleNodeStuckCount + 1}) — forcing replan");
+                    MainFile.Logger.Error($"[MapDecider] Single-node stuck at ({r},{c}) for {waited:F0}s — forcing replan");
                     _clickedNodes.Clear();
                     _cachedPath = null;
                     _cachedPathIndex = -1;
-                    _singleNodeStuckCount = 0;
-                    _lastSingleNode = (-1, -1);
                     return false;
                 }
                 return false;
             }
-
-            // New (different) single node — reset backoff
-            _singleNodeStuckCount = 0;
-            _lastSingleNode = (r, c);
 
             _clickedNodes.Add((r, c));
             MainFile.Logger.Info($"[MapDecider] Single-node: clicking ({r},{c}) {NodeTypeName(only)}");
@@ -224,33 +187,17 @@ public static class MapDecider
 
             double waited = _lastClickTime > 0
                 ? (Godot.Time.GetTicksMsec() / 1000.0) - _lastClickTime : 0;
-
-            // 2-strike backoff: first timeout waits, second clears and replans
-            if (_multiNodeStuckCount == 0 && waited > 10.0)
+            if (waited > 3.0)
             {
-                _multiNodeStuckCount++;
-                MainFile.Logger.Warn($"[MapDecider] Multi-node ({nr},{nc}) {NodeTypeName(nextNode)} waiting {waited:F0}s — " +
-                    $"may be animation, will retry in 10s");
-                _lastClickTime = Godot.Time.GetTicksMsec() / 1000.0; // reset timer for second strike
-                return false;
-            }
-
-            if (_multiNodeStuckCount >= 1 && waited > 10.0)
-            {
-                MainFile.Logger.Error($"[MapDecider] Multi-node ({nr},{nc}) {NodeTypeName(nextNode)} stuck for {waited:F0}s " +
-                    $"(strike {_multiNodeStuckCount + 1}) — clearing cache");
+                MainFile.Logger.Error($"[MapDecider] Click stuck at ({nr},{nc}) for {waited:F0}s — clearing cache");
                 _clickedNodes.Clear();
                 _cachedPath = null;
                 _cachedPathIndex = -1;
                 _lastClickTime = 0;
-                _multiNodeStuckCount = 0;
                 return false;
             }
             return false;
         }
-
-        // New (different) node clicked successfully — reset backoff
-        _multiNodeStuckCount = 0;
 
         MainFile.Logger.Info($"[MapDecider] Clicking ({nr},{nc}) {NodeTypeName(nextNode)} " +
             $"[{_cachedPathIndex + 1}/{_cachedPath?.Count ?? 0}]");
@@ -328,7 +275,7 @@ public static class MapDecider
         if (currentIdx == _cachedPathIndex && _cachedPathIndex >= 0)
         {
             double waited = _lastClickTime > 0 ? (Godot.Time.GetTicksMsec() / 1000.0) - _lastClickTime : 0;
-            if (waited > 12.0)
+            if (waited > 5.0)
             {
                 MainFile.Logger.Error($"[MapDecider] STUCK on cached node {currentIdx} for {waited:F0}s — forcing replan");
                 return null;

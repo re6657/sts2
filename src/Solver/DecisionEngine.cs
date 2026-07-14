@@ -145,8 +145,7 @@ public static class DecisionEngine
         // ── Stability gate (CommunicationMod pattern) ──────────────────
         // Only allow decisions when game state is stable.
         // During transitions, animations, or pending actions, skip.
-        // MAP is always stable once visible — bypass to avoid 2-frame delay.
-        if (screen != GameScreen.MAP && !StateStabilityDetector.IsStableForDecision(screen, delta))
+        if (!StateStabilityDetector.IsStableForDecision(screen, delta))
         {
             // Still refresh run state to track changes
             try { _runState.Refresh(); } catch { }

@@ -51,6 +51,7 @@ public partial class AutoSlayNode : Node
     private double _cooldown;
     private double _combatCardDelay;
     private double _logTimer;
+    private string? _lastLog;
     private bool _ftueDisabled;
     private bool _hpBoosted;
     private bool _debugMaxHp = false;  // set to true for optimizer: max HP 999, evaluate via HP loss not win/loss
@@ -155,28 +156,11 @@ public partial class AutoSlayNode : Node
     private bool _wasInRest;       // track rest site transitions for state reset
     private bool _wasInTreasure;  // track treasure room transitions for state reset
     private bool _postCombatCooldownLogged; // diagnostic: track if _cooldown is blocking post-combat nav
-    private int _dismissProceedClicks;      // backoff counter: repeated Proceed clicks in TryClickDismissInModal
-    private string? _lastDismissBtnNames;    // last button names seen in TryClickDismissInModal (for reset detection)
-    private string? _lastHeartbeatScreen;    // only log heartbeat on screen change (log noise reduction)
-    private string? _lastInCombatState;      // only log InCombat DBG on state change (log noise reduction)
-    private string? _lastLogStateSummary;    // only log Tick/LogState on state change (log noise reduction)
-    private HashSet<string> _recentLogs = new(); // last N unique messages for better dedup
     private bool _wasEnemyTurn;     // track enemy→player turn transitions for stuck timer
     private double _playerDisabledDuration; // MP watchdog: seconds spent with PlayerActionsDisabled=true
     private int _panicButtonTurnsRemaining; // PANIC_BUTTON debuff: turns of "no block from cards" remaining
     private int _lastTurnHp, _lastTurnBlock, _lastTurnMaxHp;
     private int _lastTurnAliveEnemyCount;
-
-    // ── 5-second retry cycle for multiplayer combat ─────────────────────
-    // After the bot ends its turn in MP, other players may still be playing.
-    // The host might give the bot energy/cards via ally-targeting effects.
-    // Every 5s, we cancel the end-turn, re-solve, and play any newly
-    // available cards. If nothing is playable, we re-end the turn.
-    private double _mpPostEndTurnTimer;            // seconds since last end-turn or retry
-    private const double MP_END_TURN_RETRY = 5.0;  // retry interval in seconds
-    private bool _mpEndTurnRetryActive;            // true when retry cycle is running
-    private int _mpPostPlanEmptyCount;             // consecutive empty solver results after plan
-    private const int MP_MAX_POST_PLAN_EMPTY = 3;  // end turn after this many empty re-solves
 
     // ── Multiplayer mode ────────────────────────────────────────────
     private bool _multiplayerMode;
@@ -420,7 +404,7 @@ public partial class AutoSlayNode : Node
 
         if (_paused) return;
 
-        // ── Diagnostic heartbeat (every 5s, logs ONLY on screen change) ──
+        // ── Diagnostic heartbeat (every 5 seconds) ──────────────────
         _dbgTimer -= delta;
         if (_dbgTimer <= 0)
         {
@@ -428,12 +412,8 @@ public partial class AutoSlayNode : Node
             try
             {
                 var screen = GameStateDetector.Detect();
-                string screenStr = screen.ToString();
-                if (screenStr != _lastHeartbeatScreen)
-                {
-                    _lastHeartbeatScreen = screenStr;
-                    MainFile.Logger?.Info($"[AutoSlay] ♥ heartbeat screen={screen}");
-                }
+                var msg = $"[AutoSlay] ♥ heartbeat screen={screen}";
+                MainFile.Logger?.Info(msg);
             }
             catch (Exception ex)
             {
@@ -466,9 +446,7 @@ public partial class AutoSlayNode : Node
         // ── Multiplayer: dismiss any error popups (e.g. "Connection failed") ──
         // FastMpJoin() shows an error dialog if the host's ENet server isn't
         // ready yet. Dismiss it so the bot can retry.
-        // IMPORTANT: respect _cooldown to avoid infinite click-loop on
-        // NRewardsScreen ProceedButton in multiplayer (requires host sync).
-        if (_multiplayerMode && !_isMultiplayerHost && _cooldown <= 0)
+        if (_multiplayerMode && !_isMultiplayerHost)
         {
             DismissContinuePrompt();
         }
@@ -851,13 +829,7 @@ public partial class AutoSlayNode : Node
                     }
                     catch { }
                 }
-                // Only log on state change to reduce noise (was ~19K lines per session)
-                string stateKey = $"pc={cm.PlayerActionsDisabled} d={_combatCardDelay:F1} tr={_combatTurnRequested} pl={_combatPlan != null}{mpExtra}";
-                if (stateKey != _lastInCombatState)
-                {
-                    _lastInCombatState = stateKey;
-                    MainFile.Logger.Info($"[DBG] InCombat: playerDisabled={cm.PlayerActionsDisabled} delay={_combatCardDelay:F2} turnReq={_combatTurnRequested} plan={_combatPlan != null} localNetId={LocalContext.NetId}{mpExtra}");
-                }
+                MainFile.Logger.Info($"[DBG] InCombat: playerDisabled={cm.PlayerActionsDisabled} delay={_combatCardDelay:F2} turnReq={_combatTurnRequested} plan={_combatPlan != null} localNetId={LocalContext.NetId}{mpExtra}");
             }
 
             // CombatHandler.BoostHpIfNeeded();
@@ -906,10 +878,7 @@ public partial class AutoSlayNode : Node
                             int drawCount = PileType.Draw.GetPile(pl)?.Cards?.Count ?? -1;
                             int handCount = PileType.Hand.GetPile(pl)?.Cards?.Count ?? -1;
                             if (dbgLog || handCount > 0)
-                            {
-                                if (_drawStableCount <= 1) // Only log on first detection, not every frame
-                                    MainFile.Logger.Info($"[DBG] DrawCheck pl=ok draw={drawCount} hand={handCount} stable={_drawStableCount}/{_lastDrawHandCount}");
-                            }
+                                MainFile.Logger.Info($"[DBG] DrawCheck pl=ok draw={drawCount} hand={handCount} stable={_drawStableCount}/{_lastDrawHandCount}");
                             if (handCount == 0)
                             {
                                 // If draw pile is also empty, no cards will ever arrive — end turn.
@@ -958,7 +927,8 @@ public partial class AutoSlayNode : Node
                             if (!drawComplete)
                             {
                                 _combatCardDelay = 0.05; // poll every 50ms during draw
-                                // Don't log every frame — COMPLETE log below is sufficient
+                                if (dbgLog)
+                                    MainFile.Logger.Info($"[DBG] DrawCheck waiting: hand={handCount} stable={_drawStableCount}/3");
                                 return;
                             }
                             // Draw complete — reset for next turn
@@ -984,11 +954,6 @@ public partial class AutoSlayNode : Node
                     }
 
                     // ── ALGORITHMIC SOLVER (all characters) ─────────────
-                    // Reset per-turn state for fresh solver invocation
-                    _emptySolveRetries = 0;
-                    _mpPostPlanEmptyCount = 0;
-                    _mpEndTurnRetryActive = false;
-                    _mpPostEndTurnTimer = 0;
                     MainFile.Logger.Info($"[DBG] >>> SOLVER START: character={_character}, pl={pl != null} <<<");
                     if (_character is "IRONCLAD" or "SILENT" or "DEFECT" or "NECROBINDER" or "REGENT")
                     {
@@ -1671,12 +1636,6 @@ public partial class AutoSlayNode : Node
                             EndTurnViaUiOrApi(pl);
                         _combatTurnRequested = true; _combatTurnRequestedDuration = 0;
                         _combatCardDelay = 0.5;
-                        // ── Activate 5-second MP retry cycle ─────────────
-                        if (_multiplayerMode && !_isMultiplayerHost)
-                        {
-                            _mpEndTurnRetryActive = true;
-                            _mpPostEndTurnTimer = 0;
-                        }
                     }
                     else
                     {
@@ -1770,67 +1729,6 @@ public partial class AutoSlayNode : Node
                     {
                         // Reset stuck detector — we're alive, just waiting for other player
                         _lastCombatActivity = 0;
-
-                        // ── 5-second retry cycle ──────────────────────────
-                        // After the bot ends its turn, the host may still be
-                        // playing. The host could use ally-targeting cards
-                        // (BELIEVE_IN_YOU, DEMONIC_SHIELD, etc.) that give
-                        // the bot energy or cards. Check every 5s whether we
-                        // have new playable cards, and if so, cancel end-turn
-                        // and play them.
-                        if (_mpEndTurnRetryActive && !_isMultiplayerHost)
-                        {
-                            _mpPostEndTurnTimer += _delta;
-                            if (_mpPostEndTurnTimer >= MP_END_TURN_RETRY)
-                            {
-                                _mpPostEndTurnTimer = 0;
-                                // Check if hand has playable cards
-                                bool hasPlayable = false;
-                                try
-                                {
-                                    var rs = RunManager.Instance?.DebugOnlyGetState();
-                                    var me = rs != null ? LocalContext.GetMe(rs) : null;
-                                    if (me != null)
-                                    {
-                                        var hand = PileType.Hand.GetPile(me).Cards.ToList();
-                                        int curEnergy = me.PlayerCombatState?.Energy ?? 0;
-                                        foreach (var c in hand)
-                                        {
-                                            try
-                                            {
-                                                if (c == null) continue;
-                                                int cost = c.EnergyCost?.CostsX == true
-                                                    ? Math.Max(1, curEnergy)
-                                                    : (c.EnergyCost?.Canonical ?? 99);
-                                                if (cost <= curEnergy && cost >= 0
-                                                    && c.CanPlay(out _, out _))
-                                                {
-                                                    hasPlayable = true;
-                                                    break;
-                                                }
-                                            }
-                                            catch { }
-                                        }
-                                    }
-                                }
-                                catch { }
-
-                                if (hasPlayable)
-                                {
-                                    MainFile.Logger.Info("[AutoSlay] MP retry: playable cards found after end-turn — canceling and re-solving");
-                                    _mpEndTurnRetryActive = false;
-                                    _mpPostEndTurnTimer = 0;
-                                    _combatTurnRequested = false;
-                                    _combatTurnRequestedDuration = 0;
-                                    _combatPlan = null;
-                                    _combatCardDelay = 0.3;
-                                }
-                                else
-                                {
-                                    MainFile.Logger.Info($"[AutoSlay] MP retry: no playable cards after {MP_END_TURN_RETRY}s — keeping end-turn");
-                                }
-                            }
-                        }
                     }
                     return;
                 }
@@ -1906,8 +1804,6 @@ public partial class AutoSlayNode : Node
         {
             _wasInCombat = false;
             _postCombatCooldownLogged = true;
-            _cooldown = 0; // Clear any stale combat cooldown so post-combat navigation starts immediately
-            MapDecider.InMultiplayerRun = _multiplayerMode; // Set early so flag is correct before MAP handler runs
 
             CombatHandler.OnCombatEnded();
             _combatTurnRequested = false; _combatTurnRequestedDuration = 0;
@@ -2002,12 +1898,7 @@ public partial class AutoSlayNode : Node
                 if (proceed?.IsEnabled == true)
                 {
                     proceed.ForceClick();
-                    // ── MULTIPLAYER: Proceed on NRewardsScreen stays in Wait state until
-                    // ALL players' rewards are fully synced. Clicking every 1s creates
-                    // log spam but the click is silently ignored. Use a longer cooldown
-                    // so we still eventually dismiss the screen once sync completes.
-                    // The DismissContinuePrompt path has its own backoff (6 clicks → 10s).
-                    _cooldown = _multiplayerMode ? 3.0 : 1.0;
+                    _cooldown = 1.0;
                     return;
                 }
                 // fall through to map/room handling below
@@ -2192,17 +2083,17 @@ public partial class AutoSlayNode : Node
                 _lastScreenType = ""; _sameScreenDuration = 0; _sameScreenTickCount = 0;
                 var pts = AutoSlayHelpers.FindAll<NMapPoint>(mapScreen).Where(p => p.IsEnabled).ToList();
                 if (pts.Count > 0) { var pt = pts[_rng.Next(pts.Count)]; mapScreen.OnMapPointSelectedLocally(pt); }
-                _cooldown = 1.0;
+                _cooldown = 2.0;
                 return;
             }
             MainFile.Logger.Info("[AutoSlay] MAP screen detected, calling DecisionEngine");
             // In multiplayer, bots must wait for all players to select before
             // the map advances. Tell MapDecider so it doesn't mistake waiting
             // for a rejected click and retry infinitely.
-            MapDecider.InMultiplayerRun = _multiplayerMode;
+            MapDecider.InMultiplayerRun = _multiplayerMode && !_isMultiplayerHost;
             try { DecisionEngine.Decide(GameScreen.MAP, delta); }
             catch (Exception ex) { MainFile.Logger.Error($"[AutoSlay] MAP DecisionEngine CRASH: {ex.Message}"); }
-            _cooldown = 1.0;
+            _cooldown = 2.0;
             return;
         }
 
@@ -2735,10 +2626,6 @@ public partial class AutoSlayNode : Node
             var modal = NModalContainer.Instance?.OpenModal;
             if (modal != null)
             {
-                // MULTIPLAYER: NRewardsScreen won't dismiss until all players sync.
-                // Skip — the main loop handles this with multiplayer guard.
-                if (_multiplayerMode && modal is NRewardsScreen)
-                    return;
                 if (TryClickDismissInModal((Node)modal)) return;
             }
 
@@ -2749,9 +2636,6 @@ public partial class AutoSlayNode : Node
                 if (overlayStack2?.ScreenCount > 0)
                 {
                     var overlay = overlayStack2.Peek() as Node;
-                    // MULTIPLAYER: skip NRewardsScreen — main loop handles it
-                    if (_multiplayerMode && overlay is NRewardsScreen)
-                        return;
                     if (overlay != null && TryClickDismissInModal(overlay)) return;
                 }
             }
@@ -2782,32 +2666,6 @@ public partial class AutoSlayNode : Node
         var names = string.Join(", ", allBtns.Select(b => b.Name?.ToString() ?? "?"));
         LogOnce($"DismissModal: {allBtns.Count} buttons: [{names}]");
 
-        // ── Backoff: if we keep clicking Proceed on the same modal, back off ──
-        // Prevents infinite click-loop after combat rewards in multiplayer where
-        // the Proceed button doesn't dismiss until host sync completes.
-        if (names == _lastDismissBtnNames)
-        {
-            _dismissProceedClicks++;
-        }
-        else
-        {
-            _dismissProceedClicks = 0;
-            _lastDismissBtnNames = names;
-        }
-        if (_dismissProceedClicks > 5)
-        {
-            // After 5 clicks with no change, we're in a loop. Skip this modal.
-            LogOnce($"DismissModal BACKOFF: {_dismissProceedClicks} clicks on [{names}], giving up (will retry after 10s)");
-            _cooldown = 10.0;  // Long cooldown — let MP sync or map transition happen
-            return false;
-        }
-        if (_dismissProceedClicks >= 3)
-        {
-            // After 3 clicks, use longer cooldown to give multiplayer sync time
-            LogOnce($"DismissModal throttling: {_dismissProceedClicks} clicks on [{names}], slowing down");
-        }
-        var _dismissCooldown = _dismissProceedClicks >= 3 ? 3.0 : 1.0;
-
         // Step 1: Look for dismiss-type buttons (No/Cancel/Abandon/Exit/不/取消/放弃/退出/不了/否)
         foreach (var btn in allBtns)
         {
@@ -2818,7 +2676,7 @@ public partial class AutoSlayNode : Node
             {
                 LogOnce($"DismissModal: clicking {btn.Name}");
                 btn.ForceClick();
-                _cooldown = _dismissCooldown;
+                _cooldown = 1.0;
                 return true;
             }
         }
@@ -2838,7 +2696,7 @@ public partial class AutoSlayNode : Node
             {
                 LogOnce($"DismissModal (2-btn w/Proceed): clicking Proceed to dismiss");
                 proceedBtn.ForceClick();
-                _cooldown = _dismissCooldown;
+                _cooldown = 1.0;
                 return true;
             }
 
@@ -2853,7 +2711,7 @@ public partial class AutoSlayNode : Node
             {
                 LogOnce($"DismissModal (2-btn): clicking non-Yes {notYes.Name}");
                 notYes.ForceClick();
-                _cooldown = _dismissCooldown;
+                _cooldown = 1.0;
                 return true;
             }
         }
@@ -2867,7 +2725,7 @@ public partial class AutoSlayNode : Node
             {
                 LogOnce($"DismissModal (1-btn): clicking Proceed");
                 only.ForceClick();
-                _cooldown = _dismissCooldown;
+                _cooldown = 1.0;
                 return true;
             }
         }
@@ -3477,36 +3335,6 @@ public partial class AutoSlayNode : Node
 
         // ── Step 2: Confirm (with host delay) ─────────────────────────────
         var confirmBtn = charSelect.GetNodeOrNull<NConfirmButton>("ConfirmButton");
-        // Fallback: search by name if direct path fails
-        if (confirmBtn == null)
-        {
-            foreach (var btn in AutoSlayHelpers.FindAll<NButton>(charSelect))
-            {
-                var btnName = btn.Name?.ToString() ?? "";
-                if (btnName.Contains("Confirm", StringComparison.OrdinalIgnoreCase)
-                    || btnName.Contains("Ready", StringComparison.OrdinalIgnoreCase)
-                    || btn is NConfirmButton)
-                {
-                    if (btn.Visible && btn.IsEnabled)
-                    {
-                        confirmBtn = btn as NConfirmButton;
-                        if (confirmBtn == null)
-                        {
-                            // Not an NConfirmButton, but click it directly
-                            if (!_isMultiplayerHost)
-                            {
-                                LogOnce($"Multiplayer character select: confirming via fallback button [{btnName}] (bot)");
-                                btn.ForceClick();
-                                return 2.0;
-                            }
-                            // For host path below, we can't use this fallback easily
-                            // because the delay logic expects confirmBtn
-                        }
-                        break;
-                    }
-                }
-            }
-        }
         if (confirmBtn == null || !confirmBtn.IsEnabled)
         {
             // Confirm button not ready yet — wait
@@ -4248,20 +4076,6 @@ public partial class AutoSlayNode : Node
                 // Rechecks resolved — reset counter
                 _consecutiveRechecks = 0;
 
-                // ── Multiplayer post-plan re-check ───────────────────────
-                // In multiplayer, don't end turn immediately after the first
-                // plan completes. Relic effects or card-draw during plan
-                // execution may have created new play opportunities.
-                // Re-solve once more before committing to end turn.
-                if (_multiplayerMode && !_isMultiplayerHost && _mpPostPlanEmptyCount < 1)
-                {
-                    _mpPostPlanEmptyCount++;
-                    MainFile.Logger.Info($"[AutoSlay] MP post-plan: re-solving once more before ending turn");
-                    _combatTurnRequested = false; _combatTurnRequestedDuration = 0;
-                    _combatCardDelay = 0.5;
-                    return;
-                }
-
                 // Solver/LLM explicitly said END_TURN — end the turn
                 string reason = planStepCount > 0
                     ? "no new playable cards after plan"
@@ -4271,15 +4085,6 @@ public partial class AutoSlayNode : Node
                 if (CombatManager.Instance is { PlayerActionsDisabled: false })
                     EndTurnViaUiOrApi(player);
                 _combatCardDelay = 0.5;
-                // ── Activate 5-second MP retry cycle ─────────────────────
-                // After ending turn in multiplayer, the bot waits for other
-                // players. While waiting, the host may give us energy/cards.
-                // Every 5s, cancel end-turn and re-solve.
-                if (_multiplayerMode && !_isMultiplayerHost)
-                {
-                    _mpEndTurnRetryActive = true;
-                    _mpPostEndTurnTimer = 0;
-                }
             }
             else
             {
@@ -5187,13 +4992,7 @@ public partial class AutoSlayNode : Node
         var cmActive = CombatManager.Instance?.IsInProgress ?? false;
         if (cmActive) parts.Add("combat=active");
         if (_llm != null) parts.Add($"llm_msgs={_llm.MessageCount}");
-        string summary = string.Join(" ", parts);
-        // Only log when state changes (was ~481 lines/session → ~50)
-        if (summary != _lastLogStateSummary)
-        {
-            _lastLogStateSummary = summary;
-            MainFile.Logger.Info($"[AutoSlay] Tick: {summary}");
-        }
+        MainFile.Logger.Info($"[AutoSlay] Tick: {string.Join(" ", parts)}");
     }
 
     /// <summary>
@@ -5237,13 +5036,8 @@ public partial class AutoSlayNode : Node
 
     private void LogOnce(string msg)
     {
-        // Keep a sliding window of recent messages to handle alternating patterns
-        // (e.g., "DismissModal: 1 buttons" ↔ "DismissModal (1-btn): clicking Proceed"
-        //  previously defeated single-message dedup).
-        // Increased from 5 to 20 to support the broader set of LogOnce calls.
-        if (_recentLogs.Contains(msg)) return;
-        if (_recentLogs.Count >= 20) _recentLogs.Clear();
-        _recentLogs.Add(msg);
+        if (msg == _lastLog) return;
+        _lastLog = msg;
         MainFile.Logger.Info($"[AutoSlay] {msg}");
     }
 

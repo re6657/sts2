@@ -237,7 +237,6 @@ public static class RestDecider
             // These require selecting a target player, which the bot can't do.
             // Heavily penalize so we prefer self-heal (rest), smith, or toke instead.
             bool isHealOther = lower.Contains("bandage") || lower.Contains("ally")
-                            || lower.Contains("mend")      // MendRestSiteOption = multiplayer heal-other
                             || lower.Contains("绷带");
             // These options only exist in multiplayer — always safe to penalize.
             if (isHealOther)
