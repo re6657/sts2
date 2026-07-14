@@ -67,22 +67,14 @@ public class ChatEngine
     }
 
     /// <summary>
-    /// Map character name to kaomoji personality archetype.
-    /// Falls back to "balanced" for unknown characters.
+    /// Get kaomoji archetype from CharacterProfileManager metadata.
+    /// Each .md file declares its archetype via: &lt;!-- kaomoji: tsundere --&gt;
+    /// New characters work immediately — no code change needed.
+    /// Falls back to "balanced" if no metadata found.
     /// </summary>
     private static string ResolveKaomojiArchetype(string characterName)
     {
-        var lower = characterName.ToLowerInvariant();
-        // delilah/德丽莎 → tsundere (炸毛系)
-        if (lower.Contains("delilah") || lower.Contains("德丽莎") || lower.Contains("月下"))
-            return "tsundere";
-        // seele/希儿 → gentle (温柔系)
-        if (lower.Contains("seele") || lower.Contains("希儿"))
-            return "gentle";
-        // elysia/爱莉希雅 → sweet (甜系)
-        if (lower.Contains("elysia") || lower.Contains("爱莉希雅") || lower.Contains("爱莉"))
-            return "sweet";
-        return "balanced";
+        return CharacterProfileManager.GetKaomojiArchetype(characterName);
     }
 
     /// <summary>

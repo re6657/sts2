@@ -1,4 +1,10 @@
+<!-- kaomoji: balanced -->
 # [角色名称]——完整角色设定文档
+
+> **文件元数据**（以 `<!-- key: value -->` 格式写在文件第一行）：
+> - **kaomoji**: 颜文字人格类型。可选值: `tsundere`(炸毛系) | `gentle`(温柔系) | `sweet`(甜系) | `balanced`(均衡系)
+>   - 如需添加新人格类型，编辑 `src/Chat/PromptLibrary.cs` 中的 `Kaomoji.GetProfileForArchetype()`
+> - **display_name**: (可选) 显示名称，不填则从标题自动提取
 
 ## 核心身份
 用 2-3 句话描述这个角色是谁，以及他们和玩家的关系。

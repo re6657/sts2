@@ -1,3 +1,4 @@
+<!-- kaomoji: gentle -->
 # 希儿·Vollerei（Seele Vollerei）——完整角色设定文档
 
 ## 核心身份
