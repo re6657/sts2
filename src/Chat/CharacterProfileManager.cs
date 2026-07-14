@@ -246,13 +246,18 @@ public static class CharacterProfileManager
                 ? explicitDisplayName
                 : ExtractDisplayNameFromHeading(content, id);
 
+            // ── Build cleaned persona prompt (strip metadata comments) ─
+            var personaPrompt = StripMetadataComments(lines);
+            if (string.IsNullOrWhiteSpace(personaPrompt))
+                personaPrompt = content; // fallback: use raw content
+
             // ── Build metadata object ─────────────────────────────────
             var meta = new CharacterMeta
             {
                 Id = id,
                 DisplayName = displayName,
                 KaomojiArchetype = kaomoji,
-                PersonaPrompt = content,
+                PersonaPrompt = personaPrompt,
             };
 
             lock (_lock)
@@ -272,15 +277,31 @@ public static class CharacterProfileManager
 
     /// <summary>
     /// Extract display name from the first heading line.
-    /// E.g. "# 月下妖精 / 德丽莎·月下初拥（Delilah）——..." → "德丽莎·月下初拥"
+    /// Skips HTML comment metadata lines (e.g. &lt;!-- kaomoji: tsundere --&gt;)
+    /// to find the actual heading. E.g.:
+    /// "# 月下妖精 / 德丽莎·月下初拥（Delilah）——..." → "德丽莎·月下初拥"
     /// </summary>
     private static string ExtractDisplayNameFromHeading(string content, string fallbackId)
     {
-        var firstLine = content.AsSpan(0, Math.Min(content.Length, 200));
-        int newlineIdx = firstLine.IndexOf('\n');
-        if (newlineIdx > 0)
-            firstLine = firstLine[..newlineIdx];
-        var line = firstLine.Trim();
+        // Scan the first 10 lines, skipping HTML comment metadata lines
+        var allLines = content.Split('\n');
+        int scanLimit = Math.Min(allLines.Length, 10);
+        string? headingLine = null;
+        for (int i = 0; i < scanLimit; i++)
+        {
+            var candidate = allLines[i].Trim();
+            // Skip empty lines and HTML comment metadata lines
+            if (string.IsNullOrEmpty(candidate)) continue;
+            if (candidate.StartsWith("<!--") && candidate.EndsWith("-->")) continue;
+            // Found the first non-metadata, non-empty line
+            headingLine = candidate;
+            break;
+        }
+
+        if (headingLine == null)
+            return fallbackId;
+
+        var line = headingLine.AsSpan().Trim();
         if (line.StartsWith("# "))
             line = line[2..].Trim();
 
@@ -304,5 +325,31 @@ public static class CharacterProfileManager
             return namePart.ToString();
 
         return fallbackId;
+    }
+
+    /// <summary>
+    /// Remove metadata comment lines (e.g. &lt;!-- kaomoji: tsundere --&gt;)
+    /// from the top of the persona prompt. These comments are parsed into
+    /// CharacterMeta fields and should not be sent to the AI as part of
+    /// the character persona.
+    /// </summary>
+    private static string StripMetadataComments(string[] lines)
+    {
+        var result = new System.Text.StringBuilder();
+        bool foundContent = false;
+
+        foreach (var raw in lines)
+        {
+            var trimmed = raw.Trim();
+            // Skip metadata HTML comments at the top
+            if (!foundContent && (string.IsNullOrEmpty(trimmed)
+                || (trimmed.StartsWith("<!--") && trimmed.EndsWith("-->"))))
+                continue;
+
+            foundContent = true;
+            result.AppendLine(raw);
+        }
+
+        return result.ToString().TrimEnd('\n', '\r');
     }
 }

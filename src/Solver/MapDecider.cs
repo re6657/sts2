@@ -72,6 +72,11 @@ public static class MapDecider
 
             if (_clickedNodes.Contains((r, c)))
             {
+                // In multiplayer, we're waiting for other players to select —
+                // NOT stuck. Don't replan, don't clear cache. Just wait.
+                if (InMultiplayerRun)
+                    return false;
+
                 double waited = _lastClickTime > 0
                     ? (Godot.Time.GetTicksMsec() / 1000.0) - _lastClickTime : 0;
                 if (waited > 5.0)
@@ -176,6 +181,10 @@ public static class MapDecider
 
         if (_clickedNodes.Contains((nr, nc)))
         {
+            // In multiplayer, waiting for other players — not stuck.
+            if (InMultiplayerRun)
+                return false;
+
             double waited = _lastClickTime > 0
                 ? (Godot.Time.GetTicksMsec() / 1000.0) - _lastClickTime : 0;
             if (waited > 3.0)

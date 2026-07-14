@@ -155,6 +155,7 @@ public partial class AutoSlayNode : Node
     private bool _wasInCombat;
     private bool _wasInRest;       // track rest site transitions for state reset
     private bool _wasInTreasure;  // track treasure room transitions for state reset
+    private bool _postCombatCooldownLogged; // diagnostic: track if _cooldown is blocking post-combat nav
     private bool _wasEnemyTurn;     // track enemy→player turn transitions for stuck timer
     private double _playerDisabledDuration; // MP watchdog: seconds spent with PlayerActionsDisabled=true
     private int _panicButtonTurnsRemaining; // PANIC_BUTTON debuff: turns of "no block from cards" remaining
@@ -1802,6 +1803,7 @@ public partial class AutoSlayNode : Node
         if (_wasInCombat)
         {
             _wasInCombat = false;
+            _postCombatCooldownLogged = true;
 
             CombatHandler.OnCombatEnded();
             _combatTurnRequested = false; _combatTurnRequestedDuration = 0;
@@ -1864,7 +1866,21 @@ public partial class AutoSlayNode : Node
             }
         }
 
-        if (_cooldown > 0) return;
+        if (_cooldown > 0)
+        {
+            // ── Post-combat ghost cooldown diagnostic ──────────────────────
+            // After combat ends, _cooldown should be 0 (combat uses
+            // _combatCardDelay, not _cooldown). If _cooldown > 0 after
+            // post-combat transition, something set it during combat and
+            // it's blocking the map handler. Log it once per combat end.
+            if (_postCombatCooldownLogged)
+            {
+                _postCombatCooldownLogged = false;
+                MainFile.Logger.Info($"[AutoSlay] Post-combat: _cooldown={_cooldown:F1} delaying map navigation");
+            }
+            return;
+        }
+        _postCombatCooldownLogged = false; // reset flag once cooldown clears
 
         // ── Log state each tick ──────────────────────────────────────────────
         LogState();
