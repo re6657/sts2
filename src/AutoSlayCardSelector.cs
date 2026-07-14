@@ -7,7 +7,9 @@ using TokenSpire2.Llm;
 using MegaCrit.Sts2.Core.Entities.CardRewardAlternatives;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Models;
+using MegaCrit.Sts2.Core.Nodes;
 using MegaCrit.Sts2.Core.Nodes.Rooms;
+using MegaCrit.Sts2.Core.Nodes.Screens.Overlays;
 using MegaCrit.Sts2.Core.TestSupport;
 
 namespace TokenSpire2;
@@ -16,7 +18,21 @@ public class AutoSlayCardSelector : ICardSelector
 {
     private readonly System.Random _rng;
     private readonly LlmClient? _llm;
+    private readonly bool _multiplayerMode;
     public bool IsPendingLlm { get; private set; }
+
+    /// <summary>
+    /// Reserved for future per-player manual mode control. Currently unused —
+    /// ICardSelector always auto-picks valid cards for ALL players because
+    /// returning empty from GetSelectedCards would bypass the manual UI
+    /// (CardSelectCmd skips UI when a Selector is active) and cause
+    /// StateDivergence in lockstep multiplayer.
+    ///
+    /// The host's manual mode is enforced at higher-level decision guards
+    /// (RestDecider, CombatHandler, EventDecider, ShopDecider, MapDecider),
+    /// NOT at the engine-level ICardSelector.
+    /// </summary>
+    public static HashSet<ulong> ManualPlayerNetIds { get; } = new HashSet<ulong>();
 
     /// <summary>
     /// Premium starter cards that should NEVER be removed or transformed.
@@ -32,10 +48,11 @@ public class AutoSlayCardSelector : ICardSelector
         "DUALCAST",       // Defect: 0-cost, Evoke 1 orb — burst damage scaling
     };
 
-    public AutoSlayCardSelector(System.Random rng, LlmClient? llm = null)
+    public AutoSlayCardSelector(System.Random rng, LlmClient? llm = null, bool multiplayerMode = false)
     {
         _rng = rng;
         _llm = llm;
+        _multiplayerMode = multiplayerMode;
     }
 
     public async Task<IEnumerable<CardModel>> GetSelectedCards(IEnumerable<CardModel> options, int minSelect, int maxSelect)
@@ -98,8 +115,31 @@ public class AutoSlayCardSelector : ICardSelector
         string context = "";
         try { context = Solver.DecisionEngine.GetPendingCardSelectContext(); } catch { }
 
-        var sorted = list
-            .OrderByDescending(c =>
+        // ── Screen-type fallback for context detection ──────────────────
+        // ICardSelector is called by the game engine during screen setup,
+        // BEFORE CardGridDecider.Decide() runs. If the decider hasn't set
+        // the context yet, infer it from the active overlay screen type.
+        if (string.IsNullOrEmpty(context))
+        {
+            try
+            {
+                var overlay = NOverlayStack.Instance?.Peek();
+                if (overlay != null)
+                {
+                    string typeName = overlay.GetType().Name;
+                    if (typeName.Contains("Upgrade") || typeName.Contains("Enchant"))
+                        context = "UPGRADE";
+                    else if (typeName.Contains("Transform"))
+                        context = "TRANSFORM";
+                    else if (typeName.Contains("Remove") || typeName.Contains("CardSelect"))
+                        context = "REMOVE";
+                }
+            }
+            catch { }
+        }
+
+        var scored = list
+            .Select(c =>
             {
                 try
                 {
@@ -107,9 +147,6 @@ public class AutoSlayCardSelector : ICardSelector
                     int cost = c.EnergyCost.CostsX ? 3 : Math.Min(c.EnergyCost.Canonical, 5);
                     int upgraded = c.IsUpgraded ? 2 : 0;
                     // ── Correct basic card detection ─────────────────
-                    // MUST use StartsWith not Contains — "STRIKE" in "POMMEL_STRIKE"
-                    // is a false positive.  Also check for multi-word IDs like
-                    // "STRIKE_IRONCLAD" and "DEFEND_IRONCLAD".
                     bool isBasicStrike = cardId == "STRIKE" || cardId.StartsWith("STRIKE_");
                     bool isBasicDefend = cardId == "DEFEND" || cardId.StartsWith("DEFEND_");
                     bool isCurse = c.Type == CardType.Curse;
@@ -117,77 +154,73 @@ public class AutoSlayCardSelector : ICardSelector
                     bool isPower = c.Type == CardType.Power;
                     bool isPremium = PremiumStarters.Contains(cardId);
 
-                    switch (context)
+                    double score = context switch
                     {
-                        case "REMOVE":
-                        case "TRANSFORM":
-                            // Pick the WORST cards: Curse > Status > Strike > Defend > low-cost
-                            if (isCurse) return 500;
-                            if (isStatus) return 400;
-                            if (isBasicStrike) return 300;
-                            if (isBasicDefend) return 250;
-                            // Premium starters: NEVER remove/transform
-                            if (isPremium) return -500;
-                            // For non-basic cards, prefer low-value
-                            return 100 - cost * 10 - upgraded * 30;
+                        "REMOVE" or "TRANSFORM" =>
+                            isCurse ? 500 : isStatus ? 400 : isBasicStrike ? 300 :
+                            isBasicDefend ? 250 : isPremium ? -500 : 100 - cost * 10 - upgraded * 30,
 
-                        case "EXHAUST":
-                            // Pick the WORST cards to exhaust: Curse > Status > Strike > Defend > low-cost
-                            if (isCurse) return 500;
-                            if (isStatus) return 400;
-                            if (isBasicStrike) return 300;
-                            if (isBasicDefend) return 250;
-                            // Premium starters: don't exhaust (they're valuable)
-                            if (isPremium) return -200;
-                            return 100 - cost * 10 - upgraded * 20;
+                        "EXHAUST" =>
+                            isCurse ? 500 : isStatus ? 400 : isBasicStrike ? 300 :
+                            isBasicDefend ? 250 : isPremium ? -200 : 100 - cost * 10 - upgraded * 20,
 
-                        case "UPGRADE":
-                            // Pick the BEST upgrade candidate: unupgraded, high-impact
-                            if (isCurse || isStatus) return -500;
-                            if (c.IsUpgraded) return -200; // Already upgraded, skip
-                            if (isBasicStrike) return -200; // NEVER upgrade basic Strike
-                            if (isBasicDefend) return -200; // NEVER upgrade basic Defend
-                            // Premium starters are EXCELLENT upgrade targets
-                            if (isPremium) return 350 + cost * 5;
-                            if (isPower) return 200 + cost * 5;
-                            // Prefer high-cost cards (bigger upgrade impact)
-                            return cost * 15 + upgraded * 10;
+                        "UPGRADE" =>
+                            isCurse || isStatus ? -500 : c.IsUpgraded ? -200 :
+                            isBasicStrike ? -200 : isBasicDefend ? -200 :
+                            isPremium ? 350 + cost * 5 : isPower ? 200 + cost * 5 :
+                            cost * 15 + upgraded * 10,
 
-                        case "PUT_ON_TOP":
-                        case "RETRIEVE":
-                        case "FETCH_SKILL":
-                        case "FETCH_ATTACK":
-                            // Pick the BEST card to draw/retrieve
-                            if (isCurse || isStatus) return -400;
-                            if (isPremium) return 300 + cost * 5;
-                            if (isPower) return 150 + cost * 5;
-                            return cost * 15 + upgraded * 30;
+                        "PUT_ON_TOP" or "RETRIEVE" or "FETCH_SKILL" or "FETCH_ATTACK" =>
+                            isCurse || isStatus ? -400 : isPremium ? 300 + cost * 5 :
+                            isPower ? 150 + cost * 5 : cost * 15 + upgraded * 30,
 
-                        default:
-                            // ── UNKNOWN context: BE CONSERVATIVE ────────────
-                            // Without knowing whether this is a "pick best" or
-                            // "pick worst" operation, protect premium cards and
-                            // prefer expendable basics. This is the SAFE default.
-                            if (isCurse) return 100;  // Always fine to pick
-                            if (isStatus) return 90;
-                            if (isBasicStrike) return 80; // Expendable
-                            if (isBasicDefend) return 70; // Expendable
-                            // Premium starters: NEVER pick in unknown context
-                            // (could be removal — safer to avoid)
-                            if (isPremium) return -500;
-                            // Non-basic, non-premium: prefer lower cost cards
-                            // (less commitment if this is removal, less value
-                            //  lost if it's transform)
-                            return 50 - cost * 3;
-                    }
+                        _ =>
+                            isCurse || isStatus ? -50 : isBasicStrike ? -200 :
+                            isBasicDefend ? -200 : isPremium ? -500 :
+                            cost * 5 + upgraded * 10,
+                    };
+                    return (card: c, score);
                 }
-                catch { return 0; }
+                catch { return (card: c, score: 0.0); }
             })
             .ToList();
+
+        // ── Multiplayer deterministic tiebreaking ────────────────────────
+        // When scores are equal, OrderByDescending preserves input order
+        // (stable sort). But input order may differ across instances if a
+        // prior non-deterministic action changed the game state.  Use FNV-1a
+        // hash of each card's identity as a secondary sort key to guarantee
+        // identical selection order across all lockstep instances.
+        var sorted = _multiplayerMode
+            ? scored
+                .OrderByDescending(x => x.score)
+                .ThenBy(x => HashCardIdentity(x.card))
+                .Select(x => x.card)
+                .ToList()
+            : scored
+                .OrderByDescending(x => x.score)
+                .Select(x => x.card)
+                .ToList();
 
         var chosen = sorted.Take(count).ToList();
         MainFile.Logger.Info($"[AutoSlay] Context-aware card selection (ctx={context}): {count}/{list.Count}: {string.Join(", ", chosen.Select(c => c.Id.Entry))}");
         return chosen;
+    }
+
+    /// <summary>
+    /// FNV-1a hash of a card's identity string for deterministic secondary sort
+    /// in multiplayer mode. When two cards have the same score in GetSelectedCardsInner,
+    /// this ensures all lockstep instances pick them in the same order — preventing
+    /// the StateDivergence that occurs when OrderByDescending's stable sort produces
+    /// different results from differently-ordered input lists.
+    /// </summary>
+    private static uint HashCardIdentity(CardModel card)
+    {
+        uint hash = 2166136261;
+        string s = card?.ToString() ?? "";
+        foreach (char c in s)
+            hash = unchecked((hash ^ c) * 16777619);
+        return hash;
     }
 
     private static List<int> ParseChoices(string response, int max, int needed)
@@ -225,7 +258,29 @@ public class AutoSlayCardSelector : ICardSelector
             }
             return default;
         }
-        var pick = options[_rng.Next(options.Count)];
+
+        int pickIndex;
+        if (_multiplayerMode)
+        {
+            // MULTIPLAYER: use FNV-1a hash of ALL card option IDs to pick
+            // deterministically. This ensures every player instance selects the
+            // same card reward, preventing deck divergence and StateDivergence
+            // disconnects caused by local System.Random producing different picks.
+            uint hash = 2166136261;
+            foreach (var opt in options)
+            {
+                string id = opt.Card?.Id?.Entry ?? "";
+                foreach (char c in id)
+                    hash = unchecked((hash ^ c) * 16777619);
+            }
+            pickIndex = (int)(hash % (uint)options.Count);
+        }
+        else
+        {
+            pickIndex = _rng.Next(options.Count);
+        }
+
+        var pick = options[pickIndex];
         return new CardRewardSelection { card = pick.Card, alternative = null };
     }
 }

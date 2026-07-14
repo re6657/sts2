@@ -8,6 +8,10 @@ namespace TokenSpire2.Solver;
 /// Random tiebreaker for scored options.
 /// When multiple options have equal (or very close) scores, picks one randomly
 /// instead of always picking the first — avoiding deterministic bias.
+///
+/// In multiplayer mode, replaces randomness with a stable hash-based pick
+/// so ALL instances produce the same result for the same input — preventing
+/// StateDivergence disconnections caused by local RNG desync.
 /// </summary>
 public static class Tiebreaker
 {
@@ -20,12 +24,41 @@ public static class Tiebreaker
 
     private static readonly Random _rng = new();
 
+    /// <summary>
+    /// Set to true during multiplayer (LAN/online) runs.
+    /// When true, tiebreaking uses a stable hash of the tied items rather
+    /// than System.Random, ensuring all peers pick the same winner and
+    /// preventing state divergence / checksum mismatches.
+    /// </summary>
+    public static bool InMultiplayerMode { get; set; }
+
+    // ── Deterministic hash for multiplayer tiebreaking ────────────────────
+
+    /// <summary>
+    /// Compute a stable, platform-independent hash from the string
+    /// representations of all tied items. Uses FNV-1a algorithm rather
+    /// than string.GetHashCode() because the latter is NOT guaranteed
+    /// stable across .NET versions or process runs.
+    /// </summary>
+    private static int DeterministicIndex<T>(IReadOnlyList<T> items)
+    {
+        if (items.Count <= 1) return 0;
+        uint hash = 2166136261; // FNV-1a 32-bit offset basis
+        foreach (var item in items)
+        {
+            string s = item?.ToString() ?? "";
+            foreach (char c in s)
+                hash = unchecked((hash ^ c) * 16777619); // FNV-1a prime
+        }
+        return (int)(hash % (uint)items.Count);
+    }
+
     // ── Core: pick from an ALREADY-SORTED list (descending by score) ──────
 
     /// <summary>
     /// From a list already sorted descending by score, pick the best element.
     /// If multiple elements have scores within epsilon of the top score,
-    /// randomly select among them.
+    /// randomly select among them (deterministic hash in multiplayer).
     /// </summary>
     public static T PickBestFromSorted<T>(List<T> scoredDescending, Func<T, double> getScore)
     {
@@ -43,7 +76,9 @@ public static class Tiebreaker
         if (tied.Count == 1)
             return tied[0];
 
-        int pick = _rng.Next(tied.Count);
+        int pick = InMultiplayerMode
+            ? DeterministicIndex(tied)
+            : _rng.Next(tied.Count);
         return tied[pick];
     }
 
@@ -133,7 +168,10 @@ public static class Tiebreaker
         if (tied.Count == 1)
             return tied[0].item;
 
-        return tied[_rng.Next(tied.Count)].item;
+        int pick = InMultiplayerMode
+            ? DeterministicIndex(tied)
+            : _rng.Next(tied.Count);
+        return tied[pick].item;
     }
 
     /// <summary>
@@ -155,6 +193,9 @@ public static class Tiebreaker
         if (tied.Count == 1)
             return tied[0];
 
-        return tied[_rng.Next(tied.Count)];
+        int pick = InMultiplayerMode
+            ? DeterministicIndex(tied)
+            : _rng.Next(tied.Count);
+        return tied[pick];
     }
 }

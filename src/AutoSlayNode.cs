@@ -72,6 +72,29 @@ public partial class AutoSlayNode : Node
     private IDisposable? _cardSelectorScope;
     private AutoSlayCardSelector? _cardSelector;
     private readonly System.Random _rng = new();
+
+    /// <summary>
+    /// In multiplayer lockstep mode, all instances must produce identical random
+    /// picks so the action sequence stays deterministic.  Uses FNV-1a hash of
+    /// all option string representations as the index — same options → same pick
+    /// on every instance, eliminating the last source of StateDivergence.
+    /// </summary>
+    private int DeterministicPick<T>(IReadOnlyList<T> options)
+    {
+        if (options.Count == 0) return 0;
+        if (_multiplayerMode)
+        {
+            uint hash = 2166136261;
+            foreach (var opt in options)
+            {
+                string s = opt?.ToString() ?? "";
+                foreach (char c in s)
+                    hash = unchecked((hash ^ c) * 16777619);
+            }
+            return (int)(hash % (uint)options.Count);
+        }
+        return _rng.Next(options.Count);
+    }
     private long _debugFrame;
     private double _dbgTimer;
 	private double _delta;
@@ -146,6 +169,7 @@ public partial class AutoSlayNode : Node
     private bool _rewardsLlmDone; // true after LLM plan has been executed for current rewards screen
     private bool _restSiteChoiceMade; // true after LLM rest site choice is executed
     private int _restStuckFrames;     // stuck detection for rest card grid / proceed loop
+    private bool _restCardSelected;   // prevent repeated card grid selection in MP
     private int _shopStuckFrames;    // stuck detection for shop leaving state
     private int _combatPlanStuckFrames; // stuck detection for combat plan step execution
     private int _turnPlansWithoutPlay;  // count plans created this turn without a successful card play
@@ -157,6 +181,7 @@ public partial class AutoSlayNode : Node
     private bool _postCombatCooldownLogged; // diagnostic: track if _cooldown is blocking post-combat nav
     private int _dismissProceedClicks;      // backoff counter: repeated Proceed clicks in TryClickDismissInModal
     private string? _lastDismissBtnNames;    // last button names seen in TryClickDismissInModal (for reset detection)
+    private double _dismissFrozenUntil;      // timestamp: skip DismissContinuePrompt until this time (per-modal backoff, NOT global _cooldown)
     private string? _lastHeartbeatScreen;    // only log heartbeat on screen change (log noise reduction)
     private string? _lastInCombatState;      // only log InCombat DBG on state change (log noise reduction)
     private string? _lastLogStateSummary;    // only log Tick/LogState on state change (log noise reduction)
@@ -267,8 +292,14 @@ public partial class AutoSlayNode : Node
         }
 
         // Register card selector for mid-combat card selections (e.g. Armaments).
-        _cardSelector = new AutoSlayCardSelector(_rng, null);
+        _cardSelector = new AutoSlayCardSelector(_rng, null, _multiplayerMode);
         _cardSelectorScope = CardSelectCmd.UseSelector(_cardSelector);
+
+        // ── Set Tiebreaker multiplayer mode for deterministic selection ────
+        // In lockstep deterministic multiplayer, ALL instances must produce
+        // identical decisions. The Tiebreaker uses FNV-1a hashing instead of
+        // local System.Random when InMultiplayerMode is true.
+        Solver.Tiebreaker.InMultiplayerMode = _multiplayerMode;
 
         MainFile.Logger.Info("[AutoSlay] SOLVER-ONLY mode active. No LLM, no random play.");
         BattleLogger.Enable();
@@ -419,6 +450,22 @@ public partial class AutoSlayNode : Node
         _f3WasDown = f3Down;
 
         if (_paused) return;
+
+        // ── ICardSelector always auto-picks for ALL players ────────────────
+        // Card selections run at game engine level (CardSelectCmd) on every
+        // instance for every player. Returning empty would break the manual
+        // UI AND cause StateDivergence because other instances auto-pick a
+        // valid card while this one picks nothing.
+        //
+        // The host's IsHostManualMode guards higher-level decisions:
+        //   - Rest option choice (RestDecider)
+        //   - Combat card play (CombatHandler)
+        //   - Event choices (EventDecider)
+        //   - Shop purchases (ShopDecider)
+        //   - Map navigation (MapDecider)
+        //
+        // Engine-level ICardSelector is NEVER guarded — it always returns a
+        // valid auto-picked card for deterministic lockstep state sync.
 
         // ── Diagnostic heartbeat (every 5s, logs ONLY on screen change) ──
         _dbgTimer -= delta;
@@ -2038,10 +2085,14 @@ public partial class AutoSlayNode : Node
         }
         _rewardsLlmDone = false; // reset once we're past overlays
 
-        // ── Multiplayer: lobby screen (bot auto-ready after joining) ─────
-        if (_multiplayerMode && !_isMultiplayerHost && _multiplayerJoined)
+        // ── Multiplayer: lobby screen (auto-ready after joining) ─────
+        // Bots: always auto-ready so the host can start
+        // Host with auto-battle ON: auto-ready for AI-vs-AI mode
+        // Host with auto-battle OFF: skip — human clicks ready manually
+        bool shouldHandleLobby = _multiplayerMode && _multiplayerJoined
+            && (!_isMultiplayerHost || _autoBattle);
+        if (shouldHandleLobby)
         {
-            // Check for lobby screen
             var lobbyNode = GetNodeOrNull<Node>("/root/Game/RootSceneContainer/Run/RoomContainer/LobbyRoom")
                 ?? GetNodeOrNull<Control>("/root/Game/RootSceneContainer/Lobby");
             if (lobbyNode != null)
@@ -2052,14 +2103,17 @@ public partial class AutoSlayNode : Node
         }
 
         // ── Multiplayer: character select screen ────────────────────────
+        // The character select screen may appear either:
+        //   A) Under RootSceneContainer directly (RoomContainer/CharacterSelectRoom)
+        //   B) As a MainMenu submenu (Submenus/CharacterSelectScreen)
+        //   C) As a standalone screen under RootSceneContainer
+        // The confirm button is on the SAME page as character selection.
         if (_multiplayerMode && !_isMultiplayerHost && _multiplayerJoined)
         {
-            var mpCharSelect = GetNodeOrNull<Node>("/root/Game/RootSceneContainer/Run/RoomContainer/CharacterSelectRoom")
-                ?? GetNodeOrNull<Control>("/root/Game/RootSceneContainer/CharacterSelectScreen")
-                ?? GetNodeOrNull<Control>("/root/Game/RootSceneContainer/CharacterSelect");
+            var mpCharSelect = FindMultiplayerCharacterSelect();
             if (mpCharSelect != null)
             {
-                _cooldown = HandleMultiplayerCharacterSelect();
+                _cooldown = HandleMultiplayerCharacterSelect(mpCharSelect);
                 return;
             }
         }
@@ -2070,12 +2124,10 @@ public partial class AutoSlayNode : Node
         // player should manually pick their character and confirm.
         if (_multiplayerMode && _isMultiplayerHost && _multiplayerJoined && _autoBattle)
         {
-            var mpCharSelect = GetNodeOrNull<Node>("/root/Game/RootSceneContainer/Run/RoomContainer/CharacterSelectRoom")
-                ?? GetNodeOrNull<Control>("/root/Game/RootSceneContainer/CharacterSelectScreen")
-                ?? GetNodeOrNull<Control>("/root/Game/RootSceneContainer/CharacterSelect");
+            var mpCharSelect = FindMultiplayerCharacterSelect();
             if (mpCharSelect != null)
             {
-                _cooldown = HandleMultiplayerCharacterSelect();
+                _cooldown = HandleMultiplayerCharacterSelect(mpCharSelect);
                 return;
             }
         }
@@ -2095,6 +2147,18 @@ public partial class AutoSlayNode : Node
             // dismissed, now back at main menu), reset and retry.
             if (_multiplayerMode && !_isMultiplayerHost && _multiplayerJoined)
             {
+                // ── Check for character select UNDER the main menu ──────────
+                // The character select screen can appear as a MainMenu submenu
+                // (Submenus/CharacterSelectScreen). If it's visible, handle it
+                // instead of waiting — otherwise we deadlock forever.
+                var mpCharSelect = FindMultiplayerCharacterSelect();
+                if (mpCharSelect != null)
+                {
+                    MainFile.Logger.Info("[AutoSlay] Bot: found character select via MainMenu submenu, handling...");
+                    _cooldown = HandleMultiplayerCharacterSelect(mpCharSelect);
+                    return;
+                }
+
                 double joinWaitElapsed = (_mpJoinClickedTime > 0)
                     ? Time.GetUnixTimeFromSystem() - _mpJoinClickedTime
                     : 0;
@@ -2108,7 +2172,7 @@ public partial class AutoSlayNode : Node
 
                 if (mainMenuReady && joinWaitElapsed > MP_JOIN_RETRY_DELAY)
                 {
-                    MainFile.Logger.Warn($"[AutoSlay] Join likely failed (back at main menu after {joinWaitElapsed:F0}s). Resetting for retry.");
+                    MainFile.Logger.Warn($"[AutoSlay] Join failed (back at main menu after {joinWaitElapsed:F0}s). Resetting for retry.");
                     _multiplayerJoined = false;
                     _mpButtonClicked = false; // re-navigate from scratch
                     _mpHostButtonClicked = false;
@@ -2122,6 +2186,22 @@ public partial class AutoSlayNode : Node
                     MainFile.Logger.Info($"[AutoSlay] Bot: waiting for lobby/character select ({joinWaitElapsed:F0}s elapsed)");
                 _cooldown = 1.0;
                 return;
+            }
+
+            // ── Host auto-battle safety net: character select in MainMenu submenu ──
+            // If autoBattle is ON and the character select screen is loading as a
+            // MainMenu submenu (rather than a standalone screen), FindMultiplayerCharacterSelect
+            // may not have caught it on the first pass. Re-check here instead of
+            // calling HandleMainMenu (which would click "New Game").
+            if (_multiplayerMode && _isMultiplayerHost && _multiplayerJoined && _autoBattle)
+            {
+                var mpCharSelect = FindMultiplayerCharacterSelect();
+                if (mpCharSelect != null)
+                {
+                    MainFile.Logger.Info("[AutoSlay] Host: found character select via MainMenu submenu, handling...");
+                    _cooldown = HandleMultiplayerCharacterSelect(mpCharSelect);
+                    return;
+                }
             }
 
             _hpBoosted = false;
@@ -2146,6 +2226,7 @@ public partial class AutoSlayNode : Node
                 MainFile.Logger.Info("[AutoSlay] State: leaving rest site (detected via screen change)");
                 _wasInRest = false;
                 _restSiteChoiceMade = false;
+                _restCardSelected = false;
                 _restStuckFrames = 0;
             }
         }
@@ -2191,7 +2272,7 @@ public partial class AutoSlayNode : Node
                 MainFile.Logger.Warn($"[AutoSlay] MAP decision timeout ({_sameScreenDuration:F0}s) — falling back to random");
                 _lastScreenType = ""; _sameScreenDuration = 0; _sameScreenTickCount = 0;
                 var pts = AutoSlayHelpers.FindAll<NMapPoint>(mapScreen).Where(p => p.IsEnabled).ToList();
-                if (pts.Count > 0) { var pt = pts[_rng.Next(pts.Count)]; mapScreen.OnMapPointSelectedLocally(pt); }
+                if (pts.Count > 0) { var pt = pts[DeterministicPick(pts)]; mapScreen.OnMapPointSelectedLocally(pt); }
                 _cooldown = 1.0;
                 return;
             }
@@ -2244,7 +2325,7 @@ public partial class AutoSlayNode : Node
                 MainFile.Logger.Warn($"[AutoSlay] EVENT decision timeout ({_sameScreenDuration:F0}s) — falling back to random");
                 _lastScreenType = ""; _sameScreenDuration = 0; _sameScreenTickCount = 0;
                 var eventOpts = AutoSlayHelpers.FindAll<NEventOptionButton>(eventRoom).Where(o => !o.Option.IsLocked).ToList();
-                if (eventOpts.Count > 0) { eventOpts[_rng.Next(eventOpts.Count)].ForceClick(); }
+                if (eventOpts.Count > 0) { eventOpts[DeterministicPick(eventOpts)].ForceClick(); }
                 _cooldown = 1.0;
                 return;
             }
@@ -2323,6 +2404,7 @@ public partial class AutoSlayNode : Node
             if (!_wasInRest)
             {
                 _restSiteChoiceMade = false;
+                _restCardSelected = false;
                 _wasInRest = true;
                 _restStuckFrames = 0;
             }
@@ -2333,7 +2415,7 @@ public partial class AutoSlayNode : Node
                 MainFile.Logger.Warn($"[AutoSlay] REST decision timeout ({_sameScreenDuration:F0}s) — falling back to random");
                 _lastScreenType = ""; _sameScreenDuration = 0; _sameScreenTickCount = 0;
                 var rBtns = AutoSlayHelpers.FindAll<NRestSiteButton>(restRoom).Where(b => b.Option.IsEnabled).ToList();
-                if (rBtns.Count > 0) { rBtns[_rng.Next(rBtns.Count)].ForceClick(); _restSiteChoiceMade = true; }
+                if (rBtns.Count > 0) { rBtns[DeterministicPick(rBtns)].ForceClick(); _restSiteChoiceMade = true; }
                 else { restRoom.ProceedButton?.ForceClick(); _restSiteChoiceMade = true; }
                 _cooldown = 1.5;
                 return;
@@ -2396,28 +2478,36 @@ public partial class AutoSlayNode : Node
                     // Phase 1: Select a card using upgrade scoring
                     // Set context for AutoSlayCardSelector (global ICardSelector)
                     // so it uses UPGRADE scoring if called by the game engine.
-                    TokenSpire2.Solver.DecisionEngine.PendingCardSelectContext = "UPGRADE";
-                    var restRunState = new TokenSpire2.Solver.RunState();
-                    restRunState.Refresh();
-                    // Pick card with highest upgrade benefit
-                    var cards = cardGridHolders;
-                    int bestIdx = -1;
-                    double bestScore = double.MinValue;
-                    for (int i = 0; i < cards.Count; i++)
+                    // GUARD: only select ONCE per rest site visit. In multiplayer,
+                    // repeated EmitSignal(HolderPressed) can cause the game to
+                    // send duplicate network messages, corrupting the rest site
+                    // state and triggering StateDivergence on exit.
+                    if (!_restCardSelected)
                     {
-                        double s = CardGridDecider.ScoreCardForUpgradePublic(cards[i].CardModel, restRunState);
-                        if (s > bestScore) { bestScore = s; bestIdx = i; }
-                    }
-                    if (bestIdx >= 0)
-                    {
-                        string cardId = cards[bestIdx].CardModel?.Id.Entry ?? "?";
-                        MainFile.Logger.Info($"[AutoSlay] REST: Selecting {cardId} for upgrade (score={bestScore:F0})");
-                        // Find the grid and emit the selection signal
-                        var grid = AutoSlayHelpers.FindFirst<MegaCrit.Sts2.Core.Nodes.Cards.NCardGrid>(restRoom);
-                        if (grid != null)
-                            grid.EmitSignal(MegaCrit.Sts2.Core.Nodes.Cards.NCardGrid.SignalName.HolderPressed, cards[bestIdx]);
-                        else
-                            MainFile.Logger.Error("[AutoSlay] REST: NCardGrid not found in rest room!");
+                        _restCardSelected = true;
+                        TokenSpire2.Solver.DecisionEngine.PendingCardSelectContext = "UPGRADE";
+                        var restRunState = new TokenSpire2.Solver.RunState();
+                        restRunState.Refresh();
+                        // Pick card with highest upgrade benefit
+                        var cards = cardGridHolders;
+                        int bestIdx = -1;
+                        double bestScore = double.MinValue;
+                        for (int i = 0; i < cards.Count; i++)
+                        {
+                            double s = CardGridDecider.ScoreCardForUpgradePublic(cards[i].CardModel, restRunState);
+                            if (s > bestScore) { bestScore = s; bestIdx = i; }
+                        }
+                        if (bestIdx >= 0)
+                        {
+                            string cardId = cards[bestIdx].CardModel?.Id.Entry ?? "?";
+                            MainFile.Logger.Info($"[AutoSlay] REST: Selecting {cardId} for upgrade (score={bestScore:F0})");
+                            // Find the grid and emit the selection signal
+                            var grid = AutoSlayHelpers.FindFirst<MegaCrit.Sts2.Core.Nodes.Cards.NCardGrid>(restRoom);
+                            if (grid != null)
+                                grid.EmitSignal(MegaCrit.Sts2.Core.Nodes.Cards.NCardGrid.SignalName.HolderPressed, cards[bestIdx]);
+                            else
+                                MainFile.Logger.Error("[AutoSlay] REST: NCardGrid not found in rest room!");
+                        }
                     }
                     _cooldown = 0.5;
                     return;
@@ -2729,15 +2819,27 @@ public partial class AutoSlayNode : Node
     /// </summary>
     private void DismissContinuePrompt()
     {
+        // ── Per-modal backoff timer ──────────────────────────────────────
+        // Uses _dismissFrozenUntil instead of _cooldown so that combat,
+        // map navigation, and card picking continue even when we're
+        // throttling the dismiss of a particular modal.
+        if (_dismissFrozenUntil > 0)
+        {
+            if (Time.GetTicksMsec() / 1000.0 < _dismissFrozenUntil)
+                return;
+            _dismissFrozenUntil = 0; // backoff expired, resume
+        }
+
         try
         {
             // ── Check 1: NModalContainer ────────────────────────────────
             var modal = NModalContainer.Instance?.OpenModal;
             if (modal != null)
             {
-                // MULTIPLAYER: NRewardsScreen won't dismiss until all players sync.
-                // Skip — the main loop handles this with multiplayer guard.
-                if (_multiplayerMode && modal is NRewardsScreen)
+                // MULTIPLAYER: skip screens handled by other systems:
+                //  - NRewardsScreen: the main loop clicks Proceed when sync completes
+                //  - NCardRewardSelectionScreen: AutoSlayCardSelector (ICardSelector) picks
+                if (_multiplayerMode && ShouldSkipDismissInMultiplayer((Node)modal))
                     return;
                 if (TryClickDismissInModal((Node)modal)) return;
             }
@@ -2749,8 +2851,7 @@ public partial class AutoSlayNode : Node
                 if (overlayStack2?.ScreenCount > 0)
                 {
                     var overlay = overlayStack2.Peek() as Node;
-                    // MULTIPLAYER: skip NRewardsScreen — main loop handles it
-                    if (_multiplayerMode && overlay is NRewardsScreen)
+                    if (_multiplayerMode && overlay != null && ShouldSkipDismissInMultiplayer(overlay))
                         return;
                     if (overlay != null && TryClickDismissInModal(overlay)) return;
                 }
@@ -2761,6 +2862,36 @@ public partial class AutoSlayNode : Node
         {
             MainFile.Logger.Info($"[AutoSlay] DismissContinuePrompt error: {ex.Message}");
         }
+    }
+
+    /// <summary>
+    /// In multiplayer, certain screens belong to other players and must NOT
+    /// be dismissed by the bot. The bot's own card selections are handled by
+    /// AutoSlayCardSelector (ICardSelector), not by brute-force button clicking.
+    /// </summary>
+    private bool ShouldSkipDismissInMultiplayer(Node container)
+    {
+        // NRewardsScreen: handled by main loop Proceed click + MP sync
+        if (container is NRewardsScreen) return true;
+
+        // NCardRewardSelectionScreen: handled by ICardSelector, not button clicking
+        string typeName = container.GetType().Name;
+        if (typeName.Contains("CardReward")) return true;
+
+        // Check if this modal has CardRewardAlternativeButton (Skip) —
+        // those are per-player card selection screens, not dismissable modals.
+        try
+        {
+            var btns = AutoSlayHelpers.FindAll<NButton>(container);
+            if (btns.Any(b => {
+                var n = (b.Name?.ToString() ?? "");
+                return n.Contains("CardReward");
+            }))
+                return true;
+        }
+        catch { }
+
+        return false;
     }
 
     /// <summary>
@@ -2782,31 +2913,11 @@ public partial class AutoSlayNode : Node
         var names = string.Join(", ", allBtns.Select(b => b.Name?.ToString() ?? "?"));
         LogOnce($"DismissModal: {allBtns.Count} buttons: [{names}]");
 
-        // ── Backoff: if we keep clicking Proceed on the same modal, back off ──
-        // Prevents infinite click-loop after combat rewards in multiplayer where
-        // the Proceed button doesn't dismiss until host sync completes.
-        if (names == _lastDismissBtnNames)
-        {
-            _dismissProceedClicks++;
-        }
-        else
-        {
-            _dismissProceedClicks = 0;
-            _lastDismissBtnNames = names;
-        }
-        if (_dismissProceedClicks > 5)
-        {
-            // After 5 clicks with no change, we're in a loop. Skip this modal.
-            LogOnce($"DismissModal BACKOFF: {_dismissProceedClicks} clicks on [{names}], giving up (will retry after 10s)");
-            _cooldown = 10.0;  // Long cooldown — let MP sync or map transition happen
-            return false;
-        }
-        if (_dismissProceedClicks >= 3)
-        {
-            // After 3 clicks, use longer cooldown to give multiplayer sync time
-            LogOnce($"DismissModal throttling: {_dismissProceedClicks} clicks on [{names}], slowing down");
-        }
-        var _dismissCooldown = _dismissProceedClicks >= 3 ? 3.0 : 1.0;
+        // ── Backoff: if the same buttons keep getting clicked without
+        // dismissing the modal, back off. But DON'T increment the counter
+        // when we can't even find a button to click (no match) — that
+        // would freeze the dismiss path for non-dismissable screens.
+        bool clicked = false;
 
         // Step 1: Look for dismiss-type buttons (No/Cancel/Abandon/Exit/不/取消/放弃/退出/不了/否)
         foreach (var btn in allBtns)
@@ -2818,17 +2929,15 @@ public partial class AutoSlayNode : Node
             {
                 LogOnce($"DismissModal: clicking {btn.Name}");
                 btn.ForceClick();
-                _cooldown = _dismissCooldown;
-                return true;
+                _cooldown = 1.0;
+                clicked = true;
+                break;
             }
         }
 
         // Step 2: If exactly 2 buttons, prefer Proceed (dismiss without action),
         // then click the one that ISN'T Yes/Continue/Confirm/好的.
-        // CRITICAL: In multiplayer, the potion-discard dialog has [PotionButton, ProceedButton].
-        // Clicking the potion button triggers another potion reward → infinite loop!
-        // Always prefer Proceed when it's one of the options.
-        if (allBtns.Count == 2)
+        if (!clicked && allBtns.Count == 2)
         {
             var proceedBtn = allBtns.FirstOrDefault(b => {
                 var n = (b.Name?.ToString() ?? "").ToLowerInvariant();
@@ -2838,28 +2947,30 @@ public partial class AutoSlayNode : Node
             {
                 LogOnce($"DismissModal (2-btn w/Proceed): clicking Proceed to dismiss");
                 proceedBtn.ForceClick();
-                _cooldown = _dismissCooldown;
-                return true;
+                _cooldown = 1.0;
+                clicked = true;
             }
-
-            var notYes = allBtns.FirstOrDefault(b => {
-                var n = (b.Name?.ToString() ?? "").ToLowerInvariant();
-                return !n.Contains("yes") && !n.Contains("continue") && !n.Contains("confirm")
-                    && !n.Contains("resume") && !n.Contains("ok") && !n.Contains("proceed")
-                    && !n.Contains("是") && !n.Contains("继续") && !n.Contains("确认")
-                    && !n.Contains("好的") && !n.Contains("好") && !n.Contains("accept");
-            });
-            if (notYes != null)
+            else
             {
-                LogOnce($"DismissModal (2-btn): clicking non-Yes {notYes.Name}");
-                notYes.ForceClick();
-                _cooldown = _dismissCooldown;
-                return true;
+                var notYes = allBtns.FirstOrDefault(b => {
+                    var n = (b.Name?.ToString() ?? "").ToLowerInvariant();
+                    return !n.Contains("yes") && !n.Contains("continue") && !n.Contains("confirm")
+                        && !n.Contains("resume") && !n.Contains("ok") && !n.Contains("proceed")
+                        && !n.Contains("是") && !n.Contains("继续") && !n.Contains("确认")
+                        && !n.Contains("好的") && !n.Contains("好") && !n.Contains("accept");
+                });
+                if (notYes != null)
+                {
+                    LogOnce($"DismissModal (2-btn): clicking non-Yes {notYes.Name}");
+                    notYes.ForceClick();
+                    _cooldown = 1.0;
+                    clicked = true;
+                }
             }
         }
 
         // Step 3: If only 1 button and it's Proceed, click it
-        if (allBtns.Count == 1)
+        if (!clicked && allBtns.Count == 1)
         {
             var only = allBtns[0];
             var name = (only.Name?.ToString() ?? "").ToLowerInvariant();
@@ -2867,12 +2978,42 @@ public partial class AutoSlayNode : Node
             {
                 LogOnce($"DismissModal (1-btn): clicking Proceed");
                 only.ForceClick();
-                _cooldown = _dismissCooldown;
-                return true;
+                _cooldown = 1.0;
+                clicked = true;
             }
         }
 
-        return false;
+        // ── Backoff counter: only count clicks we actually performed ─────
+        if (clicked)
+        {
+            if (names == _lastDismissBtnNames)
+            {
+                _dismissProceedClicks++;
+            }
+            else
+            {
+                _dismissProceedClicks = 1;
+                _lastDismissBtnNames = names;
+            }
+        }
+        else
+        {
+            // Different set of unclickable buttons → reset
+            if (names != _lastDismissBtnNames)
+            {
+                _dismissProceedClicks = 0;
+                _lastDismissBtnNames = names;
+            }
+        }
+
+        if (_dismissProceedClicks > 5)
+        {
+            LogOnce($"DismissModal BACKOFF: {_dismissProceedClicks} clicks on [{names}], giving up (will retry after 10s)");
+            _dismissFrozenUntil = Time.GetTicksMsec() / 1000.0 + 10.0;
+            return false;
+        }
+
+        return clicked;
     }
 
     /// <summary>
@@ -3084,7 +3225,7 @@ public partial class AutoSlayNode : Node
                 // Resolve RANDOM to a specific character
                 var targetChar = _character;
                 if (targetChar == "RANDOM")
-                    targetChar = ValidCharacters[_rng.Next(ValidCharacters.Length)];
+                    targetChar = ValidCharacters[DeterministicPick(ValidCharacters)];
 
                 var buttonContainer = charSelect.GetNodeOrNull<Node>("CharSelectButtons/ButtonContainer");
                 if (buttonContainer != null)
@@ -3390,7 +3531,14 @@ public partial class AutoSlayNode : Node
     }
 
     /// <summary>
-    /// Handle lobby screen — bot clicks Ready after joining.
+    /// Handle lobby screen — auto-click Ready for bots (and host in AI-only mode).
+    ///
+    /// In STS2 multiplayer, the lobby has:
+    /// 1. A "Ready" toggle for each player slot (click your own to toggle ready)
+    /// 2. An "Embark" / "Start" button that the host clicks after all players are ready
+    ///
+    /// We first try to find and click our own Ready toggle. If already ready,
+    /// the host may need to click Embark.
     /// </summary>
     private double HandleMultiplayerLobby()
     {
@@ -3399,63 +3547,202 @@ public partial class AutoSlayNode : Node
         var root = GetNodeOrNull<Node>("/root/Game/RootSceneContainer");
         if (root == null) return 1.0;
 
-        // Search for Ready button — by node name (e.g. "ReadyButton", "Ready")
-        // or look for ConfirmButton / any enabled button in the lobby
-        foreach (var btn in AutoSlayHelpers.FindAll<NButton>(root))
+        // ── Step 1: Search ALL button types (not just NButton) ────────────
+        // The lobby ready toggle might be a BaseButton, NButton, Button,
+        // NReadyToggle, or some other Godot control. Cast the net wide.
+        var allButtons = new List<Godot.BaseButton>();
+        CollectAllButtonsRecursive(root, allButtons);
+
+        // ── Step 2: Find and click a Ready-related button ────────────────
+        foreach (var btn in allButtons)
         {
-            if (!btn.Visible || !btn.IsEnabled) continue;
+            if (!btn.Visible || btn.Disabled) continue;
             var btnName = btn.Name?.ToString() ?? "";
-            if (btnName.Contains("Ready", StringComparison.OrdinalIgnoreCase)
-                || btnName.Contains("Confirm", StringComparison.OrdinalIgnoreCase)
-                || btn is NConfirmButton)
+            string btnLower = btnName.ToLowerInvariant();
+            var btnType = btn.GetType().Name;
+
+            // Match: "Ready", "ReadyButton", "ReadyToggle", "ReadyCheckBox",
+            //        "Confirm", "ConfirmReady", "ToggleReady", etc.
+            bool isReadyBtn = btnLower.Contains("ready")
+                           || btnLower.Contains("confirm")
+                           || btnType.Contains("Ready", StringComparison.OrdinalIgnoreCase)
+                           || btn is NConfirmButton;
+
+            // Also match: "Embark", "Start", "Begin" (host starts the game)
+            bool isEmbarkBtn = btnLower.Contains("embark")
+                            || btnLower.Contains("start")
+                            || btnLower.Contains("begin")
+                            || btnLower.Contains("launch");
+
+            if (isReadyBtn || isEmbarkBtn)
             {
-                LogOnce($"Clicking lobby button: {btnName}");
-                btn.ForceClick();
+                MainFile.Logger.Info($"[AutoSlay] Lobby: clicking [{btnType}] {btnName} (ready={isReadyBtn} embark={isEmbarkBtn})");
+                ClickButtonSafe(btn);
                 _multiplayerReady = true;
                 return 1.0;
             }
         }
 
-        if (_debugFrame % 120 == 0)
+        // ── Step 3: If no match, also scan labels/text for "Ready" ──────
+        // Some UI setups have a generic button with a separate Label child.
+        foreach (var btn in allButtons)
         {
-            var lobbyBtns = new System.Text.StringBuilder();
-            foreach (var btn in AutoSlayHelpers.FindAll<NButton>(root))
+            if (!btn.Visible || btn.Disabled) continue;
+            var btnName = btn.Name?.ToString() ?? "";
+
+            // Look for child labels containing "ready" or "准备"
+            bool hasReadyLabel = false;
+            foreach (var child in btn.GetChildren())
+            {
+                try
+                {
+                    if (child is Godot.Label lbl && lbl.Visible)
+                    {
+                        string txt = lbl.Text?.ToString() ?? "";
+                        if (txt.Contains("Ready", StringComparison.OrdinalIgnoreCase)
+                            || txt.Contains("准备"))
+                        {
+                            hasReadyLabel = true;
+                            break;
+                        }
+                    }
+                }
+                catch { }
+            }
+
+            if (hasReadyLabel)
+            {
+                MainFile.Logger.Info($"[AutoSlay] Lobby: clicking button with Ready label: [{btn.GetType().Name}] {btnName}");
+                ClickButtonSafe(btn);
+                _multiplayerReady = true;
+                return 1.0;
+            }
+        }
+
+        // ── Step 4: Periodic debug dump of what's visible ───────────────
+        if (_debugFrame % 180 == 0)
+        {
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine($"[AutoSlay] Lobby dump ({allButtons.Count} buttons found):");
+            foreach (var btn in allButtons)
             {
                 if (btn.Visible)
-                    lobbyBtns.Append($"[{btn.Name}] ");
+                    sb.AppendLine($"  [{btn.GetType().Name}] {btn.Name} enabled={!btn.Disabled}");
             }
-            MainFile.Logger.Info($"[AutoSlay] Lobby buttons: {lobbyBtns}");
+            // Also dump non-button controls that might be toggles/checkboxes
+            try
+            {
+                var lobbyNode = GetNodeOrNull<Node>("/root/Game/RootSceneContainer/Run/RoomContainer/LobbyRoom")
+                    ?? (Node)GetNodeOrNull<Control>("/root/Game/RootSceneContainer/Lobby");
+                if (lobbyNode != null)
+                    DumpVisibleButtons(lobbyNode, sb, "  ", 0, 4);
+            }
+            catch { }
+            MainFile.Logger.Info(sb.ToString());
         }
         return 1.0;
     }
 
     /// <summary>
+    /// Recursively collect ALL BaseButton descendants (including NButton,
+    /// Button, CheckBox, CheckButton, NReadyToggle, etc.).
+    /// </summary>
+    private static void CollectAllButtonsRecursive(Node node, List<Godot.BaseButton> result)
+    {
+        foreach (var child in node.GetChildren())
+        {
+            try
+            {
+                if (child is Godot.BaseButton btn)
+                    result.Add(btn);
+                if (child.GetChildCount() > 0)
+                    CollectAllButtonsRecursive(child, result);
+            }
+            catch { }
+        }
+    }
+
+    /// <summary>
+    /// Click any button-like node safely. Tries EmitSignal("pressed") first
+    /// (works for all Godot Objects), then presses via BaseButton property.
+    /// </summary>
+    private static void ClickButtonSafe(Godot.BaseButton btn)
+    {
+        // Method 1: Emit the "pressed" signal (works for all Godot.Object types)
+        try { btn.EmitSignal("pressed"); return; } catch { }
+
+        // Method 2: Toggle ButtonPressed (works for BaseButton subclasses)
+        try { btn.ButtonPressed = true; return; } catch { }
+
+        // Method 3: Try calling Press() if it exists
+        try { btn.Call("press"); } catch { }
+    }
+
+    /// <summary>
+    /// <summary>
+    /// Find the multiplayer character select screen across all possible locations.
+    /// </summary>
+    private Node? FindMultiplayerCharacterSelect()
+    {
+        // A) CharacterSelectRoom inside the run's RoomContainer
+        var room = GetNodeOrNull<Node>("/root/Game/RootSceneContainer/Run/RoomContainer/CharacterSelectRoom");
+        if (room != null) return room;
+
+        // B) Standalone screen under RootSceneContainer
+        var screen = (Node?)GetNodeOrNull<Control>("/root/Game/RootSceneContainer/CharacterSelectScreen")
+            ?? (Node?)GetNodeOrNull<Control>("/root/Game/RootSceneContainer/CharacterSelect");
+        if (screen != null) return screen;
+
+        // C) MainMenu submenu (same location as single-player character select)
+        var mainMenu = GetNodeOrNull<Control>("/root/Game/RootSceneContainer/MainMenu");
+        if (mainMenu != null && mainMenu.IsVisibleInTree())
+        {
+            var submenu = mainMenu.GetNodeOrNull<Control>("Submenus/CharacterSelectScreen");
+            if (submenu != null && submenu.Visible) return submenu;
+
+            // Also search all Submenus children for any character select
+            var submenus = mainMenu.GetNodeOrNull<Node>("Submenus");
+            if (submenus != null)
+            {
+                foreach (var child in submenus.GetChildren())
+                {
+                    try
+                    {
+                        string typeName = child.GetType().Name;
+                        if (typeName.Contains("CharacterSelect", StringComparison.OrdinalIgnoreCase))
+                        {
+                            if (child is Control c && c.Visible) return child;
+                        }
+                    }
+                    catch { }
+                }
+            }
+        }
+
+        return null;
+    }
+
     /// Handle multiplayer character select — select configured character and confirm.
     ///
     /// Host: wait MP_CHAR_SELECT_HOST_DELAY seconds before auto-confirming so the
     ///        human has a chance to see what's happening and change character if desired.
     /// Bot:  confirm immediately after selection.
     /// </summary>
-    private double HandleMultiplayerCharacterSelect()
+    private double HandleMultiplayerCharacterSelect(Node charSelectRoot)
     {
-        var root = GetNodeOrNull<Node>("/root/Game/RootSceneContainer");
-        if (root == null) return 0.5;
-
-        // Find the character select screen
-        var charSelect = root.GetNodeOrNull<Control>("Run/RoomContainer/CharacterSelectRoom")
-            ?? (Control)root.GetNodeOrNull<Node>("CharacterSelectScreen")
-            ?? (Control)root.GetNodeOrNull<Node>("CharacterSelect");
-
-        if (charSelect == null) return 0.5;
+        // Use the passed-in root node (found by FindMultiplayerCharacterSelect)
+        var charSelect = charSelectRoot as Control ?? (Control)charSelectRoot;
+        if (charSelect == null || !GodotObject.IsInstanceValid(charSelect)) return 0.5;
 
         // Pick target character
         var targetChar = _character;
         if (targetChar == "RANDOM")
-            targetChar = ValidCharacters[_rng.Next(ValidCharacters.Length)];
+            targetChar = ValidCharacters[DeterministicPick(ValidCharacters)];
 
         // ── Step 1: Select the character ──────────────────────────────────
         if (!_mpCharacterSelected)
         {
+            // Primary: look for NCharacterSelectButton in standard container
             var buttonContainer = charSelect.GetNodeOrNull<Node>("CharSelectButtons/ButtonContainer");
             if (buttonContainer != null)
             {
@@ -3471,6 +3758,50 @@ public partial class AutoSlayNode : Node
                     }
                 }
             }
+
+            // Fallback A: recursive search for NCharacterSelectButton in entire charSelect
+            if (!_mpCharacterSelected)
+            {
+                foreach (var btn in AutoSlayHelpers.FindAll<NCharacterSelectButton>(charSelect))
+                {
+                    if (!btn.IsLocked && btn.Character?.Id.Entry == targetChar)
+                    {
+                        btn.Select();
+                        _mpCharacterSelected = true;
+                        _mpCharacterSelectedTime = Time.GetUnixTimeFromSystem();
+                        MainFile.Logger.Info($"[AutoSlay] MP: Selected character via fallback: {targetChar}");
+                        break;
+                    }
+                }
+            }
+
+            // Fallback B: search for any button whose name or text contains the character
+            if (!_mpCharacterSelected)
+            {
+                foreach (var btn in AutoSlayHelpers.FindAll<NButton>(charSelect))
+                {
+                    if (!btn.Visible || !btn.IsEnabled) continue;
+                    var btnName = btn.Name?.ToString() ?? "";
+                    if (btnName.Contains(targetChar, StringComparison.OrdinalIgnoreCase))
+                    {
+                        btn.ForceClick();
+                        _mpCharacterSelected = true;
+                        _mpCharacterSelectedTime = Time.GetUnixTimeFromSystem();
+                        MainFile.Logger.Info($"[AutoSlay] MP: Selected character via button name: {targetChar} ({btnName})");
+                        break;
+                    }
+                }
+            }
+
+            // Fallback C: dump visible structure for debugging (first time only)
+            if (!_mpCharacterSelected && _debugFrame % 60 == 0)
+            {
+                var sb = new System.Text.StringBuilder();
+                sb.AppendLine($"[AutoSlay] MP charSelect dump — searching for '{targetChar}':");
+                DumpNodeTree(charSelect, sb, "  ", 0, 3);
+                MainFile.Logger.Info(sb.ToString());
+            }
+
             // If we couldn't find the button, keep trying
             return 0.3;
         }
@@ -4517,7 +4848,7 @@ public partial class AutoSlayNode : Node
         else if (points.Count > 0)
         {
             // Fallback to random
-            var point = points[_rng.Next(points.Count)];
+            var point = points[DeterministicPick(points)];
             mapScreen.OnMapPointSelectedLocally(point);
         }
         _cooldown = 2.0;
@@ -4540,7 +4871,7 @@ public partial class AutoSlayNode : Node
         }
         else if (options.Count > 0)
         {
-            options[_rng.Next(options.Count)].ForceClick();
+            options[DeterministicPick(options)].ForceClick();
         }
         _cooldown = 1.0;
     }
@@ -4562,7 +4893,7 @@ public partial class AutoSlayNode : Node
         }
         else if (btns.Count > 0)
         {
-            btns[_rng.Next(btns.Count)].ForceClick();
+            btns[DeterministicPick(btns)].ForceClick();
         }
         _restSiteChoiceMade = true;
         _cooldown = 1.5;
@@ -4839,7 +5170,7 @@ public partial class AutoSlayNode : Node
                     .Where(c => GodotObject.IsInstanceValid(c)).ToList();
                 if (cards.Count > 0)
                 {
-                    int pick = _rng.Next(cards.Count);
+                    int pick = DeterministicPick(cards);
                     MainFile.Logger.Info($"[AutoSlay] Random overlay: picking card {pick}/{cards.Count}");
                     cards[pick].EmitSignal(NCardHolder.SignalName.Pressed, cards[pick]);
                 }
@@ -4859,8 +5190,9 @@ public partial class AutoSlayNode : Node
                     .Where(r => GodotObject.IsInstanceValid(r)).ToList();
                 if (relics.Count > 0)
                 {
-                    MainFile.Logger.Info($"[AutoSlay] Random overlay: picking relic {_rng.Next(relics.Count)}/{relics.Count}");
-                    relics[_rng.Next(relics.Count)].ForceClick();
+                    int pick = DeterministicPick(relics);
+                    MainFile.Logger.Info($"[AutoSlay] Random overlay: picking relic {pick}/{relics.Count}");
+                    relics[pick].ForceClick();
                 }
                 _cooldown = 1.0;
                 return;
