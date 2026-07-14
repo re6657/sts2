@@ -1370,7 +1370,7 @@ public static class IroncladSolver
             if (target != null) { target.Poison += potion.PoisonStacks; state.PoisonOnEnemies += potion.PoisonStacks; }
         }
 
-        MainFile.Logger.Info($"[SolverDBG] Potion {potion.Id} applied: dmg={potion.Damage} vuln={potion.VulnerableStacks} weak={potion.WeakStacks} str={potion.StrengthGain} dex={potion.DexterityGain} blk={potion.BlockGain} en={potion.EnergyGain} heal={potion.HealAmount}");
+        MainFile.Logger.Debug($"[SolverDBG] Potion {potion.Id} applied: dmg={potion.Damage} vuln={potion.VulnerableStacks} weak={potion.WeakStacks} str={potion.StrengthGain} dex={potion.DexterityGain} blk={potion.BlockGain} en={potion.EnergyGain} heal={potion.HealAmount}");
     }
 
     // ── State evaluation ─────────────────────────────────────────────────
