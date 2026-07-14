@@ -22,26 +22,7 @@ public static class RestDecider
     private static int _stuckFrames;
     private const int MaxStuckFrames = 90; // ~3 seconds before force-proceed
 
-    /// <summary>
-    /// In multiplayer, RestSiteSynchronizer needs time to sync options between
-    /// host and clients. If we click a rest button before the sync completes,
-    /// the local RestSiteSynchronizer has 0 options and throws "0 options
-    /// available!", which sends broken network messages that cause
-    /// StateDivergence. Wait for the network sync to complete before making
-    /// any rest decision in MP mode.
-    ///
-    /// Uses wall-clock time instead of frame count because RestDecider is only
-    /// called every ~1.5s (cooldown), so frame-count waits take 67.5s (45 calls
-    /// × 1.5s) instead of the intended 1.5s.
-    /// </summary>
-    private static ulong _mpWaitStartMs;
-    private const ulong MpSyncWaitMs = 2000; // 2 seconds for sync to complete
-
-    public static void ResetStuckCounter()
-    {
-        _stuckFrames = 0;
-        _mpWaitStartMs = 0;
-    }
+    public static void ResetStuckCounter() { _stuckFrames = 0; }
 
     public static bool Decide(RunState state)
     {
@@ -50,35 +31,6 @@ public static class RestDecider
         {
             _stuckFrames = 0;
             return false;
-        }
-
-        // ── Multiplayer initial sync wait ──────────────────────────────
-        // In multiplayer, rest site options must be synchronized between
-        // host and clients before ANY player can choose. If we click before
-        // the sync finishes, RestSiteSynchronizer.ChooseOption() throws
-        // "0 options available!" and the failed network messages corrupt
-        // the state, causing StateDivergence on exit.
-        //
-        // Uses wall-clock time (Time.GetTicksMsec) instead of call count
-        // because RestDecider is called every ~1.5s (cooldown), so a
-        // frame-count wait would take 45×1.5s = 67.5s instead of 2s.
-        if (Tiebreaker.InMultiplayerMode)
-        {
-            if (_mpWaitStartMs == 0)
-            {
-                _mpWaitStartMs = Time.GetTicksMsec();
-                MainFile.Logger.Info($"[RestDecider] MP sync wait start ({MpSyncWaitMs}ms)");
-                return false;
-            }
-            ulong elapsed = Time.GetTicksMsec() - _mpWaitStartMs;
-            if (elapsed < MpSyncWaitMs)
-                return false; // still waiting for sync
-            // Sync complete — only log once
-            if (_mpWaitStartMs != ulong.MaxValue)
-            {
-                MainFile.Logger.Info($"[RestDecider] MP sync wait complete ({elapsed}ms)");
-                _mpWaitStartMs = ulong.MaxValue; // mark complete, don't log again
-            }
         }
 
         // Check proceed first (after making a choice)

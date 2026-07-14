@@ -78,24 +78,8 @@ public static class CardGridHandler
         }
         else
         {
-            // ── Fallback: use scored selection (never random) ────────
-            // Prefer non-basic, high-impact cards. NEVER pick Strike/Defend.
-            pick = cards.OrderByDescending(c =>
-            {
-                try
-                {
-                    string id = c.CardModel?.Id.Entry?.ToUpperInvariant() ?? "";
-                    bool isBasic = id == "STRIKE" || id.StartsWith("STRIKE_")
-                                || id == "DEFEND" || id.StartsWith("DEFEND_");
-                    if (isBasic) return -100;
-                    int cost = c.CardModel?.EnergyCost.CostsX == true ? 3
-                        : Math.Min(c.CardModel?.EnergyCost.Canonical ?? 1, 5);
-                    bool upgraded = c.CardModel?.IsUpgraded == true;
-                    return cost * 5 + (upgraded ? 10 : 0);
-                }
-                catch { return 0; }
-            }).First();
-            MainFile.Logger.Info($"[AutoSlay] Scored card selection in grid ({cards.Count} available)");
+            pick = cards[rng.Next(cards.Count)];
+            MainFile.Logger.Info($"[AutoSlay] Selecting random card in grid ({cards.Count} available)");
             _llmChoice = null;
         }
 
