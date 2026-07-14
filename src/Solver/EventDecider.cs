@@ -213,6 +213,16 @@ public static class EventDecider
 
         if (costsHp)
         {
+            // ── Absolute HP floor: never reduce HP or max HP below this ──
+            // Ratio-based checks can be too permissive at high max HP.
+            // e.g., 30% of 200 HP = 60 — ratio says "safe" but absolute HP is 60.
+            // This hard-blocks ANY HP-cost option that would drop HP too low.
+            if (state.CurrentHp < ep.EventAbsoluteHpFloor)
+            {
+                MainFile.Logger.Info($"[EventDecider] Hard-blocking HP-cost option: HP={state.CurrentHp} < floor={ep.EventAbsoluteHpFloor}");
+                return ep.HpCostHardBlockScore;
+            }
+
             if (state.HpRatio < ep.HpCostHardBlockThreshold)
                 return ep.HpCostHardBlockScore;
             if (state.HpRatio < ep.HpCostWarningThreshold)

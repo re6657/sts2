@@ -62,6 +62,14 @@ public partial class AutoSlayNode : Node
     private bool _autoBattle;    // F2: auto combat (play cards + end turn)
     private bool _autoEvent;     // F3: auto event choices + card rewards/picks
     private bool _f1WasDown, _f2WasDown, _f3WasDown;
+
+    // ── Unified host manual-mode detection ──────────────────────────────
+    // When ANY toggle is OFF for the host in multiplayer, ALL auto-decisions
+    // (card removal, upgrades, events, map navigation, etc.) must be manual.
+    // This replaces scattered (_multiplayerMode && _isMultiplayerHost && !_autoBattle)
+    // checks that previously only looked at the combat toggle.
+    private bool IsFullAuto => _autoNavigate && _autoBattle && _autoEvent;
+    private bool IsHostManualMode => _multiplayerMode && _isMultiplayerHost && !IsFullAuto;
     private IDisposable? _cardSelectorScope;
     private AutoSlayCardSelector? _cardSelector;
     private readonly System.Random _rng = new();
@@ -653,7 +661,7 @@ public partial class AutoSlayNode : Node
             {
                 // Reset stuck timer — we're handling an overlay, not stuck
                 _lastCombatActivity = 0;
-                if (_llm != null && TryRequestLlmForOverlay(overlayNode))
+                if (!IsHostManualMode && _llm != null && TryRequestLlmForOverlay(overlayNode))
                     return;
                 if (_cooldown <= 0)
                 {
@@ -1788,20 +1796,30 @@ public partial class AutoSlayNode : Node
             }
             return;
         }
-        CombatHandler.OnCombatEnded();
-        _combatTurnRequested = false; _combatTurnRequestedDuration = 0;
-        _drawJustFinished = false;
-
-        // ── Post-combat: generate dialogue for next combat start ──
-        try { Chat.CombatRecorder.OnCombatEnd(); } catch { }
-
-        // ── Clear shared conversation log for fresh start next combat ──
-        try { Chat.ConversationManager.Clear(); } catch { }
-
-        // Combat end transition
+        // ── Post-combat one-time transition ──────────────────────────────
+        // Only runs on the FIRST frame after combat ends, not every frame.
+        // (_wasInCombat gate prevents repeated execution.)
         if (_wasInCombat)
         {
             _wasInCombat = false;
+
+            CombatHandler.OnCombatEnded();
+            _combatTurnRequested = false; _combatTurnRequestedDuration = 0;
+            _drawJustFinished = false;
+
+            // ── Reset cached map path after combat ────────────────────────────
+            // Combat changes room state. The cached path from before combat
+            // may point to an already-visited node, causing auto-navigate to
+            // stall. Resetting forces a fresh path-find on the next map open.
+            MapDecider.Reset();
+
+            // ── Post-combat: generate dialogue for next combat start ──
+            try { Chat.CombatRecorder.OnCombatEnd(); } catch { }
+
+            // ── Clear shared conversation log for fresh start next combat ──
+            try { Chat.ConversationManager.Clear(); } catch { }
+
+            // Combat end transition logging
             try
             {
                 var rs = RunManager.Instance?.DebugOnlyGetState();
@@ -1879,7 +1897,10 @@ public partial class AutoSlayNode : Node
                     RandomOverlayFallback(overlayNode);
                     return;
                 }
-                if (_llm != null && TryRequestLlmForOverlay(overlayNode))
+                // HOST GUARD: when host has auto-battle OFF, skip LLM auto-handling
+                // so the human player can interact with overlays manually.
+                // Falls through to DispatchOverlay which also has the host guard.
+                if (!IsHostManualMode && _llm != null && TryRequestLlmForOverlay(overlayNode))
                     return;
                 try { _cooldown = DispatchOverlay(overlayNode, delta); }
                 catch (Exception ex) { MainFile.Logger.Error($"[AutoSlay] DispatchOverlay CRASH on {overlayNode.GetType().Name}: {ex.Message}"); _cooldown = 0.5; }
@@ -2023,7 +2044,8 @@ public partial class AutoSlayNode : Node
         if (mapScreen != null && mapScreen.IsOpen && NOverlayStack.Instance?.ScreenCount == 0)
         {
             // ── Toggle guard: skip if auto-navigate is OFF ──
-            if (!_autoNavigate)
+            // HOST GUARD: also skip when host has auto-battle OFF (human is playing)
+            if (!_autoNavigate || IsHostManualMode)
             {
                 _cooldown = 3.0;
                 return;
@@ -2049,6 +2071,10 @@ public partial class AutoSlayNode : Node
                 return;
             }
             MainFile.Logger.Info("[AutoSlay] MAP screen detected, calling DecisionEngine");
+            // In multiplayer, bots must wait for all players to select before
+            // the map advances. Tell MapDecider so it doesn't mistake waiting
+            // for a rejected click and retry infinitely.
+            MapDecider.InMultiplayerRun = _multiplayerMode && !_isMultiplayerHost;
             try { DecisionEngine.Decide(GameScreen.MAP, delta); }
             catch (Exception ex) { MainFile.Logger.Error($"[AutoSlay] MAP DecisionEngine CRASH: {ex.Message}"); }
             _cooldown = 2.0;
@@ -2061,7 +2087,8 @@ public partial class AutoSlayNode : Node
         if (eventRoom != null)
         {
             // ── Toggle guard: skip if auto-event is OFF ──
-            if (!_autoEvent)
+            // HOST GUARD: also skip when host has auto-battle OFF (human is playing)
+            if (!_autoEvent || IsHostManualMode)
             {
                 _cooldown = 3.0;
                 return;
@@ -2110,7 +2137,8 @@ public partial class AutoSlayNode : Node
         if (treasureRoom != null)
         {
             // ── Toggle guard: skip if auto-event is OFF ──
-            if (!_autoEvent)
+            // HOST GUARD: also skip when host is in manual mode
+            if (!_autoEvent || IsHostManualMode)
             {
                 _cooldown = 3.0;
                 return;
@@ -2156,7 +2184,8 @@ public partial class AutoSlayNode : Node
         if (restRoom != null && screenIsRest)
         {
             // ── Toggle guard: skip if auto-navigate is OFF ──
-            if (!_autoNavigate)
+            // HOST GUARD: also skip when host is in manual mode
+            if (!_autoNavigate || IsHostManualMode)
             {
                 _cooldown = 3.0;
                 return;
@@ -2345,7 +2374,8 @@ public partial class AutoSlayNode : Node
         if (shopRoom != null)
         {
             // ── Toggle guard: skip if auto-navigate is OFF ──
-            if (!_autoNavigate)
+            // HOST GUARD: also skip when host is in manual mode
+            if (!_autoNavigate || IsHostManualMode)
             {
                 _cooldown = 3.0;
                 return;
@@ -2635,13 +2665,29 @@ public partial class AutoSlayNode : Node
             }
         }
 
-        // Step 2: If exactly 2 buttons, click the one that ISN'T Yes/Continue/Confirm/好的
+        // Step 2: If exactly 2 buttons, prefer Proceed (dismiss without action),
+        // then click the one that ISN'T Yes/Continue/Confirm/好的.
+        // CRITICAL: In multiplayer, the potion-discard dialog has [PotionButton, ProceedButton].
+        // Clicking the potion button triggers another potion reward → infinite loop!
+        // Always prefer Proceed when it's one of the options.
         if (allBtns.Count == 2)
         {
+            var proceedBtn = allBtns.FirstOrDefault(b => {
+                var n = (b.Name?.ToString() ?? "").ToLowerInvariant();
+                return n.Contains("proceed");
+            });
+            if (proceedBtn != null)
+            {
+                LogOnce($"DismissModal (2-btn w/Proceed): clicking Proceed to dismiss");
+                proceedBtn.ForceClick();
+                _cooldown = 1.0;
+                return true;
+            }
+
             var notYes = allBtns.FirstOrDefault(b => {
                 var n = (b.Name?.ToString() ?? "").ToLowerInvariant();
                 return !n.Contains("yes") && !n.Contains("continue") && !n.Contains("confirm")
-                    && !n.Contains("resume") && !n.Contains("ok")
+                    && !n.Contains("resume") && !n.Contains("ok") && !n.Contains("proceed")
                     && !n.Contains("是") && !n.Contains("继续") && !n.Contains("确认")
                     && !n.Contains("好的") && !n.Contains("好") && !n.Contains("accept");
             });
@@ -2649,6 +2695,20 @@ public partial class AutoSlayNode : Node
             {
                 LogOnce($"DismissModal (2-btn): clicking non-Yes {notYes.Name}");
                 notYes.ForceClick();
+                _cooldown = 1.0;
+                return true;
+            }
+        }
+
+        // Step 3: If only 1 button and it's Proceed, click it
+        if (allBtns.Count == 1)
+        {
+            var only = allBtns[0];
+            var name = (only.Name?.ToString() ?? "").ToLowerInvariant();
+            if (name.Contains("proceed"))
+            {
+                LogOnce($"DismissModal (1-btn): clicking Proceed");
+                only.ForceClick();
                 _cooldown = 1.0;
                 return true;
             }
@@ -4089,7 +4149,39 @@ public partial class AutoSlayNode : Node
                     || matchingCard.TargetType == TargetType.Self;
                 var cardTarget = skipTarget ? null : action.Target;
 
-                MainFile.Logger.Info($"[AutoSlay] Playing {cardId} (type={matchingCard.TargetType}, cost={matchingCard.EnergyCost.Canonical}){(cardTarget != null ? $" -> {cardTarget.Monster?.Id.Entry}" : "")}");
+                // ── Multiplayer player-targeting cards ────────────────────
+                // AnyAlly / AnyPlayer cards (DEMONIC_SHIELD, BELIEVE_IN_YOU, etc.)
+                // need a player target. The solver always returns null for these
+                // (it only tracks enemy targets), so we must resolve a valid
+                // player creature here. Without this, TryManualPlay(null) triggers
+                // a player-selection UI that the bot can't handle → deadlock.
+                if (cardTarget == null && (matchingCard.TargetType == TargetType.AnyAlly
+                                        || matchingCard.TargetType == TargetType.AnyPlayer))
+                {
+                    try
+                    {
+                        var combatState = player?.Creature?.CombatState as CombatState;
+                        if (combatState != null && combatState.PlayerCreatures.Count > 0)
+                        {
+                            // Target the first alive player that is NOT us (prefer host/human).
+                            // If no other player is alive, target self.
+                            var myCreature = player.Creature;
+                            cardTarget = combatState.PlayerCreatures
+                                .FirstOrDefault(c => c.IsAlive && c != myCreature)
+                                ?? combatState.PlayerCreatures.FirstOrDefault(c => c.IsAlive);
+                            MainFile.Logger.Info($"[AutoSlay] Resolved player target for {cardId} ({matchingCard.TargetType}): player={cardTarget?.Monster?.Id?.Entry ?? cardTarget?.GetType().Name ?? "?"}");
+                        }
+                    }
+                    catch (Exception targetEx)
+                    {
+                        MainFile.Logger.Info($"[AutoSlay] Failed to resolve player target for {cardId}: {targetEx.Message}");
+                    }
+                }
+
+                string targetDesc = cardTarget != null
+                    ? (cardTarget.Monster?.Id?.Entry ?? cardTarget.GetType().Name)
+                    : "";
+                MainFile.Logger.Info($"[AutoSlay] Playing {cardId} (type={matchingCard.TargetType}, cost={matchingCard.EnergyCost.Canonical}){(cardTarget != null ? $" -> {targetDesc}" : "")}");
                 if (!matchingCard.TryManualPlay(cardTarget))
                 {
                     MainFile.Logger.Info($"[AutoSlay] TryManualPlay FAILED for {cardId}");
@@ -4519,7 +4611,7 @@ public partial class AutoSlayNode : Node
             // ── Multiplayer host guard: never auto-pick for the human host ──
             // If the host takes longer than 30s to decide, we still don't
             // interfere — just reset the timer and let them continue.
-            if (_multiplayerMode && _isMultiplayerHost && !_autoBattle)
+            if (IsHostManualMode)
             {
                 MainFile.Logger.Info("[AutoSlay] Host manual mode: suppressing RandomOverlayFallback, resetting timeout");
                 _sameScreenDuration = 0;
@@ -4682,23 +4774,23 @@ public partial class AutoSlayNode : Node
         // ── Multiplayer host guard: when host has auto-battle OFF, skip ALL auto-decisions ──
         // The human host should manually interact with all overlay screens.
         // Only game-over screen is truly non-interactive (just reports results).
-        if (_multiplayerMode && _isMultiplayerHost && !_autoBattle)
-        {
-            if (overlayNode is NGameOverScreen)
+        if (IsHostManualMode)
             {
-                // Game over: still auto-handle (just logs and shows stats)
-                MainFile.Logger.Info("[AutoSlay] Host manual mode: auto-handling game over screen");
+                if (overlayNode is NGameOverScreen)
+                {
+                    // Game over: still auto-handle (just logs and shows stats)
+                    MainFile.Logger.Info("[AutoSlay] Host manual mode: auto-handling game over screen");
+                }
+                else
+                {
+                    // Reset screen tracking so timeout doesn't accumulate while human is deciding
+                    _sameScreenDuration = 0;
+                    _sameScreenTickCount = 0;
+                    _lastScreenType = "";
+                    _unknownOverlayRetries = 0;
+                    return 3.0; // long cooldown — let the human play
+                }
             }
-            else
-            {
-                // Reset screen tracking so timeout doesn't accumulate while human is deciding
-                _sameScreenDuration = 0;
-                _sameScreenTickCount = 0;
-                _lastScreenType = "";
-                _unknownOverlayRetries = 0;
-                return 3.0; // long cooldown — let the human play
-            }
-        }
 
         if (overlayNode is NCardRewardSelectionScreen cardReward)
         {

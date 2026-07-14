@@ -102,6 +102,18 @@ public static class CombatHandler
             var enemies = combatState?.HittableEnemies.ToList() ?? new List<Creature>();
             if (enemies.Count > 0) target = enemies[rng.Next(enemies.Count)];
         }
+        else if (card.TargetType == TargetType.AnyAlly || card.TargetType == TargetType.AnyPlayer)
+        {
+            // Multiplayer player-targeting cards (DEMONIC_SHIELD, BELIEVE_IN_YOU, etc.)
+            // Target the first alive other player, or self as fallback.
+            var combatState = player.Creature?.CombatState as CombatState;
+            if (combatState != null && combatState.PlayerCreatures.Count > 0)
+            {
+                target = combatState.PlayerCreatures
+                    .FirstOrDefault(c => c.IsAlive && c != player.Creature)
+                    ?? combatState.PlayerCreatures.FirstOrDefault(c => c.IsAlive);
+            }
+        }
 
         card.TryManualPlay(target);
         return 0.4;

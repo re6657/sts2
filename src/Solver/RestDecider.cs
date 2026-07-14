@@ -233,6 +233,18 @@ public static class RestDecider
         }
         else if (lower.Contains("rest") || lower.Contains("heal"))
         {
+            // ── MULTIPLAYER: detect "heal other player" options (Bandage / 绷带) ──
+            // These require selecting a target player, which the bot can't do.
+            // Heavily penalize so we prefer self-heal (rest), smith, or toke instead.
+            bool isHealOther = lower.Contains("bandage") || lower.Contains("ally")
+                            || lower.Contains("绷带");
+            // These options only exist in multiplayer — always safe to penalize.
+            if (isHealOther)
+            {
+                score -= 500; // Massive penalty — bot should never pick bandage over self-heal
+                MainFile.Logger.Info($"[RestDecider] Heavily penalizing multiplayer heal-other option: {typeName}");
+            }
+
             // Generic rest/heal option — must be LAST since all options contain "Rest"
             if (state.HpRatio < rp.RestLowHpThreshold)
             {

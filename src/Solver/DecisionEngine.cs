@@ -115,6 +115,7 @@ public static class DecisionEngine
         DecisionLogger.NewRun();
         _runState.Refresh();
         MapDecider.Reset();
+        MapDecider.InMultiplayerRun = false;
         ShopDecider.Reset();
         TreasureDecider.Reset();
         StateStabilityDetector.Reset();

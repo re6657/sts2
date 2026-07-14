@@ -118,7 +118,12 @@ public static class RewardsHandler
         // the last reward animation finishes before enabling Proceed.
         // Also: SpeedX AutoProceed may have already clicked Proceed (now disabled),
         // causing us to wait for a screen transition that may never come.
-        if (_stuckFrames < MaxStuckFrames)
+        //
+        // MULTIPLAYER: if we've already force-removed this screen before (zombie overlay
+        // that the host keeps re-syncing), skip the wait and force-remove immediately.
+        int effectiveMaxFrames = _forceRemoveCount > 0 ? 5 : MaxStuckFrames;
+
+        if (_stuckFrames < effectiveMaxFrames)
         {
             _stuckFrames++;
             return 0.1; // fast poll
@@ -128,6 +133,7 @@ public static class RewardsHandler
         // This handles both cases:
         // 1. STS2 animation delay (normal)
         // 2. SpeedX AutoProceed race (Proceed clicked but screen didn't close)
+        // 3. Multiplayer zombie overlay (host re-syncs a completed reward screen)
         _forceRemoveCount++;
         MainFile.Logger.Info($"[AutoSlay] Rewards: force-removing after {_stuckFrames} frames wait (screenId={screenId}, totalForceRemoves={_forceRemoveCount})");
         _triedRewards.Clear();
@@ -141,6 +147,9 @@ public static class RewardsHandler
             MainFile.Logger.Error($"[AutoSlay] Rewards: EXCESSIVE force-removes ({_forceRemoveCount}) — possible infinite reward loop!");
         }
 
-        return 1.0;
+        // In multiplayer, after repeated force-removes, use longer cooldown to
+        // reduce re-dispatch frequency and prevent 30s timeout from accumulating
+        double cooldown = _forceRemoveCount > 2 ? 3.0 : 1.0;
+        return cooldown;
     }
 }

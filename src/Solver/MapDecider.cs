@@ -17,6 +17,13 @@ namespace TokenSpire2.Solver;
 /// </summary>
 public static class MapDecider
 {
+    /// <summary>
+    /// Set by AutoSlayNode before Decide() is called. In multiplayer mode,
+    /// all players must select before the map advances, so the bot being
+    /// "still on the same row" after clicking is NORMAL — not a rejection.
+    /// </summary>
+    public static bool InMultiplayerRun;
+
     private static int _lastClickedRow = -1;
     private static int _lastClickedCol = -1;
     private static double _lastClickTime;
@@ -93,7 +100,10 @@ public static class MapDecider
         }
 
         // ── B5: Click verification — check if previous click was rejected ──
-        if (_clickVerifyRow >= 0)
+        // In multiplayer, all players must select before the map advances,
+        // so staying on the same row is NORMAL — NOT a click rejection.
+        // Skipping retry avoids an infinite loop of click→re-plan→click.
+        if (_clickVerifyRow >= 0 && !InMultiplayerRun)
         {
             double waited = (Godot.Time.GetTicksMsec() / 1000.0) - _clickVerifyTime;
             if (waited > 0.5 && waited < 5.0)
