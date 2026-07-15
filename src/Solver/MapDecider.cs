@@ -242,7 +242,7 @@ public static class MapDecider
             {
                 enabledByCoord[(p.Point.coord.row, p.Point.coord.col)] = p;
             }
-            catch { }
+            catch (Exception ex) { MainFile.Logger?.Info($"[MapDecider] coord access failed: {ex.Message}"); }
         }
 
         if (enabledByCoord.Count == 0) return null;
@@ -262,7 +262,7 @@ public static class MapDecider
                     currentIdx = i;
                 }
             }
-            catch { }
+            catch (Exception ex) { MainFile.Logger?.Info($"[MapDecider] cached path iteration failed: {ex.Message}"); }
         }
 
         if (currentIdx < 0)

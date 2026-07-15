@@ -638,11 +638,11 @@ public class SolverParams
     public class EventSection
     {
         public double HpCostHardBlockThreshold { get; set; } = 0.50;
-        public double HpCostHardBlockScore { get; set; } = -200;
+        public double HpCostHardBlockScore { get; set; } = -10000; // effectively ineligible
         public double HpCostWarningThreshold { get; set; } = 0.70;
         public double HpCostWarningScore { get; set; } = -120;
         public double HpCostNormalScore { get; set; } = -60;
-        public int EventAbsoluteHpFloor { get; set; } = 60;
+        public int EventAbsoluteHpFloor { get; set; } = 50; // user-requested: never pick HP-cost below 50 HP
         public double CurseNoSynergyPenalty { get; set; } = -120;
         public double CurseWithSynergyPenalty { get; set; } = -40;
         public double StatusCardPenalty { get; set; } = -30; // M10: Wound/Burn/Slimed/Dazed/Void — milder than curses

@@ -7,21 +7,23 @@ using MegaCrit.Sts2.Core.Context;
 using MegaCrit.Sts2.Core.Entities.Cards;
 using MegaCrit.Sts2.Core.Entities.Creatures;
 using MegaCrit.Sts2.Core.Entities.Players;
-using MegaCrit.Sts2.Core.MonsterMoves.Intents;
 using MegaCrit.Sts2.Core.Runs;
 
 namespace TokenSpire2.Chat;
 
 /// <summary>
-/// Extracts current combat state as a compact Chinese string
+/// Extracts current game state as a narrative Chinese description
 /// for the AI chat system.
+///
+/// Characters are CASUAL OBSERVERS who don't understand game mechanics,
+/// so the context uses qualitative, vibe-based descriptions instead of
+/// exact numbers and card names.
 ///
 /// Format:
 /// 【当前局势】
-/// 角色：铁甲战士 | HP：68/80 | 格挡：12 | 能量：3/3
-/// 手牌：痛击(2费) 打击(1费) 防御(1费)
-/// 敌人：大颚虫 HP 44/48 意图：攻击12
-/// 回合：第3回合 | 力量：0 | 敏捷：0
+/// 玩家选的角色是铁甲战士。血量还算健康，手上捏着几张牌。
+/// 对面有两个怪物，看起来来势汹汹。
+/// 已经打了好几回合了。
 /// </summary>
 public static class GameStateExtractor
 {
@@ -35,7 +37,9 @@ public static class GameStateExtractor
     };
 
     /// <summary>
-    /// Build a compact Chinese context string describing current combat state.
+    /// Build a narrative Chinese context string describing current game state.
+    /// Uses qualitative descriptions — characters are casual observers,
+    /// not expert players analyzing mechanics.
     /// Returns empty string if not in combat or state is unavailable.
     /// </summary>
     public static string BuildContext()
@@ -53,129 +57,119 @@ public static class GameStateExtractor
             if (player == null) return "";
 
             var sb = new StringBuilder();
-            sb.AppendLine("【当前局势】");
+            sb.AppendLine("【当前局势——你是外行，只能看懂大概】");
 
-            // ── Player state ──────────────────────────────────────────
+            // ── Character ─────────────────────────────────────────────
             var charName = GetCharacterName(player);
+            sb.Append($"玩家选的角色是{charName}。");
+
+            // ── HP status — qualitative, not exact numbers ────────────
             var hp = player.Creature.CurrentHp;
             var maxHp = player.Creature.MaxHp;
+            var hpRatio = (double)hp / maxHp;
+
+            if (hpRatio > 0.8)
+                sb.Append("血量很健康，看起来游刃有余。");
+            else if (hpRatio > 0.5)
+                sb.Append("血量还行，受了点伤但不严重。");
+            else if (hpRatio > 0.25)
+                sb.Append("血量不太乐观，好像被打得挺惨的……");
+            else
+                sb.Append("血量见底了！感觉随时可能输掉。");
+
+            // ── Block — simple mention if noticeable ──────────────────
             var block = player.Creature.Block;
-            var energy = player.PlayerCombatState?.Energy ?? 0;
-            var maxEnergy = player.MaxEnergy;
-
-            sb.Append($"角色：{charName} | HP：{hp}/{maxHp} | 格挡：{block} | 能量：{energy}/{maxEnergy}");
-
-            // Stars (Necrobinder)
-            var stars = player.PlayerCombatState?.Stars ?? 0;
-            if (stars > 0)
-                sb.Append($" | 星星：{stars}");
+            if (block > 10)
+                sb.Append("身上套着一层厚厚的护盾。");
+            else if (block > 0)
+                sb.Append("有一点护盾。");
 
             sb.AppendLine();
 
-            // ── Hand cards ────────────────────────────────────────────
+            // ── Hand — vague, no card names ───────────────────────────
             try
             {
                 var hand = PileType.Hand.GetPile(player).Cards.ToList();
-                if (hand.Count > 0)
-                {
-                    sb.Append("手牌：");
-                    foreach (var card in hand)
-                    {
-                        var cardName = GetCardName(card);
-                        var cost = GetCardCost(card);
-                        sb.Append($"{cardName}({cost}) ");
-                    }
-                    sb.AppendLine();
-                }
+                if (hand.Count > 7)
+                    sb.AppendLine("手上捏着一大把牌。");
+                else if (hand.Count > 3)
+                    sb.AppendLine($"手上大概有{hand.Count}张牌。");
+                else if (hand.Count > 0)
+                    sb.AppendLine("手上没几张牌了。");
                 else
-                {
-                    sb.AppendLine("手牌：无");
-                }
+                    sb.AppendLine("手上空空如也。");
             }
-            catch { sb.AppendLine("手牌：—"); }
+            catch { sb.AppendLine("手上捏着几张牌。"); }
 
-            // ── Enemies ───────────────────────────────────────────────
+            // ── Enemies — qualitative, no mechanics ───────────────────
             try
             {
                 var combatState = cm.DebugOnlyGetState();
                 var enemies = combatState?.Enemies?.Where(e => e.IsAlive).ToList();
                 if (enemies != null && enemies.Count > 0)
                 {
-                    sb.Append("敌人：");
-                    foreach (var enemy in enemies)
+                    sb.Append("对面有");
+                    if (enemies.Count == 1)
                     {
-                        var enemyName = enemy.Monster?.Id?.Entry ?? "未知敌人";
-                        var eHp = enemy.CurrentHp;
-                        var eMaxHp = enemy.MaxHp;
-                        var eBlock = enemy.Block;
-
-                        sb.Append($"{enemyName} HP {eHp}/{eMaxHp}");
-                        if (eBlock > 0)
-                            sb.Append($" 格挡{eBlock}");
-
-                        // Intent
-                        var intent = enemy.Monster?.NextMove?.Intents?.FirstOrDefault();
-                        if (intent != null)
-                        {
-                            var intentType = intent.IntentType.ToString();
-                            sb.Append($" 意图：{intentType}");
-                        }
-
-                        sb.Append(" | ");
+                        var name = enemies[0].Monster?.Id?.Entry ?? "一个怪物";
+                        var eHpRatio = enemies[0].MaxHp > 0
+                            ? (double)enemies[0].CurrentHp / enemies[0].MaxHp
+                            : 0.5;
+                        sb.Append($"{enemies.Count}个敌人（{name}）");
+                        if (eHpRatio < 0.3)
+                            sb.Append("，已经快被打死了");
+                        else if (eHpRatio > 0.8)
+                            sb.Append("，看起来还精神得很");
+                        sb.Append("。");
                     }
-                    // Remove trailing " | "
-                    if (sb.Length >= 3)
-                        sb.Length -= 3;
+                    else
+                    {
+                        sb.Append($"{enemies.Count}个敌人");
+                        // Give a rough feel for the group
+                        var avgHpRatio = enemies.Average(e =>
+                            e.MaxHp > 0 ? (double)e.CurrentHp / e.MaxHp : 0.5);
+                        if (avgHpRatio > 0.8)
+                            sb.Append("，个个精神抖擞。");
+                        else if (avgHpRatio < 0.3)
+                            sb.Append("，都已经被打得差不多了。");
+                        else
+                            sb.Append("。");
+                    }
+
+                    // Mention if any enemy looks particularly dangerous
+                    var biggest = enemies.OrderByDescending(e => e.MaxHp).FirstOrDefault();
+                    if (biggest != null && biggest.MaxHp > 80)
+                    {
+                        var bigName = biggest.Monster?.Id?.Entry ?? "有个大块头";
+                        sb.Append($"其中{bigName}看起来特别大只，感觉不好惹。");
+                    }
+
                     sb.AppendLine();
                 }
                 else
                 {
-                    sb.AppendLine("敌人：无");
+                    sb.AppendLine("对面好像没有敌人了？（可能快结束了）");
                 }
             }
-            catch { sb.AppendLine("敌人：—"); }
+            catch { sb.AppendLine("对面有几个怪物，看不太清楚。"); }
 
-            // ── Turn info ─────────────────────────────────────────────
+            // ── Turn number — vague ────────────────────────────────────
             var turnNum = player.PlayerCombatState?.TurnNumber ?? 0;
-            sb.Append($"回合：第{turnNum}回合");
-
-            // Powers (strength, dexterity, vulnerable, weak)
-            try
-            {
-                int str = SumPower(player, "Strength");
-                int dex = SumPower(player, "Dexterity");
-                int vuln = SumPower(player, "Vulnerable");
-                int weak = SumPower(player, "Weak");
-                int frail = SumPower(player, "Frail");
-
-                if (str != 0) sb.Append($" | 力量：{str}");
-                if (dex != 0) sb.Append($" | 敏捷：{dex}");
-                if (vuln > 0) sb.Append($" | 易伤：{vuln}");
-                if (weak > 0) sb.Append($" | 虚弱：{weak}");
-                if (frail > 0) sb.Append($" | 脆弱：{frail}");
-            }
-            catch { }
-
+            if (turnNum > 10)
+                sb.Append("已经打了好久好久了……");
+            else if (turnNum > 5)
+                sb.Append("打了好几回合了。");
+            else if (turnNum > 2)
+                sb.Append($"这是第{turnNum}回合。");
+            else if (turnNum > 0)
+                sb.Append("才刚开始。");
             sb.AppendLine();
 
-            // ── Relics ─────────────────────────────────────────────────
-            try
-            {
-                var relics = player.Relics?.ToList();
-                if (relics != null && relics.Count > 0)
-                {
-                    var relicNames = relics.Select(r => r.Id?.Entry ?? "?").Take(8);
-                    sb.AppendLine($"遗物：{string.Join(" ", relicNames)}");
-                }
-            }
-            catch { }
-
-            // ── HP ratio note ─────────────────────────────────────────
-            var hpRatio = (double)hp / maxHp;
+            // ── HP warning ────────────────────────────────────────────
             if (hpRatio < 0.3)
-                sb.AppendLine("⚠️ 血量危险！");
+                sb.AppendLine("⚠️ 看起来非常危险！随时可能输掉。");
             else if (hpRatio < 0.5)
-                sb.AppendLine("⚠️ 血量偏低");
+                sb.AppendLine("⚠️ 情况好像不太妙……");
 
             return sb.ToString();
         }
@@ -199,65 +193,5 @@ public static class GameStateExtractor
     private static string GetCharacterName(Player player)
     {
         return GetCharacterNameStatic(player);
-    }
-
-    // Helpers use dynamic/var to avoid type visibility issues with publicized assemblies
-    private static string GetCardName(object card)
-    {
-        try
-        {
-            var cardType = card.GetType();
-            var titleProp = cardType.GetProperty("TitleLocString");
-            if (titleProp != null)
-            {
-                var titleLoc = titleProp.GetValue(card);
-                var formatMethod = titleLoc?.GetType().GetMethod("GetFormattedText");
-                if (formatMethod != null)
-                {
-                    var name = formatMethod.Invoke(titleLoc, null) as string;
-                    if (!string.IsNullOrEmpty(name))
-                        return name;
-                }
-            }
-            var idProp = cardType.GetProperty("Id");
-            var idVal = idProp?.GetValue(card);
-            var entryProp = idVal?.GetType().GetProperty("Entry");
-            return entryProp?.GetValue(idVal) as string ?? "?";
-        }
-        catch { return "?"; }
-    }
-
-    private static string GetCardCost(object card)
-    {
-        try
-        {
-            var cardType = card.GetType();
-            var ecProp = cardType.GetProperty("EnergyCost");
-            if (ecProp == null) return "?费";
-            var ec = ecProp.GetValue(card);
-            var ecType = ec?.GetType();
-
-            var costsX = ecType?.GetProperty("CostsX")?.GetValue(ec);
-            if (costsX is true)
-                return "X费";
-
-            var resolved = ecType?.GetMethod("GetResolved")?.Invoke(ec, null);
-            return $"{resolved}费";
-        }
-        catch { return "?费"; }
-    }
-
-    private static int SumPower(Player player, string powerName)
-    {
-        // M32: use exact power type name match to avoid substring false-matches
-        // (e.g. "Strength" matching "StrengthDrainPower")
-        try
-        {
-            string targetType = powerName + "Power";
-            return player.Creature.Powers
-                .Where(p => p.GetType().Name.Equals(targetType, StringComparison.OrdinalIgnoreCase))
-                .Sum(p => p.Amount);
-        }
-        catch { return 0; }
     }
 }

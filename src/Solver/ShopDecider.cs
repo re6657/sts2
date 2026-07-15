@@ -168,12 +168,10 @@ public static class ShopDecider
         }
 
         // Sort by priority first, then score within same priority.
-        // ThenBy with random breaks ties deterministically per priority+score group.
-        var rng = new Random();
+        // Ties broken by original list order (deterministic — no Random for multiplayer lockstep).
         var sortedOptions = allOptions
             .OrderBy(x => x.priority)
             .ThenByDescending(x => x.score)
-            .ThenBy(_ => rng.Next())
             .ToList();
 
         int minReserve = SolverParams.Instance.Shop.MinGoldReserve;

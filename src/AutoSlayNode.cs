@@ -36,8 +36,8 @@ using MegaCrit.Sts2.Core.Nodes.Cards;
 using MegaCrit.Sts2.Core.Nodes.Cards.Holders;
 using MegaCrit.Sts2.Core.Nodes.Rewards;
 using MegaCrit.Sts2.Core.Nodes.Vfx;
+using MegaCrit.Sts2.Core.Rewards;
 using TokenSpire2.Chat;
-using TokenSpire2.Handlers;
 using TokenSpire2.Llm;
 using TokenSpire2.Solver;
 using TokenSpire2.Core;
@@ -72,7 +72,8 @@ public partial class AutoSlayNode : Node
     private bool IsHostManualMode => _multiplayerMode && _isMultiplayerHost && !IsFullAuto;
     private IDisposable? _cardSelectorScope;
     private AutoSlayCardSelector? _cardSelector;
-    private readonly System.Random _rng = new();
+    // REMOVED: System.Random breaks multiplayer lockstep determinism — use [0] instead of _rng.Next()
+    // private readonly System.Random _rng = new();
     private long _debugFrame;
     private double _dbgTimer;
 	private double _delta;
@@ -112,6 +113,12 @@ public partial class AutoSlayNode : Node
     // ── Multi-seed rotation ─────────────────────────────────────────────────
     private List<string> _seeds = new();
     private int _currentSeedIndex;
+
+    // ── Inline LLM choice state (was in CardGridHandler / SimpleCardSelectHandler) ──
+    private int? _llmGridChoice;
+    private int? _llmSimpleChoice;
+    private bool HasPendingLlmGridChoice => _llmGridChoice.HasValue;
+    private bool HasPendingLlmSimpleChoice => _llmSimpleChoice.HasValue;
 
     // LLM state
     private LlmClient? _llm;
@@ -176,8 +183,19 @@ public partial class AutoSlayNode : Node
     private ChatEngine? _chatEngine;
     private string _aiChatCharacter = "";
     private string _aiChatDisplayName = "";    // cached for logging
-    private double _chatMyTurnCooldown = 3.0;  // seconds to wait AFTER my own message
-    private double _chatPollInterval = 1.8;    // seconds between checking the shared log
+    private int _botCount = 1;                 // 1/2/3 — detected from shared roster
+    private bool _sessionMarked;               // track whether we marked this run
+
+    // ── Chat pipeline: generate ahead, deliver steadily ────────────
+    private readonly List<string> _chatLineQueue = new();  // pre-generated lines
+    private bool _isGeneratingChat;                        // prevent overlapping API calls
+    private double _chatDeliveryTimer;                     // countdown to next line delivery
+    private const double CHAT_DELIVERY_INTERVAL = 4.0;     // seconds between each line
+    private const int CHAT_REFILL_THRESHOLD = 3;           // trigger refill when queue below this
+    private const int CHAT_BATCH_SIZE = 6;                 // lines to generate per API call
+
+    private double _chatMyTurnCooldown = 3.0;  // seconds to wait AFTER my own message (2+ bots)
+    private double _chatPollInterval = 1.8;    // seconds between checking the shared log (2+ bots)
     private bool _aiChatInitialized;
     private bool _conversationInitialized;
 
@@ -251,7 +269,7 @@ public partial class AutoSlayNode : Node
         }
 
         // Register card selector for mid-combat card selections (e.g. Armaments).
-        _cardSelector = new AutoSlayCardSelector(_rng, null);
+        _cardSelector = new AutoSlayCardSelector(null, null);
         _cardSelectorScope = CardSelectCmd.UseSelector(_cardSelector);
 
         MainFile.Logger.Info("[AutoSlay] SOLVER-ONLY mode active. No LLM, no random play.");
@@ -411,7 +429,7 @@ public partial class AutoSlayNode : Node
             _dbgTimer = 5.0;
             try
             {
-                var screen = GameStateDetector.Detect();
+                var screen = ScreenDetector.Detect();
                 var msg = $"[AutoSlay] ♥ heartbeat screen={screen}";
                 MainFile.Logger?.Info(msg);
             }
@@ -441,6 +459,7 @@ public partial class AutoSlayNode : Node
 
         _cooldown -= delta;
         _combatCardDelay -= delta;
+        if (_combatCardDelay < -30.0) _combatCardDelay = 0; // clamp runaway negative delay from deadlocks
         _logTimer -= delta;
 
         // ── Multiplayer: dismiss any error popups (e.g. "Connection failed") ──
@@ -493,7 +512,7 @@ public partial class AutoSlayNode : Node
         string currentScreenId = "";
         try
         {
-            var screen = GameStateDetector.Detect();
+            var screen = ScreenDetector.Detect();
             currentScreenId = screen.ToString();
             var ovs = NOverlayStack.Instance;
             if (ovs?.ScreenCount > 0)
@@ -734,6 +753,13 @@ public partial class AutoSlayNode : Node
 
                 // ── Combat recorder: snapshot state for post-combat summary ──
                 try { Chat.CombatRecorder.OnCombatStart(); } catch { }
+
+                // ── Session marker: mark new run start in chat logs ──
+                if (_botCount > 0 && _multiplayerMode && !_isMultiplayerHost && !_sessionMarked)
+                {
+                    Chat.ChatLogger.MarkSessionStart();
+                    _sessionMarked = true;
+                }
 
                 // ── Pre-generated dialogue: fire immediately at combat start ──
                 var preGen = Chat.CombatRecorder.ConsumePreGeneratedDialogue();
@@ -1314,6 +1340,76 @@ public partial class AutoSlayNode : Node
                                     : new CombatAction(a.Card, null, a.Target))
                                 .ToList();
                             _combatPlanEndTurn = solveResult.Actions.Any(a => a.IsEndTurn);
+
+                            // ── EMPTY PLAN GUARD ──────────────────────────────────
+                            // Solver may produce empty plans when game state is stale
+                            // (e.g. energy not yet refreshed at turn start, hand not
+                            // fully drawn). Instead of immediately ending the turn with
+                            // 0 cards played, verify the hand actually has no playable
+                            // cards. Retry with increasing delays to let state settle.
+                            if (_combatPlan.Count == 0 && _combatPlanEndTurn)
+                            {
+                                // Re-check: does the hand have playable cards right NOW?
+                                int verifyEnergy = pl!.PlayerCombatState?.Energy ?? 0;
+                                var verifyHand = PileType.Hand.GetPile(pl).Cards.ToList();
+                                var playableNow = verifyHand
+                                    .Where(c =>
+                                    {
+                                        try { if (!c.CanPlay(out _, out _)) return false; }
+                                        catch { return false; }
+                                        try
+                                        {
+                                            int cost = c.EnergyCost.CostsX ? 1 : c.EnergyCost.Canonical;
+                                            return cost <= verifyEnergy;
+                                        }
+                                        catch { return false; }
+                                    })
+                                    .ToList();
+
+                                if (playableNow.Count > 0 && _emptySolveRetries < MAX_EMPTY_SOLVE_RETRIES)
+                                {
+                                    _emptySolveRetries++;
+                                    string ids = string.Join(",", playableNow.Select(c =>
+                                    {
+                                        try { return c.Id.Entry; } catch { return "?"; }
+                                    }));
+                                    MainFile.Logger.Info(
+                                        $"[SolverDBG] EMPTY PLAN but hand has {playableNow.Count} playable [{ids}] " +
+                                        $"(energy={verifyEnergy}, HP={pl.Creature.CurrentHp}/{pl.Creature.MaxHp}) " +
+                                        $"— retry {_emptySolveRetries}/{MAX_EMPTY_SOLVE_RETRIES}");
+                                    _combatPlan = null;
+                                    _combatTurnRequested = false; _combatTurnRequestedDuration = 0;
+                                    _combatCardDelay = 0.6 + (_emptySolveRetries * 0.3);
+                                    _lastCombatActivity = 0; // legitimate wait for state update
+                                    return;
+                                }
+
+                                if (playableNow.Count > 0)
+                                {
+                                    // Max retries hit but cards are playable — force a greedy plan
+                                    MainFile.Logger.Info(
+                                        $"[SolverDBG] EMPTY PLAN: max retries ({MAX_EMPTY_SOLVE_RETRIES}) with " +
+                                        $"{playableNow.Count} playable — building forced greedy plan");
+                                    _emptySolveRetries = 0;
+                                    // Fall through to let the normal empty-plan path handle it
+                                    // (greedy fallback at line ~1390 will build a plan)
+                                    _combatPlan = null;
+                                    _combatTurnRequested = false; _combatTurnRequestedDuration = 0;
+                                    _combatCardDelay = 0.2;
+                                    return;
+                                }
+
+                                // Truly no playable cards — proceed with empty plan (end turn)
+                                _emptySolveRetries = 0;
+                                MainFile.Logger.Info(
+                                    $"[SolverDBG] EMPTY PLAN confirmed: 0 playable cards " +
+                                    $"(energy={verifyEnergy}, hand={verifyHand.Count}) — ending turn");
+                            }
+                            else if (_combatPlan.Count > 0)
+                            {
+                                _emptySolveRetries = 0; // reset — solver found plays
+                            }
+
                             _combatPlanStep = 0;
                             _combatTurnRequested = true; _combatTurnRequestedDuration = 0;
                             _wasEnemyTurn = false; // player's turn starting — allow stuck timer to accumulate
@@ -1736,7 +1832,6 @@ public partial class AutoSlayNode : Node
             }
             else
             {
-                CombatHandler.OnNonPlayPhase();
                 _combatTurnRequested = false; _combatTurnRequestedDuration = 0;
                 _drawJustFinished = false;
                 _drawStableCount = 0;
@@ -1758,7 +1853,7 @@ public partial class AutoSlayNode : Node
                 if (_multiplayerMode)
                 {
                     _playerDisabledDuration += delta;
-                    double mpDisabledTimeout = _multiplayerMode ? 300.0 : 45.0;
+                    double mpDisabledTimeout = _multiplayerMode ? 60.0 : 45.0;  // was 300s, too long — 60s catches deadlocks faster
                     if (_playerDisabledDuration > mpDisabledTimeout)
                     {
                         MainFile.Logger.Error(
@@ -1805,7 +1900,9 @@ public partial class AutoSlayNode : Node
             _wasInCombat = false;
             _postCombatCooldownLogged = true;
 
-            CombatHandler.OnCombatEnded();
+            _hpBoosted = false; // was CombatHandler.OnCombatEnded() — reset state
+            TokenSpire2.Solver.TreasureDecider.Reset(); // prevent stale chest state
+            ClearRewardsState(); // prevent stale reward tracking across combats
             _combatTurnRequested = false; _combatTurnRequestedDuration = 0;
             _drawJustFinished = false;
 
@@ -1814,6 +1911,11 @@ public partial class AutoSlayNode : Node
             // may point to an already-visited node, causing auto-navigate to
             // stall. Resetting forces a fresh path-find on the next map open.
             MapDecider.Reset();
+
+            // ── Clear chat pipeline: fresh queue for next combat ──────────
+            lock (_chatLineQueue) { _chatLineQueue.Clear(); }
+            _chatDeliveryTimer = 0;
+            _isGeneratingChat = false;
 
             // ── Post-combat: generate dialogue for next combat start ──
             try { Chat.CombatRecorder.OnCombatEnd(); } catch { }
@@ -2020,8 +2122,6 @@ public partial class AutoSlayNode : Node
             return;
         }
 
-        RewardsHandler.ClearTried();
-
         // ── Room state reset: ensure "was in room" flags are cleared when
         // we've actually left the room. These resets MUST happen here (before
         // map/room handling) because the Map handler returns early and would
@@ -2029,7 +2129,7 @@ public partial class AutoSlayNode : Node
         // Bug: _wasInRest leaked across campfires when map opened during cooldown
         //      → next campfire skipped init → entered post-choice flow with
         //      stale _restSiteChoiceMade=true → force-proceed → entire campfire skipped.
-        var currentNonCombatScreen = GameStateDetector.Detect();
+        var currentNonCombatScreen = ScreenDetector.Detect();
         if (currentNonCombatScreen != GameScreen.REST)
         {
             if (_wasInRest)
@@ -2082,7 +2182,7 @@ public partial class AutoSlayNode : Node
                 MainFile.Logger.Warn($"[AutoSlay] MAP decision timeout ({_sameScreenDuration:F0}s) — falling back to random");
                 _lastScreenType = ""; _sameScreenDuration = 0; _sameScreenTickCount = 0;
                 var pts = AutoSlayHelpers.FindAll<NMapPoint>(mapScreen).Where(p => p.IsEnabled).ToList();
-                if (pts.Count > 0) { var pt = pts[_rng.Next(pts.Count)]; mapScreen.OnMapPointSelectedLocally(pt); }
+                if (pts.Count > 0) { var pt = pts[0]; mapScreen.OnMapPointSelectedLocally(pt); }
                 _cooldown = 2.0;
                 return;
             }
@@ -2135,7 +2235,7 @@ public partial class AutoSlayNode : Node
                 MainFile.Logger.Warn($"[AutoSlay] EVENT decision timeout ({_sameScreenDuration:F0}s) — falling back to random");
                 _lastScreenType = ""; _sameScreenDuration = 0; _sameScreenTickCount = 0;
                 var eventOpts = AutoSlayHelpers.FindAll<NEventOptionButton>(eventRoom).Where(o => !o.Option.IsLocked).ToList();
-                if (eventOpts.Count > 0) { eventOpts[_rng.Next(eventOpts.Count)].ForceClick(); }
+                if (eventOpts.Count > 0) { eventOpts[0].ForceClick(); }
                 _cooldown = 1.0;
                 return;
             }
@@ -2196,7 +2296,7 @@ public partial class AutoSlayNode : Node
         // in the scene tree for several frames after Proceed is clicked. Without
         // this guard, we'd re-enter rest handling during transitions, re-set
         // _wasInRest=true, and skip RestDecider on the next campfire.
-        bool screenIsRest = GameStateDetector.Detect() == GameScreen.REST;
+        bool screenIsRest = ScreenDetector.Detect() == GameScreen.REST;
         if (restRoom != null && screenIsRest)
         {
             // ── Toggle guard: skip if auto-navigate is OFF ──
@@ -2224,7 +2324,7 @@ public partial class AutoSlayNode : Node
                 MainFile.Logger.Warn($"[AutoSlay] REST decision timeout ({_sameScreenDuration:F0}s) — falling back to random");
                 _lastScreenType = ""; _sameScreenDuration = 0; _sameScreenTickCount = 0;
                 var rBtns = AutoSlayHelpers.FindAll<NRestSiteButton>(restRoom).Where(b => b.Option.IsEnabled).ToList();
-                if (rBtns.Count > 0) { rBtns[_rng.Next(rBtns.Count)].ForceClick(); _restSiteChoiceMade = true; }
+                if (rBtns.Count > 0) { rBtns[0].ForceClick(); _restSiteChoiceMade = true; }
                 else { restRoom.ProceedButton?.ForceClick(); _restSiteChoiceMade = true; }
                 _cooldown = 1.5;
                 return;
@@ -2654,6 +2754,18 @@ public partial class AutoSlayNode : Node
     /// </summary>
     private bool TryClickDismissInModal(Node container)
     {
+        // ── NEVER dismiss rewards screens — that's HandleRewardsScreen's job ──
+        // DismissContinuePrompt scans both NModalContainer and NOverlayStack.
+        // After rewards complete, the game may move NRewardsScreen to a modal,
+        // causing us to find Proceed here. But clicking Proceed via this path
+        // has no timeout/force-remove -> infinite loop. Delegate instead.
+        if (container is NRewardsScreen rewards)
+        {
+            var result = HandleRewardsScreen(rewards);
+            _cooldown = result;
+            return result > 0;
+        }
+
         var allBtns = AutoSlayHelpers.FindAll<NButton>(container)
             .Where(b => {
                 try { return b.IsEnabled && (b.Visible || b.IsVisibleInTree()); }
@@ -2942,7 +3054,7 @@ public partial class AutoSlayNode : Node
                 // Resolve RANDOM to a specific character
                 var targetChar = _character;
                 if (targetChar == "RANDOM")
-                    targetChar = ValidCharacters[_rng.Next(ValidCharacters.Length)];
+                    targetChar = ValidCharacters[0]; // deterministic: always pick first
 
                 var buttonContainer = charSelect.GetNodeOrNull<Node>("CharSelectButtons/ButtonContainer");
                 if (buttonContainer != null)
@@ -3309,7 +3421,7 @@ public partial class AutoSlayNode : Node
         // Pick target character
         var targetChar = _character;
         if (targetChar == "RANDOM")
-            targetChar = ValidCharacters[_rng.Next(ValidCharacters.Length)];
+            targetChar = ValidCharacters[0]; // deterministic: always pick first
 
         // ── Step 1: Select the character ──────────────────────────────────
         if (!_mpCharacterSelected)
@@ -3475,7 +3587,7 @@ public partial class AutoSlayNode : Node
             // Overlay/screen info
             try
             {
-                var screen = GameStateDetector.Detect();
+                var screen = ScreenDetector.Detect();
                 diag["detected_screen"] = screen.ToString();
                 var overlayStack3 = NOverlayStack.Instance;
                 if (overlayStack3?.ScreenCount > 0)
@@ -3642,7 +3754,7 @@ public partial class AutoSlayNode : Node
             or NDeckEnchantSelectScreen or NDeckCardSelectScreen)
         {
             // If LLM already chose, let DispatchOverlay -> CardGridHandler.Handle() apply it
-            if (CardGridHandler.HasPendingLlmChoice)
+            if (HasPendingLlmGridChoice)
                 return false;
 
             // Only ask LLM in Phase 1 (no preview, no confirm enabled yet)
@@ -3667,7 +3779,7 @@ public partial class AutoSlayNode : Node
         if (overlayNode is NSimpleCardSelectScreen simpleScreen)
         {
             // If LLM already chose, let DispatchOverlay -> SimpleCardSelectHandler.Handle() apply it
-            if (SimpleCardSelectHandler.HasPendingLlmChoice)
+            if (HasPendingLlmSimpleChoice)
                 return false;
 
             // If confirm is already enabled, let DispatchOverlay handle it (card already selected or skip)
@@ -3898,7 +4010,8 @@ public partial class AutoSlayNode : Node
             if (bestPotion != null)
             {
                 MainFile.Logger.Info($"[AutoSlay] Using potion: {reason}");
-                var target = PotionHelper.GetTarget(bestPotion, player.Creature?.CombatState as CombatState);
+                var combatState = player.Creature?.CombatState as CombatState;
+                var target = GetPotionTarget(bestPotion, combatState);
                 bestPotion.EnqueueManualUse(target);
                 // Don't use more than one potion per turn
             }
@@ -4083,7 +4196,16 @@ public partial class AutoSlayNode : Node
                 MainFile.Logger.Info($"[AutoSlay] Combat plan complete, ending turn ({reason})");
                 _lastCombatActivity = 0; // actual progress
                 if (CombatManager.Instance is { PlayerActionsDisabled: false })
+                {
                     EndTurnViaUiOrApi(player);
+                    // CRITICAL: set turn-requested guard to prevent re-solving before
+                    // the turn-end is processed. In multiplayer, RequestEnqueue is async —
+                    // PlayerActionsDisabled stays false until the host processes the action.
+                    // Without this guard, the solver re-runs and enqueues a SECOND
+                    // EndPlayerTurnAction for the same turn, corrupting the action queue.
+                    _combatTurnRequested = true;
+                    _combatTurnRequestedDuration = 0;
+                }
                 _combatCardDelay = 0.5;
             }
             else
@@ -4109,7 +4231,7 @@ public partial class AutoSlayNode : Node
                 return;
             }
             var potionTarget = action.Target
-                ?? PotionHelper.GetTarget(action.Potion, player?.Creature?.CombatState as CombatState);
+                ?? GetPotionTarget(action.Potion, player?.Creature?.CombatState as CombatState);
             MainFile.Logger.Info($"[AutoSlay] Using potion {action.Potion.Id.Entry}{(action.Target != null ? $" -> {action.Target.Monster?.Id.Entry}" : "")}");
             _lastCombatActivity = 0; // actual progress
             action.Potion.EnqueueManualUse(potionTarget);
@@ -4322,7 +4444,7 @@ public partial class AutoSlayNode : Node
         else if (points.Count > 0)
         {
             // Fallback to random
-            var point = points[_rng.Next(points.Count)];
+            var point = points[0]; // deterministic fallback
             mapScreen.OnMapPointSelectedLocally(point);
         }
         _cooldown = 2.0;
@@ -4345,7 +4467,7 @@ public partial class AutoSlayNode : Node
         }
         else if (options.Count > 0)
         {
-            options[_rng.Next(options.Count)].ForceClick();
+            options[0].ForceClick(); // deterministic fallback
         }
         _cooldown = 1.0;
     }
@@ -4367,7 +4489,7 @@ public partial class AutoSlayNode : Node
         }
         else if (btns.Count > 0)
         {
-            btns[_rng.Next(btns.Count)].ForceClick();
+            btns[0].ForceClick(); // deterministic fallback
         }
         _restSiteChoiceMade = true;
         _cooldown = 1.5;
@@ -4506,7 +4628,7 @@ public partial class AutoSlayNode : Node
     {
         int choice = ParseChoice(response);
         MainFile.Logger.Info($"[AutoSlay/LLM] Card grid choice: {choice}");
-        CardGridHandler.SetLlmChoice(choice);
+        _llmGridChoice = choice;
         _cooldown = 0.5; // delay to let screen fully initialize before handler interacts
     }
 
@@ -4514,7 +4636,7 @@ public partial class AutoSlayNode : Node
     {
         int choice = ParseChoice(response);
         MainFile.Logger.Info($"[AutoSlay/LLM] Simple card select choice: {choice}");
-        SimpleCardSelectHandler.SetLlmChoice(choice);
+        _llmSimpleChoice = choice;
         _cooldown = 0.5; // delay to let screen fully initialize before handler interacts
     }
 
@@ -4644,8 +4766,8 @@ public partial class AutoSlayNode : Node
                     .Where(c => GodotObject.IsInstanceValid(c)).ToList();
                 if (cards.Count > 0)
                 {
-                    int pick = _rng.Next(cards.Count);
-                    MainFile.Logger.Info($"[AutoSlay] Random overlay: picking card {pick}/{cards.Count}");
+                    int pick = 0; // deterministic: always pick first
+                    MainFile.Logger.Info($"[AutoSlay] Overlay: picking card {pick}/{cards.Count}");
                     cards[pick].EmitSignal(NCardHolder.SignalName.Pressed, cards[pick]);
                 }
                 else
@@ -4664,8 +4786,8 @@ public partial class AutoSlayNode : Node
                     .Where(r => GodotObject.IsInstanceValid(r)).ToList();
                 if (relics.Count > 0)
                 {
-                    MainFile.Logger.Info($"[AutoSlay] Random overlay: picking relic {_rng.Next(relics.Count)}/{relics.Count}");
-                    relics[_rng.Next(relics.Count)].ForceClick();
+                    MainFile.Logger.Info($"[AutoSlay] Overlay: picking relic 0/{relics.Count}");
+                    relics[0].ForceClick();
                 }
                 _cooldown = 1.0;
                 return;
@@ -4713,29 +4835,10 @@ public partial class AutoSlayNode : Node
                 _cooldown = 0.5;
                 return;
             }
-            // ── Choose bundle: pick first then confirm (uses NCardBundle) ──
-            if (overlayNode is NChooseABundleSelectionScreen chooseBundle)
+            // ── Choose bundle: delegate to BundleDecider ──
+            if (overlayNode is NChooseABundleSelectionScreen)
             {
-                // Step 1: Check if a bundle is already selected → confirm
-                var confirm = AutoSlayHelpers.FindFirst<NConfirmButton>(chooseBundle);
-                if (confirm?.IsEnabled == true)
-                {
-                    MainFile.Logger.Info("[AutoSlay] RandomOverlay: confirming bundle selection");
-                    confirm.ForceClick();
-                    _cooldown = 0.5;
-                    return;
-                }
-
-                // Step 2: Select a bundle via Hitbox click
-                var bundles = AutoSlayHelpers.FindAll<NCardBundle>(chooseBundle)
-                    .Where(b => GodotObject.IsInstanceValid(b)).ToList();
-                if (bundles.Count > 0)
-                {
-                    var pick = bundles[0];
-                    MainFile.Logger.Info($"[AutoSlay] RandomOverlay: selecting bundle '{pick.Name}' (hitbox={(pick.Hitbox != null ? "yes" : "no")})");
-                    if (pick.Hitbox != null)
-                        pick.Hitbox.ForceClick();
-                }
+                BundleDecider.Decide();
                 _cooldown = 0.5;
                 return;
             }
@@ -4753,7 +4856,7 @@ public partial class AutoSlayNode : Node
             // ── Game over: click continue ──
             if (overlayNode is NGameOverScreen gameOver)
             {
-                GameOverHandler.Handle(gameOver);
+                HandleGameOverScreen(gameOver);
                 _cooldown = 1.0;
                 return;
             }
@@ -4817,11 +4920,19 @@ public partial class AutoSlayNode : Node
         if (overlayNode is NRewardsScreen rewardsScreen)
         {
             MainFile.Logger.Info("[AutoSlay] Dispatching rewards screen");
-            return RewardsHandler.Handle(rewardsScreen);
+            return HandleRewardsScreen(rewardsScreen);
         }
         if (overlayNode is NGameOverScreen gameOver)
         {
             MainFile.Logger.Info("[AutoSlay] Game over screen detected");
+
+            // ── Mark session end in chat logs ──────────────────────────
+            if (_sessionMarked)
+            {
+                Chat.ChatLogger.MarkSessionEnd();
+                _sessionMarked = false;
+            }
+
             RunSummaryLogger.TryLog(_llm);
 
             // ── Check for unused potions on death ──────────────────────
@@ -4884,7 +4995,7 @@ public partial class AutoSlayNode : Node
                 return 0.5; // waiting for reflection response
             }
             MainFile.Logger.Info("[AutoSlay] Handling game over screen");
-            return GameOverHandler.Handle(gameOver);
+            return HandleGameOverScreen(gameOver);
         }
         if (overlayNode is NChooseACardSelectionScreen chooseCard)
         {
@@ -5115,17 +5226,18 @@ public partial class AutoSlayNode : Node
             _aiChatInitialized = true;
 
             _aiChatDisplayName = CharacterProfileManager.GetDisplayName(_aiChatCharacter);
-            MainFile.Logger.Info($"[AutoSlay] AI Chat initialized: {_aiChatDisplayName} ({_aiChatCharacter}), shared conversation mode");
 
             // Initialize shared conversation log (once per process)
             if (!_conversationInitialized && AppConfig.IsInitialized)
             {
                 Chat.ConversationManager.Initialize(AppConfig.ModDirectory);
+                Chat.ChatLogger.Initialize(AppConfig.ModDirectory);
                 _conversationInitialized = true;
             }
 
-            // Initialize chat history logger
-            Chat.ChatLogger.Initialize(AppConfig.ModDirectory);
+            // Register this bot and detect total bot count
+            _botCount = Chat.ChatLogger.RegisterBot(_aiChatDisplayName);
+            MainFile.Logger.Info($"[AutoSlay] AI Chat initialized: {_aiChatDisplayName} ({_aiChatCharacter}), bot count = {_botCount}");
         }
         catch (Exception ex)
         {
@@ -5134,81 +5246,99 @@ public partial class AutoSlayNode : Node
     }
 
     /// <summary>
-    /// Shared multi-bot conversation with turn-taking.
+    /// AI chat pipeline: generate ahead, deliver steadily.
     ///
-    /// All bots read/write a shared conversation log (ConversationManager).
-    /// Each bot polls every ~1.8s: if the last speaker isn't me, it's my turn.
-    /// After speaking, the bot waits ~3s before checking again to let others respond.
+    /// The problem: AI needs ~2-5s to generate a response. If we generate and
+    /// deliver synchronously, we get burst→silence→burst→silence.
     ///
-    /// This produces a natural back-and-forth with minimal gaps — no explicit
-    /// coordination needed beyond the shared file.
+    /// The solution: each API call generates CHAT_BATCH_SIZE lines (6-8),
+    /// stored in _chatLineQueue. Lines are delivered one at a time every
+    /// CHAT_DELIVERY_INTERVAL seconds. While the queue drains, the next
+    /// API call runs in the background. Result: steady conversation,
+    /// no empty windows.
+    ///
+    /// 1-bot: solo mode — bot talks to player, using SendAsync.
+    /// 2+ bots: turn-taking — shared ConversationManager coordinates turns,
+    ///   but delivery timing is the same pipelined approach.
     /// </summary>
     private async void TrySendAiChat(double delta)
     {
         // Only in multiplayer mode, only as client (bot), only when auto-battle is on
         if (!_multiplayerMode || _isMultiplayerHost || !_autoBattle) return;
 
-        _lastMeowTime += delta;
+        _chatDeliveryTimer += delta;
 
-        // ── Determine polling interval ───────────────────────────────
-        // Longer cooldown after my own message; shorter when waiting for others.
-        var lastSpeaker = Chat.ConversationManager.GetLastSpeaker();
-        var isMyTurn = lastSpeaker == null ||
-                       !string.Equals(lastSpeaker, _aiChatDisplayName, StringComparison.OrdinalIgnoreCase);
-
-        var pollInterval = isMyTurn ? _chatPollInterval : _chatMyTurnCooldown;
-
-        if (_lastMeowTime < pollInterval) return;
-        _lastMeowTime = 0;
-
-        // ── Not my turn yet — skip ──────────────────────────────────
-        if (!isMyTurn)
+        // ── 2+ BOTS: check turn-taking before delivering or generating ──
+        bool canSpeakNow = true;
+        if (_botCount >= 2)
         {
-            return;
+            var lastSpeaker = Chat.ConversationManager.GetLastSpeaker();
+            canSpeakNow = lastSpeaker == null ||
+                          !string.Equals(lastSpeaker, _aiChatDisplayName, StringComparison.OrdinalIgnoreCase);
         }
 
-        // ── My turn — generate a response ───────────────────────────
-        if (_aiChatInitialized && _chatEngine != null)
+        // ── DELIVER: pop one line from queue if it's time ──────────────
+        if (canSpeakNow && _chatLineQueue.Count > 0 && _chatDeliveryTimer >= CHAT_DELIVERY_INTERVAL)
         {
-            try
+            _chatDeliveryTimer = 0;
+            var line = _chatLineQueue[0];
+            _chatLineQueue.RemoveAt(0);
+
+            if (_botCount >= 2)
+                Chat.ConversationManager.Append(_aiChatDisplayName, line);
+            SendChatPing(line);
+
+            MainFile.Logger.Info($"[AutoSlay] {_aiChatDisplayName} delivered (queue={_chatLineQueue.Count}): {line}");
+        }
+
+        // ── REFILL: trigger background generation when queue runs low ──
+        if (!_isGeneratingChat && _chatLineQueue.Count < CHAT_REFILL_THRESHOLD && canSpeakNow)
+        {
+            if (_aiChatInitialized && _chatEngine != null)
             {
-                var state = GameStateExtractor.BuildContext();
-                if (string.IsNullOrEmpty(state))
+                _isGeneratingChat = true;
+                try
                 {
-                    return;
-                }
-
-                // Build conversation context: who else is talking, what was said
-                var convoHistory = Chat.ConversationManager.BuildContextString(6);
-                var otherNames = GetOtherBotNames();
-
-                MainFile.Logger.Info($"[AutoSlay] My turn ({_aiChatDisplayName}) — generating response");
-
-                var lines = await _chatEngine.SendConversationTurnAsync(
-                    state, convoHistory, _aiChatDisplayName, otherNames);
-
-                if (lines != null && lines.Length > 0)
-                {
-                    // Write each line as a separate message to the shared log
-                    foreach (var line in lines)
+                    var state = GameStateExtractor.BuildContext();
+                    if (!string.IsNullOrEmpty(state))
                     {
-                        Chat.ConversationManager.Append(_aiChatDisplayName, line);
-                        SendChatPing(line);
-                        // Tiny delay between multi-line responses so they don't stack
-                        await Task.Delay(300);
+                        string[]? lines;
+
+                        if (_botCount <= 1)
+                        {
+                            // Solo: talk TO the player
+                            MainFile.Logger.Info($"[AutoSlay] {_aiChatDisplayName} generating (solo, queue={_chatLineQueue.Count})");
+                            lines = await _chatEngine.SendAsync(state);
+                        }
+                        else
+                        {
+                            // Group: conversational turn
+                            var convoHistory = Chat.ConversationManager.BuildContextString(6);
+                            var otherNames = GetOtherBotNames();
+                            MainFile.Logger.Info($"[AutoSlay] {_aiChatDisplayName} generating ({_botCount} bots, queue={_chatLineQueue.Count})");
+                            lines = await _chatEngine.SendConversationTurnAsync(
+                                state, convoHistory, _aiChatDisplayName, otherNames);
+                        }
+
+                        if (lines != null && lines.Length > 0)
+                        {
+                            lock (_chatLineQueue)
+                            {
+                                _chatLineQueue.AddRange(lines);
+                            }
+                            MainFile.Logger.Info($"[AutoSlay] {_aiChatDisplayName} generated {lines.Length} lines → queue={_chatLineQueue.Count}: {string.Join(" | ", lines)}");
+                        }
                     }
-                    MainFile.Logger.Info($"[AutoSlay] {_aiChatDisplayName} spoke: {string.Join(" | ", lines)}");
+                }
+                catch (Exception ex)
+                {
+                    MainFile.Logger.Info($"[AutoSlay] Chat generation error: {ex.Message}");
+                }
+                finally
+                {
+                    _isGeneratingChat = false;
                 }
             }
-            catch (Exception ex)
-            {
-                MainFile.Logger.Info($"[AutoSlay] AI Chat turn error: {ex.Message}");
-            }
-        }
-        else
-        {
-            // Fallback: occasional meow if AI isn't initialized
-            SendChatPing(null);
         }
     }
 
@@ -5274,10 +5404,10 @@ public partial class AutoSlayNode : Node
 
             flavorSync.SendEndTurnPing();
 
-            // Log to chat history file (AI text only, not meow fallback)
+            // Log to bot-count-specific chat history file (AI text only, not meow fallback)
             if (text != null && !string.IsNullOrEmpty(_aiChatDisplayName))
             {
-                Chat.ChatLogger.Log(_aiChatDisplayName, text);
+                Chat.ChatLogger.Log(_aiChatDisplayName, text, _botCount);
             }
 
             MainFile.Logger.Info($"[AutoSlay] Chat ping: \"{text ?? "喵喵喵"}\"");
@@ -5289,5 +5419,190 @@ public partial class AutoSlayNode : Node
     }
 
     private record CombatAction(CardModel? Card, PotionModel? Potion, Creature? Target);
+
+    // ═══════════════════════════════════════════════════════════════
+    // Inline replacements for deleted Handler utility methods
+    // ═══════════════════════════════════════════════════════════════
+
+    /// <summary>
+    /// Potion target resolution — inlined from deleted PotionHelper.GetTarget().
+    /// </summary>
+    private static Creature? GetPotionTarget(PotionModel potion, CombatState? combatState)
+    {
+        if (combatState == null) return null;
+        return potion.TargetType switch
+        {
+            TargetType.AnyEnemy => RandomEnemy(combatState),
+            TargetType.Self => combatState.PlayerCreatures
+                .FirstOrDefault(c => c.IsAlive && c.IsPlayer)
+                ?? combatState.PlayerCreatures.FirstOrDefault(c => c.IsAlive),
+            TargetType.AnyAlly or TargetType.AnyPlayer =>
+                combatState.PlayerCreatures.FirstOrDefault(c => c.IsAlive),
+            _ => null,
+        };
+    }
+
+    private static Creature? RandomEnemy(CombatState combatState)
+    {
+        var enemies = combatState.HittableEnemies.ToList();
+        if (enemies.Count == 0) return null;
+        return enemies[0]; // first alive enemy (deterministic — no System.Random)
+    }
+
+    /// <summary>
+    /// Handle game over screen — inlined from deleted GameOverHandler.Handle().
+    /// </summary>
+    private static double HandleGameOverScreen(NGameOverScreen screen)
+    {
+        if (!GodotObject.IsInstanceValid(screen)) return 0;
+
+        var mainMenuBtn = AutoSlayHelpers.FindFirst<NReturnToMainMenuButton>(screen);
+        if (mainMenuBtn != null && mainMenuBtn.Visible && mainMenuBtn.IsEnabled)
+        {
+            MainFile.Logger?.Info("[AutoSlay] Clicking return to main menu");
+            mainMenuBtn.ForceClick();
+            return 2.0;
+        }
+
+        var continueBtn = AutoSlayHelpers.FindFirst<NGameOverContinueButton>(screen);
+        if (continueBtn?.IsEnabled == true)
+        {
+            MainFile.Logger?.Info("[AutoSlay] Clicking game over continue");
+            continueBtn.ForceClick();
+            return 2.0;
+        }
+
+        return 1.0; // waiting for animation
+    }
+
+    /// <summary>
+    /// Handle rewards screen — restored from RewardsHandler.Handle() with full
+    /// stuck detection, per-button tracking, and force-remove safety valve.
+    /// </summary>
+    private static readonly HashSet<ulong> _triedRewardButtons = new();
+    private static int _rewardsStuckFrames;
+    private const int MaxRewardsStuckFrames = 30;
+    private static ulong _lastRewardsScreenId;
+    private static int _rewardsSameScreenCount;
+    private static int _rewardsForceRemoveCount;
+
+    public static void ClearRewardsState()
+    {
+        _triedRewardButtons.Clear();
+        _rewardsStuckFrames = 0;
+        _rewardsForceRemoveCount = 0;
+        _lastRewardsScreenId = 0;
+        _rewardsSameScreenCount = 0;
+    }
+
+    private static double HandleRewardsScreen(NRewardsScreen screen)
+    {
+        if (!GodotObject.IsInstanceValid(screen)) return 0;
+
+        var screenId = screen.GetInstanceId();
+
+        // Track if this is the same screen persisting across calls
+        if (screenId == _lastRewardsScreenId)
+            _rewardsSameScreenCount++;
+        else
+        {
+            _lastRewardsScreenId = screenId;
+            _rewardsSameScreenCount = 0;
+        }
+
+        // Safety valve: same screen persisted >300 ticks (~10s) — force-remove
+        if (_rewardsSameScreenCount > 300)
+        {
+            MainFile.Logger?.Error($"[AutoSlay] Rewards: CRITICAL — same screen {screenId} persisted {_rewardsSameScreenCount} ticks. Force-removing.");
+            _triedRewardButtons.Clear();
+            _rewardsStuckFrames = 0;
+            _rewardsSameScreenCount = 0;
+            _rewardsForceRemoveCount++;
+            NOverlayStack.Instance?.Remove(screen);
+            return 2.0;
+        }
+
+        // Collect all clickable reward buttons
+        var allBtns = AutoSlayHelpers.FindAll<NRewardButton>(screen);
+
+        int currentPotionCount = 0;
+        try
+        {
+            var rs = RunManager.Instance?.DebugOnlyGetState();
+            var pl = rs != null ? LocalContext.GetMe(rs) : null;
+            if (pl != null)
+            {
+                foreach (var p in pl.Potions)
+                {
+                    try
+                    {
+                        if (!((bool)p.HasBeenRemovedFromState) && !((bool)p.IsQueued))
+                            currentPotionCount++;
+                    }
+                    catch { }
+                }
+            }
+        }
+        catch { }
+
+        var btn = allBtns.FirstOrDefault(b =>
+        {
+            if (!GodotObject.IsInstanceValid(b) || !b.IsEnabled || _triedRewardButtons.Contains(b.GetInstanceId()))
+                return false;
+
+            // Skip potion rewards when already holding 3 potions
+            if (currentPotionCount >= 3 && b.Reward is PotionReward)
+            {
+                MainFile.Logger?.Info($"[AutoSlay] Rewards: skipping potion — already have {currentPotionCount} potions");
+                return false;
+            }
+
+            return true;
+        });
+
+        if (btn != null)
+        {
+            _triedRewardButtons.Add(btn.GetInstanceId());
+            _rewardsStuckFrames = 0;
+            _rewardsSameScreenCount = 0;
+            btn.ForceClick();
+            return 0.3;
+        }
+
+        // Try the Proceed button — auto-collects remaining rewards
+        var proceed = AutoSlayHelpers.FindFirst<NProceedButton>(screen);
+        if (proceed?.IsEnabled == true)
+        {
+            MainFile.Logger?.Info("[AutoSlay] Rewards: clicking Proceed");
+            _triedRewardButtons.Clear();
+            _rewardsStuckFrames = 0;
+            _rewardsSameScreenCount = 0;
+            proceed.ForceClick();
+            return 1.0;
+        }
+
+        // Proceed not ready — wait with stuck timeout
+        int effectiveMaxFrames = _rewardsForceRemoveCount > 0 ? 5 : MaxRewardsStuckFrames;
+
+        if (_rewardsStuckFrames < effectiveMaxFrames)
+        {
+            _rewardsStuckFrames++;
+            return 0.1; // fast poll
+        }
+
+        // Timed out — force-remove the overlay
+        _rewardsForceRemoveCount++;
+        MainFile.Logger?.Info($"[AutoSlay] Rewards: force-removing after {_rewardsStuckFrames} frames (screenId={screenId}, forceRemoves={_rewardsForceRemoveCount})");
+        _triedRewardButtons.Clear();
+        _rewardsStuckFrames = 0;
+        _rewardsSameScreenCount = 0;
+        NOverlayStack.Instance?.Remove(screen);
+
+        if (_rewardsForceRemoveCount > 10)
+            MainFile.Logger?.Error($"[AutoSlay] Rewards: EXCESSIVE force-removes ({_rewardsForceRemoveCount}) — possible infinite reward loop!");
+
+        double cooldown = _rewardsForceRemoveCount > 2 ? 3.0 : 1.0;
+        return cooldown;
+    }
 
 }

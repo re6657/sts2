@@ -18,14 +18,22 @@ public static class Tiebreaker
     private const double RELATIVE_EPSILON = 0.02;
     private const double ABSOLUTE_EPSILON = 3.0;
 
-    private static readonly Random _rng = new();
+    // ═══════════════════════════════════════════════════════════════════════
+    // MULTIPLAYER DETERMINISM: Do NOT use System.Random for tiebreaking.
+    // Two game instances have different Random seeds, so _rng.Next()
+    // produces different picks → game state diverges → StateDivergence
+    // disconnect. Instead, always pick the first tied element. Scores
+    // within epsilon of each other are functionally equivalent, so any
+    // deterministic choice is correct. (If varied picks are desired later,
+    // use FNV‑1a hash of item identities, not System.Random.)
+    // ═══════════════════════════════════════════════════════════════════════
 
     // ── Core: pick from an ALREADY-SORTED list (descending by score) ──────
 
     /// <summary>
     /// From a list already sorted descending by score, pick the best element.
     /// If multiple elements have scores within epsilon of the top score,
-    /// randomly select among them.
+    /// deterministically select the first (scores are tied — all equivalent).
     /// </summary>
     public static T PickBestFromSorted<T>(List<T> scoredDescending, Func<T, double> getScore)
     {
@@ -40,11 +48,11 @@ public static class Tiebreaker
             .TakeWhile(x => (topScore - getScore(x)) <= threshold)
             .ToList();
 
-        if (tied.Count == 1)
-            return tied[0];
-
-        int pick = _rng.Next(tied.Count);
-        return tied[pick];
+        // Deterministic: always pick first among tied. All scores within
+        // epsilon are functionally equivalent. Random (System.Random)
+        // would break multiplayer lockstep — each instance has a different
+        // seed, producing different picks and StateDivergence disconnects.
+        return tied[0];
     }
 
     // ── Convenience: score + sort + pick in one call ──────────────────────
@@ -130,10 +138,8 @@ public static class Tiebreaker
             .TakeWhile(x => (x.score - bestScore) <= threshold)
             .ToList();
 
-        if (tied.Count == 1)
-            return tied[0].item;
-
-        return tied[_rng.Next(tied.Count)].item;
+        // Deterministic: always pick first among tied items.
+        return tied[0].item;
     }
 
     /// <summary>
@@ -152,9 +158,7 @@ public static class Tiebreaker
             .TakeWhile(x => (getScore(x) - bestScore) <= threshold)
             .ToList();
 
-        if (tied.Count == 1)
-            return tied[0];
-
-        return tied[_rng.Next(tied.Count)];
+        // Deterministic: always pick first among tied items.
+        return tied[0];
     }
 }

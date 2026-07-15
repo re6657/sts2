@@ -4,7 +4,7 @@ using MegaCrit.Sts2.Core.Nodes;
 
 namespace TokenSpire2;
 
-// Attach AutoSlayNode to the game tree when NGame is ready.
+// Attach AutoPlayController to the game tree when NGame is ready.
 [HarmonyPatch(typeof(NGame), "_Ready")]
 public static class AttachAutoSlayNodePatch
 {
@@ -12,11 +12,11 @@ public static class AttachAutoSlayNodePatch
     {
         try
         {
-            Console.WriteLine("[AutoSlay] Harmony patch fired! Attaching node to NGame...");
-            var node = new AutoSlayNode();
-            node.Name = "AutoSlayNode";
+            Console.WriteLine("[AutoSlay] Harmony patch fired! Attaching AutoPlayController to NGame...");
+            var node = new AutoPlayController();
+            node.Name = "AutoPlayController";
             __instance.AddChild(node);
-            Console.WriteLine("[AutoSlay] Node added to NGame successfully.");
+            Console.WriteLine("[AutoSlay] AutoPlayController added to NGame successfully.");
         }
         catch (Exception ex)
         {

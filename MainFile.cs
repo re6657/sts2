@@ -78,23 +78,23 @@ public partial class MainFile : Node
             if (root == null) return;
 
             // ── AutoSlayNode (only if not already attached by Harmony patch) ─
-            bool alreadyHasAutoSlay = false;
+            bool alreadyHasController = false;
             foreach (var child in root.GetChildren())
             {
-                if (child is AutoSlayNode)
+                if (child is AutoPlayController)
                 {
-                    alreadyHasAutoSlay = true;
-                    Logger?.Info("[TokenSpire2] AutoSlayNode already present (from Harmony patch).");
+                    alreadyHasController = true;
+                    Logger?.Info("[TokenSpire2] AutoPlayController already present (from Harmony patch).");
                     break;
                 }
             }
 
-            if (!alreadyHasAutoSlay)
+            if (!alreadyHasController)
             {
-                var autoSlay = new AutoSlayNode();
-                autoSlay.Name = "AutoSlayNode";
-                root.AddChild(autoSlay);
-                Logger?.Info("[TokenSpire2] AutoSlayNode attached directly (fallback).");
+                var controller = new AutoPlayController();
+                controller.Name = "AutoPlayController";
+                root.AddChild(controller);
+                Logger?.Info("[TokenSpire2] AutoPlayController attached directly (fallback).");
             }
 
             Logger?.Info($"[TokenSpire2] {root.GetChildCount()} nodes attached to scene root.");

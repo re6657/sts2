@@ -93,34 +93,69 @@ public static class BundleDecider
             }).ToList(),
             0, label, "Picking first bundle (deterministic)");
 
-        // Try to click the bundle's hitbox. NCardBundle itself doesn't have
-        // ForceClick() — the selection is triggered through its Hitbox child.
+        // ── Click the bundle using multiple approaches ───────────────────
+        // NCardBundle.Hitbox.ForceClick() alone often fails to register.
+        // Try EmitSignal("pressed") first (most reliable for Godot Controls),
+        // then Hitbox click, then inner clickable children.
+        bool clicked = false;
+
+        // Approach 1: EmitSignal("pressed") — most reliable generic Godot approach
         try
         {
-            if (hasHitbox)
+            pick.EmitSignal("pressed");
+            clicked = true;
+            MainFile.Logger.Info($"[BundleDecider] Approach 1 OK: EmitSignal pressed on '{label}'");
+        }
+        catch (Exception ex) { MainFile.Logger.Info($"[BundleDecider] Approach 1 failed: {ex.Message}"); }
+
+        // Approach 2: Click the Hitbox
+        if (!clicked && hasHitbox)
+        {
+            try
             {
                 pick.Hitbox!.ForceClick();
-                MainFile.Logger.Info($"[BundleDecider] Clicked Hitbox on '{label}'");
+                clicked = true;
+                MainFile.Logger.Info($"[BundleDecider] Approach 2 OK: Hitbox.ForceClick on '{label}'");
             }
-            else
-            {
-                MainFile.Logger.Warn($"[BundleDecider] Bundle '{label}' has no Hitbox — cannot click");
-            }
-        }
-        catch (Exception ex)
-        {
-            MainFile.Logger.Error($"[BundleDecider] Click failed for '{label}': {ex.Message}");
+            catch (Exception ex) { MainFile.Logger.Info($"[BundleDecider] Approach 2 failed: {ex.Message}"); }
         }
 
-        // Reset stuck frames on successful attempt (we'll detect if it didn't work
-        // when confirm never appears on subsequent calls)
+        // Approach 3: Find inner clickable controls (NClickableControl, etc.)
+        if (!clicked)
+        {
+            try
+            {
+                var clickables = AutoSlayHelpers.FindAll<Godot.Control>(pick)
+                    .Where(c => c.GetType().Name.Contains("Clickable") || c.GetType().Name.Contains("Button"))
+                    .ToList();
+                foreach (var c in clickables)
+                {
+                    try
+                    {
+                        c.EmitSignal("pressed");
+                        clicked = true;
+                        MainFile.Logger.Info($"[BundleDecider] Approach 3 OK: inner {c.GetType().Name}.EmitSignal pressed");
+                        break;
+                    }
+                    catch { }
+                }
+            }
+            catch (Exception ex) { MainFile.Logger.Info($"[BundleDecider] Approach 3 failed: {ex.Message}"); }
+        }
+
+        if (!clicked)
+            MainFile.Logger.Warn($"[BundleDecider] ALL click approaches failed for '{label}'!");
+
+        // ── Stuck detection: if we've tried too many frames without the confirm ──
+        // button enabling, try emergency recovery.
         if (_stuckFrames > STUCK_TIMEOUT)
         {
-            MainFile.Logger.Error($"[BundleDecider] STUCK after {_stuckFrames} frames on '{label}' — forcing reset");
+            MainFile.Logger.Error($"[BundleDecider] STUCK after {_stuckFrames} frames on '{label}' — emergency recovery");
             _stuckFrames = 0;
-            // Emergency: try clicking ANY bundle's hitbox
+            // Emergency: try clicking EVERY bundle with every approach
             foreach (var b in bundles)
             {
+                try { b.EmitSignal("pressed"); } catch { }
                 try
                 {
                     if (b.Hitbox != null && GodotObject.IsInstanceValid(b.Hitbox))

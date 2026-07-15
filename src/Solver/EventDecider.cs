@@ -231,6 +231,35 @@ public static class EventDecider
                 score += ep.HpCostNormalScore;
         }
 
+        // ── MAX-HP REDUCTION DETECTION ──────────────────────────────────
+        // Events that reduce max HP are even more dangerous than HP loss —
+        // the damage is permanent for the entire run. Apply the SAME hard
+        // block threshold as HP-cost events.
+        bool costsMaxHp = false;
+        costsMaxHp |= (text.Contains("lose") || text.Contains("sacrifice") || text.Contains("reduce"))
+            && (text.Contains("max hp") || text.Contains("max health") || text.Contains("maximum hp"));
+        costsMaxHp |= (text.Contains("失去") || text.Contains("减少") || text.Contains("降低"))
+            && (text.Contains("最大生命") || text.Contains("生命上限"));
+        costsMaxHp |= text.Contains("max hp") && (text.Contains("cost") || text.Contains("pay") || text.Contains("spend"));
+        if (costsMaxHp)
+        {
+            if (state.CurrentHp < ep.EventAbsoluteHpFloor)
+            {
+                MainFile.Logger.Info($"[EventDecider] Hard-blocking Max-HP-reduction option: HP={state.CurrentHp} < floor={ep.EventAbsoluteHpFloor}");
+                return ep.HpCostHardBlockScore;
+            }
+            if (state.HpRatio < ep.HpCostHardBlockThreshold)
+            {
+                MainFile.Logger.Info($"[EventDecider] Hard-blocking Max-HP-reduction option: HpRatio={state.HpRatio:F2} < threshold={ep.HpCostHardBlockThreshold}");
+                return ep.HpCostHardBlockScore;
+            }
+            if (state.HpRatio < ep.HpCostWarningThreshold)
+                score += ep.HpCostWarningScore;
+            else
+                score += ep.HpCostNormalScore;
+            MainFile.Logger.Info($"[EventDecider] Max-HP-reduction detected: score={score:F0} text='{text[..Math.Min(text.Length, 60)]}'");
+        }
+
         // ── Curse detection ──
         // NOTE: "wound" and "burn" are status cards (removed after combat), NOT curses.
         // Including them causes false positives for events that give temporary status cards.

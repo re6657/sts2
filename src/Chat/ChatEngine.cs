@@ -109,7 +109,7 @@ public class ChatEngine
                     new { role = "system", content = fullSystemPrompt },
                     new { role = "user", content = PromptLibrary.WrapCombatContext(gameStateContext) }
                 },
-                max_tokens = 200,
+                max_tokens = 400,  // pipeline mode: generate 6-8 lines per call
                 temperature = AiChatConfig.IsInitialized ? AiChatConfig.Instance.Temperature : 0.9,
             };
 
@@ -120,8 +120,8 @@ public class ChatEngine
             request.Headers.Add("Authorization", $"Bearer {_apiKey}");
             request.Content = content;
 
-            // 10-second timeout for multi-line response
-            using var cts = new System.Threading.CancellationTokenSource(TimeSpan.FromSeconds(10));
+            // 15-second timeout for multi-line pipeline response
+            using var cts = new System.Threading.CancellationTokenSource(TimeSpan.FromSeconds(15));
             var response = await _http.SendAsync(request, cts.Token).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
@@ -226,7 +226,7 @@ public class ChatEngine
                     new { role = "system", content = fullSystemPrompt },
                     new { role = "user", content = PromptLibrary.WrapPostCombatContext(combatSummary) }
                 },
-                max_tokens = 200,
+                max_tokens = 300,
                 temperature = AiChatConfig.IsInitialized ? AiChatConfig.Instance.Temperature : 0.9,
             };
 
@@ -237,7 +237,7 @@ public class ChatEngine
             request.Headers.Add("Authorization", $"Bearer {_apiKey}");
             request.Content = content;
 
-            using var cts = new System.Threading.CancellationTokenSource(TimeSpan.FromSeconds(10));
+            using var cts = new System.Threading.CancellationTokenSource(TimeSpan.FromSeconds(15));
             var response = await _http.SendAsync(request, cts.Token).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
@@ -315,7 +315,7 @@ public class ChatEngine
                     new { role = "system", content = fullSystemPrompt },
                     new { role = "user", content = userMessage }
                 },
-                max_tokens = 100, // smaller — only 1-2 lines
+                max_tokens = 300,  // pipeline mode: generate multiple lines per turn
                 temperature = AiChatConfig.IsInitialized ? AiChatConfig.Instance.Temperature : 0.9,
             };
 
@@ -326,7 +326,7 @@ public class ChatEngine
             request.Headers.Add("Authorization", $"Bearer {_apiKey}");
             request.Content = content;
 
-            using var cts = new System.Threading.CancellationTokenSource(TimeSpan.FromSeconds(8));
+            using var cts = new System.Threading.CancellationTokenSource(TimeSpan.FromSeconds(15));
             var response = await _http.SendAsync(request, cts.Token).ConfigureAwait(false);
 
             if (!response.IsSuccessStatusCode)
@@ -369,12 +369,11 @@ public class ChatEngine
                 result.Add(line);
                 _recentMessages.Add(line);
                 if (_recentMessages.Count > 20) _recentMessages.RemoveAt(0);
-                if (result.Count >= 2) break; // max 2 lines per turn
             }
 
             if (result.Count == 0) return null;
 
-            MainFile.Logger?.Info($"[ChatEngine] Conv turn ({_characterName}): {string.Join(" | ", result)}");
+            MainFile.Logger?.Info($"[ChatEngine] Conv turn ({_characterName}): {result.Count} lines — {string.Join(" | ", result)}");
             return result.ToArray();
         }
         catch (TaskCanceledException)

@@ -14,7 +14,7 @@ namespace TokenSpire2;
 
 public class AutoSlayCardSelector : ICardSelector
 {
-    private readonly System.Random _rng;
+    private readonly System.Random? _rng;
     private readonly LlmClient? _llm;
     public bool IsPendingLlm { get; private set; }
 
@@ -32,7 +32,7 @@ public class AutoSlayCardSelector : ICardSelector
         "DUALCAST",       // Defect: 0-cost, Evoke 1 orb — burst damage scaling
     };
 
-    public AutoSlayCardSelector(System.Random rng, LlmClient? llm = null)
+    public AutoSlayCardSelector(System.Random? rng = null, LlmClient? llm = null)
     {
         _rng = rng;
         _llm = llm;
@@ -225,7 +225,42 @@ public class AutoSlayCardSelector : ICardSelector
             }
             return default;
         }
-        var pick = options[_rng.Next(options.Count)];
+
+        // ── Determistic selection via Tiebreaker (FNV-1a based) ──────────
+        // Instead of _rng.Next(), score each card by a basic heuristic
+        // and use Tiebreaker for deterministic tiebreaking. This ensures
+        // multiplayer lockstep — all instances pick the same card.
+        CardCreationResult pick;
+        try
+        {
+            pick = Solver.Tiebreaker.PickBest(options, o =>
+            {
+                try
+                {
+                    var card = o.Card;
+                    if (card == null) return 0;
+                    string id = card.Id?.Entry?.ToUpperInvariant() ?? "";
+                    int cost = card.EnergyCost?.CostsX == true ? 2 : (card.EnergyCost?.Canonical ?? 1);
+                    int rarityBonus = card.Rarity switch
+                    {
+                        MegaCrit.Sts2.Core.Entities.Cards.CardRarity.Rare => 30,
+                        MegaCrit.Sts2.Core.Entities.Cards.CardRarity.Uncommon => 15,
+                        _ => 0,
+                    };
+                    bool isUpgraded = card.IsUpgraded;
+                    // Premium starter detection (same as GetSelectedCardsInner)
+                    bool isPremium = PremiumStarters.Contains(id);
+                    // Prefer: rarity > premium > upgraded > higher cost
+                    return rarityBonus + (isPremium ? 20 : 0) + (isUpgraded ? 10 : 0) + cost;
+                }
+                catch { return 0; }
+            });
+        }
+        catch (Exception ex)
+        {
+            MainFile.Logger.Warn($"[AutoSlay] Tiebreaker.PickBest failed: {ex.Message}, falling back to first option");
+            pick = options[0];
+        }
         return new CardRewardSelection { card = pick.Card, alternative = null };
     }
 }
