@@ -27,12 +27,12 @@
     <_GameRoot>$(_ModRoot)\..</_GameRoot>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(OS)' == 'Windows_NT'">
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
     <GameDataPath>$(_GameRoot)\data_sts2_windows_x86_64</GameDataPath>
     <ModsPath>$(_ModRoot)</ModsPath>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(OS)' != 'Windows_NT'">
+  <PropertyGroup Condition="!$([MSBuild]::IsOSPlatform('Windows'))">
     <GameDataPath>$(_GameRoot)/data_sts2_macos_arm64</GameDataPath>
     <ModsPath>$(_ModRoot)</ModsPath>
   </PropertyGroup>
