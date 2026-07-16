@@ -88,6 +88,8 @@ public class AppConfig
     public bool MultiplayerMode { get; set; }
     public bool IsMultiplayerHost { get; set; }
     public string SteamPersonaName { get; set; } = "";
+    public string InstanceRole { get; set; } = "solo";
+    public string SessionId { get; set; } = "local";
 
     // ═══════════════════════════════════════════════════════════════
     // AI Chat settings
@@ -144,6 +146,10 @@ public class AppConfig
                     config.MultiplayerMode = batch.MultiplayerMode;
                     config.IsMultiplayerHost = batch.IsMultiplayerHost;
                     config.SteamPersonaName = batch.SteamPersonaName ?? "";
+                    config.InstanceRole = ResolveInstanceRole(batch);
+                    config.SessionId = string.IsNullOrWhiteSpace(batch.SessionId)
+                        ? "local"
+                        : batch.SessionId.Trim();
                     config.AiChatEnabled = batch.AiChatEnabled;
                     config.AiChatCharacter = batch.AiChatCharacter ?? "";
 
@@ -180,6 +186,8 @@ public class AppConfig
                 $"MultiplayerMode={config.MultiplayerMode}\n" +
                 $"IsMultiplayerHost={config.IsMultiplayerHost}\n" +
                 $"SteamPersonaName={config.SteamPersonaName}\n" +
+                $"InstanceRole={config.InstanceRole}\n" +
+                $"SessionId={config.SessionId}\n" +
                 $"AutoBattleEnabled={config.AutoBattleEnabled}\n" +
                 $"AiChatEnabled={config.AiChatEnabled}\n" +
                 $"AiChatCharacter={config.AiChatCharacter}\n");
@@ -195,6 +203,7 @@ public class AppConfig
             $"BatchMode={config.BatchMode}, Character={config.Character}, " +
             $"MultiplayerMode={config.MultiplayerMode}, IsMultiplayerHost={config.IsMultiplayerHost}, " +
             $"SteamPersonaName={config.SteamPersonaName}, " +
+            $"InstanceRole={config.InstanceRole}, SessionId={config.SessionId}, " +
             $"AiChatEnabled={config.AiChatEnabled}, AiChatCharacter={config.AiChatCharacter}");
 
         return config;
@@ -224,6 +233,19 @@ public class AppConfig
         catch { /* logging unavailable during early init */ }
     }
 
+    private static string ResolveInstanceRole(BatchConfigFile batch)
+    {
+        if (!string.IsNullOrWhiteSpace(batch.InstanceRole))
+            return batch.InstanceRole.Trim().ToLowerInvariant();
+        if (!batch.MultiplayerMode)
+            return "solo";
+        if (batch.IsMultiplayerHost)
+            return "host";
+
+        var persona = batch.SteamPersonaName?.Trim().ToLowerInvariant() ?? "";
+        return persona.StartsWith("bot", StringComparison.Ordinal) ? persona : "client";
+    }
+
     // ═══════════════════════════════════════════════════════════════
     // JSON file formats
     // ═══════════════════════════════════════════════════════════════
@@ -235,6 +257,8 @@ public class AppConfig
         public bool MultiplayerMode { get; set; }
         public bool IsMultiplayerHost { get; set; }
         public string? SteamPersonaName { get; set; }
+        public string? InstanceRole { get; set; }
+        public string? SessionId { get; set; }
         public bool AutoBattleEnabled { get; set; } = true;
         public string? SignalFile { get; set; } // per-instance signal filename (e.g. "config_read_bot1.signal")
         public bool AiChatEnabled { get; set; }
