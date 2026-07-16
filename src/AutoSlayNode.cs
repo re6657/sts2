@@ -42,6 +42,7 @@ using TokenSpire2.Llm;
 using TokenSpire2.Solver;
 using TokenSpire2.Core;
 using TokenSpire2.Patches;
+using TokenSpire2.Diagnostics;
 using System.Threading;
 
 namespace TokenSpire2;
@@ -64,14 +65,20 @@ public partial class AutoSlayNode : Node
     private bool _f1WasDown, _f2WasDown, _f3WasDown;
 
     // ── Unified host manual-mode detection ──────────────────────────────
-    // When ANY toggle is OFF for the host in multiplayer, ALL auto-decisions
-    // (card removal, upgrades, events, map navigation, etc.) must be manual.
-    // This replaces scattered (_multiplayerMode && _isMultiplayerHost && !_autoBattle)
-    // checks that previously only looked at the combat toggle.
-    private bool IsFullAuto => _autoNavigate && _autoBattle && _autoEvent;
-    private bool IsHostManualMode => _multiplayerMode && _isMultiplayerHost && !IsFullAuto;
+    // In multiplayer, the HOST is ALWAYS fully manual — regardless of F1/F2/F3
+    // toggle state. The toggles only affect bot clients. This ensures the human
+    // host never has cards auto-selected on upgrade/remove/transform/enchant screens.
+    // (Previously required !IsFullAuto, which let the host be auto-controlled
+    // when all three toggles were ON.)
+    private AutomationPolicy _automationPolicy = new(false, false, true, true, true);
+    private bool IsHostManualMode => _automationPolicy.IsFullyManualHost;
     private IDisposable? _cardSelectorScope;
     private AutoSlayCardSelector? _cardSelector;
+    private readonly TurnReadinessGate _turnReadinessGate = new(requiredStableSamples: 3);
+    private DiagnosticWriter? _diagnostics;
+    private int _observedGameTurn = -1;
+    private int _successfulPlaysThisTurn;
+    private string _lastReadinessReason = "";
     // REMOVED: System.Random breaks multiplayer lockstep determinism — use [0] instead of _rng.Next()
     // private readonly System.Random _rng = new();
     private long _debugFrame;
@@ -268,9 +275,35 @@ public partial class AutoSlayNode : Node
             }
         }
 
-        // Register card selector for mid-combat card selections (e.g. Armaments).
-        _cardSelector = new AutoSlayCardSelector(null, null);
-        _cardSelectorScope = CardSelectCmd.UseSelector(_cardSelector);
+        _automationPolicy = new AutomationPolicy(
+            _multiplayerMode, _isMultiplayerHost,
+            _autoNavigate, _autoBattle, _autoEvent);
+
+        var modDirectory = System.IO.Path.GetDirectoryName(
+            System.Reflection.Assembly.GetExecutingAssembly().Location) ?? ".";
+        var instanceRole = AppConfig.IsInitialized ? AppConfig.Instance.InstanceRole : "solo";
+        var sessionId = AppConfig.IsInitialized ? AppConfig.Instance.SessionId : "local";
+        _diagnostics = new DiagnosticWriter(
+            modDirectory, instanceRole, sessionId,
+            ex => MainFile.Logger?.Info($"[Diagnostics] background write failed: {ex.Message}"));
+
+        // BaseLib's selector is global. Never install it for the multiplayer
+        // host: native upgrade/remove/transform screens call it directly and
+        // would otherwise bypass every overlay-level host guard.
+        if (_automationPolicy.Allows(AutomationAction.RegisterCardSelector))
+        {
+            _cardSelector = new AutoSlayCardSelector(null, null);
+            _cardSelectorScope = CardSelectCmd.UseSelector(_cardSelector);
+            MainFile.Logger.Info("[AutoSlay] Global card selector registered for automated instance");
+        }
+        else
+        {
+            MainFile.Logger.Info("[HOST-MANUAL] Host manual mode: global card selector NOT registered");
+            WriteDiagnostic(
+                DiagnosticEventTypes.HostAutomationBlocked,
+                "Global card selector registration blocked for human host",
+                "host-selector-registration");
+        }
 
         MainFile.Logger.Info("[AutoSlay] SOLVER-ONLY mode active. No LLM, no random play.");
         BattleLogger.Enable();
@@ -281,6 +314,118 @@ public partial class AutoSlayNode : Node
     {
         _cardSelectorScope?.Dispose();
         _cardSelectorScope = null;
+        if (_diagnostics != null)
+            _ = _diagnostics.DisposeAsync();
+    }
+
+    private TurnReadinessDecision ObserveTurnReadiness(Player player, bool drawComplete)
+    {
+        var turnNumber = player.PlayerCombatState?.TurnNumber ?? -1;
+        if (turnNumber != _observedGameTurn)
+        {
+            _observedGameTurn = turnNumber;
+            _successfulPlaysThisTurn = 0;
+            _turnReadinessGate.Reset();
+            _lastReadinessReason = "";
+        }
+
+        var hand = PileType.Hand.GetPile(player).Cards.ToList();
+        var playable = new List<CardModel>();
+        var hasPositiveCostCards = false;
+        foreach (var card in hand)
+        {
+            try
+            {
+                var cost = card.EnergyCost.CostsX ? 1 : card.EnergyCost.Canonical;
+                if (cost > 0)
+                    hasPositiveCostCards = true;
+                if (card.CanPlay(out _, out _))
+                    playable.Add(card);
+            }
+            catch
+            {
+                // An unreadable card is not evidence that ending the turn is safe.
+                hasPositiveCostCards = true;
+            }
+        }
+
+        var snapshot = new TurnSnapshot(
+            TurnNumber: turnNumber,
+            Energy: player.PlayerCombatState?.Energy ?? 0,
+            HandCount: hand.Count,
+            DrawCount: PileType.Draw.GetPile(player).Cards.Count,
+            DiscardCount: PileType.Discard.GetPile(player).Cards.Count,
+            PlayableCount: playable.Count,
+            HasPositiveCostCards: hasPositiveCostCards,
+            HasActedThisTurn: _successfulPlaysThisTurn > 0,
+            PlayerActionsDisabled: CombatManager.Instance?.PlayerActionsDisabled != false,
+            ActionQueueIdle: _combatPlan == null && _pendingLlm == null,
+            DrawComplete: drawComplete,
+            EndTurnRequested: _combatTurnRequested);
+        return _turnReadinessGate.Observe(snapshot);
+    }
+
+    private static string CardIdSafe(CardModel card)
+    {
+        try { return card.Id.Entry; }
+        catch { return "?"; }
+    }
+
+    private void WriteDiagnostic(
+        string eventType,
+        string message,
+        string? dedupeKey = null,
+        IReadOnlyList<string>? playableCards = null,
+        int? energy = null,
+        string severity = "warning")
+    {
+        if (_diagnostics == null)
+            return;
+
+        var turnNumber = -1;
+        var effectiveEnergy = energy ?? -1;
+        var hand = new List<string>();
+        try
+        {
+            var runState = RunManager.Instance?.DebugOnlyGetState();
+            var player = runState != null ? LocalContext.GetMe(runState) : null;
+            if (player != null)
+            {
+                turnNumber = player.PlayerCombatState?.TurnNumber ?? -1;
+                effectiveEnergy = energy ?? player.PlayerCombatState?.Energy ?? -1;
+                hand = PileType.Hand.GetPile(player).Cards.Select(CardIdSafe).ToList();
+            }
+        }
+        catch { }
+
+        _diagnostics.Write(new DiagnosticEvent
+        {
+            Character = _character,
+            NetId = LocalContext.NetId ?? 0UL,
+            TurnNumber = turnNumber,
+            EventType = eventType,
+            Severity = severity,
+            Message = message,
+            Energy = effectiveEnergy,
+            Hand = hand,
+            PlayableCards = playableCards ?? Array.Empty<string>(),
+            ActionQueueState = $"turnRequested={_combatTurnRequested};plan={_combatPlan != null};disabled={CombatManager.Instance?.PlayerActionsDisabled}",
+        }, dedupeKey);
+    }
+
+    private void RefreshAutomationPolicy()
+    {
+        _automationPolicy = new AutomationPolicy(
+            _multiplayerMode, _isMultiplayerHost,
+            _autoNavigate, _autoBattle, _autoEvent);
+    }
+
+    private void ResetTurnReadinessState()
+    {
+        _turnReadinessGate.Reset();
+        _observedGameTurn = -1;
+        _successfulPlaysThisTurn = 0;
+        _lastReadinessReason = "";
     }
 
     /// <summary>
@@ -400,6 +545,7 @@ public partial class AutoSlayNode : Node
         if (f1Down && !_f1WasDown)
         {
             _autoNavigate = !_autoNavigate;
+            RefreshAutomationPolicy();
             MainFile.Logger.Info($"[AutoSlay] F1: Auto-Navigate = {_autoNavigate}");
         }
         _f1WasDown = f1Down;
@@ -408,6 +554,7 @@ public partial class AutoSlayNode : Node
         if (f2Down && !_f2WasDown)
         {
             _autoBattle = !_autoBattle;
+            RefreshAutomationPolicy();
             MainFile.Logger.Info($"[AutoSlay] F2: Auto-Battle = {_autoBattle}");
         }
         _f2WasDown = f2Down;
@@ -416,6 +563,7 @@ public partial class AutoSlayNode : Node
         if (f3Down && !_f3WasDown)
         {
             _autoEvent = !_autoEvent;
+            RefreshAutomationPolicy();
             MainFile.Logger.Info($"[AutoSlay] F3: Auto-Event = {_autoEvent}");
         }
         _f3WasDown = f3Down;
@@ -743,6 +891,7 @@ public partial class AutoSlayNode : Node
             if (!_wasInCombat)
             {
                 _wasInCombat = true;
+                ResetTurnReadinessState();
                 _wasEnemyTurn = false; // reset enemy turn tracking for new combat
                 _panicButtonTurnsRemaining = 0; // reset PANIC_BUTTON debuff for new combat
                 _runEverStarted = true;  // confirmed: we entered a real run
@@ -978,6 +1127,33 @@ public partial class AutoSlayNode : Node
                     {
                         MainFile.Logger.Info($"[DBG] DrawCheck CRASH: {drawEx.GetType().Name}: {drawEx.Message}");
                     }
+
+                    // A stable hand count alone does not prove that turn-start
+                    // energy and queued actions have finished refreshing. Require
+                    // several identical full snapshots before invoking the solver.
+                    var readiness = ObserveTurnReadiness(pl!, drawComplete: true);
+                    if (readiness.Kind == TurnReadinessKind.Wait)
+                    {
+                        if (_lastReadinessReason != readiness.Reason)
+                        {
+                            _lastReadinessReason = readiness.Reason;
+                            MainFile.Logger.Info(
+                                $"[TURN-GATE] waiting reason={readiness.Reason} " +
+                                $"samples={readiness.StableSamples} turn={pl!.PlayerCombatState?.TurnNumber ?? -1} " +
+                                $"energy={pl.PlayerCombatState?.Energy ?? -1}");
+                            if (readiness.Reason == "waiting-for-energy-refresh")
+                            {
+                                WriteDiagnostic(
+                                    DiagnosticEventTypes.TurnReadinessWait,
+                                    "Turn start observed before energy refresh completed",
+                                    $"turn-energy-refresh-{pl.PlayerCombatState?.TurnNumber ?? -1}");
+                            }
+                        }
+                        _combatCardDelay = 0.05;
+                        _lastCombatActivity = 0;
+                        return;
+                    }
+                    _lastReadinessReason = "";
 
                     // ── ALGORITHMIC SOLVER (all characters) ─────────────
                     MainFile.Logger.Info($"[DBG] >>> SOLVER START: character={_character}, pl={pl != null} <<<");
@@ -1365,6 +1541,34 @@ public partial class AutoSlayNode : Node
                                         catch { return false; }
                                     })
                                     .ToList();
+
+                                // Empty solver output is not permission to end the
+                                // turn. A fresh snapshot must independently confirm
+                                // that the stable state has no playable cards.
+                                var endReadiness = ObserveTurnReadiness(pl, drawComplete: true);
+                                if (endReadiness.Kind != TurnReadinessKind.AllowEndTurn)
+                                {
+                                    var playableIds = playableNow.Select(CardIdSafe).ToList();
+                                    MainFile.Logger.Error(
+                                        $"[TURN-GATE] blocked premature end turn: kind={endReadiness.Kind} " +
+                                        $"reason={endReadiness.Reason} energy={verifyEnergy} " +
+                                        $"playable=[{string.Join(',', playableIds)}]");
+                                    if (playableNow.Count > 0)
+                                    {
+                                        WriteDiagnostic(
+                                            DiagnosticEventTypes.TurnSkippedWithPlayableCards,
+                                            $"Blocked end turn with {playableNow.Count} playable cards",
+                                            $"turn-skip-{pl.PlayerCombatState?.TurnNumber ?? -1}",
+                                            playableIds,
+                                            verifyEnergy);
+                                    }
+                                    _combatPlan = null;
+                                    _combatTurnRequested = false;
+                                    _combatTurnRequestedDuration = 0;
+                                    _combatCardDelay = 0.15;
+                                    _lastCombatActivity = 0;
+                                    return;
+                                }
 
                                 if (playableNow.Count > 0 && _emptySolveRetries < MAX_EMPTY_SOLVE_RETRIES)
                                 {
@@ -1769,6 +1973,10 @@ public partial class AutoSlayNode : Node
                                 $"[AutoSlay] MP DEADLOCK: _combatTurnRequested=true for " +
                                 $"{_combatTurnRequestedDuration:F1}s, PlayerActionsDisabled=false (IsHost={_isMultiplayerHost}). " +
                                 "Retrying end turn via ActionQueueSynchronizer...");
+                            WriteDiagnostic(
+                                DiagnosticEventTypes.ActionQueueStalled,
+                                $"End-turn request stalled for {_combatTurnRequestedDuration:F1}s",
+                                $"end-turn-stalled-{_observedGameTurn}");
                             _combatTurnRequestedDuration = 0;
                             _combatTurnRequested = false;
                             _combatPlan = null;
@@ -1844,6 +2052,7 @@ public partial class AutoSlayNode : Node
                 {
                     _lastCombatActivity = 0;
                     _wasEnemyTurn = true;
+                    ResetTurnReadinessState();
                 }
                 // ── Multiplayer PlayerActionsDisabled watchdog ──────────────
                 // In MP, PlayerActionsDisabled=true means it's another player's turn.
@@ -1856,6 +2065,10 @@ public partial class AutoSlayNode : Node
                     double mpDisabledTimeout = _multiplayerMode ? 60.0 : 45.0;  // was 300s, too long — 60s catches deadlocks faster
                     if (_playerDisabledDuration > mpDisabledTimeout)
                     {
+                        WriteDiagnostic(
+                            DiagnosticEventTypes.ActionQueueStalled,
+                            $"PlayerActionsDisabled persisted for {_playerDisabledDuration:F1}s",
+                            $"player-disabled-{_observedGameTurn}");
                         MainFile.Logger.Error(
                             $"[AutoSlay] MP DEADLOCK: PlayerActionsDisabled=true for " +
                             $"{_playerDisabledDuration:F0}s. Combat frozen — " +
@@ -1898,6 +2111,7 @@ public partial class AutoSlayNode : Node
         if (_wasInCombat)
         {
             _wasInCombat = false;
+            ResetTurnReadinessState();
             _postCombatCooldownLogged = true;
 
             _hpBoosted = false; // was CombatHandler.OnCombatEnded() — reset state
@@ -2160,9 +2374,11 @@ public partial class AutoSlayNode : Node
         if (mapScreen != null && mapScreen.IsOpen && NOverlayStack.Instance?.ScreenCount == 0)
         {
             // ── Toggle guard: skip if auto-navigate is OFF ──
-            // HOST GUARD: also skip when host has auto-battle OFF (human is playing)
+            // HOST GUARD: also skip when host is in manual mode
             if (!_autoNavigate || IsHostManualMode)
             {
+                if (IsHostManualMode)
+                    MainFile.Logger.Info("[HOST-GUARD] Blocked map auto-navigation (host manual mode)");
                 _cooldown = 3.0;
                 return;
             }
@@ -2203,9 +2419,11 @@ public partial class AutoSlayNode : Node
         if (eventRoom != null)
         {
             // ── Toggle guard: skip if auto-event is OFF ──
-            // HOST GUARD: also skip when host has auto-battle OFF (human is playing)
+            // HOST GUARD: also skip when host is in manual mode
             if (!_autoEvent || IsHostManualMode)
             {
+                if (IsHostManualMode)
+                    MainFile.Logger.Info("[HOST-GUARD] Blocked event auto-decision (host manual mode)");
                 _cooldown = 3.0;
                 return;
             }
@@ -2256,6 +2474,8 @@ public partial class AutoSlayNode : Node
             // HOST GUARD: also skip when host is in manual mode
             if (!_autoEvent || IsHostManualMode)
             {
+                if (IsHostManualMode)
+                    MainFile.Logger.Info("[HOST-GUARD] Blocked treasure auto-decision (host manual mode)");
                 _cooldown = 3.0;
                 return;
             }
@@ -2303,6 +2523,8 @@ public partial class AutoSlayNode : Node
             // HOST GUARD: also skip when host is in manual mode
             if (!_autoNavigate || IsHostManualMode)
             {
+                if (IsHostManualMode)
+                    MainFile.Logger.Info("[HOST-GUARD] Blocked rest site auto-decision (host manual mode)");
                 _cooldown = 3.0;
                 return;
             }
@@ -2493,6 +2715,8 @@ public partial class AutoSlayNode : Node
             // HOST GUARD: also skip when host is in manual mode
             if (!_autoNavigate || IsHostManualMode)
             {
+                if (IsHostManualMode)
+                    MainFile.Logger.Info("[HOST-GUARD] Blocked shop auto-decision (host manual mode)");
                 _cooldown = 3.0;
                 return;
             }
@@ -4235,6 +4459,7 @@ public partial class AutoSlayNode : Node
             MainFile.Logger.Info($"[AutoSlay] Using potion {action.Potion.Id.Entry}{(action.Target != null ? $" -> {action.Target.Monster?.Id.Entry}" : "")}");
             _lastCombatActivity = 0; // actual progress
             action.Potion.EnqueueManualUse(potionTarget);
+            _successfulPlaysThisTurn++;
             // Re-solve after potion use to get optimal follow-up
             _combatPlan = null;
             _combatTurnRequested = false; _combatTurnRequestedDuration = 0;
@@ -4330,6 +4555,7 @@ public partial class AutoSlayNode : Node
                     _combatPlanStuckFrames = 0; // reset — successful card play
                     _turnPlansWithoutPlay = 0;  // reset — successful card play
                     _consecutiveRechecks = 0;   // reset — successful card play broke any recheck cycle
+                    _successfulPlaysThisTurn++;
                     try { BattleLogger.LogAction(cardId, true, target: targetId); } catch { }
                     // ── Record for post-combat dialogue generation ──
                     try
@@ -4751,7 +4977,7 @@ public partial class AutoSlayNode : Node
             // interfere — just reset the timer and let them continue.
             if (IsHostManualMode)
             {
-                MainFile.Logger.Info("[AutoSlay] Host manual mode: suppressing RandomOverlayFallback, resetting timeout");
+                MainFile.Logger.Info("[HOST-GUARD] Suppressed RandomOverlayFallback (host manual mode)");
                 _sameScreenDuration = 0;
                 _sameScreenTickCount = 0;
                 _lastScreenType = "";
@@ -4890,7 +5116,7 @@ public partial class AutoSlayNode : Node
     {
         try
         {
-        // ── Multiplayer host guard: when host has auto-battle OFF, skip ALL auto-decisions ──
+        // ── Multiplayer host guard: host is ALWAYS manual, skip ALL auto-decisions ──
         // The human host should manually interact with all overlay screens.
         // Only game-over screen is truly non-interactive (just reports results).
         if (IsHostManualMode)
@@ -4898,10 +5124,11 @@ public partial class AutoSlayNode : Node
                 if (overlayNode is NGameOverScreen)
                 {
                     // Game over: still auto-handle (just logs and shows stats)
-                    MainFile.Logger.Info("[AutoSlay] Host manual mode: auto-handling game over screen");
+                    MainFile.Logger.Info("[HOST-GUARD] Allowing game over screen (non-interactive)");
                 }
                 else
                 {
+                    MainFile.Logger.Info($"[HOST-GUARD] Blocked auto-decision for overlay: {overlayNode.GetType().Name}");
                     // Reset screen tracking so timeout doesn't accumulate while human is deciding
                     _sameScreenDuration = 0;
                     _sameScreenTickCount = 0;
@@ -4913,13 +5140,13 @@ public partial class AutoSlayNode : Node
 
         if (overlayNode is NCardRewardSelectionScreen cardReward)
         {
-            MainFile.Logger.Info("[AutoSlay] Dispatching OVERLAY_CARD_REWARD");
+            MainFile.Logger.Info("[AUTO] Dispatching OVERLAY_CARD_REWARD");
             DecisionEngine.Decide(GameScreen.OVERLAY_CARD_REWARD, delta);
             return 1.5;
         }
         if (overlayNode is NRewardsScreen rewardsScreen)
         {
-            MainFile.Logger.Info("[AutoSlay] Dispatching rewards screen");
+            MainFile.Logger.Info("[AUTO] Dispatching rewards screen");
             return HandleRewardsScreen(rewardsScreen);
         }
         if (overlayNode is NGameOverScreen gameOver)
@@ -4999,38 +5226,38 @@ public partial class AutoSlayNode : Node
         }
         if (overlayNode is NChooseACardSelectionScreen chooseCard)
         {
-            MainFile.Logger.Info("[AutoSlay] Dispatching OVERLAY_CHOOSE_CARD");
+            MainFile.Logger.Info("[AUTO] Dispatching OVERLAY_CHOOSE_CARD");
             DecisionEngine.Decide(GameScreen.OVERLAY_CHOOSE_CARD, delta);
             return 1.0;
         }
         if (overlayNode is NChooseABundleSelectionScreen chooseBundle)
         {
-            MainFile.Logger.Info("[AutoSlay] Dispatching OVERLAY_CHOOSE_BUNDLE");
+            MainFile.Logger.Info("[AUTO] Dispatching OVERLAY_CHOOSE_BUNDLE");
             DecisionEngine.Decide(GameScreen.OVERLAY_CHOOSE_BUNDLE, delta);
             return 0.5;
         }
         if (overlayNode is NChooseARelicSelection chooseRelic)
         {
-            MainFile.Logger.Info("[AutoSlay] Dispatching OVERLAY_CHOOSE_RELIC");
+            MainFile.Logger.Info("[AUTO] Dispatching OVERLAY_CHOOSE_RELIC");
             DecisionEngine.Decide(GameScreen.OVERLAY_CHOOSE_RELIC, delta);
             return 1.0;
         }
         if (overlayNode is NDeckUpgradeSelectScreen or NDeckTransformSelectScreen
             or NDeckEnchantSelectScreen or NDeckCardSelectScreen)
         {
-            MainFile.Logger.Info($"[AutoSlay] Dispatching OVERLAY_DECK_GRID for {overlayNode.GetType().Name}");
+            MainFile.Logger.Info($"[AUTO] Dispatching OVERLAY_DECK_GRID for {overlayNode.GetType().Name}");
             DecisionEngine.Decide(GameScreen.OVERLAY_DECK_GRID, delta);
             return 0.5;
         }
         if (overlayNode is NSimpleCardSelectScreen simpleSelect)
         {
-            MainFile.Logger.Info("[AutoSlay] Dispatching OVERLAY_SIMPLE_SELECT");
+            MainFile.Logger.Info("[AUTO] Dispatching OVERLAY_SIMPLE_SELECT");
             DecisionEngine.Decide(GameScreen.OVERLAY_SIMPLE_SELECT, delta);
             return 0.5;
         }
         if (overlayNode is NCrystalSphereScreen crystalSphere)
         {
-            MainFile.Logger.Info("[AutoSlay] Dispatching OVERLAY_CRYSTAL_SPHERE");
+            MainFile.Logger.Info("[AUTO] Dispatching OVERLAY_CRYSTAL_SPHERE");
             DecisionEngine.Decide(GameScreen.OVERLAY_CRYSTAL_SPHERE, delta);
             return 0.5;
         }
@@ -5049,6 +5276,10 @@ public partial class AutoSlayNode : Node
         if (_unknownOverlayRetries >= 10)
         {
             MainFile.Logger.Error($"[AutoSlay] DEADLOCK: unknown overlay {overlayNode.GetType().Name} could not be dismissed after {_unknownOverlayRetries} attempts — force-removing");
+            WriteDiagnostic(
+                DiagnosticEventTypes.OverlayStuck,
+                $"Unknown overlay {overlayNode.GetType().Name} required force removal",
+                $"overlay-stuck-{overlayNode.GetType().Name}");
             try
             {
                 if (overlayNode is IOverlayScreen overlayScreen)
