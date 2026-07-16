@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Godot;
 using MegaCrit.Sts2.Core.Nodes.Screens.Map;
+using TokenSpire2.Core;
 
 namespace TokenSpire2.Solver;
 
@@ -23,6 +24,9 @@ public static class MapDecider
     /// "still on the same row" after clicking is NORMAL — not a rejection.
     /// </summary>
     public static bool InMultiplayerRun;
+    private static readonly MapVoteCycleGate VoteCycleGate = new();
+
+    public static void ObserveMapVisibility(bool isOpen) => VoteCycleGate.ObserveMapVisibility(isOpen);
 
     private static int _lastClickedRow = -1;
     private static int _lastClickedCol = -1;
@@ -39,12 +43,19 @@ public static class MapDecider
         _cachedPath = null;
         _cachedPathIndex = -1;
         _clickedNodes = null;
+        VoteCycleGate.Reset();
     }
 
     public static bool Decide(RunState state)
     {
         var mapScreen = NMapScreen.Instance;
         if (mapScreen?.IsOpen != true) return false;
+
+        if (!VoteCycleGate.CanVote(InMultiplayerRun))
+        {
+            MainFile.Logger.Info("[MapDecider] Multiplayer vote already submitted for this map-open cycle; waiting for room transition");
+            return false;
+        }
 
         var allPoints = AutoSlayHelpers.FindAll<NMapPoint>(mapScreen);
         if (allPoints.Count == 0)
@@ -96,6 +107,7 @@ public static class MapDecider
             _lastClickedCol = c;
             _lastClickTime = Godot.Time.GetTicksMsec() / 1000.0;
             mapScreen.OnMapPointSelectedLocally(only);
+            VoteCycleGate.MarkVoteSubmitted(InMultiplayerRun);
             // B5: Track for click verification
             _clickVerifyRow = r;
             _clickVerifyCol = c;
@@ -207,6 +219,7 @@ public static class MapDecider
         _lastClickTime = Godot.Time.GetTicksMsec() / 1000.0;
         _clickedNodes.Add((nr, nc));
         mapScreen.OnMapPointSelectedLocally(nextNode);
+        VoteCycleGate.MarkVoteSubmitted(InMultiplayerRun);
 
         // B5 fix: After clicking, check after a short delay that the click was accepted.
         // If the same row still has nodes enabled (and we're still on same row),

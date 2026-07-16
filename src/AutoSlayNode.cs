@@ -570,6 +570,11 @@ public partial class AutoSlayNode : Node
 
         if (_paused) return;
 
+        // Multiplayer map nodes can become enabled before the previous map
+        // transition animation closes. Let MapDecider unlock its vote latch
+        // only after the map has actually disappeared for at least one frame.
+        MapDecider.ObserveMapVisibility(NMapScreen.Instance?.IsOpen == true);
+
         // ── Diagnostic heartbeat (every 5 seconds) ──────────────────
         _dbgTimer -= delta;
         if (_dbgTimer <= 0)
