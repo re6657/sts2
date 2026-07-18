@@ -43,6 +43,9 @@ public static class BundleDecider
             return;
         }
 
+        if (_selectionGate.Exhausted)
+            return;
+
         _stuckFrames++;
 
         // ── Step 1: If confirm is enabled, click it (bundle already selected) ──
@@ -133,8 +136,7 @@ public static class BundleDecider
                     $"[BundleDecider] Selection request failed for {label}: " +
                     $"{selectionResult}; waiting for hitbox fallback");
             }
-            if (!firstRequest || timeoutRecoveryRequested)
-                _stuckFrames = 0;
+            _stuckFrames = 0;
             return;
         }
 

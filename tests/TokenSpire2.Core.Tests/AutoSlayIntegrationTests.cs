@@ -43,6 +43,36 @@ public sealed class AutoSlayIntegrationTests
         Assert.DoesNotContain("foreach (var b in bundles)", code);
     }
 
+    [Fact]
+    public void BundleSelectionClearsTheStuckTimerAfterEveryClickedInput()
+    {
+        var code = StripComments(File.ReadAllText(
+            FindRepoFile("src", "Solver", "BundleDecider.cs")));
+        var clickedStart = code.IndexOf(
+            "if (input == BundleSelectionInput.Clicked)",
+            StringComparison.Ordinal);
+        var exhaustedStart = code.IndexOf(
+            "if (input == BundleSelectionInput.Exhausted)",
+            clickedStart,
+            StringComparison.Ordinal);
+
+        Assert.True(clickedStart >= 0 && exhaustedStart > clickedStart);
+        var clickedBranch = code[clickedStart..exhaustedStart];
+        Assert.DoesNotContain("if (!firstRequest || timeoutRecoveryRequested)", clickedBranch);
+        Assert.Matches(@"_stuckFrames = 0;\s*return;\s*}\s*$", clickedBranch);
+    }
+
+    [Fact]
+    public void ExhaustedBundleSelectionStopsFurtherStuckRecovery()
+    {
+        var code = StripComments(File.ReadAllText(
+            FindRepoFile("src", "Solver", "BundleDecider.cs")));
+
+        Assert.Matches(
+            @"if \(_selectionGate\.Exhausted\)\s*return;\s*_stuckFrames\+\+;",
+            code);
+    }
+
     private static string StripComments(string source)
     {
         var withoutBlockComments =

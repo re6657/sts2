@@ -6,7 +6,7 @@ namespace TokenSpire2.Core.Tests;
 public sealed class BundleSelectionRequestGateTests
 {
     [Fact]
-    public void ThreeRecoveryCyclesEndInOneExhaustedNotification()
+    public void ExhaustedGateDoesNotIssueFurtherRecoveryInputs()
     {
         var gate = new BundleSelectionRequestGate();
 
@@ -27,6 +27,7 @@ public sealed class BundleSelectionRequestGateTests
         Assert.Equal(BundleSelectionInput.Exhausted, gate.Tick(false, true));
         Assert.Equal(BundleSelectionInput.None, gate.Tick(true, true));
         Assert.Equal(BundleSelectionInput.None, gate.Tick(true, true));
+        Assert.Equal(BundleSelectionInput.None, gate.Tick(false, false));
         Assert.True(gate.Exhausted);
         Assert.Equal(3, gate.CycleCount);
     }
@@ -48,18 +49,15 @@ public sealed class BundleSelectionRequestGateTests
     }
 
     [Fact]
-    public void InitialClickIsSingleAndWaitingTicksProduceNoInput()
+    public void FirstClickNearTimeoutLeavesTheNextTickInTheCurrentCycle()
     {
         var gate = new BundleSelectionRequestGate();
 
         Assert.Equal(BundleSelectionInput.Clicked, gate.Tick(false, false));
         gate.RecordClickedResult(false);
 
-        for (var i = 0; i < 5; i++)
-            Assert.Equal(BundleSelectionInput.None, gate.Tick(false, false));
-
-        Assert.Equal(BundleSelectionInput.None, gate.Tick(false, false));
-        Assert.Equal(BundleSelectionInput.HitboxFallback, gate.Tick(true, false));
+        Assert.Equal(BundleSelectionInput.None, gate.Tick(true, false));
+        Assert.Equal(1, gate.CycleCount);
     }
 
     [Fact]
