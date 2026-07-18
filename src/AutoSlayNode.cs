@@ -391,7 +391,12 @@ public partial class AutoSlayNode : Node
             HasPositiveCostCards: hasPositiveCostCards,
             HasActedThisTurn: _successfulPlaysThisTurn > 0,
             PlayerActionsDisabled: CombatManager.Instance?.PlayerActionsDisabled != false,
-            ActionQueueIdle: _combatPlan == null && _pendingLlm == null,
+            // An allocated but empty solver plan means planning is complete,
+            // not that the game action queue is busy. Treating it as busy
+            // blocks the empty-plan end-turn path forever after SpeedX no
+            // longer auto-clicks End Turn.
+            ActionQueueIdle: (_combatPlan == null || _combatPlan.Count == 0)
+                && _pendingLlm == null,
             DrawComplete: drawComplete,
             EndTurnRequested: _combatTurnRequested);
         return _turnReadinessGate.Observe(snapshot);

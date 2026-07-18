@@ -22,6 +22,14 @@ public sealed class AutoSlayIntegrationTests
         Assert.Contains("waiting-for-energy-refresh", source);
     }
 
+    [Fact]
+    public void EmptyCombatPlanIsNotTreatedAsBusyActionQueue()
+    {
+        var source = File.ReadAllText(FindRepoFile("src", "AutoSlayNode.cs"));
+
+        Assert.Contains("_combatPlan == null || _combatPlan.Count == 0", source);
+    }
+
     private static string FindRepoFile(params string[] parts)
     {
         var current = new DirectoryInfo(AppContext.BaseDirectory);
