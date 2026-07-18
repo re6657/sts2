@@ -23,14 +23,14 @@ namespace TokenSpire2.Solver;
 public static class BundleDecider
 {
     private static int _stuckFrames;
-    private const int HitboxFallbackFrame = 6;
+    private const int HitboxFallbackFrame = BundleSelectionRequestGate.HitboxFallbackFrame;
     private const int STUCK_TIMEOUT = 180; // 3 seconds at 60fps
-    private static bool _selectionRequested;
+    private static readonly BundleSelectionRequestGate _selectionGate = new();
 
     public static void Reset()
     {
         _stuckFrames = 0;
-        _selectionRequested = false;
+        _selectionGate.Reset();
     }
 
     public static void Decide()
@@ -39,7 +39,7 @@ public static class BundleDecider
         if (screen == null || !GodotObject.IsInstanceValid(screen))
         {
             _stuckFrames = 0;
-            _selectionRequested = false;
+            _selectionGate.Reset();
             return;
         }
 
@@ -52,7 +52,7 @@ public static class BundleDecider
             MainFile.Logger.Info($"[BundleDecider] Confirming bundle selection (frame {_stuckFrames})");
             confirm.ForceClick();
             _stuckFrames = 0;
-            _selectionRequested = false;
+            _selectionGate.Reset();
             return;
         }
 
@@ -63,6 +63,9 @@ public static class BundleDecider
 
         if (bundles.Count == 0)
         {
+            if (_selectionGate.Attempted)
+                _selectionGate.Tick(false, _stuckFrames > STUCK_TIMEOUT);
+
             // No bundles found — stuck or screen is in transition
             if (_stuckFrames > STUCK_TIMEOUT)
             {
@@ -77,7 +80,10 @@ public static class BundleDecider
                         anyConfirm.ForceClick();
                     }
                 }
-                catch { }
+                catch (Exception ex)
+                {
+                    MainFile.Logger.Error($"[BundleDecider] Emergency confirm failed: {ex}");
+                }
                 _stuckFrames = 0;
             }
             return;
@@ -88,62 +94,86 @@ public static class BundleDecider
         string label = pick.Name ?? "Bundle#1";
         bool hasHitbox = pick.Hitbox != null && GodotObject.IsInstanceValid(pick.Hitbox);
 
-        MainFile.Logger.Info($"[BundleDecider] Selecting bundle: {label} (bundles={bundles.Count}, hasHitbox={hasHitbox}, frame={_stuckFrames})");
+        bool firstRequest = !_selectionGate.Attempted;
+        if (firstRequest)
+        {
+            MainFile.Logger.Info($"[BundleDecider] Selecting bundle: {label} (bundles={bundles.Count}, hasHitbox={hasHitbox}, frame={_stuckFrames})");
 
-        DecisionLogger.LogDecision(
-            GameScreen.OVERLAY_CHOOSE_BUNDLE, "BundleChoice",
-            bundles.Select((b, i) => new DecisionLogger.OptionScore
-            {
-                Index = i, Label = b.Name ?? $"Bundle#{i + 1}", Score = bundles.Count - i
-            }).ToList(),
-            0, label, "Picking first bundle (deterministic)");
+            DecisionLogger.LogDecision(
+                GameScreen.OVERLAY_CHOOSE_BUNDLE, "BundleChoice",
+                bundles.Select((b, i) => new DecisionLogger.OptionScore
+                {
+                    Index = i, Label = b.Name ?? $"Bundle#{i + 1}", Score = bundles.Count - i
+                }).ToList(),
+                0, label, "Picking first bundle (deterministic)");
+        }
 
-        if (!_selectionRequested)
+        bool timeoutRecoveryRequested =
+            _selectionGate.Attempted && _stuckFrames > STUCK_TIMEOUT;
+        if (timeoutRecoveryRequested)
+        {
+            MainFile.Logger.Error(
+                $"[BundleDecider] STUCK after {_stuckFrames} frames on '{label}' — emergency recovery");
+        }
+
+        var input = _selectionGate.Tick(hasHitbox, timeoutRecoveryRequested);
+        if (input == BundleSelectionInput.Clicked)
         {
             Godot.Error selectionResult =
                 pick.EmitSignal(NCardBundle.SignalName.Clicked, pick);
+            _selectionGate.RecordClickedResult(selectionResult == Godot.Error.Ok);
             if (selectionResult == Godot.Error.Ok)
             {
-                _selectionRequested = true;
                 MainFile.Logger.Info(
                     $"[BundleDecider] Selection requested via Clicked: {label}");
-                return;
             }
-
-            MainFile.Logger.Warn(
-                $"[BundleDecider] Selection request failed for {label}: " +
-                $"{selectionResult}; hitbox fallback remains available");
-        }
-
-        if (_stuckFrames == HitboxFallbackFrame && hasHitbox)
-        {
-            pick.Hitbox!.ForceClick();
-            MainFile.Logger.Warn(
-                $"[BundleDecider] No state change after {HitboxFallbackFrame} frames; " +
-                $"using hitbox fallback: {label}");
-        }
-
-        // ── Stuck detection: if we've tried too many frames without the confirm ──
-        // button enabling, try emergency recovery.
-        if (_stuckFrames > STUCK_TIMEOUT)
-        {
-            MainFile.Logger.Error($"[BundleDecider] STUCK after {_stuckFrames} frames on '{label}' — emergency recovery");
-            _stuckFrames = 0;
-            Godot.Error recoveryResult =
-                pick.EmitSignal(NCardBundle.SignalName.Clicked, pick);
-            if (recoveryResult != Godot.Error.Ok)
+            else
             {
                 MainFile.Logger.Warn(
-                    $"[BundleDecider] Emergency clicked request failed for {label}: " +
-                    $"{recoveryResult}");
+                    $"[BundleDecider] Selection request failed for {label}: " +
+                    $"{selectionResult}; waiting for hitbox fallback");
             }
+            return;
+        }
 
-            try
-            {
-                if (hasHitbox)
-                    pick.Hitbox!.ForceClick();
-            }
-            catch { }
+        if (input == BundleSelectionInput.HitboxFallback)
+        {
+            string reason = timeoutRecoveryRequested
+                ? "timeout recovery"
+                : $"after {HitboxFallbackFrame} waiting ticks";
+            TryHitboxFallback(pick, label, reason);
+            if (timeoutRecoveryRequested)
+                _stuckFrames = 0;
+            return;
+        }
+
+        if (timeoutRecoveryRequested)
+        {
+            _stuckFrames = 0;
+        }
+    }
+
+    private static bool TryHitboxFallback(NCardBundle pick, string label, string reason)
+    {
+        if (pick.Hitbox == null || !GodotObject.IsInstanceValid(pick.Hitbox))
+        {
+            MainFile.Logger.Warn(
+                $"[BundleDecider] Hitbox fallback unavailable for {label}: invalid hitbox ({reason})");
+            return false;
+        }
+
+        try
+        {
+            pick.Hitbox.ForceClick();
+            MainFile.Logger.Warn(
+                $"[BundleDecider] Using hitbox fallback for {label}: {reason}");
+            return true;
+        }
+        catch (Exception ex)
+        {
+            MainFile.Logger.Error(
+                $"[BundleDecider] Hitbox fallback failed for {label}: {ex}");
+            return false;
         }
     }
 }
