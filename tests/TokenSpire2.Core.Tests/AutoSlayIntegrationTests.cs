@@ -30,6 +30,16 @@ public sealed class AutoSlayIntegrationTests
         Assert.Contains("_combatPlan == null || _combatPlan.Count == 0", source);
     }
 
+    [Fact]
+    public void BundleSelectionUsesNativeClickedSignalInsteadOfPressed()
+    {
+        var source = File.ReadAllText(
+            FindRepoFile("src", "Solver", "BundleDecider.cs"));
+
+        Assert.Contains("pick.EmitSignalClicked();", source);
+        Assert.DoesNotContain("pick.EmitSignal(\"pressed\")", source);
+    }
+
     private static string FindRepoFile(params string[] parts)
     {
         var current = new DirectoryInfo(AppContext.BaseDirectory);
