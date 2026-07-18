@@ -35,9 +35,20 @@ public sealed class AutoSlayIntegrationTests
     {
         var source = File.ReadAllText(
             FindRepoFile("src", "Solver", "BundleDecider.cs"));
+        var code = StripComments(source);
 
-        Assert.Contains("pick.EmitSignalClicked();", source);
-        Assert.DoesNotContain("pick.EmitSignal(\"pressed\")", source);
+        Assert.Contains("pick.EmitSignal(NCardBundle.SignalName.Clicked, pick)", code);
+        Assert.Contains("Godot.Error.Ok", code);
+        Assert.DoesNotContain("EmitSignal(\"pressed\")", code);
+        Assert.DoesNotContain("foreach (var b in bundles)", code);
+    }
+
+    private static string StripComments(string source)
+    {
+        var withoutBlockComments =
+            System.Text.RegularExpressions.Regex.Replace(source, @"/\*.*?\*/", "", System.Text.RegularExpressions.RegexOptions.Singleline);
+        return System.Text.RegularExpressions.Regex.Replace(
+            withoutBlockComments, @"//.*$", "", System.Text.RegularExpressions.RegexOptions.Multiline);
     }
 
     private static string FindRepoFile(params string[] parts)

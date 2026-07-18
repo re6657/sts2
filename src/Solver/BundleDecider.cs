@@ -100,13 +100,19 @@ public static class BundleDecider
 
         if (!_selectionRequested)
         {
-            // The generated emitter is protected in the current game assembly.
-            // pick.EmitSignalClicked();
-            pick.EmitSignal(NCardBundle.SignalName.Clicked);
-            _selectionRequested = true;
-            MainFile.Logger.Info(
-                $"[BundleDecider] Selection requested via Clicked: {label}");
-            return;
+            Godot.Error selectionResult =
+                pick.EmitSignal(NCardBundle.SignalName.Clicked, pick);
+            if (selectionResult == Godot.Error.Ok)
+            {
+                _selectionRequested = true;
+                MainFile.Logger.Info(
+                    $"[BundleDecider] Selection requested via Clicked: {label}");
+                return;
+            }
+
+            MainFile.Logger.Warn(
+                $"[BundleDecider] Selection request failed for {label}: " +
+                $"{selectionResult}; hitbox fallback remains available");
         }
 
         if (_stuckFrames == HitboxFallbackFrame && hasHitbox)
@@ -123,17 +129,21 @@ public static class BundleDecider
         {
             MainFile.Logger.Error($"[BundleDecider] STUCK after {_stuckFrames} frames on '{label}' — emergency recovery");
             _stuckFrames = 0;
-            // Emergency: retry every bundle with the native signal and hitbox fallback
-            foreach (var b in bundles)
+            Godot.Error recoveryResult =
+                pick.EmitSignal(NCardBundle.SignalName.Clicked, pick);
+            if (recoveryResult != Godot.Error.Ok)
             {
-                try { b.EmitSignal(NCardBundle.SignalName.Clicked); } catch { }
-                try
-                {
-                    if (b.Hitbox != null && GodotObject.IsInstanceValid(b.Hitbox))
-                        b.Hitbox.ForceClick();
-                }
-                catch { }
+                MainFile.Logger.Warn(
+                    $"[BundleDecider] Emergency clicked request failed for {label}: " +
+                    $"{recoveryResult}");
             }
+
+            try
+            {
+                if (hasHitbox)
+                    pick.Hitbox!.ForceClick();
+            }
+            catch { }
         }
     }
 }
