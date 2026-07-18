@@ -73,6 +73,22 @@ public sealed class AutoSlayIntegrationTests
             code);
     }
 
+    [Fact]
+    public void ExhaustedBundleSelectionConfirmsBeforeBecomingSilent()
+    {
+        var code = StripComments(File.ReadAllText(
+            FindRepoFile("src", "Solver", "BundleDecider.cs")));
+        var confirmStart = code.IndexOf(
+            "var confirm = AutoSlayHelpers.FindFirst<NConfirmButton>(screen)",
+            StringComparison.Ordinal);
+        var exhaustedGuard = code.IndexOf(
+            "if (_selectionGate.Exhausted)",
+            StringComparison.Ordinal);
+
+        Assert.True(confirmStart >= 0 && exhaustedGuard > confirmStart,
+            "The enabled-confirm branch must run before the Exhausted silent guard.");
+    }
+
     private static string StripComments(string source)
     {
         var withoutBlockComments =

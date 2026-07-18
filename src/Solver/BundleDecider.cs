@@ -43,21 +43,21 @@ public static class BundleDecider
             return;
         }
 
-        if (_selectionGate.Exhausted)
-            return;
-
-        _stuckFrames++;
-
         // ── Step 1: If confirm is enabled, click it (bundle already selected) ──
         var confirm = AutoSlayHelpers.FindFirst<NConfirmButton>(screen);
         if (confirm != null && GodotObject.IsInstanceValid(confirm) && confirm.IsEnabled)
         {
-            MainFile.Logger.Info($"[BundleDecider] Confirming bundle selection (frame {_stuckFrames})");
+            MainFile.Logger.Info($"[BundleDecider] Confirming bundle selection (frame {_stuckFrames + 1})");
             confirm.ForceClick();
             _stuckFrames = 0;
             _selectionGate.Reset();
             return;
         }
+
+        if (_selectionGate.Exhausted)
+            return;
+
+        _stuckFrames++;
 
         // ── Step 2: Select a bundle ───────────────────────────────────────────
         var bundles = AutoSlayHelpers.FindAll<NCardBundle>(screen)
