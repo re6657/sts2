@@ -164,6 +164,12 @@ public partial class AutoSlayNode : Node
     private int _shopStuckFrames;    // stuck detection for shop leaving state
     private int _combatPlanStuckFrames; // stuck detection for combat plan step execution
     private int _turnPlansWithoutPlay;  // count plans created this turn without a successful card play
+    // ── Multiplayer card play dedup ────────────────────────────────────────
+    // In multiplayer, TryManualPlay returns true BEFORE the card is actually removed
+    // from hand (ActionQueueSynchronizer is async). The end-turn recheck sees the same
+    // card still in hand and creates a duplicate plan → duplicate NetCombatCard enqueue
+    // → StateDivergence. Track committed card IDs to exclude them from rechecks.
+    private Dictionary<string, int> _committedPlayCounts = new();
     // Battle logging
     private int _combatTurnNumber;
     private bool _wasInCombat;
@@ -258,6 +264,28 @@ public partial class AutoSlayNode : Node
                     _autoEvent = true;
                 }
                 MainFile.Logger.Info($"[AutoSlay] Toggles: Nav={_autoNavigate} Battle={_autoBattle} Event={_autoEvent} (F1/F2/F3 to change)");
+
+                // ── SpeedX compatibility check ───────────────────────────────
+                // SpeedX's TurboGuard timer override causes non-deterministic
+                // timing in multiplayer lockstep → StateDivergence → disconnects.
+                // SpeedX itself warns: "risky multiplayer timer override is ON"
+                try
+                {
+                    var speedxAssembly = AppDomain.CurrentDomain.GetAssemblies()
+                        .FirstOrDefault(a => a.GetName().Name?.Contains("SpeedX") == true);
+                    if (speedxAssembly != null)
+                    {
+                        MainFile.Logger.Warn("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                        MainFile.Logger.Warn("[SpeedX-Compat] SpeedX mod detected in multiplayer mode!");
+                        MainFile.Logger.Warn("[SpeedX-Compat] SpeedX's TurboGuard timer override causes StateDivergence (desync).");
+                        MainFile.Logger.Warn("[SpeedX-Compat] If you experience frequent disconnects:");
+                        MainFile.Logger.Warn("[SpeedX-Compat]   → press F9 to open SpeedX settings");
+                        MainFile.Logger.Warn("[SpeedX-Compat]   → disable TurboGuard or reduce speed multiplier in multiplayer");
+                        MainFile.Logger.Warn("[SpeedX-Compat] SpeedX itself warns: 'risky multiplayer timer override is ON'");
+                        MainFile.Logger.Warn("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                    }
+                }
+                catch { /* SpeedX check is best-effort — silently ignore failures */ }
             }
             else
             {
@@ -287,9 +315,10 @@ public partial class AutoSlayNode : Node
             modDirectory, instanceRole, sessionId,
             ex => MainFile.Logger?.Info($"[Diagnostics] background write failed: {ex.Message}"));
 
-        // BaseLib's selector is global. Never install it for the multiplayer
-        // host: native upgrade/remove/transform screens call it directly and
-        // would otherwise bypass every overlay-level host guard.
+        // BaseLib's selector is process-global. Never install it in multiplayer:
+        // clients replay every player's choices locally, so a selector installed
+        // on a bot would also preselect the human host's event/card choices and
+        // produce StateDivergence before the synchronized choice arrives.
         if (_automationPolicy.Allows(AutomationAction.RegisterCardSelector))
         {
             _cardSelector = new AutoSlayCardSelector(null, null);
@@ -298,11 +327,14 @@ public partial class AutoSlayNode : Node
         }
         else
         {
-            MainFile.Logger.Info("[HOST-MANUAL] Host manual mode: global card selector NOT registered");
+            MainFile.Logger.Info(
+                _multiplayerMode
+                    ? "[MP-DETERMINISM] Global card selector NOT registered; synchronized overlays only"
+                    : "[HOST-MANUAL] Global card selector NOT registered");
             WriteDiagnostic(
                 DiagnosticEventTypes.HostAutomationBlocked,
-                "Global card selector registration blocked for human host",
-                "host-selector-registration");
+                "Process-global card selector registration blocked",
+                "global-selector-registration");
         }
 
         MainFile.Logger.Info("[AutoSlay] SOLVER-ONLY mode active. No LLM, no random play.");
@@ -426,6 +458,7 @@ public partial class AutoSlayNode : Node
         _observedGameTurn = -1;
         _successfulPlaysThisTurn = 0;
         _lastReadinessReason = "";
+        _committedPlayCounts.Clear(); // multiplayer dedup: new turn = fresh tracking
     }
 
     /// <summary>
@@ -1020,8 +1053,14 @@ public partial class AutoSlayNode : Node
                 _playerDisabledDuration = 0; // MP watchdog: we got our turn, reset disabled timer
 
                 // ── Toggle guard: skip if auto-battle is OFF ──
-                if (!_autoBattle)
+                // HOST GUARD: also skip when host is in manual mode.
+                // Host should be FULLY manual in multiplayer — no auto play,
+                // no auto end-turn. Solver generates actions that broadcast to
+                // all peers; different timing on host vs bots → StateDivergence.
+                if (!_autoBattle || IsHostManualMode)
                 {
+                    if (IsHostManualMode)
+                        LogOnce("HOST-GUARD combat: blocked auto-battle (host manual mode)");
                     _lastCombatActivity = 0; // reset stuck detector — human is playing
                     return;
                 }
@@ -2956,6 +2995,9 @@ public partial class AutoSlayNode : Node
             if (modal != null)
             {
                 if (TryClickDismissInModal((Node)modal)) return;
+                // Fallback: try confirm-type buttons (Yes/OK/Confirm).
+                // StateDivergence popups, confirmation dialogs, etc.
+                if (TryClickConfirmInModal((Node)modal)) return;
             }
 
             // ── Check 2: NOverlayStack overlays ──────────────────────────
@@ -2965,7 +3007,11 @@ public partial class AutoSlayNode : Node
                 if (overlayStack2?.ScreenCount > 0)
                 {
                     var overlay = overlayStack2.Peek() as Node;
-                    if (overlay != null && TryClickDismissInModal(overlay)) return;
+                    if (overlay != null)
+                    {
+                        if (TryClickDismissInModal(overlay)) return;
+                        if (TryClickConfirmInModal(overlay)) return;
+                    }
                 }
             }
             catch { }
@@ -3057,14 +3103,23 @@ public partial class AutoSlayNode : Node
             }
         }
 
-        // Step 3: If only 1 button and it's Proceed, click it
+        // Step 3: If only 1 button, click it if it's a safe dismiss/confirm button.
+        // Single-button modals include: "Proceed" (continue), "YesButton" (StateDivergence
+        // acknowledgment), "OK" (generic) — any single button is the only way to dismiss.
+        // CRITICAL: StateDivergence popups appear as single-YesButton modals. If we don't
+        // click Yes, the bot sits stuck until timeout (41s) → disconnect → rejoin → repeat.
         if (allBtns.Count == 1)
         {
             var only = allBtns[0];
             var name = (only.Name?.ToString() ?? "").ToLowerInvariant();
-            if (name.Contains("proceed"))
+            bool isSafe = name.Contains("proceed") || name.Contains("yes")
+                || name.Contains("confirm") || name.Contains("ok")
+                || name.Contains("是") || name.Contains("确认")
+                || name.Contains("好的") || name.Contains("好")
+                || name.Contains("accept");
+            if (isSafe)
             {
-                LogOnce($"DismissModal (1-btn): clicking Proceed");
+                LogOnce($"DismissModal (1-btn): clicking {only.Name}");
                 only.ForceClick();
                 _cooldown = 1.0;
                 return true;
@@ -4348,6 +4403,17 @@ public partial class AutoSlayNode : Node
         if (_combatPlanStep >= _combatPlan.Count)
         {
             int planStepCount = _combatPlanStep; // save before nulling
+            // ── Multiplayer dedup: save planned card IDs before nulling the plan ──
+            // In MP, TryManualPlay returns true before the card is removed from hand
+            // (async ActionQueueSynchronizer). The end-turn recheck must NOT count
+            // cards that were already in the plan as "newly playable" — doing so
+            // creates duplicate NetCombatCard enqueues → StateDivergence.
+            var plannedCardIds = _multiplayerMode && _combatPlan != null
+                ? _combatPlan.Select(a => a.Card?.Id?.Entry ?? "")
+                    .Where(id => !string.IsNullOrEmpty(id))
+                    .GroupBy(id => id)
+                    .ToDictionary(g => g.Key, g => g.Count())
+                : null;
             _combatPlan = null;
             if (_combatPlanEndTurn)
             {
@@ -4368,11 +4434,29 @@ public partial class AutoSlayNode : Node
                     {
                         var currentHand = PileType.Hand.GetPile(player).Cards.ToList();
                         int currentEnergy = player?.PlayerCombatState?.Energy ?? 0;
+                        // ── Multiplayer dedup: exclude cards already in the completed plan ──
+                        // In MP, TryManualPlay returns true before the card is removed from
+                        // hand (async ActionQueueSynchronizer). Without this exclusion, the
+                        // recheck sees planned cards as "still playable" and creates
+                        // duplicate plans → duplicate NetCombatCard enqueues → StateDivergence.
+                        var remainingPlanned = plannedCardIds != null
+                            ? new Dictionary<string, int>(plannedCardIds)
+                            : null;
                         foreach (var card in currentHand)
                         {
                             try
                             {
                                 if (card == null) continue;
+                                // Skip cards that were already in the completed plan (multiplayer dedup)
+                                if (remainingPlanned != null)
+                                {
+                                    string cardKey = card.Id?.Entry ?? "";
+                                    if (!string.IsNullOrEmpty(cardKey) && remainingPlanned.TryGetValue(cardKey, out int plannedCount) && plannedCount > 0)
+                                    {
+                                        remainingPlanned[cardKey] = plannedCount - 1;
+                                        continue; // This card was already planned — skip
+                                    }
+                                }
                                 int cost = card.EnergyCost?.CostsX == true
                                     ? Math.Max(1, currentEnergy)
                                     : (card.EnergyCost?.Canonical ?? 99);
@@ -4561,6 +4645,14 @@ public partial class AutoSlayNode : Node
                     _turnPlansWithoutPlay = 0;  // reset — successful card play
                     _consecutiveRechecks = 0;   // reset — successful card play broke any recheck cycle
                     _successfulPlaysThisTurn++;
+                    // ── Multiplayer dedup: track committed card to prevent duplicate plays ──
+                    if (_multiplayerMode && !_isMultiplayerHost)
+                    {
+                        string commitKey = matchingCard.Id?.Entry ?? cardId;
+                        _committedPlayCounts.TryGetValue(commitKey, out int prev);
+                        _committedPlayCounts[commitKey] = prev + 1;
+                        MainFile.Logger.Info($"[AutoSlay] MP commit: {commitKey} (pending={_committedPlayCounts[commitKey]})");
+                    }
                     try { BattleLogger.LogAction(cardId, true, target: targetId); } catch { }
                     // ── Record for post-combat dialogue generation ──
                     try
@@ -4612,6 +4704,13 @@ public partial class AutoSlayNode : Node
                         {
                             if (card == null) continue;
                             if (remainingPlanIds.Contains(card.Id.Entry)) continue;
+                            // Multiplayer dedup: skip cards already committed to play
+                            string cardKey = card.Id?.Entry ?? "";
+                            if (!string.IsNullOrEmpty(cardKey) && _committedPlayCounts.TryGetValue(cardKey, out int committed) && committed > 0)
+                            {
+                                _committedPlayCounts[cardKey] = committed - 1;
+                                continue;
+                            }
                             int cost = card.EnergyCost?.CostsX == true
                                 ? Math.Max(1, remainingEnergy)
                                 : (card.EnergyCost?.Canonical ?? 99);

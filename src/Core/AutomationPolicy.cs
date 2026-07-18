@@ -52,7 +52,11 @@ public sealed class AutomationPolicy
             AutomationAction.Combat => _autoBattle,
             AutomationAction.Map or AutomationAction.Shop or AutomationAction.Rest => _autoNavigate,
             AutomationAction.CardGrid or AutomationAction.Event or AutomationAction.Rewards => _autoEvent,
-            AutomationAction.RegisterCardSelector => _autoBattle || _autoEvent,
+            // ICardSelector is process-global. During multiplayer replay it is
+            // consulted for every player, not only the local bot, so installing
+            // it on a client makes that client preselect the human host's cards
+            // and immediately diverge from the host state.
+            AutomationAction.RegisterCardSelector => !_multiplayer && (_autoBattle || _autoEvent),
             AutomationAction.LlmSelection or AutomationAction.TimeoutFallback => _autoEvent,
             _ => false,
         };

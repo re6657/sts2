@@ -10,7 +10,7 @@ public sealed class AutoSlayIntegrationTests
         var source = File.ReadAllText(FindRepoFile("src", "AutoSlayNode.cs"));
 
         Assert.Contains("Allows(AutomationAction.RegisterCardSelector)", source);
-        Assert.Contains("Host manual mode: global card selector NOT registered", source);
+        Assert.Contains("Global card selector NOT registered; synchronized overlays only", source);
     }
 
     [Fact]

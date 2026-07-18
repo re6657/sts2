@@ -20,11 +20,11 @@ public sealed class AutomationPolicyTests
     }
 
     [Fact]
-    public void MultiplayerBotAllowsConfiguredAutomation()
+    public void MultiplayerBotNeverRegistersProcessGlobalCardSelector()
     {
         var policy = new AutomationPolicy(true, false, true, true, true);
 
-        Assert.True(policy.Allows(AutomationAction.RegisterCardSelector));
+        Assert.False(policy.Allows(AutomationAction.RegisterCardSelector));
         Assert.True(policy.Allows(AutomationAction.Combat));
         Assert.True(policy.Allows(AutomationAction.CardGrid));
         Assert.True(policy.Allows(AutomationAction.Map));
@@ -38,5 +38,6 @@ public sealed class AutomationPolicyTests
         Assert.False(policy.Allows(AutomationAction.Combat));
         Assert.True(policy.Allows(AutomationAction.Map));
         Assert.True(policy.Allows(AutomationAction.Event));
+        Assert.True(policy.Allows(AutomationAction.RegisterCardSelector));
     }
 }
