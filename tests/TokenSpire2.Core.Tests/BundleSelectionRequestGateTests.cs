@@ -6,50 +6,64 @@ namespace TokenSpire2.Core.Tests;
 public sealed class BundleSelectionRequestGateTests
 {
     [Fact]
-    public void FirstTickRequestsClickedOnlyOnce()
-    {
-        var gate = new BundleSelectionRequestGate();
-
-        Assert.Equal(BundleSelectionInput.Clicked, gate.Tick(false, false));
-        Assert.True(gate.Attempted);
-        Assert.False(gate.Accepted);
-        gate.RecordClickedResult(true);
-        Assert.True(gate.Accepted);
-
-        Assert.Equal(BundleSelectionInput.None, gate.Tick(false, false));
-        Assert.Equal(BundleSelectionInput.None, gate.Tick(false, false));
-    }
-
-    [Fact]
-    public void NonOkClickedResultIsNotRetried()
+    public void ThreeRecoveryCyclesEndInOneExhaustedNotification()
     {
         var gate = new BundleSelectionRequestGate();
 
         Assert.Equal(BundleSelectionInput.Clicked, gate.Tick(false, false));
         gate.RecordClickedResult(false);
-        Assert.True(gate.Attempted);
-        Assert.False(gate.Accepted);
+        Assert.Equal(BundleSelectionInput.HitboxFallback, AdvanceToHitbox(gate));
+        Assert.Equal(BundleSelectionInput.None, gate.Tick(false, false));
+
+        Assert.Equal(BundleSelectionInput.Clicked, gate.Tick(false, true));
+        gate.RecordClickedResult(false);
+        Assert.Equal(BundleSelectionInput.HitboxFallback, AdvanceToHitbox(gate));
+        Assert.Equal(BundleSelectionInput.None, gate.Tick(false, false));
+
+        Assert.Equal(BundleSelectionInput.Clicked, gate.Tick(false, true));
+        gate.RecordClickedResult(false);
+        Assert.Equal(BundleSelectionInput.HitboxFallback, AdvanceToHitbox(gate));
+
+        Assert.Equal(BundleSelectionInput.Exhausted, gate.Tick(false, true));
+        Assert.Equal(BundleSelectionInput.None, gate.Tick(true, true));
+        Assert.Equal(BundleSelectionInput.None, gate.Tick(true, true));
+        Assert.True(gate.Exhausted);
+        Assert.Equal(3, gate.CycleCount);
+    }
+
+    [Fact]
+    public void HitboxFailureStartsControlledNextCycle()
+    {
+        var gate = new BundleSelectionRequestGate();
+
+        Assert.Equal(BundleSelectionInput.Clicked, gate.Tick(false, false));
+        gate.RecordClickedResult(false);
+        Assert.Equal(BundleSelectionInput.HitboxFallback, AdvanceToHitbox(gate));
+
+        gate.ReportInputFailed();
+
+        Assert.Equal(BundleSelectionInput.Clicked, gate.Tick(true, false));
+        gate.RecordClickedResult(false);
+        Assert.Equal(BundleSelectionInput.None, gate.Tick(false, false));
+    }
+
+    [Fact]
+    public void InitialClickIsSingleAndWaitingTicksProduceNoInput()
+    {
+        var gate = new BundleSelectionRequestGate();
+
+        Assert.Equal(BundleSelectionInput.Clicked, gate.Tick(false, false));
+        gate.RecordClickedResult(false);
 
         for (var i = 0; i < 5; i++)
             Assert.Equal(BundleSelectionInput.None, gate.Tick(false, false));
-    }
 
-    [Fact]
-    public void FallbackHappensAfterSixWaitingTicks()
-    {
-        var gate = new BundleSelectionRequestGate();
-
-        Assert.Equal(BundleSelectionInput.Clicked, gate.Tick(false, false));
-        gate.RecordClickedResult(false);
-
-        for (var i = 0; i < 5; i++)
-            Assert.Equal(BundleSelectionInput.None, gate.Tick(true, false));
-
+        Assert.Equal(BundleSelectionInput.None, gate.Tick(false, false));
         Assert.Equal(BundleSelectionInput.HitboxFallback, gate.Tick(true, false));
     }
 
     [Fact]
-    public void LateBundleDoesNotResetRequestAge()
+    public void LateBundleStillUsesRequestAgeAndFallbackOnlyOnce()
     {
         var gate = new BundleSelectionRequestGate();
 
@@ -60,31 +74,29 @@ public sealed class BundleSelectionRequestGateTests
             Assert.Equal(BundleSelectionInput.None, gate.Tick(false, false));
 
         Assert.Equal(BundleSelectionInput.HitboxFallback, gate.Tick(true, false));
-    }
-
-    [Fact]
-    public void FallbackIsSentOnlyOnce()
-    {
-        var gate = new BundleSelectionRequestGate();
-
-        Assert.Equal(BundleSelectionInput.Clicked, gate.Tick(false, false));
-        gate.RecordClickedResult(false);
-
-        for (var i = 0; i < 6; i++)
-            gate.Tick(true, false);
-
         Assert.Equal(BundleSelectionInput.None, gate.Tick(true, false));
+        Assert.Equal(BundleSelectionInput.Clicked, gate.Tick(true, true));
+        gate.RecordClickedResult(false);
     }
 
     [Fact]
-    public void TimeoutRecoveryProducesAtMostOneInput()
+    public void TimeoutTickReturnsOnlyClickedBeforeNextFallbackWindow()
     {
         var gate = new BundleSelectionRequestGate();
+
+        Assert.Equal(BundleSelectionInput.Clicked, gate.Tick(true, false));
+        gate.RecordClickedResult(false);
 
         Assert.Equal(BundleSelectionInput.Clicked, gate.Tick(true, true));
         gate.RecordClickedResult(false);
+        Assert.Equal(BundleSelectionInput.None, gate.Tick(false, false));
+    }
 
-        Assert.Equal(BundleSelectionInput.HitboxFallback, gate.Tick(true, true));
-        Assert.Equal(BundleSelectionInput.None, gate.Tick(true, true));
+    private static BundleSelectionInput AdvanceToHitbox(BundleSelectionRequestGate gate)
+    {
+        for (var i = 0; i < BundleSelectionRequestGate.HitboxFallbackFrame - 1; i++)
+            Assert.Equal(BundleSelectionInput.None, gate.Tick(true, false));
+
+        return gate.Tick(true, false);
     }
 }

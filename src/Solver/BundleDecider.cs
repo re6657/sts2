@@ -64,7 +64,7 @@ public static class BundleDecider
         if (bundles.Count == 0)
         {
             if (_selectionGate.Attempted)
-                _selectionGate.Tick(false, _stuckFrames > STUCK_TIMEOUT);
+                _selectionGate.Tick(false, false, false);
 
             // No bundles found — stuck or screen is in transition
             if (_stuckFrames > STUCK_TIMEOUT)
@@ -133,6 +133,16 @@ public static class BundleDecider
                     $"[BundleDecider] Selection request failed for {label}: " +
                     $"{selectionResult}; waiting for hitbox fallback");
             }
+            if (!firstRequest || timeoutRecoveryRequested)
+                _stuckFrames = 0;
+            return;
+        }
+
+        if (input == BundleSelectionInput.Exhausted)
+        {
+            MainFile.Logger.Error(
+                $"[BundleDecider] BundleSelectionRecoveryExhausted cycles={_selectionGate.CycleCount} label={label}");
+            _stuckFrames = 0;
             return;
         }
 
@@ -141,7 +151,8 @@ public static class BundleDecider
             string reason = timeoutRecoveryRequested
                 ? "timeout recovery"
                 : $"after {HitboxFallbackFrame} waiting ticks";
-            TryHitboxFallback(pick, label, reason);
+            if (!TryHitboxFallback(pick, label, reason))
+                _selectionGate.ReportInputFailed();
             if (timeoutRecoveryRequested)
                 _stuckFrames = 0;
             return;
